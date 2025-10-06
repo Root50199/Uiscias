@@ -1,4 +1,4 @@
-Revived Illusion Simplified cahnges the following:
+Revived Illusion Simplified changes the following:
     Visually removes the walls in Revived illusion.
     Visually removes the hallway torches in Revived illusion.
     Removes the fire effects from the torches and candles in Revived illusion.
