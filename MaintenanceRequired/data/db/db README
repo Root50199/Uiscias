@@ -1,0 +1,22 @@
+Race.xml has several ways to be modded so will be seperated out here, when packing for yourself rename the file to just Race.xml
+
+For the gate three Halos start by searching for <Race ID="7604" ClassName="Shard_Of_Comfort_1"
+  Here there will be 5 entries that are all the same other than the number labels. These are the drones that follow the boss around, the halos you need to burst at 80% and 40% and the halos at 60%. The Drones around the boss at the start will always be 1, 2 and 3. 
+  The ones on the ground will be 1-5 (depending on phase) randomly scattered.
+  At 60% they are always 1, 2, and 3.
+  The game can only display up to 3 boss HP bars at once and 1 will be the main boss. At most you should have 2 of the halos changed to display one and if you want to be able to see all 3 at 60 you will need 2 people running different mods.
+  To add a life bar to an entity add "/lifebar_cnd/" to the list of IDs in "StringID="
+  I suggest also changing "LocalName" from a file line reference to plain text in quotes. Make any you change have unique names so you can tell them apart in game. I just label mine "Shard of Solace 1", "Shard of Solace 2" etc.
+  Example fully modded halo 1:
+  <Race ID="7604" ClassName="Shard_Of_Comfort_1" StringID="/boss/shard_of_comfort/shard_of_comfort_1/detect/no_pet_finish/not_spark/not_swallow/no_rankup_effect/unable_bubble/unable_sharpmind/unable_tame/not_freeze/no_stone/no_one_die/not_raincasting/not_sleep/unable_losesight2/immune_dot/unable_lure/not_groggy/Giantfieldboss/elemental_item_immune/use_dead_motion/no_movelock_by_hit/no_delay/no_hitmotion/not_down/no_blowaway/no_counterattack/brionac_limit/fragarach_limit/lifebar_cnd/not_interrupt_by_skill/boundary_adj/ice_mine_immune/use_c4/not_deathescape/immune_hold/no_find_material/piercing9/player_priority_target/no_name/no_targetmark/" Feature="" CollectCategory="" TrainingCategory="" EnglishName="Shard of Comfort" LocalName="Shard of Solace 1" Gender="2" Appearance="0" IsNPC="true" IsGoodNPC="false" Equipment="false" EquipmentVisible="false" InventorySizeX="6" InventorySizeY="10" Gaze="false" MeleeAttackRange="170" DefaultAttackSpeed="2" DefaultDownHitCount="2" Framework="mon_lm_obj_framework" DefaultMesh="mon_lm_obj1" RaceDesc="lm/object" BlowAwayEnable="true" ShovedEnable="true" CombatSkill="23002" SplashRadius="180" SplashAngle="60" SplashDamage="0" AttackMin="0" AttackMax="0" WAttackMin="0" WAttackMax="0" Critical="0" Rate="0" CriticalResist="0" PoisonDamage="0" PoisonImmune="100" PoisonDamageRatio1="0" PoisonDamageRatio2="0" LifeRecoveryRate="1" RunSpeedFactor="1" WeakPoints="" ExtraData="&lt;xml enablealphaout='false' br_deprot_rate=&quot;20&quot; fra_deprot_rate=&quot;20&quot; groupMovement=&quot;0,450,-100,2.0&quot; /&gt;" FirstCreateStript="setmonsterskill(23003, 5);" />
+
+Another useful thing that can be done in this file is adding "/targetable_healing/" to <Race ID="600013" ClassName="HGD_Heal_Wisp_NPC"
+    This is the orb in the hellgate event. It needs to be healed, but for some reason they didn't make it targetable by healing. You can also add "/lifebar_cnd/" to it, but be aware it is kinda janky. Still good for knowing when one spawns though. 
+
+You can also add "/lifebar_cnd/" to any mob or replace the lifebar they do have with it to give them the new type that displays statuses, a notable use for this is theta. 
+    <Race ID="193220" ClassName="RPR_mutant_enemy"
+
+If you are replacing a lifebar make sure you remove the old one. For all changes ensure you have a single "/" between all entries and no spaces. 
+
+
+    
