@@ -21,3 +21,18 @@ Race.xml has several ways to be modded so will be seperated out here, when packi
 
 AchievementTable.xml is just changing Hidden="True" to Hidden="False" and removing Prerequirement="*" entirely. 
 
+
+
+CharacterCondition.xml:
+    Being in deadly turns the entity red
+    Having mana shield active turns the entity blue.
+    Adds an icon and displays duration for demigod.
+    Displays duration for Phoenix's Flame of Resurrection.
+    Displays duration for Crisis escape.
+    Displays duration for speed potion.
+    Displays duration for Safeguard from Succubus Queen
+    Changes the icon for the whale pet's waterwave to the same icon as the foxyquin debuff.
+
+    
+    
+
