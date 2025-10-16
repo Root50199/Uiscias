@@ -1,4 +1,5 @@
 # Uiscias
+UPDATED FOR 10/16/2025
 All client modifications are against Nexon's ToS, use at your own risk. Intended solely for Mabinogi (North America).
 
 A small collection of .it mods for Mabinogi. The mods I make or release here are intended to increase accessibility and reduce frustration with the client. I will not be adding anything that fundamentally changes any game function, such as turning fireball into an ICBM.
@@ -13,6 +14,10 @@ All others will likely need to be updated after almost every patch. I will try t
 I will update them here myself when I have time, but this is not a high priority for me right now.
 
 What each file does is listed in releases. If a mod pack contains multiple files the base folders for Evergreen and MaintenanceRequired contain readmes for the mod packs within them, otherwise the readmes are in the same folder as the single file mods.
+At some point I'll be reformatting how the source is laid out since right now it is more of the old data file style, rather than separate .it files.
+
+Feel free to open requests, if I feel it is something I can do and doesn’t go to0 far in changing how the game works I’ll look into it.
+Current  WIP is reducing and differentiating particle effects in bri. Too much red on red on red. 
 
 Credits:
 DDtimer was originally seen here https://erinn.world/forum.php?mod=viewthread&tid=23207&extra=&page=1
