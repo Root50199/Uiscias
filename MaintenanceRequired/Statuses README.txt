@@ -1,0 +1,18 @@
+CharacterCondition.xml:
+    Being in deadly turns the entity red
+    Having mana shield active turns the entity blue.
+    Adds an icon and displays duration for demigod.
+    Displays duration for Phoenix's Flame of Resurrection.
+    Displays duration for Crisis escape.
+    Displays duration for speed potion.
+    Displays duration for Safeguard from Succubus Queen
+    Changes the icon for the whale pet's waterwave to the same icon as the foxyquin debuff.
+
+		<CharacterCondition ConditionID="1" Type="0" Priority="0" ConditionEngName="Deadly" ConditionLocalName="_LT[xml.charactercondition.69]" ImageFile="data/gfx/image/gui_condition_change.dds" PositionX="12" PositionY="1" Clear="dead" DurationType="1" DefaultDurationTime="0" Color="6FD026DC" ShowRemainTime="false" />
+		<CharacterCondition ConditionID="59" Type="0" Priority="0" ConditionEngName="ManaShield" ConditionLocalName="_LT[xml.charactercondition.235]" Description="_LT[xml.charactercondition.237]" ImageFile="data/gfx/image/gui_condition_change.dds" PositionX="11" PositionY="2" Clear="logout" DurationType="1" DefaultDurationTime="0" Color="FF0A82FF" ShowRemainTime="false" />
+		<CharacterCondition ConditionID="78" Type="0" Priority="0" ConditionEngName="DemiGod" ConditionLocalName="_LT[xml.charactercondition.298]" Description="_LT[xml.charactercondition.300]" ImageFile="data/gfx/image/gui_condition_change.dds" PositionX="12" PositionY="6" Clear="logout" DurationType="1" DefaultDurationTime="0" Color="00000000" ShowRemainTime="true" />
+		<CharacterCondition ConditionID="201" Type="0" Priority="0" ConditionEngName="FlameofResurrection" ConditionLocalName="_LT[xml.charactercondition.590]" Description="_LT[xml.charactercondition.608]" ImageFile="data/gfx/image/gui_condition_change.dds" PositionX="0" PositionY="5" DurationType="2" DefaultDurationTime="3660" Color="00000000" IgnoreRebirthClear="true" ShowRemainTime="true" />
+		<CharacterCondition ConditionID="252" Type="0" Priority="0" ConditionEngName="Emergency Escape" ConditionLocalName="_LT[xml.charactercondition.691]" Description="_LT[xml.charactercondition.692]" ImageFile="data/gfx/image/gui_condition_change03.dds" PositionX="10" PositionY="4" DurationType="1" DefaultDurationTime="4" Color="00000000" ShowRemainTime="true" />
+		<CharacterCondition ConditionID="282" Type="0" Priority="0" ConditionEngName="SpeedBoost" ConditionLocalName="_LT[xml.charactercondition.755]" Description="_LT[xml.charactercondition.766]" ImageFile="data/gfx/image/gui_condition_change.dds" PositionX="8" PositionY="6" XML="&lt;xml MoivingSpeed=&quot;10&quot; CollectingSpeed=&quot;10&quot; /&gt;" Clear="logout, dead" DurationType="1" Color="00000000" IgnoreRebirthClear="false" ShowRemainTime="false" />
+        	<CharacterCondition ConditionID="366" Type="0" Priority="0" ConditionEngName="FiresOfAllure " ConditionLocalName="_LT[xml.charactercondition.915]" Description="_LT[xml.charactercondition.916]" ImageFile="data/gfx/image/gui_condition_change.dds" PositionX="2" PositionY="7" XML="&lt;xml&gt;&#xD;&#xA; &lt;info lv=&quot;1&quot; duration=&quot;30000&quot; damageRatio=&quot;0.7&quot;/&gt;&#xD;&#xA; &lt;info lv=&quot;2&quot; duration=&quot;40000&quot; damageRatio=&quot;0.5&quot;/&gt;&#xD;&#xA; &lt;info lv=&quot;3&quot; duration=&quot;50000&quot; damageRatio=&quot;0.1&quot;/&gt;&#xD;&#xA;&lt;/xml&gt;" Clear="logout, regionwarp" DurationType="1" Color="00000000" ShowRemainTime="true" />
+		<CharacterCondition ConditionID="644" Type="0" Priority="0" ConditionEngName="whale_waterpulse" ConditionLocalName="_LT[xml.charactercondition.1615]" Description="_LT[xml.charactercondition.1617]" ImageFile="data/gfx/image/GUI_condition_change03.dds" PositionX="7" PositionY="1" Clear="logout, dead" DurationType="2" ShowRemainTime="false" />

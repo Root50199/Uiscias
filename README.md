@@ -10,9 +10,10 @@ If you wish to create your own .it files the raw files will be in the source.
 
 The ones in "Evergreen" SHOULD never need to be updated. These are files nexon rarely/never updates.
 All others will likely need to be updated after almost every patch. I will try to have a basic explanation of how the file was changed so you may update it yourself if you have the tools and know-how. 
-I will update them here myself when I have time, but this is not a high priority for me right now.
+I will update them here myself when I have time.
 
-What each file does is listed in releases. If a mod pack contains multiple files the base folders for Evergreen and MaintenanceRequired contain readmes for the mod packs within them, otherwise the readmes are in the same folder as the single file mods.
+What each file does is listed in releases. 
+
 
 Credits:
 DDtimer was originally seen here https://erinn.world/forum.php?mod=viewthread&tid=23207&extra=&page=1

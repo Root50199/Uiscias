@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-16" standalone="yes" ?> 
+<meshdesc version="2" effect_version="7">
+	<TextureGroup>
+		<!-- water uv animation -->
+		<MultiTexture>
+			<Texture name="dg_gd1_balor_temple_alley_lava01" tas_classname="tas_uvscroll" u_speed="0.00" v_speed="-0.05" />
+		</MultiTexture>
+	</TextureGroup>
+	<EffectGroup>
+        </EffectGroup>
+</meshdesc>
