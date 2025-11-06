@@ -1,4 +1,7 @@
 # Uiscias
+
+## 11/6/25: no update required
+
 All client modifications are against Nexon's ToS, use at your own risk. Intended solely for Mabinogi (North America).
 
 A small collection of .it mods for Mabinogi. The mods I make or release here are intended to increase accessibility and reduce frustration with the client. I will not be adding anything that fundamentally changes any game function, such as turning fireball into an ICBM.
