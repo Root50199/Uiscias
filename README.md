@@ -1,6 +1,6 @@
 # Uiscias
 
-## 1/9 They may have changed something with how some files are encrypted so some random files just aren't being read with the current patching method. I will try to figure out why/how to fix it, but I may not be able to. The only file I've found so far in this mod pack that has an issue is the minimap db so for now I will be uploading a lower res version of the maps since I can't redefine their sizes via the db. 
+## 1/9 They may have changed something with how some files are encrypted so some random files just aren't being read with the current patching method. I will try to figure out why/how to fix it, but I may not be able to. Files I've so far in this mod pack that have issues are the minimap db (so for now I will be uploading a lower res version of the maps since I can't redefine their sizes via the db) and achievementunhide. Map will be a tad harder to read, but they work at least. If you find another mod that isn't working right please open an issue on github.
 
 All client modifications are against Nexon's ToS, use at your own risk. Intended solely for Mabinogi (North America).
 
