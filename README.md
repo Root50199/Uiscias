@@ -1,8 +1,6 @@
 # Uiscias
 
-## 1/22 No update needed
-
-1/15  updated for patch. Released bri effects. Please open a github issue if any of the mods seem to not load correctly.
+## 2/12 updated for game patch
 
 All client modifications are against Nexon's ToS, use at your own risk. Intended solely for Mabinogi (North America).
 
