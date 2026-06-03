@@ -1,6 +1,6 @@
 # Uiscias
 
-## Up to date as of 5/21.
+## Up to date as of 5/28.
 
 All client modifications are against Nexon's ToS, use at your own risk. Intended solely for Mabinogi (North America).
 
