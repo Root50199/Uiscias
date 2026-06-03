@@ -30,6 +30,9 @@ Statuses contains most of the same modifications as uotiara, but some have been 
 
 RevivedIsimp was originally sent to me anonymously. I have changed very little of it beyond tidying it up. 
 
+Cooking ruler is heavily modified but was originally from here by 隐翅:
+https://www.erinn.world/forum.php?mod=viewthread&tid=16795&extra=page%3D2&page=1
+
 The rest are from scratch by me.
 
 Useful tools for making or maintaining mods:
