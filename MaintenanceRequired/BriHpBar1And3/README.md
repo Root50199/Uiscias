@@ -1,4 +1,4 @@
-# BriHpBar13
+# BriHpBar1And3
 
 Race.xml has several ways to be modded so will be seperated out here, when packing for yourself rename the file to just Race.xml
 
