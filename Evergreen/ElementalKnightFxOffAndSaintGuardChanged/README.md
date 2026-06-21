@@ -1,4 +1,4 @@
-# EkFxOffSaintChanged
+# ElementalKnightFxOffAndSaintGuardChanged
 
 Unfortunately ek and saint are in the same file so these can't be separated. If you want one or the other then you would need to custom mod just one of them and repack it.
 
