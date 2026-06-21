@@ -14,7 +14,7 @@ Dark Diviner effects off:
   DarkDivinerFxOff/data/gfx/fx/effect:
       multiclass_fx03.xml
 
-See also: images/Thunderblightexample.png, images/Vortexexample.jpg
+See also: `images/thunderblight_example.png`, `images/vortex_example.jpg`
 
 ## Credits
 
