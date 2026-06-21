@@ -1,1 +1,0 @@
-Requires at least a 1080p display to fit on screen.
