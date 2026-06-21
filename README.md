@@ -1,45 +1,46 @@
 # Uiscias
 
-## Up to date as of 6/18.
+A collection of `.it` mods for Mabinogi (North America). These mods are intended to increase accessibility and reduce frustration with the client—not to fundamentally change game mechanics.
 
-All client modifications are against Nexon's ToS, use at your own risk. Intended solely for Mabinogi (North America).
+> **Disclaimer:** All client modifications are against Nexon's Terms of Service. Use at your own risk.
 
-A small collection of .it mods for Mabinogi. The mods I make or release here are intended to increase accessibility and reduce frustration with the client. I will not be adding anything that fundamentally changes any game function, such as turning fireball into an ICBM.
-This is a side project for me and I will work on adding to and maintaining it when time allows, but I make no guarantees or commitments in that regard. 
-I will also avoid adding anything that is already in https://github.com/shaggyze/uotiara unless I have meaningfully changed it myself.
+## Installation
 
-Releases will contain the packed .it files ready for use. Just place them in Mabinogi\appdata\package to install. Delete to uninstall.
-If you wish to create your own .it files the raw files will be in the source. 
+Releases contain packed `.it` files ready for use. Place them in `Mabinogi\appdata\package` to install; delete to uninstall.
 
-The ones in "Evergreen" SHOULD never need to be updated. These are files nexon rarely/never updates.
-All others will likely need to be updated after almost every patch. I will try to have a basic explanation of how the file was changed so you may update it yourself if you have the tools and know-how. 
-I will update them here myself when I have time.
+Source files for building your own `.it` packages live in each mod folder at the repository root.
 
-What each file does is listed in releases. 
+## Repository layout
 
+Each mod is a top-level folder:
 
-Credits:
-DDtimer was originally seen here https://erinn.world/forum.php?mod=viewthread&tid=23207&extra=&page=1
-I found it in an unusable state, but reversed and then significantly modified it myself.
+```
+{ModName}/
+  config.json   # mod metadata (see below)
+  README.md     # mod-specific description and notes
+  data/         # game files
+  images/       # optional screenshots and examples
+```
 
-Glenn simplified is from https://erinn.world/forum.php?mod=viewthread&tid=21880
+### Update types
 
-phantsightsimp original concept was from uotiara, the one here is my take on it.
+Every mod's `config.json` includes an `updateType` field:
 
-Statuses contains most of the same modifications as uotiara, but some have been removed or added by me.
+| Value | Meaning |
+| --- | --- |
+| `evergreen` | Rarely or never needs updating after patches (33 mods) |
+| `maintenanceRequired` | Likely needs updating after most patches (9 mods) |
 
-RevivedIsimp was originally sent to me anonymously. I have changed very little of it beyond tidying it up. 
+Mods that require maintenance include notes in their README where possible so you can update them yourself if you have the tools and know-how. I will update them here when I have time, but this is a side project with no guarantees.
 
-Cooking ruler is heavily modified but was originally from here by 隐翅:
-https://www.erinn.world/forum.php?mod=viewthread&tid=16795&extra=page%3D2&page=1
+See each mod's `README.md` for what it does. Release notes also list mod descriptions.
 
-The rest are from scratch by me.
+## Contributing and overlap
 
-Useful tools for making or maintaining mods:
-I use BeyondCompare 5 to check if mods need to be updated post patch. I can usually also perform the updates directly with it as well. 
-scootersoftware.com
+I avoid adding mods that already exist in [uotiara](https://github.com/shaggyze/uotiara) unless I have meaningfully changed them myself.
 
-Voidtools Everything search for windows is very useful for searching the entire data folder when trying to engineer a mod from scratch. 
-voidtools.com
+## Useful tools
 
-mabi-pack2 from https://github.com/shaggyze/uotiara for actually unpacking/repacking the .it files.
+- [Beyond Compare](https://www.scootersoftware.com/) — diffing and updating mods after patches
+- [Everything](https://www.voidtools.com/) — fast file search across the game data folder
+- [mabi-pack2](https://github.com/shaggyze/uotiara) — unpacking and repacking `.it` files (from the uotiara repo)
