@@ -11,3 +11,6 @@
       data\material\terrain
         9 folders each containing 1 dds image file
 
+## Credits
+
+Based on a mod from the [Erinn World forums](https://erinn.world/forum.php?mod=viewthread&tid=21880).

@@ -19,3 +19,6 @@ CharacterCondition.xml:
         	<CharacterCondition ConditionID="366" Type="0" Priority="0" ConditionEngName="FiresOfAllure " ConditionLocalName="_LT[xml.charactercondition.915]" Description="_LT[xml.charactercondition.916]" ImageFile="data/gfx/image/gui_condition_change.dds" PositionX="2" PositionY="7" XML="&lt;xml&gt;&#xD;&#xA; &lt;info lv=&quot;1&quot; duration=&quot;30000&quot; damageRatio=&quot;0.7&quot;/&gt;&#xD;&#xA; &lt;info lv=&quot;2&quot; duration=&quot;40000&quot; damageRatio=&quot;0.5&quot;/&gt;&#xD;&#xA; &lt;info lv=&quot;3&quot; duration=&quot;50000&quot; damageRatio=&quot;0.1&quot;/&gt;&#xD;&#xA;&lt;/xml&gt;" Clear="logout, regionwarp" DurationType="1" Color="00000000" ShowRemainTime="true" />
 		<CharacterCondition ConditionID="644" Type="0" Priority="0" ConditionEngName="whale_waterpulse" ConditionLocalName="_LT[xml.charactercondition.1615]" Description="_LT[xml.charactercondition.1617]" ImageFile="data/gfx/image/GUI_condition_change03.dds" PositionX="7" PositionY="1" Clear="logout, dead" DurationType="2" ShowRemainTime="false" />
 
+## Credits
+
+Contains most of the same modifications as [uotiara](https://github.com/shaggyze/uotiara), but some entries have been removed or added by me.

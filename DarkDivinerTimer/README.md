@@ -16,3 +16,6 @@ Dark Diviner effects off:
 
 See also: images/Thunderblightexample.png, images/Vortexexample.jpg
 
+## Credits
+
+Originally seen on the [Erinn World forums](https://erinn.world/forum.php?mod=viewthread&tid=23207&extra=&page=1). I found it in an unusable state, reversed it, and significantly modified it myself.
