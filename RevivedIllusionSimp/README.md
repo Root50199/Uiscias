@@ -21,6 +21,10 @@ Revived Illusion Simplified changes the following:
           data\material\interior\dungeon\nrd:
             5 blank dds image files
 
+## Example
+
+![Revived illusion simplified example](images/ri_example.png)
+
 ## Credits
 
 Originally sent to me anonymously. I have changed very little beyond tidying it up.

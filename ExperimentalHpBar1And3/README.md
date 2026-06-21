@@ -1,5 +1,9 @@
 # ExperimentalHpBar1And3
 
+## Example
+
+![HP bar example](images/hp_bar_example.png)
+
 Race.xml has several ways to be modded so will be seperated out here, when packing for yourself rename the file to just Race.xml
 
     For the gate three Halos start by searching for <Race ID="7604" ClassName="Shard_Of_Comfort_1"

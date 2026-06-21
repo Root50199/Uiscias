@@ -11,6 +11,10 @@
       data\material\terrain
         9 folders each containing 1 dds image file
 
+## Example
+
+![Glenn simplified example](images/glenn_simp_example.jpg)
+
 ## Credits
 
 Based on a mod from the [Erinn World forums](https://erinn.world/forum.php?mod=viewthread&tid=21880).
