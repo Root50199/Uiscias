@@ -1,15 +1,15 @@
 ﻿{
-    "usedfiles": [
-        "data/gfx/fx/effect/multiclass_fx03.xml",
-        "data/material/fx/effect/common_effect_Late_add_13.dds"
-    ],
-"RecentUpdateNotes": "n/a",
-"FindiasTags": [""],
-"IsVariant": false,
-"HasVariants": false,
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Dark Diviner Timer",
-"modID": "DarkDivinerTimer",
-"updateType": "stable"
+  "usedfiles": [
+    "data/gfx/fx/effect/multiclass_fx03.xml",
+    "data/material/fx/effect/common_effect_Late_add_13.dds"
+  ],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana", "Visual Clarity"],
+  "isVariant": false,
+  "hasVariants": false,
+  "modAdditionalCredits": "https://erinn.world/forum.php?mod=viewthread&tid=23207&extra=&page=1",
+  "modAuthor": "Root50199",
+  "modName": "Dark Diviner Timer",
+  "modID": "DarkDivinerTimer",
+  "updateType": "stable"
 }
