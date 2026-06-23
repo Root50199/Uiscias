@@ -1,3 +1,14 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "usedfiles": [
+        "data/gfx/fx/effect/Mfx_AAM01.xml"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Forbidden Alchemist Fx Off",
+"modID": "ForbiddenAlchemistFxOff",
+"updateType": "stable"
 }

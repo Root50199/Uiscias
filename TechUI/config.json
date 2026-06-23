@@ -1,3 +1,15 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "usedfiles": [
+        "data/db/layout2/Specialization/SpecializationFrame.xml",
+        "data/db/layout2/Specialization/SpecializationMain.xml"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Tech U I",
+"modID": "TechUI",
+"updateType": "stable"
 }

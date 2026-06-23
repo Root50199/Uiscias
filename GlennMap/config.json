@@ -1,3 +1,14 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "usedfiles": [
+        "data/gfx/gui/map_jpg/minimap_glennbearna_boss_room_day_kor.jpg"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Glenn Map",
+"modID": "GlennMap",
+"updateType": "stable"
 }

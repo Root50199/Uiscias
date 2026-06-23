@@ -1,3 +1,14 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "usedfiles": [
+        "data/db/layout2/QuestNoti/QuestNotiView.xml"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Hide Quest Tracker",
+"modID": "HideQuestTracker",
+"updateType": "stable"
 }

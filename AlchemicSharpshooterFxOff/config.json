@@ -1,3 +1,14 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"usedfiles": [
+        "data/gfx/fx/effect/Multiclass_fx02.xml"
+    ],
+"IsVariant": false,
+"HasVariants": false,
+"modName": "Alchemic Sharpshooter Fx Off",
+"modID": "AlchemicSharpshooterFxOff",
+"updateType": "stable"
 }

@@ -1,3 +1,25 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "usedfiles": [
+        "data/world/Glenn_Bearna_boss_dungeon01_day/Glenn_Bearna_boss_dungeon01_day.rgn",
+        "data/world/Glenn_Bearna_boss_dungeon01_night/Glenn_Bearna_boss_dungeon01_night.rgn",
+        "data/world/Glenn_Bearna_dungeon_day/Glenn_Bearna_dungeon_day.rgn",
+        "data/world/Glenn_Bearna_dungeon01_night/Glenn_Bearna_dungeon01_night.rgn",
+        "data/world/MRD/MRD.rgn",
+        "data/world/MRD_1S/MRD_1S.rgn",
+        "data/world/MRD_2S/MRD_2S.rgn",
+        "data/world/MRD_3S/MRD_3S.rgn",
+        "data/world/MRD_3S/MRD_3S_region_variation.xml",
+        "data/world/MRD_3S/MRD_region_variation_717000.xml",
+        "data/world/MRD_3S/MRD_region_variation_780830.xml",
+        "data/world/Private_Island_152/Private_Island_152.rgn"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Bri And Glen Zoom",
+"modID": "BriAndGlenZoom",
+"updateType": "stable"
 }

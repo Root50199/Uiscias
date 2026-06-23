@@ -1,3 +1,14 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "usedfiles": [
+        "data/gfx/fx/effect/Multiclass_fx.xml"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Elemental Knight Fx Off And Saint Guard Changed",
+"modID": "ElementalKnightFxOffAndSaintGuardChanged",
+"updateType": "stable"
 }

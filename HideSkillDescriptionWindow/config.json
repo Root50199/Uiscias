@@ -1,0 +1,14 @@
+﻿{
+    "usedfiles": [
+        "data/db/layout2/Skill/SkillDesc.xml"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"updateType": "volatile",
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Hide Skill Description Window",
+"modID": "HideSkillDescriptionWindow",
+}

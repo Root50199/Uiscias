@@ -1,3 +1,16 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "usedfiles": [
+        "data/gfx/gui/GUI_inven2tab.dds",
+        "data/gfx/gui/GUI_inven2tab_G20.dds",
+        "data/gfx/gui/GUI_inven2tab_icon.dds"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Remove Lock Overlay",
+"modID": "RemoveLockOverlay",
+"updateType": "stable"
 }

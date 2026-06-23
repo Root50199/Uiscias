@@ -1,3 +1,16 @@
-{
-  "updateType": "maintenanceRequired"
+﻿{
+    "usedfiles": [
+        "data/db/minimapinfo.xml",
+        "data/gfx/gui/map_jpg/minimap_2024_mrd_1S_KOR.jpg",
+        "data/gfx/gui/map_jpg/minimap_2024_mrd_2S_02_KOR.jpg"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Bri Map",
+"modID": "BriMap",
+"updateType": "maintenanceRequired"
 }

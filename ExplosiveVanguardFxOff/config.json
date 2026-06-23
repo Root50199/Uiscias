@@ -1,3 +1,15 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "usedfiles": [
+        "data/gfx/fx/effect/Mfx_BL01.xml",
+        "data/gfx/fx/effect/Mfx_BL02.xml"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Explosive Vanguard Fx Off",
+"modID": "ExplosiveVanguardFxOff",
+"updateType": "stable"
 }

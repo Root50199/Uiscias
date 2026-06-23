@@ -1,0 +1,15 @@
+﻿{
+    "usedfiles": [
+        "data/db/layout2/Skill/SkillDesc.xml",
+        "data/db/layout2/Skill/SkillReadyView.xml"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"updateType": "volatile",
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Hide Skill Ready View",
+"modID": "HideSkillReadyView",
+}

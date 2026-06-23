@@ -1,3 +1,27 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "usedfiles": [
+        "data/gfx/gui/gui_ver2/apricots.dds",
+        "data/gfx/gui/gui_ver2/black.dds",
+        "data/gfx/gui/gui_ver2/cityman.dds",
+        "data/gfx/gui/gui_ver2/dollpink.dds",
+        "data/gfx/gui/gui_ver2/flame.dds",
+        "data/gfx/gui/gui_ver2/green.dds",
+        "data/gfx/gui/gui_ver2/grey.dds",
+        "data/gfx/gui/gui_ver2/ivory.dds",
+        "data/gfx/gui/gui_ver2/mustard.dds",
+        "data/gfx/gui/gui_ver2/neongreen.dds",
+        "data/gfx/gui/gui_ver2/neonpink.dds",
+        "data/gfx/gui/gui_ver2/ocean.dds",
+        "data/gfx/gui/gui_ver2/pink.dds",
+        "data/gfx/gui/gui_ver2/skyblue.dds"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Damage Numbers Off",
+"modID": "DamageNumbersOff",
+"updateType": "stable"
 }

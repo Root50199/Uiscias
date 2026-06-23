@@ -1,3 +1,14 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "usedfiles": [
+        "data/gfx/fx/effect/g23_specialization.xml"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Phant Sight Simplified",
+"modID": "PhantSightSimplified",
+"updateType": "stable"
 }

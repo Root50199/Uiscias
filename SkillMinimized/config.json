@@ -1,3 +1,30 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "usedfiles": [
+        "data/gfx/fx/effect/c2_g6_pet_snowfield.xml",
+        "data/gfx/fx/effect/c3_g10_s1_cloud.xml",
+        "data/gfx/fx/effect/C3_G11_cutscene.xml",
+        "data/gfx/fx/effect/c3_g9_s2_monster_spider12.xml",
+        "data/gfx/fx/effect/c4_g14_s3_fire_horse.xml",
+        "data/gfx/fx/effect/c4_g14_s3_fire_horse_black.xml",
+        "data/gfx/fx/effect/c4_g14_s3_fire_horse_cyan.xml",
+        "data/gfx/fx/effect/c4_g14_s3_fire_horse_white.xml",
+        "data/gfx/fx/effect/c4_g16_pet_ice_dragon.xml",
+        "data/gfx/fx/effect/C5_doll_effect.xml",
+        "data/gfx/fx/effect/c5_pet_cloud.xml",
+        "data/gfx/fx/effect/fx_c2_ruins.xml",
+        "data/gfx/fx/effect/pet_c4_cloud.xml",
+        "data/gfx/fx/effect/pet_dragon_fire.xml",
+        "data/gfx/fx/effect/pet_dragon_thunder.xml",
+        "data/gfx/fx/effect/SkillRenewal2017.xml",
+        "data/gfx/fx/posteffect/blur.xml"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Skill Minimized",
+"modID": "SkillMinimized",
+"updateType": "stable"
 }

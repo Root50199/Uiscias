@@ -1,9 +1,29 @@
 ﻿{
-  "usedfiles": [
-    "data/db/mod3.xml",
-    "data/mod1.xml",
-    "data/mod2.xml",
-    "data/mod4.xml"
+    "IsVariant": false,
+"modID": "NewModTemplate",
+  "modName": "New Mod Template",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "volatile|stable",
+  "HasVariants": false,
+  "FindiasTags": [
+    "UI",
+    "QoL",
+    "1080p",
+    "1440p",
+    "Glen|Bri Leath|Crom Bas|Rabbie Phantasm",
+    "Combat",
+    "Fx",
+    "Lag Helper",
+    "Cosmetic",
+    "Arcana",
+    "Skills",
+    "Visual Clarity"
   ],
-  "stuff": "things"
+  "usedfiles": [
+        "data/mod1.xml",
+        "data/mod2.xml",
+        "data/mod4.xml"
+    ],
+  "RecentUpdateNotes": "Features added/changed, important FYI etc."
 }
