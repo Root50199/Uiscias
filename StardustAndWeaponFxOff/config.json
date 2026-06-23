@@ -1,3 +1,33 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "usedfiles": [
+        "data/gfx/fx/effect/enhance_weapon.xml",
+        "data/gfx/fx/effect/enhance_weapon_glow.xml",
+        "data/gfx/fx/effect/enhance_weapon_glow_R.xml",
+        "data/gfx/fx/effect/enhance_weapon_glow_S.xml",
+        "data/gfx/fx/effect/enhance_weapon_glow2.xml",
+        "data/gfx/fx/effect/enhance_weapon_glow2_R.xml",
+        "data/gfx/fx/effect/enhance_weapon_glow2_S.xml",
+        "data/gfx/fx/effect/enhance_weapon_glow3.xml",
+        "data/gfx/fx/effect/enhance_weapon_glow3_R.xml",
+        "data/gfx/fx/effect/enhance_weapon_glow3_S.xml",
+        "data/gfx/fx/effect/enhance_weapon_glow4_R.xml",
+        "data/gfx/fx/effect/enhance_weapon_glow4_S.xml",
+        "data/gfx/fx/effect/enhance_weapon_new.xml",
+        "data/gfx/fx/effect/enhance_weapon_private.xml",
+        "data/gfx/fx/effect/enhance_weapon_R.xml",
+        "data/gfx/fx/effect/enhance_weapon_S.xml",
+        "data/gfx/fx/effect/enhance_weapon_trail.xml",
+        "data/gfx/fx/effect/enhance_weapon_trail_R.xml",
+        "data/gfx/fx/effect/enhance_weapon_trail_S.xml",
+        "data/gfx/fx/effect/Option_weapon.xml"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Stardust And Weapon Fx Off",
+"modID": "StardustAndWeaponFxOff",
+"updateType": "stable"
 }

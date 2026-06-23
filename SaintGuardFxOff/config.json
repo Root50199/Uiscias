@@ -1,3 +1,15 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "usedfiles": [
+        "data/gfx/fx/effect/Mfx_SG01.xml",
+        "data/gfx/fx/effect/Mfx_SG02.xml"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Saint Guard Fx Off",
+"modID": "SaintGuardFxOff",
+"updateType": "stable"
 }

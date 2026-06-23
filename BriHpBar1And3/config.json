@@ -1,3 +1,14 @@
-{
-  "updateType": "maintenanceRequired"
+﻿{
+    "usedfiles": [
+        "data/db/Race.xml"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Bri Hp Bar1 And3",
+"modID": "BriHpBar1And3",
+"updateType": "maintenanceRequired"
 }

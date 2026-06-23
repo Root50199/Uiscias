@@ -1,3 +1,19 @@
-{
-  "updateType": "evergreen"
+﻿{
+    "usedfiles": [
+        "data/material/interior/dungeon/MRD/scene_prop_mrd_3s_square01_01.dds",
+        "data/material/interior/dungeon/MRD/scene_prop_mrd_3s_square01_02.dds",
+        "data/material/interior/dungeon/MRD/scene_prop_mrd_3s_square01_03.dds",
+        "data/material/interior/dungeon/MRD/scene_prop_mrd_3s_square01_04.dds",
+        "data/material/interior/dungeon/MRD/scene_prop_mrd_3s_square01_05.dds",
+        "data/material/interior/dungeon/MRD/scene_prop_mrd_3s_square01_06.dds"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Gate Three Floor",
+"modID": "GateThreeFloor",
+"updateType": "stable"
 }

@@ -1,3 +1,14 @@
-{
-  "updateType": "maintenanceRequired"
+﻿{
+    "usedfiles": [
+        "data/db/NewEgoWeapon/NewEgoEffect.xml"
+    ],
+"RecentUpdateNotes": "n/a",
+"FindiasTags": [""],
+"IsVariant": false,
+"HasVariants": false,
+"modAdditionalCredits": "None",
+"modAuthor": "Root50199",
+"modName": "Ego Effect Off",
+"modID": "EgoEffectOff",
+"updateType": "maintenanceRequired"
 }
