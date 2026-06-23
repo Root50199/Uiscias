@@ -1,0 +1,9 @@
+﻿{
+  "usedfiles": [
+    "data/db/mod3.xml",
+    "data/mod1.xml",
+    "data/mod2.xml",
+    "data/mod4.xml"
+  ],
+  "stuff": "things"
+}
