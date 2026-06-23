@@ -1,12 +1,12 @@
 ﻿{
-  "IsVariant": false,
-  "modID": "AchievmentUnhide",
-  "modName": "Achievment Unhide",
-  "modAuthor": "Root50199",
-  "modAdditionalCredits": "None",
-  "updateType": "volatile",
-  "HasVariants": false,
-  "FindiasTags": ["UI", "QoL"],
   "usedfiles": ["data/db/AchievementTable.xml"],
-  "RecentUpdateNotes": "n/a"
+  "recentUpdateNotes": "n/a",
+  "findiasTags": ["UI", "QoL"],
+  "isVariant": false,
+  "hasVariants": false,
+  "updateType": "volatile",
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Achievment Unhide",
+  "modID": "AchievmentUnhide"
 }
