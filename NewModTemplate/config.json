@@ -6,12 +6,12 @@
   "modAdditionalCredits": "None",
   "updateType": "volatile|stable",
   "hasVariants": false,
-  "findiasTags": ["UI", "QoL", "1080p", "1440p", "Glenn Bearna|Bri Leith|Crom Bas|Rabbie Phantasm", "Combat", "Fx", "Lag Helper", "Cosmetic", "Arcana", "Skills", "Visual Clarity", "Cutscene Skip", "Zoom", "FoV"]
+  "findiasTags": [
     "UI",
     "QoL",
     "1080p",
     "1440p",
-    "Glen|Bri Leath|Crom Bas|Rabbie Phantasm",
+    "Glenn Bearna|Bri Leith|Crom Bas|Rabbie Phantasm",
     "Combat",
     "Fx",
     "Lag Helper",
@@ -19,8 +19,11 @@
     "Arcana",
     "Skills",
     "Visual Clarity",
-    "Cutscene Skip"
+    "Cutscene Skip",
+    "Zoom",
+    "FoV"
   ],
+
   "usedfiles": ["data/mod1.xml", "data/mod2.xml", "data/mod4.xml"],
   "recentUpdateNotes": "Features added/changed, important FYI etc."
 }
