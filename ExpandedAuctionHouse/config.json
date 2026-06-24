@@ -1,11 +1,13 @@
-﻿{
+{
+  "modId": "ExpandedAuctionHouse",
+  "modName": "Expanded Auction House",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": [],
   "recentUpdateNotes": "n/a",
-  "findiasTags": [""],
   "isVariant": false,
   "hasVariants": true,
-  "updateType": "stable",
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Expanded Auction House",
-  "modID": "ExpandedAuctionHouse"
+  "usedFiles": [],
+  "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 }

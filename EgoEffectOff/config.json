@@ -1,12 +1,13 @@
-﻿{
-  "usedfiles": ["data/db/NewEgoWeapon/NewEgoEffect.xml"],
+{
+  "modId": "EgoEffectOff",
+  "modName": "Ego Effect Off",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "volatile",
+  "findiasTags": [],
   "recentUpdateNotes": "n/a",
-  "findiasTags": [""],
   "isVariant": false,
   "hasVariants": false,
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Ego Effect Off",
-  "modID": "EgoEffectOff",
-  "updateType": "maintenanceRequired"
+  "usedFiles": ["data/db/NewEgoWeapon/NewEgoEffect.xml"],
+  "sourceHash": "sha256-e05e1cc42b8989684fc884ce241bdd6ab5c6548828001af8f7c327f0d967b632"
 }

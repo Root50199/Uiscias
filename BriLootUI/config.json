@@ -1,12 +1,13 @@
-﻿{
-  "usedfiles": ["data/db/layout2/Etc/RewardDistributeView/PartyRewardDistributeView.xml"],
+{
+  "modId": "BriLootUI",
+  "modName": "Bri Loot U I",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": [],
   "recentUpdateNotes": "n/a",
-  "findiasTags": [""],
   "isVariant": false,
   "hasVariants": false,
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Bri Loot U I",
-  "modID": "BriLootUI",
-  "updateType": "stable"
+  "usedFiles": ["data/db/layout2/Etc/RewardDistributeView/PartyRewardDistributeView.xml"],
+  "sourceHash": "sha256-d26aa08b681154d2ceb8e4d83369055de34b0f505be8d934085dc7492f3caffe"
 }

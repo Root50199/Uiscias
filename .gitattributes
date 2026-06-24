@@ -1,0 +1,13 @@
+# Normalize text to LF in the working tree (matches Prettier's endOfLine: lf),
+# so generated config.json/config.yaml stay Prettier-stable regardless of
+# core.autocrlf.
+* text=auto eol=lf
+
+# Packed mods and game assets are binary — never line-ending normalize them.
+*.it binary
+*.dds binary
+*.pmg binary
+*.rgn binary
+*.area binary
+*.set binary
+*.raw binary

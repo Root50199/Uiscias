@@ -1,12 +1,13 @@
-﻿{
-  "usedfiles": ["data/gfx/fx/effect/Mfx_AAM01.xml"],
-  "recentUpdateNotes": "n/a",
+{
+  "modId": "ForbiddenAlchemistFxOff",
+  "modName": "Forbidden Alchemist Fx Off",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
   "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
+  "recentUpdateNotes": "n/a",
   "isVariant": false,
   "hasVariants": false,
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Forbidden Alchemist Fx Off",
-  "modID": "ForbiddenAlchemistFxOff",
-  "updateType": "stable"
+  "usedFiles": ["data/gfx/fx/effect/Mfx_AAM01.xml"],
+  "sourceHash": "sha256-dbc20cee77a22fc4237a663b31e67970f44764da4ff53dc9d170bcb0f7b7fc9a"
 }

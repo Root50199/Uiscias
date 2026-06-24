@@ -1,20 +1,21 @@
-﻿{
-  "recentUpdateNotes": "n/a",
+{
+  "modId": "BriLeithZoomAndFoVDefault",
+  "modName": "Bri Leith Zoom And FoV Default",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "volatile",
   "findiasTags": ["Combat", "QoL", "Bri Leith", "Zoom", "FoV"],
+  "recentUpdateNotes": "n/a",
   "isVariant": true,
   "hasVariants": false,
-  "updateType": "volatile",
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Bri Leith Zoom And FoV Default",
-  "modID": "BriLeithZoomAndFoVDefault",
-  "usedfiles": [
-    "data/world/MRD/MRD.rgn",
+  "usedFiles": [
     "data/world/MRD_1S/MRD_1S.rgn",
     "data/world/MRD_2S/MRD_2S.rgn",
-    "data/world/MRD_3S/MRD_3S.rgn",
     "data/world/MRD_3S/MRD_3S_region_variation.xml",
+    "data/world/MRD_3S/MRD_3S.rgn",
     "data/world/MRD_3S/MRD_region_variation_717000.xml",
-    "data/world/MRD_3S/MRD_region_variation_780830.xml"
-  ]
+    "data/world/MRD_3S/MRD_region_variation_780830.xml",
+    "data/world/MRD/MRD.rgn"
+  ],
+  "sourceHash": "sha256-3c5f88f79cfdca6ca1ae0de3125c448a3529c49a3df80fe47b0685ba04e9ee0a"
 }

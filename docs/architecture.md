@@ -166,8 +166,11 @@ validation.
   unchanged mod regenerates byte-identically.
 - `usedFiles` is every file under the mod's `data/`, repo-relative, using `/`
   separators. It is the data Findias uses to detect cross-mod file conflicts.
-- `sourceHash` is a hash over the normalized metadata **and** the `data/`
-  contents (file paths + bytes). It is the change signal for packing.
+- `sourceHash` is a hash over the mod's `data/` contents (file paths + bytes) —
+  the pack input. It is the change signal for packing. Metadata-only edits
+  (tags, credits) deliberately do **not** change it, so they never force a
+  needless repack/version bump; they still update `config.json` and flow to the
+  manifest. A variant-parent (no `data/`) hashes to the empty digest.
 - **Key normalization vs. today:** legacy files use `usedfiles` and `modID`;
   the generator standardizes on camelCase `usedFiles` and `modId`.
 
@@ -333,7 +336,7 @@ retained only as references). They are non-interactive and selectable by scope:
    (fail on unknown tags, bad `updateType`, `modId` ≠ folder name, missing
    required fields).
 3. Scan `data/` → `usedFiles` (sorted, `/`-separated, repo-relative).
-4. Compute `sourceHash` over normalized metadata + `data/` contents.
+4. Compute `sourceHash` over the mod's `data/` contents (the pack input).
 5. Set `isVariant` / `hasVariants` from folder shape.
 6. Emit `config.json` with fixed key order. Unchanged input → identical output.
 

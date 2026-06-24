@@ -1,12 +1,13 @@
-﻿{
-  "usedfiles": ["data/gfx/fx/effect/multiclass_fx03.xml"],
-  "recentUpdateNotes": "n/a",
+{
+  "modId": "DarkDivinerFxOff",
+  "modName": "Dark Diviner Fx Off",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
   "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
+  "recentUpdateNotes": "n/a",
   "isVariant": false,
   "hasVariants": false,
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Dark Diviner Fx Off",
-  "modID": "DarkDivinerFxOff",
-  "updateType": "stable"
+  "usedFiles": ["data/gfx/fx/effect/multiclass_fx03.xml"],
+  "sourceHash": "sha256-ec172217cfb6392431ce87adbd75c7d5a970e34e7ff13ba831f15435ea2d63c1"
 }
