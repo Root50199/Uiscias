@@ -1,14 +1,12 @@
 ﻿{
-    "RecentUpdateNotes": "n/a",
-"FindiasTags": [""],
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"usedfiles": [
-        "data/gfx/fx/effect/Multiclass_fx02.xml"
-    ],
-"IsVariant": false,
-"HasVariants": false,
-"modName": "Alchemic Sharpshooter Fx Off",
-"modID": "AlchemicSharpshooterFxOff",
-"updateType": "stable"
+  "recentUpdateNotes": "n/a",
+  "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "usedfiles": ["data/gfx/fx/effect/Multiclass_fx02.xml"],
+  "isVariant": false,
+  "hasVariants": false,
+  "modName": "Alchemic Sharpshooter Fx Off",
+  "modID": "AlchemicSharpshooterFxOff",
+  "updateType": "stable"
 }
