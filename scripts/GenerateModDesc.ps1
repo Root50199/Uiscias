@@ -4,8 +4,9 @@ if (-not $scriptDir) { $scriptDir = Get-Location }
 $currentDir = (Resolve-Path (Join-Path $scriptDir "..")).Path
 
 # 2. Find all top-level mod subfolders to populate the GUI grid
-$folders = Get-ChildItem -Path $currentDir -Directory | 
-           Where-Object { $_.Name -ne "scripts" } | 
+$excludeFolders = @('scripts', 'node_modules')
+$folders = Get-ChildItem -Path $currentDir -Directory |
+           Where-Object { $excludeFolders -notcontains $_.Name -and -not $_.Name.StartsWith('.') } |
            Select-Object -ExpandProperty Name
 
 if (-not $folders) {
