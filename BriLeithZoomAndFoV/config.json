@@ -1,13 +1,13 @@
 ﻿{
   "usedfiles": [
-        "data/world/MRD/MRD.rgn",
-        "data/world/MRD_1S/MRD_1S.rgn",
-        "data/world/MRD_2S/MRD_2S.rgn",
-        "data/world/MRD_3S/MRD_3S.rgn",
-        "data/world/MRD_3S/MRD_3S_region_variation.xml",
-        "data/world/MRD_3S/MRD_region_variation_717000.xml",
-        "data/world/MRD_3S/MRD_region_variation_780830.xml"
-    ],
+    "data/world/MRD/MRD.rgn",
+    "data/world/MRD_1S/MRD_1S.rgn",
+    "data/world/MRD_2S/MRD_2S.rgn",
+    "data/world/MRD_3S/MRD_3S.rgn",
+    "data/world/MRD_3S/MRD_3S_region_variation.xml",
+    "data/world/MRD_3S/MRD_region_variation_717000.xml",
+    "data/world/MRD_3S/MRD_region_variation_780830.xml"
+  ],
   "recentUpdateNotes": "n/a",
   "findiasTags": ["Combat", "QoL", "Bri Leith", "Zoom", "FoV"],
   "isVariant": false,

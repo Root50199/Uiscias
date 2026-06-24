@@ -1,16 +1,16 @@
 ﻿{
-    "usedfiles": [
-        "data/gfx/gui/GUI_inven2tab.dds",
-        "data/gfx/gui/GUI_inven2tab_G20.dds",
-        "data/gfx/gui/GUI_inven2tab_icon.dds"
-    ],
-"recentUpdateNotes": "n/a",
-"findiasTags": [""],
-"isVariant": false,
-"hasVariants": false,
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Remove Lock Overlay",
-"modID": "RemoveLockOverlay",
-"updateType": "stable"
+  "usedfiles": [
+    "data/gfx/gui/GUI_inven2tab.dds",
+    "data/gfx/gui/GUI_inven2tab_G20.dds",
+    "data/gfx/gui/GUI_inven2tab_icon.dds"
+  ],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": [""],
+  "isVariant": false,
+  "hasVariants": false,
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Remove Lock Overlay",
+  "modID": "RemoveLockOverlay",
+  "updateType": "stable"
 }

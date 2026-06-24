@@ -9,4 +9,5 @@ Expands zoom out limit dramatically and sets the fov based on which variant you 
 Open the region file in Mabioned and edit the embeded xml from there to change the zoom and FoV.
 
 #### Example Images and GIFs:
+
 ![Bri Gate 3 Zoom](images/Bri_Gate_3_Zoom.png)

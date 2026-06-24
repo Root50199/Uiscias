@@ -26,10 +26,10 @@ Each mod is a top-level folder:
 
 Every mod's `config.json` includes an `updateType` field:
 
-| Value | Meaning |
-| --- | --- |
-| `stable` | Rarely or never needs updating after patches (33 mods) |
-| `volatile` | Likely needs updating after most patches (7 mods) |
+| Value      | Meaning                                                |
+| ---------- | ------------------------------------------------------ |
+| `stable`   | Rarely or never needs updating after patches (33 mods) |
+| `volatile` | Likely needs updating after most patches (7 mods)      |
 
 Mods that require maintenance include notes in their README where possible so you can update them yourself if you have the tools and know-how. I will update them here when I have time, but this is a side project with no guarantees.
 

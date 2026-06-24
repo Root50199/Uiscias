@@ -1,15 +1,15 @@
 ﻿{
-    "usedfiles": [
-        "data/material/fx/cursor/munchkincat_clap_decal_blue.dds",
-        "data/material/fx/cursor/munchkincat_clap_decal_red.dds"
-    ],
-"recentUpdateNotes": "n/a",
-"findiasTags": [""],
-"isVariant": false,
-"hasVariants": false,
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Purrling Ley Lines Dim",
-"modID": "PurrlingLeyLinesDim",
-"updateType": "stable"
+  "usedfiles": [
+    "data/material/fx/cursor/munchkincat_clap_decal_blue.dds",
+    "data/material/fx/cursor/munchkincat_clap_decal_red.dds"
+  ],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": [""],
+  "isVariant": false,
+  "hasVariants": false,
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Purrling Ley Lines Dim",
+  "modID": "PurrlingLeyLinesDim",
+  "updateType": "stable"
 }

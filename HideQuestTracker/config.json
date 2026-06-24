@@ -1,14 +1,12 @@
 ﻿{
-    "usedfiles": [
-        "data/db/layout2/QuestNoti/QuestNotiView.xml"
-    ],
-"recentUpdateNotes": "n/a",
-"findiasTags": [""],
-"isVariant": false,
-"hasVariants": false,
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Hide Quest Tracker",
-"modID": "HideQuestTracker",
-"updateType": "stable"
+  "usedfiles": ["data/db/layout2/QuestNoti/QuestNotiView.xml"],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": [""],
+  "isVariant": false,
+  "hasVariants": false,
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Hide Quest Tracker",
+  "modID": "HideQuestTracker",
+  "updateType": "stable"
 }

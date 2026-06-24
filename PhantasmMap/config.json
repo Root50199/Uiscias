@@ -1,15 +1,15 @@
 ﻿{
-    "usedfiles": [
-        "data/gfx/gui/map_jpg/minimap_NewRabbieDungeon_F1_kr.jpg",
-        "data/gfx/gui/map_jpg/minimap_NewRabbieDungeon_F2_kr.jpg"
-    ],
-"recentUpdateNotes": "n/a",
-"findiasTags": [""],
-"isVariant": false,
-"hasVariants": false,
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Phantasm Map",
-"modID": "PhantasmMap",
-"updateType": "stable"
+  "usedfiles": [
+    "data/gfx/gui/map_jpg/minimap_NewRabbieDungeon_F1_kr.jpg",
+    "data/gfx/gui/map_jpg/minimap_NewRabbieDungeon_F2_kr.jpg"
+  ],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": [""],
+  "isVariant": false,
+  "hasVariants": false,
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Phantasm Map",
+  "modID": "PhantasmMap",
+  "updateType": "stable"
 }

@@ -1,17 +1,17 @@
 ﻿{
-    "usedfiles": [
-        "data/world/New_Rabbie01/_New_Rabbie01_1.area",
-        "data/world/New_Rabbie01/New_Rabbie01.rgn",
-        "data/world/New_Rabbie01_boss/_New_Rabbie01_boss_1.area",
-        "data/world/New_Rabbie01_boss/New_Rabbie01_boss.rgn"
-    ],
-"recentUpdateNotes": "n/a",
-"findiasTags": [""],
-"isVariant": false,
-"hasVariants": false,
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Phantasm Zoom And Delag",
-"modID": "PhantasmZoomAndDelag",
-"updateType": "stable"
+  "usedfiles": [
+    "data/world/New_Rabbie01/_New_Rabbie01_1.area",
+    "data/world/New_Rabbie01/New_Rabbie01.rgn",
+    "data/world/New_Rabbie01_boss/_New_Rabbie01_boss_1.area",
+    "data/world/New_Rabbie01_boss/New_Rabbie01_boss.rgn"
+  ],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": [""],
+  "isVariant": false,
+  "hasVariants": false,
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Phantasm Zoom And Delag",
+  "modID": "PhantasmZoomAndDelag",
+  "updateType": "stable"
 }

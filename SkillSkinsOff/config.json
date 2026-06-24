@@ -1,14 +1,12 @@
 ﻿{
-    "usedfiles": [
-        "data/db/CustomEffectDesc.xml"
-    ],
-"recentUpdateNotes": "n/a",
-"findiasTags": [""],
-"isVariant": false,
-"hasVariants": false,
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Skill Skins Off",
-"modID": "SkillSkinsOff",
-"updateType": "maintenanceRequired"
+  "usedfiles": ["data/db/CustomEffectDesc.xml"],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": [""],
+  "isVariant": false,
+  "hasVariants": false,
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Skill Skins Off",
+  "modID": "SkillSkinsOff",
+  "updateType": "maintenanceRequired"
 }

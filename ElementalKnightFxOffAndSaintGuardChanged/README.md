@@ -4,4 +4,4 @@ Unfortunately ek and saint are in the same file so these can't be separated. If 
 
 Removes all effects from elemental knight and changes some saint effects.
 Pulse of purification is changed to green and the wavy effect is made smaller. The blinding explosion at the end is removed.
-Pall of ruination now puts a giant blue effect on affected enemies for its duration. 
+Pall of ruination now puts a giant blue effect on affected enemies for its duration.

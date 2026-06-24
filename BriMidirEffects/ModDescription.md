@@ -1,6 +1,7 @@
 ﻿# Bri Midir Effects
 
 ## What it does:
+
 <space for manual text entry>
 
 ### How it's made:
@@ -8,6 +9,7 @@
 <space for manual text entry>
 
 #### Example Images and GIFs:
+
 ![G4 Example](images/g4_example.png)
 ![Midir 30](images/midir_30.png)
 ![Midir 60](images/midir_60.png)

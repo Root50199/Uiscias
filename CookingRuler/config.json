@@ -1,15 +1,15 @@
 ﻿{
-    "usedfiles": [
-        "data/db/layout2/Production/Production2021/CookingView2.xml",
-        "data/UisciasAmountRuler.dds"
-    ],
-"recentUpdateNotes": "n/a",
-"findiasTags": [""],
-"isVariant": false,
-"hasVariants": false,
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Cooking Ruler",
-"modID": "CookingRuler",
-"updateType": "stable"
+  "usedfiles": [
+    "data/db/layout2/Production/Production2021/CookingView2.xml",
+    "data/UisciasAmountRuler.dds"
+  ],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": [""],
+  "isVariant": false,
+  "hasVariants": false,
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Cooking Ruler",
+  "modID": "CookingRuler",
+  "updateType": "stable"
 }

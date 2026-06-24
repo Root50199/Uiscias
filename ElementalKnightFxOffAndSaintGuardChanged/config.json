@@ -1,14 +1,12 @@
 ﻿{
-    "usedfiles": [
-        "data/gfx/fx/effect/Multiclass_fx.xml"
-    ],
-"recentUpdateNotes": "n/a",
-"findiasTags": [""],
-"isVariant": false,
-"hasVariants": false,
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Elemental Knight Fx Off And Saint Guard Changed",
-"modID": "ElementalKnightFxOffAndSaintGuardChanged",
-"updateType": "stable"
+  "usedfiles": ["data/gfx/fx/effect/Multiclass_fx.xml"],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": [""],
+  "isVariant": false,
+  "hasVariants": false,
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Elemental Knight Fx Off And Saint Guard Changed",
+  "modID": "ElementalKnightFxOffAndSaintGuardChanged",
+  "updateType": "stable"
 }

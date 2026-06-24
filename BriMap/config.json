@@ -1,16 +1,16 @@
 ﻿{
-    "usedfiles": [
-        "data/db/minimapinfo.xml",
-        "data/gfx/gui/map_jpg/minimap_2024_mrd_1S_KOR.jpg",
-        "data/gfx/gui/map_jpg/minimap_2024_mrd_2S_02_KOR.jpg"
-    ],
-"recentUpdateNotes": "n/a",
-"findiasTags": [""],
-"isVariant": false,
-"hasVariants": false,
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Bri Map",
-"modID": "BriMap",
-"updateType": "maintenanceRequired"
+  "usedfiles": [
+    "data/db/minimapinfo.xml",
+    "data/gfx/gui/map_jpg/minimap_2024_mrd_1S_KOR.jpg",
+    "data/gfx/gui/map_jpg/minimap_2024_mrd_2S_02_KOR.jpg"
+  ],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": [""],
+  "isVariant": false,
+  "hasVariants": false,
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Bri Map",
+  "modID": "BriMap",
+  "updateType": "maintenanceRequired"
 }

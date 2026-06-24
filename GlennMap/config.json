@@ -1,14 +1,12 @@
 ﻿{
-    "usedfiles": [
-        "data/gfx/gui/map_jpg/minimap_glennbearna_boss_room_day_kor.jpg"
-    ],
-"recentUpdateNotes": "n/a",
-"findiasTags": [""],
-"isVariant": false,
-"hasVariants": false,
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Glenn Map",
-"modID": "GlennMap",
-"updateType": "stable"
+  "usedfiles": ["data/gfx/gui/map_jpg/minimap_glennbearna_boss_room_day_kor.jpg"],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": [""],
+  "isVariant": false,
+  "hasVariants": false,
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Glenn Map",
+  "modID": "GlennMap",
+  "updateType": "stable"
 }
