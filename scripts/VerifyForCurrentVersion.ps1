@@ -1,22 +1,29 @@
-# 1. Prompt for the Version ID
+# 1. Setup root location context (repo root is parent of scripts/)
+$scriptDir = $PSScriptRoot
+if (-not $scriptDir) { $scriptDir = Get-Location }
+$repoRoot = (Resolve-Path (Join-Path $scriptDir "..")).Path
+
+# 2. Prompt for the Version ID
 $versionID = Read-Host "Enter the Version ID (e.g., 1.20.4)"
 if ([string]::IsNullOrWhiteSpace($versionID)) {
     Write-Error "Version ID cannot be empty. Script aborted."
     Exit
 }
 
-# 2. Get all subfolders in the script's directory
-$folders = Get-ChildItem -Path $PSScriptRoot -Directory | Select-Object -ExpandProperty Name
+# 3. Get all mod subfolders in the repo root
+$folders = Get-ChildItem -Path $repoRoot -Directory |
+           Where-Object { $_.Name -ne "scripts" } |
+           Select-Object -ExpandProperty Name
 if (-not $folders) {
-    Write-Warning "No subfolders found in $PSScriptRoot."
+    Write-Warning "No subfolders found in $repoRoot."
     Exit
 }
 
-# 3. Load GUI Assemblies
+# 4. Load GUI Assemblies
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-# 4. Construct the Form window
+# 5. Construct the Form window
 $form = New-Object System.Windows.Forms.Form
 $form.Text = "Select Folders for Version $versionID"
 $form.Size = New-Object System.Drawing.Size(400, 480)
@@ -76,7 +83,7 @@ $btnOk.DialogResult = [System.Windows.Forms.DialogResult]::OK
 $form.AcceptButton = $btnOk 
 $form.Controls.Add($btnOk)
 
-# 5. Display Form & Capture Results
+# 6. Display Form & Capture Results
 $result = $form.ShowDialog()
 
 if ($result -ne [System.Windows.Forms.DialogResult]::OK) {
@@ -94,8 +101,8 @@ if ($folderNames.Count -eq 0) {
     Exit
 }
 
-# 6. JSON Reading and Writing Logic
-$jsonPath = Join-Path -Path $PSScriptRoot -ChildPath "VerifiedForGameVersion.json"
+# 7. JSON Reading and Writing Logic
+$jsonPath = Join-Path -Path $repoRoot -ChildPath "VerifiedForGameVersion.json"
 
 if (Test-Path -Path $jsonPath) {
     try {
