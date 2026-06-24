@@ -1,0 +1,15 @@
+node_modules/
+package-lock.json
+
+# Packer tool and temp output
+scripts/Mabi-pack2/
+
+# Game asset trees (only format repo metadata at mod roots)
+**/data/
+**/build/
+**/*.it
+**/*.dds
+**/*.pmg
+**/*.rgn
+**/*.area
+**/*.set
