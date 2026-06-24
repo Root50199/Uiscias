@@ -1,5 +1,12 @@
+# Dependencies
 node_modules/
 package-lock.json
+
+# Build output
+out/
+dist/
+release/
+coverage/
 
 # Packer tool and temp output
 scripts/Mabi-pack2/
