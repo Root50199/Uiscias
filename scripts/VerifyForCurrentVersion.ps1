@@ -11,8 +11,9 @@ if ([string]::IsNullOrWhiteSpace($versionID)) {
 }
 
 # 3. Get all mod subfolders in the repo root
+$excludeFolders = @('scripts', 'node_modules')
 $folders = Get-ChildItem -Path $repoRoot -Directory |
-           Where-Object { $_.Name -ne "scripts" } |
+           Where-Object { $excludeFolders -notcontains $_.Name -and -not $_.Name.StartsWith('.') } |
            Select-Object -ExpandProperty Name
 if (-not $folders) {
     Write-Warning "No subfolders found in $repoRoot."
@@ -22,6 +23,14 @@ if (-not $folders) {
 # 4. Load GUI Assemblies
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
+Add-Type @"
+using System;
+using System.Runtime.InteropServices;
+public class UiFocus {
+    [DllImport("user32.dll")]
+    public static extern bool SetForegroundWindow(IntPtr hWnd);
+}
+"@
 
 # 5. Construct the Form window
 $form = New-Object System.Windows.Forms.Form
@@ -43,7 +52,7 @@ $form.Controls.Add($label)
 $checkedListBox = New-Object System.Windows.Forms.CheckedListBox
 $checkedListBox.Location = New-Object System.Drawing.Point(15, 45)
 $checkedListBox.Size = New-Object System.Drawing.Size(355, 320)
-$checkedListBox.CheckOnClick = $true 
+$checkedListBox.CheckOnClick = $true
 $checkedListBox.Font = New-Object System.Drawing.Font("Segoe UI", 10)
 $form.Controls.Add($checkedListBox)
 
@@ -80,8 +89,17 @@ $btnOk.Text = "Confirm Selection"
 $btnOk.Location = New-Object System.Drawing.Point(235, 385)
 $btnOk.Size = New-Object System.Drawing.Size(135, 35)
 $btnOk.DialogResult = [System.Windows.Forms.DialogResult]::OK
-$form.AcceptButton = $btnOk 
+$form.AcceptButton = $btnOk
 $form.Controls.Add($btnOk)
+
+# Read-Host leaves the terminal focused; force the picker to the foreground like the other scripts
+$form.Add_Load({ $form.TopMost = $true })
+$form.Add_Shown({
+    $form.TopMost = $false
+    [UiFocus]::SetForegroundWindow($form.Handle) | Out-Null
+    $form.Activate()
+    $form.BringToFront()
+})
 
 # 6. Display Form & Capture Results
 $result = $form.ShowDialog()
