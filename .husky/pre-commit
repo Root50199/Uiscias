@@ -1,1 +1,8 @@
+# Cursor/VS Code Git UI does not inherit fnm's Node PATH from interactive shells.
+if ! command -v node >/dev/null 2>&1; then
+  if command -v fnm >/dev/null 2>&1; then
+    eval "$(fnm env --shell bash)"
+  fi
+fi
+
 npx lint-staged
