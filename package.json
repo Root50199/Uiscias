@@ -11,9 +11,15 @@
     "generate-mod-desc": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/GenerateModDesc.ps1",
     "verify-for-version": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/VerifyForCurrentVersion.ps1",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
     "prettier": "^3.8.4"
+  },
+  "lint-staged": {
+    "*.{json,md}": "prettier --write"
   }
 }
