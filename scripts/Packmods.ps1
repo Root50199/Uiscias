@@ -13,9 +13,10 @@ if (-not (Test-Path $packerExe)) {
     Exit
 }
 
-# 2. Get all top-level mod subfolders in the repo root (excluding scripts)
-$folders = Get-ChildItem -Path $repoRoot -Directory | 
-           Where-Object { $_.Name -ne "scripts" } | 
+# 2. Get all top-level mod subfolders in the repo root
+$excludeFolders = @('scripts', 'node_modules')
+$folders = Get-ChildItem -Path $repoRoot -Directory |
+           Where-Object { $excludeFolders -notcontains $_.Name -and -not $_.Name.StartsWith('.') } |
            Select-Object -ExpandProperty Name
 
 if (-not $folders) {
