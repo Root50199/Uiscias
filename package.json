@@ -1,0 +1,14 @@
+{
+  "name": "uiscias",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Mabinogi mod sources and maintainer scripts for Uiscias",
+  "author": "Root50199",
+  "license": "MIT",
+  "scripts": {
+    "pack-mods": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Packmods.ps1",
+    "generate-configs": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/GenerateConfigs.ps1",
+    "generate-mod-desc": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/GenerateModDesc.ps1",
+    "verify-for-version": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/VerifyForCurrentVersion.ps1"
+  }
+}
