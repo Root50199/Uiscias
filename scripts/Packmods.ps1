@@ -1,21 +1,25 @@
-# 1. Configuration - Relative path for the packer executable
-$packerDir = Join-Path $PSScriptRoot "Mabi-pack2"
+# 1. Configuration - repo root is parent of scripts/
+$scriptDir = $PSScriptRoot
+if (-not $scriptDir) { $scriptDir = Get-Location }
+$repoRoot = (Resolve-Path (Join-Path $scriptDir "..")).Path
+
+$packerDir = Join-Path $scriptDir "Mabi-pack2"
 $packerExe = Join-Path $packerDir "mabi-pack2.exe"
 $packKey   = "})wWb4?-sVGHNoPKpc"
 
 # Ensure the packer exists in the relative folder before continuing
 if (-not (Test-Path $packerExe)) {
-    Write-Error "Could not find mabi-pack2.exe at $packerExe. Please verify the 'Mabi-pack2' folder is in the same directory as this script."
+    Write-Error "Could not find mabi-pack2.exe at $packerExe. Please verify the 'Mabi-pack2' folder is alongside this script in scripts/."
     Exit
 }
 
-# 2. Get all top-level subfolders in the script's directory (excluding the packer folder itself)
-$folders = Get-ChildItem -Path $PSScriptRoot -Directory | 
-           Where-Object { $_.Name -ne "Mabi-pack2" } | 
+# 2. Get all top-level mod subfolders in the repo root (excluding scripts)
+$folders = Get-ChildItem -Path $repoRoot -Directory | 
+           Where-Object { $_.Name -ne "scripts" } | 
            Select-Object -ExpandProperty Name
 
 if (-not $folders) {
-    Write-Warning "No subfolders found in $PSScriptRoot."
+    Write-Warning "No subfolders found in $repoRoot."
     Exit
 }
 
@@ -134,7 +138,7 @@ Write-Host "Scanning for 'data' folders..." -ForegroundColor Cyan
 $taskQueue = [System.Collections.Generic.List[PSCustomObject]]::new()
 
 foreach ($rootName in $selectedMappings.Keys) {
-    $fullRootPath = Join-Path $PSScriptRoot $rootName
+    $fullRootPath = Join-Path $repoRoot $rootName
     $rootOverride = $selectedMappings[$rootName]
     
     if ($rootName -eq "data") {
