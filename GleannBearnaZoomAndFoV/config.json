@@ -1,18 +1,18 @@
 ﻿{
-    "usedfiles": [
-        "data/world/Glenn_Bearna_boss_dungeon01_day/Glenn_Bearna_boss_dungeon01_day.rgn",
-        "data/world/Glenn_Bearna_boss_dungeon01_night/Glenn_Bearna_boss_dungeon01_night.rgn",
-        "data/world/Glenn_Bearna_dungeon_day/Glenn_Bearna_dungeon_day.rgn",
-        "data/world/Glenn_Bearna_dungeon01_night/Glenn_Bearna_dungeon01_night.rgn",
-        "data/world/Private_Island_152/Private_Island_152.rgn"
-    ],
-"recentUpdateNotes": "n/a",
-"findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
-"isVariant": false,
-"hasVariants": false,
-"updateType": "volatile",
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Gleann Bearna Zoom And Fo V",
-"modID": "GleannBearnaZoomAndFoV",
+  "usedfiles": [
+    "data/world/Glenn_Bearna_boss_dungeon01_day/Glenn_Bearna_boss_dungeon01_day.rgn",
+    "data/world/Glenn_Bearna_boss_dungeon01_night/Glenn_Bearna_boss_dungeon01_night.rgn",
+    "data/world/Glenn_Bearna_dungeon_day/Glenn_Bearna_dungeon_day.rgn",
+    "data/world/Glenn_Bearna_dungeon01_night/Glenn_Bearna_dungeon01_night.rgn",
+    "data/world/Private_Island_152/Private_Island_152.rgn"
+  ],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
+  "isVariant": false,
+  "hasVariants": false,
+  "updateType": "volatile",
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Gleann Bearna Zoom And Fo V",
+  "modID": "GleannBearnaZoomAndFoV"
 }

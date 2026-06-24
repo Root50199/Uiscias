@@ -1,15 +1,15 @@
 ﻿{
-    "usedfiles": [
-        "data/db/layout2/Specialization/SpecializationFrame.xml",
-        "data/db/layout2/Specialization/SpecializationMain.xml"
-    ],
-"recentUpdateNotes": "n/a",
-"findiasTags": [""],
-"isVariant": false,
-"hasVariants": false,
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Tech U I",
-"modID": "TechUI",
-"updateType": "stable"
+  "usedfiles": [
+    "data/db/layout2/Specialization/SpecializationFrame.xml",
+    "data/db/layout2/Specialization/SpecializationMain.xml"
+  ],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": [""],
+  "isVariant": false,
+  "hasVariants": false,
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Tech U I",
+  "modID": "TechUI",
+  "updateType": "stable"
 }

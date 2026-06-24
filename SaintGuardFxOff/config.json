@@ -1,15 +1,12 @@
 ﻿{
-    "usedfiles": [
-        "data/gfx/fx/effect/Mfx_SG01.xml",
-        "data/gfx/fx/effect/Mfx_SG02.xml"
-    ],
-"recentUpdateNotes": "n/a",
-"findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
-"isVariant": false,
-"hasVariants": false,
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Saint Guard Fx Off",
-"modID": "SaintGuardFxOff",
-"updateType": "stable"
+  "usedfiles": ["data/gfx/fx/effect/Mfx_SG01.xml", "data/gfx/fx/effect/Mfx_SG02.xml"],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
+  "isVariant": false,
+  "hasVariants": false,
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Saint Guard Fx Off",
+  "modID": "SaintGuardFxOff",
+  "updateType": "stable"
 }

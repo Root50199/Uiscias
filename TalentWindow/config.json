@@ -1,14 +1,12 @@
 ﻿{
-    "usedfiles": [
-        "data/db/layout2/Talent/TalentMainViewRenewal.xml"
-    ],
-"recentUpdateNotes": "n/a",
-"findiasTags": [""],
-"isVariant": false,
-"hasVariants": false,
-"modAdditionalCredits": "None",
-"modAuthor": "Root50199",
-"modName": "Talent Window",
-"modID": "TalentWindow",
-"updateType": "stable"
+  "usedfiles": ["data/db/layout2/Talent/TalentMainViewRenewal.xml"],
+  "recentUpdateNotes": "n/a",
+  "findiasTags": [""],
+  "isVariant": false,
+  "hasVariants": false,
+  "modAdditionalCredits": "None",
+  "modAuthor": "Root50199",
+  "modName": "Talent Window",
+  "modID": "TalentWindow",
+  "updateType": "stable"
 }

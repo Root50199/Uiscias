@@ -1,8 +1,5 @@
 ﻿{
-  "usedfiles": [
-    "data/gfx/fx/effect/Mfx_BL01.xml",
-    "data/gfx/fx/effect/Mfx_BL02.xml"
-  ],
+  "usedfiles": ["data/gfx/fx/effect/Mfx_BL01.xml", "data/gfx/fx/effect/Mfx_BL02.xml"],
   "recentUpdateNotes": "n/a",
   "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
   "isVariant": false,
