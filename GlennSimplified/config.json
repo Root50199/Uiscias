@@ -1,5 +1,14 @@
-﻿{
-  "usedfiles": [
+{
+  "modId": "GlennSimplified",
+  "modName": "Glenn Simplified",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": [],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
     "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree01.pmg",
     "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree01.set",
     "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree02.pmg",
@@ -10,10 +19,10 @@
     "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree04.set",
     "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree05.pmg",
     "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree05.set",
-    "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree06.pmg",
-    "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree06.set",
     "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree06_02.pmg",
     "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree06_02.set",
+    "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree06.pmg",
+    "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree06.set",
     "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree07.pmg",
     "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree07.set",
     "data/gfx/scene/dungeon/GlennBearna/prop/dg_glennbearna_tree08.pmg",
@@ -41,13 +50,5 @@
     "data/material/terrain/glennbearnasnow02_only/glennbearnasnow02_only.dds",
     "data/material/terrain/glennbearnasnow03_only/glennbearnasnow03_only.dds"
   ],
-  "recentUpdateNotes": "n/a",
-  "findiasTags": [""],
-  "isVariant": false,
-  "hasVariants": false,
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Glenn Simplified",
-  "modID": "GlennSimplified",
-  "updateType": "stable"
+  "sourceHash": "sha256-aff6155b68718d1264afeb7229998bfd03c79ea6776d7440552eaafae9fcc390"
 }

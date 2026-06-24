@@ -1,12 +1,13 @@
-﻿{
-  "usedfiles": ["data/world/Private_Island_152/Private_Island_152.rgn"],
-  "recentUpdateNotes": "n/a",
+{
+  "modId": "MoonlightIslandZoomAndFoV",
+  "modName": "Moonlight Island Zoom And Fo V",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "volatile",
   "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
+  "recentUpdateNotes": "n/a",
   "isVariant": false,
   "hasVariants": false,
-  "updateType": "volatile",
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Moonlight Island Zoom And Fo V",
-  "modID": "MoonlightIslandZoomAndFoV"
+  "usedFiles": ["data/world/Private_Island_152/Private_Island_152.rgn"],
+  "sourceHash": "sha256-0975374a746a3e3420a2757501108d39c6b55e6b1b3b744c9d16a82ed092471a"
 }

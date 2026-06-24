@@ -1,0 +1,16 @@
+{
+  "modId": "ExpandedAuctionHouseLowRes",
+  "modName": "Expanded Auction House Low Res",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": [],
+  "recentUpdateNotes": "n/a",
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/db/layout2/Auction/TradeAuctionMarketTab.xml",
+    "data/db/layout2/Auction/TradeAuctionMyMarketTab.xml"
+  ],
+  "sourceHash": "sha256-f47c919dbb9123064224d224e54abeedb7dbb70496b6d328cc9af5c7cddefda4"
+}

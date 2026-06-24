@@ -127,8 +127,8 @@ modName: Achievment Unhide # human-readable display name
 modAuthor: Root50199
 modAdditionalCredits: None
 updateType: volatile # one of: stable | volatile
-recentUpdateNotes: n/a # optional human note
-findiasTags: # subset of the allowed tag set (see below)
+recentUpdateNotes: n/a # optional human note (defaults to "n/a")
+findiasTags: # OPTIONAL subset of the allowed tag set (see below)
   - UI
   - QoL
 ```
@@ -136,7 +136,8 @@ findiasTags: # subset of the allowed tag set (see below)
 For a variant **parent** folder, `config.yaml` carries the group-level
 `modName`, `findiasTags`, and credits; it has no `usedFiles` of its own.
 
-Allowed `findiasTags`: `Combat`, `QoL`, `UI`, `Bri Leith`, `Arcana`,
+`findiasTags` is **optional** and defaults to `[]` (many mods legitimately have
+none). Allowed values: `Combat`, `QoL`, `UI`, `Bri Leith`, `Arcana`,
 `Lag Helper`, `Fx`, `Zoom`, `FoV`, `Visual Clarity`. Unknown tags fail
 validation.
 
@@ -166,8 +167,11 @@ validation.
   unchanged mod regenerates byte-identically.
 - `usedFiles` is every file under the mod's `data/`, repo-relative, using `/`
   separators. It is the data Findias uses to detect cross-mod file conflicts.
-- `sourceHash` is a hash over the normalized metadata **and** the `data/`
-  contents (file paths + bytes). It is the change signal for packing.
+- `sourceHash` is a hash over the mod's `data/` contents (file paths + bytes) —
+  the pack input. It is the change signal for packing. Metadata-only edits
+  (tags, credits) deliberately do **not** change it, so they never force a
+  needless repack/version bump; they still update `config.json` and flow to the
+  manifest. A variant-parent (no `data/`) hashes to the empty digest.
 - **Key normalization vs. today:** legacy files use `usedfiles` and `modID`;
   the generator standardizes on camelCase `usedFiles` and `modId`.
 
@@ -225,7 +229,7 @@ has a single code path: a non-variant mod is simply a group with one variant.
         "modName": "Bri Hp Bars 1 And 2",
         "fileName": "UisciasBriHpBars1And2_00001.it",
         "version": 1,
-        "size": 0,
+        "size": 8624,
         "updateType": "volatile",
         "usedFiles": ["data/db/Race.xml"],
         "modAuthor": "Root50199",
@@ -237,7 +241,7 @@ has a single code path: a non-variant mod is simply a group with one variant.
         "modName": "Bri Hp Bars 1 And 3",
         "fileName": "UisciasBriHpBars1And3_00001.it",
         "version": 1,
-        "size": 0,
+        "size": 8624,
         "updateType": "volatile",
         "usedFiles": ["data/db/Race.xml"],
         "modAuthor": "Root50199",
@@ -275,21 +279,35 @@ deleted). The packer binary stays where it is today.
 scripts/
 ├─ src/                         # new Node/TS tooling
 │  ├─ schema/                   # zod schemas + z.infer types (copied to Findias)
+│  │  ├─ tags.ts                # findiasTags + updateType enums (+ legacy map)
 │  │  ├─ configYaml.ts
 │  │  ├─ configJson.ts
 │  │  ├─ buildLock.ts
-│  │  └─ manifestCatalog.ts
+│  │  ├─ manifestCatalog.ts
+│  │  └─ index.ts               # barrel export
 │  ├─ lib/                      # shared helpers
+│  │  ├─ repo.ts                # repo root + NON_MOD_DIRS / EXCLUDED_MOD_IDS
 │  │  ├─ mods.ts                # discover mod/variant folders; group detection
 │  │  ├─ changed.ts             # git-diff → affected mod set (--changed)
-│  │  ├─ hash.ts                # sourceHash over metadata + data/
+│  │  ├─ scope.ts               # --all/--changed/--mods/--staged/--stage parsing
+│  │  ├─ hash.ts                # sourceHash over data/ (CRLF→LF normalized)
+│  │  ├─ json.ts                # deterministic, Prettier-stable JSON I/O (BOM-safe)
+│  │  ├─ yaml.ts                # YAML I/O (BOM-safe)
+│  │  ├─ git.ts                 # git add helpers (for --stage)
+│  │  ├─ config.ts             # load yaml / build + read config.json + build.lock
+│  │  ├─ humanize.ts            # camelCase modId → display name
 │  │  └─ packer.ts              # mabi-pack2.exe wrapper
 │  ├─ commands/
-│  │  ├─ generate-configs.ts
+│  │  ├─ list.ts                # print discovered mod/group/variant tree
+│  │  ├─ changed.ts             # print mods affected by a git scope
+│  │  ├─ migrate.ts             # ONE-TIME: legacy config.json + Tags.md → config.yaml
+│  │  ├─ generateConfigs.ts
 │  │  ├─ pack.ts
-│  │  └─ build-manifest.ts      # release-time aggregation → manifestCatalog.json
-│  └─ index.ts                  # CLI entry (subcommands + --all/--changed/--mods)
+│  │  ├─ buildManifest.ts       # release aggregation → manifestCatalog.json (+ --assets)
+│  │  └─ check.ts               # CI drift check (hash-only, no packing)
+│  └─ index.ts                  # CLI entry (subcommands + scope flags)
 ├─ Mabi-pack2/                  # mabi-pack2.exe (unchanged)
+├─ pack.bat                     # legacy convenience wrapper (kept)
 ├─ GenerateConfigs.ps1          # LEGACY reference (kept)
 ├─ Packmods.ps1                 # LEGACY reference (kept)
 ├─ GenerateModDesc.ps1          # LEGACY reference (kept)
@@ -302,21 +320,45 @@ Generated artifacts do **not** live under `scripts/`; they live next to each mod
 is produced into the CI workspace and uploaded as a release asset (never
 committed).
 
+### What counts as a mod (discovery & exclusions)
+
+Mod discovery (`lib/mods.ts`) treats every top-level folder as a mod unless it is
+excluded in `lib/repo.ts`:
+
+- **`NON_MOD_DIRS`** — infrastructure folders (`scripts`, `node_modules`, `docs`,
+  `images`). Dot-folders (`.github`, `.husky`, `.git`, …) are skipped by the
+  leading-dot rule.
+- **`EXCLUDED_MOD_IDS`** — mod-shaped folders to ignore anyway, currently
+  `NewModTemplate` (scaffolding, never built or shipped). Add future templates or
+  experimental folders here.
+
+Excluded folders are skipped by `generate-configs`, `pack`, `check`, and
+`build-manifest`, so a template can keep example artifacts without entering the
+drift check or any release.
+
 ### npm scripts
 
 The new Node commands take the canonical names; the legacy PowerShell scripts
 are retained under a `powershell-` prefix so they can still be run if ever
 needed:
 
-| Script                          | Runs                                              |
-| ------------------------------- | ------------------------------------------------- |
-| `generate-configs`              | new Node generator (`--all`/`--changed`/`--mods`) |
-| `pack`                          | new Node packer                                   |
-| `build-manifest`                | new Node manifest aggregator (used by CI)         |
-| `powershell-generate-configs`   | legacy `GenerateConfigs.ps1`                      |
-| `powershell-pack-mods`          | legacy `Packmods.ps1`                             |
-| `powershell-generate-mod-desc`  | legacy `GenerateModDesc.ps1`                      |
-| `powershell-verify-for-version` | legacy `VerifyForCurrentVersion.ps1`              |
+| Script                          | Runs                                                  |
+| ------------------------------- | ----------------------------------------------------- |
+| `generate-configs`              | new Node generator (`--all`/`--changed`/`--mods`)     |
+| `pack`                          | new Node packer                                       |
+| `build-manifest`                | new Node manifest aggregator (used by CI; `--assets`) |
+| `check`                         | CI drift check (hash-only; no packing)                |
+| `mods`                          | list discovered mods/groups/variants                  |
+| `changed`                       | list mods affected by a git scope                     |
+| `typecheck`                     | `tsc --noEmit` over the tooling                       |
+| `powershell-generate-configs`   | legacy `GenerateConfigs.ps1`                          |
+| `powershell-pack-mods`          | legacy `Packmods.ps1`                                 |
+| `powershell-generate-mod-desc`  | legacy `GenerateModDesc.ps1`                          |
+| `powershell-verify-for-version` | legacy `VerifyForCurrentVersion.ps1`                  |
+
+A one-time `migrate` subcommand also exists (it generated the initial
+`config.yaml` files from legacy `config.json` + `Tags.md`); it is not wired to an
+npm script because it should not be re-run.
 
 ## Build scripts
 
@@ -333,7 +375,7 @@ retained only as references). They are non-interactive and selectable by scope:
    (fail on unknown tags, bad `updateType`, `modId` ≠ folder name, missing
    required fields).
 3. Scan `data/` → `usedFiles` (sorted, `/`-separated, repo-relative).
-4. Compute `sourceHash` over normalized metadata + `data/` contents.
+4. Compute `sourceHash` over the mod's `data/` contents (the pack input).
 5. Set `isVariant` / `hasVariants` from folder shape.
 6. Emit `config.json` with fixed key order. Unchanged input → identical output.
 
@@ -432,20 +474,47 @@ only the latest is kept in the working tree, this is acceptable. If history size
 ever becomes a problem, migrating `.it` to Git LFS (or a history rewrite) is a
 future optimization — it does not change any other part of this design.
 
+## Line endings & hash parity
+
+Maintainers are on Windows (often `core.autocrlf=true`) while CI runs on Linux,
+so the same source could otherwise differ by `CRLF` vs `LF`. Two measures keep
+the generated artifacts and the drift check **byte-identical across platforms**:
+
+- **`.gitattributes`** marks text as `text=auto eol=lf` (so committed
+  `config.json`/`config.yaml` match Prettier's `endOfLine: lf`) and marks `.it`
+  and game assets (`.dds`, `.pmg`, …) as `binary` so they are never normalized.
+- **`sourceHash` normalizes line endings before hashing:** `lib/hash.ts` detects
+  text vs binary (NUL-byte check) and converts `CRLF`→`LF` for text files before
+  computing the digest. A Windows working tree and a Linux CI checkout therefore
+  produce the **same** `sourceHash`, so the drift check never trips on line
+  endings alone.
+
+Practically, a maintainer authors files normally — no special steps. A fresh
+clone after these settings lands picks up LF in the working tree automatically;
+existing clones may show a one-time renormalization, which Prettier/`.gitattributes`
+resolve.
+
 ## Release automation
 
 Triggered on merges to `main` that include `feat`/`fix` (Conventional Commits).
 
-- **Versioning + release creation:** **release-please** reads commit messages,
-  decides the repo version bump, opens/merges a release PR, tags, and creates
-  the GitHub release.
-- **Asset assembly (a workflow step, `ubuntu-latest`):**
-  1. Glob the single latest `.it` from every mod's `build/` folder (this _is_
-     the current version, so unchanged mods carry forward automatically — no
-     need to fetch the previous release).
+- **Versioning + release creation:** **release-please** (release-type **`node`**,
+  so `package.json` `version` is the single source of truth; baseline tracked in
+  `.release-please-manifest.json`) reads commit messages, decides the repo
+  version bump, opens/merges a release PR, tags, and creates the GitHub release.
+- **Asset assembly (a workflow step, `ubuntu-latest`):** driven by the tooling
+  (`npm run build-manifest -- --out manifestCatalog.json --assets release-assets`)
+  rather than a raw glob, so the mod-discovery rules (template exclusions, variant
+  grouping) apply automatically:
+  1. For every shipped mod, read `build/build.lock.json` to find its single
+     latest `.it` (this _is_ the current version, so unchanged mods carry forward
+     automatically — no need to fetch the previous release) and copy it into
+     `release-assets/`.
   2. Aggregate every committed `config.json` into `manifestCatalog.json`,
      grouping variants and stamping each variant's `size` from its `.it` file.
-  3. Upload all `.it` assets + `manifestCatalog.json` to the release.
+  3. Upload everything in `release-assets/` (all `.it` + `manifestCatalog.json`)
+     to the release. A **drift check** (`npm run check`) runs first so a release
+     can never ship stale generated files.
 
 Because packing happens locally and the assembly is pure file/JSON work, the
 release job runs on **`ubuntu-latest`** (no Windows runner, no `.exe` in CI).
@@ -485,10 +554,19 @@ Findias already anticipates this in its `architecture.md` as a swappable
 
 ## Open items
 
-- Migration: create `config.yaml` for every existing mod from its current
-  `config.json`; fold `tags.md`/`Tags.md` into `findiasTags`; rename mismatched
-  variant folders to the shared-prefix convention; normalize `usedfiles`/`modID`
-  keys to `usedFiles`/`modId`; prune each `build/` to the latest `.it` only.
+- **Migration — done.** Every mod now has a schema-valid `config.yaml`;
+  `tags.md`/`Tags.md` folded into `findiasTags` and removed; variant folders
+  renamed to the shared-prefix convention; legacy `usedfiles`/`modID` keys
+  normalized to `usedFiles`/`modId`; each `build/` pruned to the latest `.it`.
+- **First live release not yet run.** The release workflow, `release-please`
+  config, asset assembly, and drift check are in place but have only been
+  verified locally — the end-to-end GitHub release + carry-forward will first
+  exercise on a real `feat`/`fix` merge to `main`. Note the
+  `.release-please-manifest.json` baseline is `1.0.0`, so the first automated
+  release bumps from there (e.g. `1.0.1`/`1.1.0`); to make the _first_ tag itself
+  `1.0.0`, add a one-time `release-as: 1.0.0` (or lower the baseline).
+- **Phase 6 (Findias consumer) not started:** copy the schema into Findias and
+  implement `ManifestCatalogProvider` + variant/conflict UI.
 - Decide later whether to publish the shared schema as `@uiscias/schema` instead
   of copying it into both repos.
 

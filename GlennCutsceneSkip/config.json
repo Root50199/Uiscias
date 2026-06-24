@@ -1,16 +1,17 @@
-﻿{
-  "usedfiles": [
+{
+  "modId": "GlennCutsceneSkip",
+  "modName": "Glenn Cutscene Skip",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": [],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
     "data/db/cutscene/gbd_Bossroom_01.xml",
     "data/db/cutscene/gbd_Bossroom_02.xml",
     "data/db/cutscene/gbd_Bossroom_03.xml"
   ],
-  "recentUpdateNotes": "n/a",
-  "findiasTags": [""],
-  "isVariant": false,
-  "hasVariants": false,
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Glenn Cutscene Skip",
-  "modID": "GlennCutsceneSkip",
-  "updateType": "stable"
+  "sourceHash": "sha256-061184ea0238237076bb423871349bc65e63f896a6cd8aa24e1e04ba245daf1e"
 }

@@ -5,4 +5,10 @@ if ! command -v node >/dev/null 2>&1; then
   fi
 fi
 
+# For staged mod changes: validate config.yaml + regenerate config.json, then
+# pack the .it (bump-by-hash). Both stage their outputs so they land in this
+# commit. Scoped to changed mods so the per-commit cost stays small.
+npx tsx scripts/src/index.ts generate-configs --changed --staged --stage || exit 1
+npx tsx scripts/src/index.ts pack --changed --staged --stage || exit 1
+
 npx lint-staged

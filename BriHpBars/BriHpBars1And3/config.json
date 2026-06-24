@@ -1,0 +1,13 @@
+{
+  "modId": "BriHpBars1And3",
+  "modName": "Bri Hp Bars 1 And 3",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "volatile",
+  "findiasTags": ["Combat", "UI", "QoL", "Bri Leith"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": ["data/db/Race.xml"],
+  "sourceHash": "sha256-61b24f5b5ef3cf92fc05dfefb523dedc5e1a35ed20d5de1540080aafb45fa7aa"
+}

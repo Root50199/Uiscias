@@ -1,12 +1,13 @@
-﻿{
-  "usedfiles": ["data/gfx/fx/effect/Mfx_SMA01.xml"],
-  "recentUpdateNotes": "n/a",
+{
+  "modId": "ArsenalGunnerFxOff",
+  "modName": "Arsenal Gunner Fx Off",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
   "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
+  "recentUpdateNotes": "n/a",
   "isVariant": false,
   "hasVariants": false,
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Arsenal Gunner Fx Off",
-  "modID": "ArsenalGunnerFxOff",
-  "updateType": "stable"
+  "usedFiles": ["data/gfx/fx/effect/Mfx_SMA01.xml"],
+  "sourceHash": "sha256-637e9274ae138d33bcbe1415d25e26777e6f34f7d4b577fd9b629d5418bb09ab"
 }
