@@ -1,4 +1,4 @@
-# Uiscias
+# Uiscias 1
 
 A collection of `.it` mods for Mabinogi (North America). These mods are intended to increase accessibility and reduce frustration with the client—not to fundamentally change game mechanics.
 
