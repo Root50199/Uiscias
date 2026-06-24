@@ -1,29 +1,23 @@
-﻿{
-  "isVariant": false,
-  "modID": "NewModTemplate",
+{
+  "modId": "NewModTemplate",
   "modName": "New Mod Template",
   "modAuthor": "Root50199",
   "modAdditionalCredits": "None",
-  "updateType": "volatile|stable",
-  "hasVariants": false,
+  "updateType": "volatile",
   "findiasTags": [
     "UI",
     "QoL",
-    "1080p",
-    "1440p",
-    "Glenn Bearna|Bri Leith|Crom Bas|Rabbie Phantasm",
     "Combat",
     "Fx",
     "Lag Helper",
-    "Cosmetic",
     "Arcana",
-    "Skills",
     "Visual Clarity",
-    "Cutscene Skip",
     "Zoom",
     "FoV"
   ],
-
-  "usedfiles": ["data/mod1.xml", "data/mod2.xml", "data/mod4.xml"],
-  "recentUpdateNotes": "Features added/changed, important FYI etc."
+  "recentUpdateNotes": "Features added/changed, important FYI etc.",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": ["data/mod1.xml", "data/mod2.xml", "data/mod4.xml"],
+  "sourceHash": "sha256-cd84893fae030b6dc22745f057ce8f9beef9888a60b57b8b6b153f8622494da5"
 }

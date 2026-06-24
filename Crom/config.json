@@ -1,5 +1,14 @@
-﻿{
-  "usedfiles": [
+{
+  "modId": "Crom",
+  "modName": "Crom",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": [],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
     "data/world/NTD_dungeon/_NTD_dungeon_01.area",
     "data/world/NTD_dungeon/_NTD_dungeon_02.area",
     "data/world/NTD_dungeon/_NTD_dungeon_03.area",
@@ -30,13 +39,5 @@
     "data/world/TR_main_field_01/_TR_main_field_01_9.area",
     "data/world/TR_main_field_01/TR_main_field_01.rgn"
   ],
-  "recentUpdateNotes": "n/a",
-  "findiasTags": [""],
-  "isVariant": false,
-  "hasVariants": false,
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Crom",
-  "modID": "Crom",
-  "updateType": "stable"
+  "sourceHash": "sha256-bcd22154101934bbfe4c10a47809405a6935bb54e4d190831a2a7d9e08cb06ad"
 }

@@ -1,13 +1,22 @@
-﻿{
-  "usedfiles": [
+{
+  "modId": "SkillMinimized",
+  "modName": "Skill Minimized",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": [],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
     "data/gfx/fx/effect/c2_g6_pet_snowfield.xml",
     "data/gfx/fx/effect/c3_g10_s1_cloud.xml",
     "data/gfx/fx/effect/C3_G11_cutscene.xml",
     "data/gfx/fx/effect/c3_g9_s2_monster_spider12.xml",
-    "data/gfx/fx/effect/c4_g14_s3_fire_horse.xml",
     "data/gfx/fx/effect/c4_g14_s3_fire_horse_black.xml",
     "data/gfx/fx/effect/c4_g14_s3_fire_horse_cyan.xml",
     "data/gfx/fx/effect/c4_g14_s3_fire_horse_white.xml",
+    "data/gfx/fx/effect/c4_g14_s3_fire_horse.xml",
     "data/gfx/fx/effect/c4_g16_pet_ice_dragon.xml",
     "data/gfx/fx/effect/C5_doll_effect.xml",
     "data/gfx/fx/effect/c5_pet_cloud.xml",
@@ -18,13 +27,5 @@
     "data/gfx/fx/effect/SkillRenewal2017.xml",
     "data/gfx/fx/posteffect/blur.xml"
   ],
-  "recentUpdateNotes": "n/a",
-  "findiasTags": [""],
-  "isVariant": false,
-  "hasVariants": false,
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Skill Minimized",
-  "modID": "SkillMinimized",
-  "updateType": "stable"
+  "sourceHash": "sha256-86f6901d6a23ff9110d5caa59e94b78c00cbab218c1ad642181d2f27b8f5618c"
 }

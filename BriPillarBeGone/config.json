@@ -1,5 +1,14 @@
-﻿{
-  "usedfiles": [
+{
+  "modId": "BriPillarBeGone",
+  "modName": "Bri Pillar Be Gone",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": [],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
     "data/gfx/scene/dungeon/MRD/scene_prop_mrd_3s_arch01.pmg",
     "data/gfx/scene/dungeon/MRD/scene_prop_mrd_3s_arch01.set",
     "data/gfx/scene/dungeon/MRD/scene_prop_mrd_3s_bigarch01.pmg",
@@ -35,13 +44,5 @@
     "data/gfx/scene/dungeon/MRD/scene_prop_mrd_column_b04.pmg",
     "data/gfx/scene/dungeon/MRD/scene_prop_mrd_column_b04.set"
   ],
-  "recentUpdateNotes": "n/a",
-  "findiasTags": [""],
-  "isVariant": false,
-  "hasVariants": false,
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Bri Pillar Be Gone",
-  "modID": "BriPillarBeGone",
-  "updateType": "stable"
+  "sourceHash": "sha256-db80c327ae37ee4d8021a2d7b6f8cdaed21bc4a16038d5b59a89441329ca9cab"
 }

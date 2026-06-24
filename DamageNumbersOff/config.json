@@ -1,5 +1,14 @@
-﻿{
-  "usedfiles": [
+{
+  "modId": "DamageNumbersOff",
+  "modName": "Damage Numbers Off",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": [],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
     "data/gfx/gui/gui_ver2/apricots.dds",
     "data/gfx/gui/gui_ver2/black.dds",
     "data/gfx/gui/gui_ver2/cityman.dds",
@@ -15,13 +24,5 @@
     "data/gfx/gui/gui_ver2/pink.dds",
     "data/gfx/gui/gui_ver2/skyblue.dds"
   ],
-  "recentUpdateNotes": "n/a",
-  "findiasTags": [""],
-  "isVariant": false,
-  "hasVariants": false,
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Damage Numbers Off",
-  "modID": "DamageNumbersOff",
-  "updateType": "stable"
+  "sourceHash": "sha256-48439764d27b561967395d9de9268b20ed70c55dd1a0b8784665c982a2f4f06d"
 }

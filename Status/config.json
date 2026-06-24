@@ -1,12 +1,13 @@
-﻿{
-  "usedfiles": ["data/db/CharacterCondition.xml"],
+{
+  "modId": "Status",
+  "modName": "Status",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "volatile",
+  "findiasTags": [],
   "recentUpdateNotes": "n/a",
-  "findiasTags": [""],
   "isVariant": false,
   "hasVariants": false,
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Status",
-  "modID": "Status",
-  "updateType": "maintenanceRequired"
+  "usedFiles": ["data/db/CharacterCondition.xml"],
+  "sourceHash": "sha256-e805c3ae54c63fe6927c77fda20186b63ae18486f18f7073137ec218da045e83"
 }

@@ -1,15 +1,16 @@
-﻿{
-  "usedfiles": [
+{
+  "modId": "BriMidirEffects",
+  "modName": "Bri Midir Effects",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": ["Combat", "Fx", "Lag Helper", "Visual Clarity"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
     "data/gfx/fx/effect/MRD3_LM.xml",
     "data/material/fx/effect/common_effect_Late_add_135.dds"
   ],
-  "recentUpdateNotes": "n/a",
-  "findiasTags": ["Combat", "Fx", "Lag Helper", "Visual Clarity"],
-  "isVariant": false,
-  "hasVariants": false,
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Bri Midir Effects",
-  "modID": "BriMidirEffects",
-  "updateType": "stable"
+  "sourceHash": "sha256-95a663f31fd92b9d4ca64060f94fdf53bfbc208e0d7338544fdadefbd3e53403"
 }

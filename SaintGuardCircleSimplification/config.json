@@ -1,12 +1,13 @@
-﻿{
-  "usedfiles": ["data/material/fx/cursor/SG_decal1.dds"],
-  "recentUpdateNotes": "n/a",
+{
+  "modId": "SaintGuardCircleSimplification",
+  "modName": "Saint Guard Circle Simplification",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "volatile",
   "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
+  "recentUpdateNotes": "n/a",
   "isVariant": false,
   "hasVariants": false,
-  "updateType": "volatile",
-  "modAdditionalCredits": "None",
-  "modAuthor": "Root50199",
-  "modName": "Saint Guard Circle Simplification",
-  "modID": "SaintGuardCircleSimplification"
+  "usedFiles": ["data/material/fx/cursor/SG_decal1.dds"],
+  "sourceHash": "sha256-164088b76b0f6718eb4ae37624b88d2e17cfe91584565f8cbb978f9c90c8d39f"
 }
