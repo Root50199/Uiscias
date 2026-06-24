@@ -164,6 +164,9 @@ foreach ($task in $taskQueue) {
     $tempDir     = Join-Path $packerDir "temp"
     $tempDataDir = Join-Path $tempDir "data"
 
+    # Define output target to a "build" directory alongside the respective "data" folder
+    $buildDir    = Join-Path $parentDir "build"
+
     Write-Host "--------------------------------------------------" -ForegroundColor Gray
     Write-Host "Processing folder containing 'data': $parentName" -ForegroundColor Cyan
 
@@ -181,17 +184,19 @@ foreach ($task in $taskQueue) {
         }
     }
 
-    # Execute auto-increment math if override cell is blank or invalid
+    # --- ENFORCED STEP: VERSION CHECK IN NEW LOCATION ---
+    # Scans only the newly designated "build" folder for version history to determine the next increment number
     if ([string]::IsNullOrWhiteSpace($formattedNumber)) {
         $nextNumber = 1
-        $allFiles = Get-ChildItem -Path $parentDir -File
-
-        foreach ($file in $allFiles) {
-            if ([regex]::IsMatch($file.Name, $pattern, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)) {
-                $matchObj = [regex]::Match($file.Name, $pattern, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
-                $currentNum = [int]$matchObj.Groups[1].Value
-                if ($currentNum -ge $nextNumber) {
-                    $nextNumber = $currentNum + 1
+        if (Test-Path $buildDir) {
+            $allFiles = Get-ChildItem -Path $buildDir -File
+            foreach ($file in $allFiles) {
+                if ([regex]::IsMatch($file.Name, $pattern, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)) {
+                    $matchObj = [regex]::Match($file.Name, $pattern, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+                    $currentNum = [int]$matchObj.Groups[1].Value
+                    if ($currentNum -ge $nextNumber) {
+                        $nextNumber = $currentNum + 1
+                    }
                 }
             }
         }
@@ -203,11 +208,16 @@ foreach ($task in $taskQueue) {
     Write-Host " -> Target Filename: $outputItName" -ForegroundColor Yellow
 
     $packedFileLocal  = Join-Path $packerDir $outputItName
-    $packedFileTarget = Join-Path $parentDir $outputItName
+    $packedFileTarget = Join-Path $buildDir $outputItName
 
-    # Enforce clear-down protection for conflicting overrides
+    # Ensure the "build" subfolder exists before outputting files to it
+    if (-not (Test-Path $buildDir)) {
+        New-Item -Path $buildDir -ItemType Directory -Force | Out-Null
+    }
+
+    # Enforce clear-down protection for conflicting overrides inside the build folder
     if (Test-Path $packedFileTarget) {
-        Write-Host " -> Found existing duplicate file. Overwriting: $outputItName" -ForegroundColor DarkYellow
+        Write-Host " -> Found existing duplicate file in build folder. Overwriting: $outputItName" -ForegroundColor DarkYellow
         Remove-Item -Path $packedFileTarget -Force -Confirm:$false
     }
 
@@ -230,23 +240,21 @@ foreach ($task in $taskQueue) {
 
     if (Test-Path $tempDir) { Remove-Item -Path $tempDir -Recurse -Force }
 
-        # Move the completed .it file out of the tool repository into the target directory
+     # Validate output and relocate file contents 
     if (Test-Path $packedFileLocal) {
         Move-Item -Path $packedFileLocal -Destination $packedFileTarget -Force
         Write-Host "Successfully created and moved to: $packedFileTarget" -ForegroundColor Green
         
-        # --- VERSION ROTATION CLEANUP (KEEP NEWEST 3) ---
-        Write-Host " -> Checking version history..." -ForegroundColor Gray
+        # --- FIXED VERSION ROTATION: Cleans oldest history directly inside the build directory ---
+        Write-Host " -> Checking version history inside build directory..." -ForegroundColor Gray
         $trackedFiles = [System.Collections.Generic.List[PSCustomObject]]::new()
         
-        # Gather all current versions matching the pattern
-        $currentItFiles = Get-ChildItem -Path $parentDir -File
+        $currentItFiles = Get-ChildItem -Path $buildDir -File
         foreach ($file in $currentItFiles) {
             if ([regex]::IsMatch($file.Name, $pattern, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)) {
                 $matchObj = [regex]::Match($file.Name, $pattern, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
                 $versionNum = [int]$matchObj.Groups[1].Value
                 
-                # Fixed the smashed line structure here
                 $trackedFiles.Add([PSCustomObject]@{
                     Version  = $versionNum
                     FullName = $file.FullName
@@ -255,20 +263,18 @@ foreach ($task in $taskQueue) {
             }
         }
         
-        # If there are more than 3 versions total, sort and drop the oldest
         if ($trackedFiles.Count -gt 3) {
-            # Sort array by the numerical integer value ascending
             $sortedVersions = $trackedFiles | Sort-Object Version
             $deleteCount = $sortedVersions.Count - 3
             
-            Write-Host " -> Found $($sortedVersions.Count) versions. Removing the oldest $deleteCount..." -ForegroundColor DarkYellow
+            Write-Host " -> Found $($sortedVersions.Count) versions inside build. Removing the oldest $deleteCount..." -ForegroundColor DarkYellow
             for ($i = 0; $i -lt $deleteCount; $i++) {
                 $oldFile = $sortedVersions[$i]
-                Write-Host "    [DELETING OLD VERSION] $($oldFile.Name)" -ForegroundColor DarkGray
+                Write-Host "    [DELETING OLD BUILD VERSION] $($oldFile.Name)" -ForegroundColor DarkGray
                 Remove-Item -Path $oldFile.FullName -Force -Confirm:$false
             }
         } else {
-            Write-Host " -> Total tracked versions is $($trackedFiles.Count) (<= 3). No cleanup required." -ForegroundColor Gray
+            Write-Host " -> Total tracked versions in build folder is $($trackedFiles.Count) (<= 3). No cleanup required." -ForegroundColor Gray
         }
         # -----------------------------------------------------------
         
