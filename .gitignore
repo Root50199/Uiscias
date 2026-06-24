@@ -1,1 +1,4 @@
 node_modules/
+
+# Editor / assistant config (not committed for now)
+.cursor/
