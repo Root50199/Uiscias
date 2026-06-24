@@ -1,0 +1,507 @@
+# Uiscias Architecture
+
+This document describes **how the Uiscias mod repository builds, versions, and
+publishes mods** from a technical standpoint. It covers the per-mod source
+layout, the generated artifacts, the build scripts, the local hooks, and the
+release automation that produces the catalog [Findias](https://github.com/tekashi-side/Findias)
+consumes.
+
+It is the Uiscias counterpart to Findias's `docs/architecture.md`. For the
+_product_ context (what Findias is, how it installs mods, the `.it` naming
+rules, and the game's folder structure) read those Findias docs first:
+
+- `Findias/docs/project-overview.md` — what Findias does and the
+  `Uiscias<ModFileName>_<number>.it` naming convention.
+- `Findias/docs/architecture.md` — Findias's engineering design, including the
+  swappable `ModCatalogProvider` seam this repo's release feeds.
+- `Findias/docs/game-structure.md` — how Mabinogi loads `.it` files from
+  `appdata\package`.
+
+For the phased build-out plan, see [`roadmap.md`](./roadmap.md).
+
+## Goals and constraints
+
+1. **Authoring is human; everything else is generated.** A mod author edits
+   exactly one human file (`config.yaml`) and the mod's `data/` contents.
+   Every other artifact (`config.json`, the packed `.it`, the release
+   `manifestCatalog.json`) is produced by tooling.
+2. **Idempotent and incremental.** Running the tooling when nothing has changed
+   produces no diff. Running it after a change touches **only** the affected
+   mod(s), never the whole repository. This matters because we expect hundreds
+   of mods and packing is slow.
+3. **No manual release steps.** Merging a `feat`/`fix` to `main` produces a
+   GitHub release with all current `.it` assets and a `manifestCatalog.json`,
+   with no human dragging files into the GitHub UI.
+4. **Findias reads a manifest, not a file listing.** The release ships a single
+   `manifestCatalog.json` that fully describes the catalog (metadata, variants,
+   conflicts, freshness). Findias's future `ManifestCatalogProvider` reads it
+   instead of scraping release asset names.
+5. **No hosting cost.** GitHub Releases hosts the `.it` assets and the manifest
+   that users/Findias actually download. The repo also commits the latest `.it`
+   of each mod as a plain (non-LFS) source-controlled build artifact — see
+   [Committing `.it` files](#committing-it-files).
+
+## Repository layout
+
+Each mod is a top-level folder at the repo root. There are two shapes:
+
+### Single mod (no variants)
+
+```
+AchievmentUnhide/
+├─ config.yaml            # hand-edited source metadata
+├─ config.json            # GENERATED, committed (metadata + usedFiles + sourceHash)
+├─ ModDescription.md      # human description (+ images/)
+├─ images/                # optional screenshots/gifs
+├─ data/                  # raw game files this mod modifies (the pack input)
+└─ build/
+   ├─ UisciasAchievmentUnhide_00002.it   # GENERATED, committed (latest version only)
+   └─ build.lock.json                    # GENERATED: { version, fileName, builtFromHash }
+```
+
+### Mod with variants
+
+A variant set is a parent folder with **no `data/`** that holds two or more
+variant subfolders. Each variant is a fully self-contained mod (its own
+`data/`, `config.yaml`, `config.json`, `build/`). Variants of the same parent
+are **mutually exclusive**: they modify the same files, so only one may be
+installed at a time.
+
+```
+BriHpBars/                       # parent group folder (no data/)
+├─ config.yaml                   # group-level metadata (modName, tags, etc.)
+├─ config.json                   # GENERATED group config (hasVariants: true)
+├─ BriHpBars1And2/               # a variant
+│  ├─ config.yaml
+│  ├─ config.json                # isVariant: true
+│  ├─ data/
+│  └─ build/
+│     ├─ UisciasBriHpBars1And2_00001.it
+│     └─ build.lock.json
+└─ BriHpBars1And3/               # another variant
+   ├─ config.yaml
+   ├─ config.json
+   ├─ data/
+   └─ build/
+      ├─ UisciasBriHpBars1And3_00001.it
+      └─ build.lock.json
+```
+
+### Variant naming convention (required)
+
+The parent folder and every variant folder **share the parent's prefix**. The
+variant id is `<ParentPrefix><VariantSuffix>`. For example, the HP bars group
+is `BriHpBars`, with variants `BriHpBars1And2` and `BriHpBars1And3` (the legacy
+`HpBars` / `BriHpBar1And2` / `BriHpBar1And3` names are renamed to match). This
+keeps grouping derivable from folder names and keeps each variant's `.it`
+filename self-describing (`UisciasBriHpBars1And3_00001.it`).
+
+Each variant's `modId` only needs to be **globally unique** (it is the identity
+Findias keys on and the `<ModFileName>` segment of the `.it`). The parent's
+`modId` is the `groupId`.
+
+## The three artifact tiers
+
+| Tier               | File                       | Authored by        | Committed          | Purpose                                                                                   |
+| ------------------ | -------------------------- | ------------------ | ------------------ | ----------------------------------------------------------------------------------------- |
+| Source             | `config.yaml`              | Human              | Yes                | The only hand-edited metadata.                                                            |
+| Source             | `data/`                    | Human              | Yes                | Raw game files; the pack input.                                                           |
+| Generated (config) | `config.json`              | `generate-configs` | Yes                | Normalized metadata + `usedFiles` + `sourceHash`. The aggregation input for the manifest. |
+| Generated (binary) | `build/Uiscias<id>_<n>.it` | `pack`             | Yes (plain git)    | The packed mod. Latest version only.                                                      |
+| Generated (state)  | `build/build.lock.json`    | `pack`             | Yes                | Records the version and the source hash the committed `.it` was built from.               |
+| Release            | `manifestCatalog.json`     | release workflow   | Release asset only | The full catalog Findias reads.                                                           |
+| Release            | `Uiscias<id>_<n>.it`       | release workflow   | Release asset only | Copies of each mod's latest `.it`.                                                        |
+
+## Data model and schemas
+
+All shapes are validated with **zod**. Because Uiscias and Findias are separate
+repos, the schema is **copied** into both for now (a shared `@uiscias/schema`
+package is a later option). The schema is the single source of truth; TypeScript
+types are derived with `z.infer`.
+
+### `config.yaml` (hand-edited)
+
+```yaml
+modId: AchievmentUnhide # MUST equal the folder name
+modName: Achievment Unhide # human-readable display name
+modAuthor: Root50199
+modAdditionalCredits: None
+updateType: volatile # one of: stable | volatile
+recentUpdateNotes: n/a # optional human note
+findiasTags: # subset of the allowed tag set (see below)
+  - UI
+  - QoL
+```
+
+For a variant **parent** folder, `config.yaml` carries the group-level
+`modName`, `findiasTags`, and credits; it has no `usedFiles` of its own.
+
+Allowed `findiasTags`: `Combat`, `QoL`, `UI`, `Bri Leith`, `Arcana`,
+`Lag Helper`, `Fx`, `Zoom`, `FoV`, `Visual Clarity`. Unknown tags fail
+validation.
+
+`updateType` is canonicalized to exactly `stable | volatile`. Legacy values
+(`evergreen`, `needsmaintenance`, `maintenanceRequired`) are migrated:
+`evergreen → stable`, the rest `→ volatile`.
+
+### `config.json` (generated, committed)
+
+```json
+{
+  "modId": "AchievmentUnhide",
+  "modName": "Achievment Unhide",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "volatile",
+  "findiasTags": ["UI", "QoL"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": ["data/db/AchievementTable.xml"],
+  "sourceHash": "sha256-<hex>"
+}
+```
+
+- Keys are emitted in a **fixed order** and `usedFiles` is **sorted**, so an
+  unchanged mod regenerates byte-identically.
+- `usedFiles` is every file under the mod's `data/`, repo-relative, using `/`
+  separators. It is the data Findias uses to detect cross-mod file conflicts.
+- `sourceHash` is a hash over the normalized metadata **and** the `data/`
+  contents (file paths + bytes). It is the change signal for packing.
+- **Key normalization vs. today:** legacy files use `usedfiles` and `modID`;
+  the generator standardizes on camelCase `usedFiles` and `modId`.
+
+### `build/build.lock.json` (generated)
+
+```json
+{
+  "version": 2,
+  "fileName": "UisciasAchievmentUnhide_00002.it",
+  "builtFromHash": "sha256-<hex>"
+}
+```
+
+Records which `sourceHash` the committed `.it` was built from. The packer
+compares `config.json.sourceHash` against `build.lock.json.builtFromHash` to
+decide whether a repack + version bump is required.
+
+### `manifestCatalog.json` (release asset)
+
+The manifest is a flat array of **groups**. Every entry is a group, so Findias
+has a single code path: a non-variant mod is simply a group with one variant.
+
+```json
+[
+  {
+    "groupId": "AchievmentUnhide",
+    "modName": "Achievment Unhide",
+    "findiasTags": ["UI", "QoL"],
+    "hasVariants": false,
+    "mutuallyExclusive": false,
+    "variants": [
+      {
+        "modId": "AchievmentUnhide",
+        "modName": "Achievment Unhide",
+        "fileName": "UisciasAchievmentUnhide_00002.it",
+        "version": 2,
+        "size": 20840,
+        "updateType": "volatile",
+        "usedFiles": ["data/db/AchievementTable.xml"],
+        "modAuthor": "Root50199",
+        "modAdditionalCredits": "None",
+        "recentUpdateNotes": "n/a"
+      }
+    ]
+  },
+  {
+    "groupId": "BriHpBars",
+    "modName": "Bri Hp Bars",
+    "findiasTags": ["Combat", "UI", "QoL", "Bri Leith"],
+    "hasVariants": true,
+    "mutuallyExclusive": true,
+    "variants": [
+      {
+        "modId": "BriHpBars1And2",
+        "modName": "Bri Hp Bars 1 And 2",
+        "fileName": "UisciasBriHpBars1And2_00001.it",
+        "version": 1,
+        "size": 0,
+        "updateType": "volatile",
+        "usedFiles": ["data/db/Race.xml"],
+        "modAuthor": "Root50199",
+        "modAdditionalCredits": "None",
+        "recentUpdateNotes": "n/a"
+      },
+      {
+        "modId": "BriHpBars1And3",
+        "modName": "Bri Hp Bars 1 And 3",
+        "fileName": "UisciasBriHpBars1And3_00001.it",
+        "version": 1,
+        "size": 0,
+        "updateType": "volatile",
+        "usedFiles": ["data/db/Race.xml"],
+        "modAuthor": "Root50199",
+        "modAdditionalCredits": "None",
+        "recentUpdateNotes": "n/a"
+      }
+    ]
+  }
+]
+```
+
+Design notes:
+
+- Each **variant** carries the real `modId`, `fileName`, and `version` so
+  Findias can resolve and download the correct asset (this is the data its
+  `CatalogEntry` needs). It is a bug to share one `modId` across variants.
+- `mutuallyExclusive: true` tells Findias to render a "pick one" selector for a
+  variant group and prevent installing two variants at once (they touch the
+  same `usedFiles`).
+- `usedFiles` enables **cross-mod conflict detection**: Findias warns when two
+  selected mods from different groups modify the same file.
+- `updateType` is the **freshness** signal available now (static: how likely the
+  mod breaks on a game patch). A second, dynamic signal — "verified for the
+  current client version" — is **deferred future work** (see
+  [Deferred / future work](#deferred--future-work)). When added, the manifest
+  would gain a `lastVerifiedGameVersion` per variant.
+
+## Tooling layout (where the build code lives)
+
+The new build tooling is **Node/TypeScript** and lives under `scripts/`,
+alongside the existing PowerShell scripts (which are **kept as references**, not
+deleted). The packer binary stays where it is today.
+
+```
+scripts/
+├─ src/                         # new Node/TS tooling
+│  ├─ schema/                   # zod schemas + z.infer types (copied to Findias)
+│  │  ├─ configYaml.ts
+│  │  ├─ configJson.ts
+│  │  ├─ buildLock.ts
+│  │  └─ manifestCatalog.ts
+│  ├─ lib/                      # shared helpers
+│  │  ├─ mods.ts                # discover mod/variant folders; group detection
+│  │  ├─ changed.ts             # git-diff → affected mod set (--changed)
+│  │  ├─ hash.ts                # sourceHash over metadata + data/
+│  │  └─ packer.ts              # mabi-pack2.exe wrapper
+│  ├─ commands/
+│  │  ├─ generate-configs.ts
+│  │  ├─ pack.ts
+│  │  └─ build-manifest.ts      # release-time aggregation → manifestCatalog.json
+│  └─ index.ts                  # CLI entry (subcommands + --all/--changed/--mods)
+├─ Mabi-pack2/                  # mabi-pack2.exe (unchanged)
+├─ GenerateConfigs.ps1          # LEGACY reference (kept)
+├─ Packmods.ps1                 # LEGACY reference (kept)
+├─ GenerateModDesc.ps1          # LEGACY reference (kept)
+└─ VerifyForCurrentVersion.ps1  # LEGACY reference (kept; functionality deferred)
+```
+
+Generated artifacts do **not** live under `scripts/`; they live next to each mod
+(`<mod>/config.json`, `<mod>/build/`) as shown in
+[Repository layout](#repository-layout). The release-only `manifestCatalog.json`
+is produced into the CI workspace and uploaded as a release asset (never
+committed).
+
+### npm scripts
+
+The new Node commands take the canonical names; the legacy PowerShell scripts
+are retained under a `powershell-` prefix so they can still be run if ever
+needed:
+
+| Script                          | Runs                                              |
+| ------------------------------- | ------------------------------------------------- |
+| `generate-configs`              | new Node generator (`--all`/`--changed`/`--mods`) |
+| `pack`                          | new Node packer                                   |
+| `build-manifest`                | new Node manifest aggregator (used by CI)         |
+| `powershell-generate-configs`   | legacy `GenerateConfigs.ps1`                      |
+| `powershell-pack-mods`          | legacy `Packmods.ps1`                             |
+| `powershell-generate-mod-desc`  | legacy `GenerateModDesc.ps1`                      |
+| `powershell-verify-for-version` | legacy `VerifyForCurrentVersion.ps1`              |
+
+## Build scripts
+
+The active maintainer scripts are **Node/TypeScript** (the legacy interactive
+PowerShell + WinForms scripts cannot run unattended in hooks/CI, so they are
+retained only as references). They are non-interactive and selectable by scope:
+`--all`, `--changed` (diff vs. a git ref), or `--mods <id,id,...>`.
+
+### `generate-configs`
+
+1. Determine the target mod set (`--changed` uses `git diff --name-only` mapped
+   to mod folders).
+2. For each target: load and **validate** `config.yaml` against the schema
+   (fail on unknown tags, bad `updateType`, `modId` ≠ folder name, missing
+   required fields).
+3. Scan `data/` → `usedFiles` (sorted, `/`-separated, repo-relative).
+4. Compute `sourceHash` over normalized metadata + `data/` contents.
+5. Set `isVariant` / `hasVariants` from folder shape.
+6. Emit `config.json` with fixed key order. Unchanged input → identical output.
+
+### `pack`
+
+1. Determine the target mod set (same scoping options).
+2. For each target with a `data/`: compare `config.json.sourceHash` to
+   `build/build.lock.json.builtFromHash`.
+   - Equal → **skip** (no repack, no bump).
+   - Missing/different → run `mabi-pack2.exe` against `data/`, increment the
+     version, write `build/Uiscias<id>_<nextN>.it`, delete the previous `.it`
+     (commit-latest-only), and update `build.lock.json`.
+3. Because `mabi-pack2` output is **not byte-deterministic** (verified: identical
+   size, differing bytes), the bump decision is driven entirely by `sourceHash`,
+   never by comparing packed bytes.
+
+> "Keep last 3 versions": only the **latest** `.it` is committed per mod. Older
+> versions are retained by **release history** (each release is an immutable
+> snapshot), which satisfies the retention goal without binary churn in git.
+
+> `ModDescription.md` is **hand-edited**, not generated (there is no reliable
+> source to generate it from). Light formatting/consistency tooling for these
+> files is a possible future item — see
+> [Deferred / future work](#deferred--future-work).
+
+## Local hooks (Git / Husky)
+
+Both config generation **and** packing are automated on commit so a maintainer
+never has to remember to run them. Because the work is scoped to the **changed**
+mods (typically one), the per-commit cost stays small; the slow path only
+appears on bulk changes, which can instead use the explicit `npm run`
+all-mods commands.
+
+- **`pre-commit`**: for staged/changed mods, in order —
+  1. validate `config.yaml` against the schema (fail the commit on errors),
+  2. `generate-configs` (refresh `config.json` + `sourceHash`),
+  3. `pack` the changed mods (repack only when `sourceHash` differs from
+     `build.lock.json`), writing the new `.it` + `build.lock.json`,
+  4. `git add` the regenerated `config.json`, `.it`, and `build.lock.json` so
+     they land in the same commit,
+  5. run prettier (via `lint-staged`).
+     Each maintainer is on Windows with `mabi-pack2.exe` available locally (see the
+     environment rules), so packing in the hook is viable.
+- The same operations are also available as explicit, all-mods npm commands
+  (`npm run generate-configs`, `npm run pack`) for bulk rebuilds or recovery.
+
+### Why `pre-commit` and not `pre-push`
+
+The packed `.it` + `build.lock.json` must land **in the same commit** as the
+source change (that is what makes the "glob the newest `.it` from the tree"
+release model correct). `pre-commit` runs before the commit is created, so the
+hook can `git add` the freshly packed files into it. `pre-push` runs _after_
+commits exist, so packing there would either require amending/creating a commit
+mid-push (fragile) or push source without its `.it` (breaks the invariant) — so
+it is not used.
+
+### Changing the trigger later (and the CI drift check)
+
+The packing **logic** (`npm run pack`) is decoupled from its **trigger** (the
+one-line call in `.husky/pre-commit`), so where it runs is cheap to change. If
+per-commit packing ever proves too slow, the fallback is to remove packing from
+`pre-commit` and have maintainers run `npm run pack` manually — backed by a
+**CI drift check** so "manual" never means "forgotten":
+
+- A workflow step (on **`ubuntu-latest`**, no `.exe`) recomputes every mod's
+  `sourceHash` and re-runs `generate-configs` in `--check` mode, then fails the
+  PR if any committed `config.json` is stale **or** any `build.lock.json`'s
+  `builtFromHash` no longer matches its mod's current `sourceHash` (i.e. someone
+  changed `data/` but didn't repack).
+- This enforces "configs + packing are not optional" via CI, decoupling _that_
+  the work is done from _when/where_ it is done. It validates hashes only — it
+  never packs — so it stays fast and Windows-free.
+
+The CI drift check is valuable to add even while packing stays in `pre-commit`,
+as a backstop against `--no-verify` commits and hook misconfiguration.
+
+## Committing `.it` files
+
+Packed `.it` files are committed to git **as plain files** (no Git LFS), one —
+the latest version — per mod's `build/` folder. This is intentional:
+
+- The release workflow can simply **glob the newest `.it` from the tree**, which
+  is what makes carry-forward automatic (unchanged mods keep their committed
+  `.it`).
+- It keeps the toolchain dependency-free (no `git-lfs` install for
+  contributors) and avoids GitHub's LFS storage/bandwidth quotas, which would
+  cut against the project's no-cost goal.
+
+What users/Findias download are **GitHub Release assets** served from a CDN —
+entirely separate from the committed copies — so the in-repo `.it` files are
+purely source-controlled build artifacts.
+
+Trade-off: plain git retains every past `.it` revision in history, so the
+repository's history will grow over time. Given the files are mostly small and
+only the latest is kept in the working tree, this is acceptable. If history size
+ever becomes a problem, migrating `.it` to Git LFS (or a history rewrite) is a
+future optimization — it does not change any other part of this design.
+
+## Release automation
+
+Triggered on merges to `main` that include `feat`/`fix` (Conventional Commits).
+
+- **Versioning + release creation:** **release-please** reads commit messages,
+  decides the repo version bump, opens/merges a release PR, tags, and creates
+  the GitHub release.
+- **Asset assembly (a workflow step, `ubuntu-latest`):**
+  1. Glob the single latest `.it` from every mod's `build/` folder (this _is_
+     the current version, so unchanged mods carry forward automatically — no
+     need to fetch the previous release).
+  2. Aggregate every committed `config.json` into `manifestCatalog.json`,
+     grouping variants and stamping each variant's `size` from its `.it` file.
+  3. Upload all `.it` assets + `manifestCatalog.json` to the release.
+
+Because packing happens locally and the assembly is pure file/JSON work, the
+release job runs on **`ubuntu-latest`** (no Windows runner, no `.exe` in CI).
+The `mabi-pack2` pack key therefore stays local and is not a CI secret. (GitHub
+`windows-latest` runners _can_ execute arbitrary `.exe`, so moving packing into
+CI later is possible — it is simply not needed by this design.)
+
+### Carry-forward example
+
+Release `1.0.0` ships:
+
+```
+UisciasModExampleFoo_00001.it
+UisciasModExampleBar_00001.it
+```
+
+A change to `ModExampleFoo` only: `pack` bumps Foo to `_00002` (Bar untouched).
+The next release globs the tree and ships:
+
+```
+UisciasModExampleFoo_00002.it   # new
+UisciasModExampleBar_00001.it   # carried forward unchanged
+```
+
+## Findias integration (consumer side)
+
+Findias already anticipates this in its `architecture.md` as a swappable
+`ManifestCatalogProvider` — an **additive** module, no contract changes:
+
+1. Read the latest release's `manifestCatalog.json` asset; validate with the
+   copied zod schema.
+2. Flatten groups → normalized `CatalogEntry[]` (one per variant), preserving
+   `groupId` / `mutuallyExclusive` for the UI.
+3. UI: variant "pick one" selector per group; cross-group `usedFiles` conflict
+   warnings; a freshness badge derived from `updateType` (plus the deferred
+   verified-version signal once it lands).
+
+## Open items
+
+- Migration: create `config.yaml` for every existing mod from its current
+  `config.json`; fold `tags.md`/`Tags.md` into `findiasTags`; rename mismatched
+  variant folders to the shared-prefix convention; normalize `usedfiles`/`modID`
+  keys to `usedFiles`/`modId`; prune each `build/` to the latest `.it` only.
+- Decide later whether to publish the shared schema as `@uiscias/schema` instead
+  of copying it into both repos.
+
+## Deferred / future work
+
+These are intentionally out of scope for the initial build-out:
+
+- **Client-version freshness.** The old `verify-for-version` script and
+  `VerifiedForGameVersion.json` (client version → verified mod ids) are **not**
+  ported yet. When revisited, the manifest gains a per-variant
+  `lastVerifiedGameVersion` and Findias compares it to the running client to
+  flag out-of-date mods. The existing `VerifiedForGameVersion.json` file and the
+  `VerifyForCurrentVersion.ps1` script remain in the repo for reference.
+- **`ModDescription.md` tooling.** These files are hand-edited for now; we may
+  later add tooling to enforce consistent formatting across them.
+- **Publishing a shared schema package** (`@uiscias/schema`) instead of copying.
