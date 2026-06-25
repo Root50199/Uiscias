@@ -17,15 +17,26 @@ jobs:
       release_created: ${{ steps.rp.outputs.release_created }}
       tag_name: ${{ steps.rp.outputs.tag_name }}
     steps:
+      # Mint a short-lived installation token from our GitHub App. The App's
+      # private key never expires, so (unlike a fine-grained PAT) there's nothing
+      # to renew on a schedule. Requires repo secrets RELEASE_PLEASE_APP_ID and
+      # RELEASE_PLEASE_APP_PRIVATE_KEY; the App needs Contents + Pull requests +
+      # Issues (read/write) and must be installed on this repo.
+      - name: Mint a GitHub App installation token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.RELEASE_PLEASE_APP_ID }}
+          private-key: ${{ secrets.RELEASE_PLEASE_APP_PRIVATE_KEY }}
+
       - name: Run release-please
         id: rp
         uses: googleapis/release-please-action@v4
         with:
-          # Fine-grained PAT (Contents + Pull requests + Issues, read/write) so
-          # the release PR is authored by a real user instead of github-actions[bot].
-          # This removes the "approve workflows to run" gate and lets CI run on the
-          # release PR automatically. Falls back to GITHUB_TOKEN if the secret is unset.
-          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
+          # App token => the release PR is authored by the App bot, not
+          # github-actions[bot]. That removes the "approve workflows to run" gate
+          # and lets CI run on the release PR automatically.
+          token: ${{ steps.app-token.outputs.token }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
