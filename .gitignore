@@ -1,4 +1,15 @@
 node_modules/
+out/
+dist/
+release/
+*.log
+.DS_Store
+.env
+.env.*
+coverage/
+
+# VSCode
+.vscode/
 
 # Editor / assistant config (not committed for now)
 .cursor/
