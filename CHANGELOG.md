@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/Root50199/Uiscias/compare/v1.1.0...v1.2.0) (2026-06-25)
+
+
+### Mods added / updated
+
+* enhance mod configurations and descriptions for improved clarity and functionality ([7c71818](https://github.com/Root50199/Uiscias/commit/7c718183887c36f40faee03b2959fc0c589dfe4c))
+
 ## [1.1.0](https://github.com/Root50199/Uiscias/compare/v1.0.0...v1.1.0) (2026-06-24)
 
 
