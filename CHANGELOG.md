@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/Root50199/Uiscias/compare/v1.4.0...v1.5.0) (2026-06-25)
+
+
+### Mods added / updated
+
+* add step using app-token ([046521b](https://github.com/Root50199/Uiscias/commit/046521bffc0bb1ff623648f0bcde7f1b947ff9f7))
+
 ## [1.4.0](https://github.com/Root50199/Uiscias/compare/v1.3.0...v1.4.0) (2026-06-25)
 
 
