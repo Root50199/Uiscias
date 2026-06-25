@@ -42,7 +42,8 @@ jobs:
 
   # Only after a release is actually created: assemble + upload the assets.
   # Packing already happened locally (the .it files are committed), so this runs
-  # on ubuntu-latest with no .exe — it just globs, aggregates, and uploads.
+  # on ubuntu-latest with no .exe — the tooling reads each build.lock.json,
+  # aggregates the manifest, and uploads.
   assets:
     needs: release-please
     if: ${{ needs.release-please.outputs.release_created == 'true' }}

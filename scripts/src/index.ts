@@ -5,6 +5,7 @@ import { runPack } from './commands/pack';
 import { runBuildManifest } from './commands/buildManifest';
 import { runMigrate } from './commands/migrate';
 import { runCheck } from './commands/check';
+import { runNewMod } from './commands/newMod';
 import { parseScopeArgs } from './lib/scope';
 
 const HELP = `Uiscias build tooling
@@ -14,6 +15,7 @@ Usage: tsx scripts/src/index.ts <command> [options]
 Commands:
   list                     Print the discovered mod/group/variant structure
   changed [scope]          Print mods affected by a scope (default: --changed)
+  new-mod <ModName>        Scaffold a new mod folder (UpperCamelCase name)
   generate-configs [scope] Regenerate config.json for the target mods
   pack [scope]             Pack changed mods into build/ (bump-by-hash)
   build-manifest [--out p] [--assets dir]  Aggregate config.json into the manifest
@@ -42,6 +44,9 @@ async function main(): Promise<void> {
       break;
     case 'changed':
       runChanged(parseScopeArgs(rest));
+      break;
+    case 'new-mod':
+      await runNewMod({ name: rest[0] });
       break;
     case 'generate-configs':
       await runGenerateConfigs({
