@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/Root50199/Uiscias/compare/v1.3.0...v1.4.0) (2026-06-25)
+
+
+### Mods added / updated
+
+* adding access token ([db0b303](https://github.com/Root50199/Uiscias/commit/db0b303263520a25607acb53504c081c6100d440))
+
 ## [1.3.0](https://github.com/Root50199/Uiscias/compare/v1.2.0...v1.3.0) (2026-06-25)
 
 
