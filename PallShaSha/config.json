@@ -1,0 +1,16 @@
+{
+  "modId": "PallShaSha",
+  "modName": "Pall Shasha",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": ["Audio", "Combat"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/sound/skill_sb_collapse_wave_casting.wav",
+    "data/sound/skill_sb_collapse_wave_process.wav"
+  ],
+  "sourceHash": "sha256-15be16bb2f1156da828d68be7c14dc0947ab5215fee6b8ab6c9dd3d4f6891ba6"
+}
