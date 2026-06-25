@@ -1,0 +1,13 @@
+{
+  "modId": "CromBasZoomAndFoVAndDeclutter",
+  "modName": "Crom Bas Zoom And FoV And Declutter",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "Combat", "Visual Clarity", "Zoom", "FoV", "Lag Helper", "Crom Bas"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": true,
+  "usedFiles": [],
+  "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

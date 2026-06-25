@@ -2,11 +2,12 @@
 
 ## What it does:
 
-<space for manual text entry>
+Allows max zoom out and sets FoV to 90.
+Removes all the extra walls and props. Completely removes the unused rooms.
 
 ### How it's made:
 
-<space for manual text entry>
+Mabioned
 
 #### Example Images and GIFs:
 

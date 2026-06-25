@@ -2,6 +2,9 @@ modId: HideSkillDescriptionWindow
 modName: Hide Skill Description Window
 modAuthor: Root50199
 modAdditionalCredits: None
-updateType: volatile
+updateType: stable
 recentUpdateNotes: n/a
-findiasTags: []
+findiasTags:
+  - UI
+  - QoL
+  - Combat

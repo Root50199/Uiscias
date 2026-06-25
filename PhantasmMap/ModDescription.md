@@ -2,11 +2,11 @@
 
 ## What it does:
 
-<space for manual text entry>
+Removes the unused rooms and has colored rose markers on the rooms that can spawn that colored rose.
 
 ### How it's made:
 
-<space for manual text entry>
+paint.net
 
 #### Example Images and GIFs:
 

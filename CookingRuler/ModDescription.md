@@ -2,11 +2,11 @@
 
 ## What it does:
 
-<space for manual text entry>
+Expands the cooking bar and adds and overlay with tick marks every 1%
 
 ### How it's made:
 
-<space for manual text entry>
+The ruler was made in paint.net and the size and position of the gauge was edited in the xml.
 
 #### Example Images and GIFs:
 

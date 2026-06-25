@@ -1,0 +1,13 @@
+{
+  "modId": "StardustFxOff",
+  "modName": "Stardust Fx Off",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": ["Combat", "Fx", "Lag Helper"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": ["data/gfx/fx/effect/Option_weapon.xml"],
+  "sourceHash": "sha256-01146d687115ffb8b5497e0161cdd628bab8246d89ba5b8eb67a5ea93a132ada"
+}

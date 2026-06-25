@@ -2,12 +2,10 @@
 
 ## What it does:
 
-<space for manual text entry>
+Disables the skill description window that opens when you press Alt+a F-key skill. Keep in mind this will prevent you from toggling the "Immediately activate skill on target" without removing the mod, so make sure are your skills are set right beforehand.
 
 ### How it's made:
 
-<space for manual text entry>
+add a visible="false" tag and remove all window content.
 
 #### Example Images and GIFs:
-
-<Drop image reference or remove block>

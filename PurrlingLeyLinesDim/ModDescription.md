@@ -2,12 +2,14 @@
 
 ## What it does:
 
-<space for manual text entry>
+Removes the center paw and dims the white of the Purrling Ley Lines.
 
 ### How it's made:
 
-<space for manual text entry>
+paint.net
 
 #### Example Images and GIFs:
 
-<Drop image reference or remove block>
+![red cat circle](images/redcatcircle.png)
+
+![blue cat circle](images/bluecatcircle.png)

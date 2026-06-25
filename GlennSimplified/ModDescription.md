@@ -2,11 +2,11 @@
 
 ## What it does:
 
-<space for manual text entry>
+Removes the trees outside the map and replaces the white snow floor with grass so it's much easier on the eyes.
 
 ### How it's made:
 
-<space for manual text entry>
+Replaces all the snow textures with grass. Replace all the tree models with blank files.
 
 #### Example Images and GIFs:
 

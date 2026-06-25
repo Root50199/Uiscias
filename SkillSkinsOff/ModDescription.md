@@ -2,12 +2,10 @@
 
 ## What it does:
 
-<space for manual text entry>
+Makes all custom skill skins invisible.
 
 ### How it's made:
 
-<space for manual text entry>
+set all the effect references to 0
 
 #### Example Images and GIFs:
-
-<Drop image reference or remove block>

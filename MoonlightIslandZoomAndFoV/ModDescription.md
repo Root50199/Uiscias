@@ -1,13 +1,13 @@
-﻿# Moonlight Island Zoom And Fo V
+﻿# Moonlight Island Zoom And FoV
 
 ## What it does:
 
-<space for manual text entry>
+Increases max zoom out and sets FoV to 90
 
 ### How it's made:
 
-<space for manual text entry>
+Mabioned
 
 #### Example Images and GIFs:
 
-<Drop image reference or remove block>
+![Moonlight Island](images/moonlightisland.png)

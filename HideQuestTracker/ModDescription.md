@@ -2,12 +2,10 @@
 
 ## What it does:
 
-<space for manual text entry>
+Hides the quest tracker.
 
 ### How it's made:
 
-<space for manual text entry>
+add a visible="false" tag
 
 #### Example Images and GIFs:
-
-<Drop image reference or remove block>

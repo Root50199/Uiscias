@@ -2,16 +2,23 @@ import { z } from 'zod';
 
 /** The closed set of tags a mod may declare in its `config.yaml`. */
 export const FINDIAS_TAGS = [
-  'Combat',
-  'QoL',
-  'UI',
-  'Bri Leith',
+  '1440p Required',
   'Arcana',
-  'Lag Helper',
-  'Fx',
-  'Zoom',
+  'Audio',
+  'Bri Leith',
+  'Combat',
+  'Crom Bas',
+  'Cutscene Skip',
   'FoV',
+  'Fx',
+  'Glenn Bearna',
+  'Lag Helper',
+  'QoL',
+  'Rabbie Phantasm',
+  'Tech Duinn',
+  'UI',
   'Visual Clarity',
+  'Zoom',
 ] as const;
 
 export const findiasTagSchema = z.enum(FINDIAS_TAGS);

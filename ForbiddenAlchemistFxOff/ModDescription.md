@@ -1,13 +1,11 @@
-﻿# Forbidden Alchemist Fx Off
+﻿# Explosive Vanguard Fx Off
 
 ## What it does:
 
-<space for manual text entry>
+Removes most FA arcana effects. Serpent Call and the earth spikes are still visible.
 
 ### How it's made:
 
-<space for manual text entry>
+Blank the entire effect block. Serpent Call and the earth spikes are other files.
 
 #### Example Images and GIFs:
-
-<Drop image reference or remove block>

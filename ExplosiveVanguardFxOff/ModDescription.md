@@ -2,12 +2,10 @@
 
 ## What it does:
 
-<space for manual text entry>
+Removes all EV arcana effects.
 
 ### How it's made:
 
-<space for manual text entry>
+Blank the entire effect block.
 
 #### Example Images and GIFs:
-
-<Drop image reference or remove block>

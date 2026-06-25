@@ -2,11 +2,11 @@
 
 ## What it does:
 
-<space for manual text entry>
+Removes the pillars outside the map in all gates.
 
 ### How it's made:
 
-<space for manual text entry>
+Just replaces the pillar models with blank files.
 
 #### Example Images and GIFs:
 

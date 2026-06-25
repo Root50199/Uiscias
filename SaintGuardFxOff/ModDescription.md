@@ -2,12 +2,10 @@
 
 ## What it does:
 
-<space for manual text entry>
+Removes most of the effects from the SG arcana.
 
 ### How it's made:
 
-<space for manual text entry>
+See files.
 
 #### Example Images and GIFs:
-
-<Drop image reference or remove block>

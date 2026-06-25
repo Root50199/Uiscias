@@ -1,7 +1,12 @@
 modId: RevivedIllusionSimp
 modName: Revived Illusion Simp
 modAuthor: Root50199
-modAdditionalCredits: None
+modAdditionalCredits: Originally sent to me anonymously. I have changed very little beyond tidying it up.
 updateType: stable
 recentUpdateNotes: n/a
-findiasTags: []
+findiasTags:
+  - QoL
+  - Combat
+  - Fx
+  - Lag Helper
+  - Tech Duinn

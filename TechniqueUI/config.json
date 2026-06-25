@@ -1,0 +1,16 @@
+{
+  "modId": "TechniqueUI",
+  "modName": "Technique UI",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": ["UI", "QoL"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/db/layout2/Specialization/SpecializationFrame.xml",
+    "data/db/layout2/Specialization/SpecializationMain.xml"
+  ],
+  "sourceHash": "sha256-33ed3fdc089f93722e741e21b8941393556000a702c08c9459bd8441c6b02605"
+}

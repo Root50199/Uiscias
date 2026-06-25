@@ -2,12 +2,10 @@
 
 ## What it does:
 
-<space for manual text entry>
+Disables the "skillreadyview" popup when skills like Doppelganger are charged.
 
 ### How it's made:
 
-<space for manual text entry>
+add a visible="false" tag
 
 #### Example Images and GIFs:
-
-<Drop image reference or remove block>

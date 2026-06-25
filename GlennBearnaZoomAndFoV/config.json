@@ -1,0 +1,13 @@
+{
+  "modId": "GlennBearnaZoomAndFoV",
+  "modName": "Glenn Bearna Zoom",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana", "QoL", "Zoom", "FoV"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": true,
+  "usedFiles": [],
+  "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

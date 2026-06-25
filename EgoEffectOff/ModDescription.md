@@ -2,12 +2,10 @@
 
 ## What it does:
 
-<space for manual text entry>
+Completely removes effects from custom ego effect skins.
 
 ### How it's made:
 
-<space for manual text entry>
+Set all intensities and effect references to 0.
 
 #### Example Images and GIFs:
-
-<Drop image reference or remove block>

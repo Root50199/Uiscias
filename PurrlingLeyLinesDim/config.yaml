@@ -4,4 +4,9 @@ modAuthor: Root50199
 modAdditionalCredits: None
 updateType: stable
 recentUpdateNotes: n/a
-findiasTags: []
+findiasTags:
+  - UI
+  - QoL
+  - Combat
+  - Fx
+  - Visual Clarity

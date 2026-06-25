@@ -2,12 +2,10 @@
 
 ## What it does:
 
-<space for manual text entry>
+Removes all effects of diviner arcana skills.
 
 ### How it's made:
 
-<space for manual text entry>
+Completely blank all the effect blocks.
 
 #### Example Images and GIFs:
-
-<Drop image reference or remove block>

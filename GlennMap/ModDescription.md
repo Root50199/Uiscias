@@ -2,12 +2,12 @@
 
 ## What it does:
 
-<space for manual text entry>
+Adds the Day/Night Circles and VHM 80% safe spots to the map
 
 ### How it's made:
 
-<space for manual text entry>
+Paint.net
 
 #### Example Images and GIFs:
 
-<Drop image reference or remove block>
+![Map](images/map.jpg)

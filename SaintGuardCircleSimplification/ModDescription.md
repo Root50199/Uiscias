@@ -2,12 +2,12 @@
 
 ## What it does:
 
-<space for manual text entry>
+removes all but the outer edge of the SG's circle and makes it a dark blue to keep it visible but unobtrusive.
 
 ### How it's made:
 
-<space for manual text entry>
+paint.net
 
 #### Example Images and GIFs:
 
-<Drop image reference or remove block>
+![sg circle](images/sgcircle.png)
