@@ -8,6 +8,7 @@
   "scripts": {
     "mods": "tsx scripts/src/index.ts list",
     "changed": "tsx scripts/src/index.ts changed",
+    "new-mod": "tsx scripts/src/index.ts new-mod",
     "generate-configs": "tsx scripts/src/index.ts generate-configs",
     "pack": "tsx scripts/src/index.ts pack",
     "build-manifest": "tsx scripts/src/index.ts build-manifest",
