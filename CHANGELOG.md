@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/Root50199/Uiscias/compare/v1.5.0...v1.6.0) (2026-06-25)
+
+
+### Mods added / updated
+
+* add new command to scaffold a new mod folder ([7187f39](https://github.com/Root50199/Uiscias/commit/7187f393ad3437a762a80cf2f75c4f6b83a643a7))
+
 ## [1.5.0](https://github.com/Root50199/Uiscias/compare/v1.4.0...v1.5.0) (2026-06-25)
 
 
