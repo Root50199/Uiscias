@@ -163,15 +163,6 @@ _Exit:_ Findias lists mods from the manifest and prevents conflicting installs.
   script + JSON are kept in-repo for reference.)
 - **`ModDescription.md` formatting tooling:** these files are hand-edited; we may
   later add a linter/formatter for consistency.
-- **Run CI on the release PR (PAT / GitHub App token):** release-please currently
-  uses the default `GITHUB_TOKEN`, which requires the repo setting _Actions →
-  General → Workflow permissions → "Allow GitHub Actions to create and approve
-  pull requests"_ to be enabled. A side effect of `GITHUB_TOKEN` is that PRs it
-  opens **do not trigger other workflows**, so `ci.yml` (drift check, format,
-  typecheck) does **not** run on the release PR — only after merge to `main`. To
-  gate the release PR itself, pass a fine-grained PAT (or GitHub App token) with
-  Contents + Pull requests read/write as `token:` to `release-please-action`;
-  that also removes the need for the toggle above.
 
 ## Out of scope (for now)
 

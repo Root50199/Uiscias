@@ -13,10 +13,6 @@
     "build-manifest": "tsx scripts/src/index.ts build-manifest",
     "check": "tsx scripts/src/index.ts check",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "powershell-pack-mods": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Packmods.ps1",
-    "powershell-generate-configs": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/GenerateConfigs.ps1",
-    "powershell-generate-mod-desc": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/GenerateModDesc.ps1",
-    "powershell-verify-for-version": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/VerifyForCurrentVersion.ps1",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky"
