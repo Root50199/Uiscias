@@ -21,6 +21,11 @@ jobs:
         id: rp
         uses: googleapis/release-please-action@v4
         with:
+          # Fine-grained PAT (Contents + Pull requests + Issues, read/write) so
+          # the release PR is authored by a real user instead of github-actions[bot].
+          # This removes the "approve workflows to run" gate and lets CI run on the
+          # release PR automatically. Falls back to GITHUB_TOKEN if the secret is unset.
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
