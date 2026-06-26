@@ -392,6 +392,12 @@ retained only as references). They are non-interactive and selectable by scope:
    size, differing bytes), the bump decision is driven entirely by `sourceHash`,
    never by comparing packed bytes.
 
+> **Critical packer constraint:** `mabi-pack2` bakes the output filename into the
+> `.it`, so a packed file must be written with its **final** name and never
+> renamed (copying is fine only if the basename is unchanged) — renaming bricks
+> the mod in-game. The full list of packer do's/don'ts lives in
+> [`packing.md`](./packing.md).
+
 > "Keep last 3 versions": only the **latest** `.it` is committed per mod. Older
 > versions are retained by **release history** (each release is an immutable
 > snapshot), which satisfies the retention goal without binary churn in git.
