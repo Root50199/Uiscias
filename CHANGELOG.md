@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.7.0](https://github.com/Root50199/Uiscias/compare/v1.6.0...v1.7.0) (2026-06-26)
+
+
+### Mods added / updated
+
+* fixing bricked it mods ([2c28054](https://github.com/Root50199/Uiscias/commit/2c28054eaa54b6a44b88907dea11203ae8a68346))
+* fixing bricked it mods ([1e8d63b](https://github.com/Root50199/Uiscias/commit/1e8d63b9629f52e843c387fe05029ec7d1668f59))
+* fixing bricked it mods again ([9d15080](https://github.com/Root50199/Uiscias/commit/9d15080d3e5c18cabc0e6b006f3a0fed2bfcb006))
+
 ## [1.6.0](https://github.com/Root50199/Uiscias/compare/v1.5.0...v1.6.0) (2026-06-25)
 
 
