@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.0](https://github.com/Root50199/Uiscias/compare/v1.7.0...v1.8.0) (2026-06-26)
+
+
+### Mods added / updated
+
+* deleting old pack files ([b1c7e14](https://github.com/Root50199/Uiscias/commit/b1c7e14613c5f7913665cd9c3b5531e6d62c8070))
+* deleting old pack files ([9b8eff9](https://github.com/Root50199/Uiscias/commit/9b8eff930822d5238c77fff2023174ce8aa6d662))
+
 ## [1.7.0](https://github.com/Root50199/Uiscias/compare/v1.6.0...v1.7.0) (2026-06-26)
 
 
