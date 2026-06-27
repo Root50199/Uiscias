@@ -51,3 +51,23 @@ jobs:
       # made with --no-verify or a misconfigured hook.
       - name: Check for config/pack drift
         run: npm run check
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          HUSKY: 0
+
+      - name: Run tests
+        run: npm test
