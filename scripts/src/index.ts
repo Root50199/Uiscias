@@ -29,10 +29,7 @@ const withScope = (cmd: Command): Command =>
 
 const program = new Command();
 
-program
-  .name('uiscias')
-  .description('Uiscias build tooling')
-  .showHelpAfterError();
+program.name('uiscias').description('Uiscias build tooling').showHelpAfterError();
 
 program
   .command('list')

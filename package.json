@@ -31,6 +31,6 @@
     "zod": "^4.4.3"
   },
   "lint-staged": {
-    "*.{json,md}": "prettier --write"
+    "*.{js,jsx,ts,tsx,json,md,yml,yaml,css}": "prettier --write"
   }
 }

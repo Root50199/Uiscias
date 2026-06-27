@@ -19,7 +19,9 @@ export function runList(): void {
       console.log(`${dim('•')} ${m.id}`);
     } else {
       variantGroups++;
-      console.log(`${dim('▾')} ${bold(g.parent?.id ?? '')} ${dim(`(group, ${g.members.length} variants)`)}`);
+      console.log(
+        `${dim('▾')} ${bold(g.parent?.id ?? '')} ${dim(`(group, ${g.members.length} variants)`)}`,
+      );
       for (const v of g.members) {
         variants++;
         console.log(`    ${dim('└')} ${v.id}  ${dim(`[${v.relDir}]`)}`);

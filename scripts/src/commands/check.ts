@@ -53,8 +53,7 @@ export async function runCheck(): Promise<void> {
     }
   }
 
-  const problemText =
-    failures.length > 0 ? err(`${failures.length} problem(s)`) : ok('0 problems');
+  const problemText = failures.length > 0 ? err(`${failures.length} problem(s)`) : ok('0 problems');
   console.log(`Pack drift: checked ${targets.length} mod(s), ${problemText}.`);
   for (const f of failures) console.error(`  ${glyph.bad} ${f}`);
   if (failures.length > 0) process.exitCode = 1;
