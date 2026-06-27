@@ -20,8 +20,10 @@
   },
   "devDependencies": {
     "@types/node": "^26.0.0",
+    "commander": "^15.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.8",
+    "picocolors": "^1.1.1",
     "prettier": "^3.8.4",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",
@@ -29,6 +31,6 @@
     "zod": "^4.4.3"
   },
   "lint-staged": {
-    "*.{json,md}": "prettier --write"
+    "*.{js,jsx,ts,tsx,json,md,yml,yaml,css}": "prettier --write"
   }
 }

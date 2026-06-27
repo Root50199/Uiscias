@@ -1,3 +1,4 @@
+import { Command } from 'commander';
 import { runList } from './commands/list';
 import { runChanged } from './commands/changed';
 import { runGenerateConfigs } from './commands/generateConfigs';
@@ -6,85 +7,73 @@ import { runBuildManifest } from './commands/buildManifest';
 import { runMigrate } from './commands/migrate';
 import { runCheck } from './commands/check';
 import { runNewMod } from './commands/newMod';
-import { parseScopeArgs } from './lib/scope';
+import { err } from './lib/term';
+import type { ScopeOptions } from './lib/scope';
 
-const HELP = `Uiscias build tooling
+/** Parse a `--mods a,b,c` value into a trimmed, non-empty id list. */
+const parseMods = (value: string): string[] =>
+  value
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
 
-Usage: tsx scripts/src/index.ts <command> [options]
+/** Attach the shared scope options to a subcommand. */
+const withScope = (cmd: Command): Command =>
+  cmd
+    .option('--all', 'all mods (default)')
+    .option('--changed', 'only mods changed vs git')
+    .option('--staged', 'diff the staged index (pre-commit)')
+    .option('--base <ref>', 'diff against a git ref, e.g. origin/main')
+    .option('--mods <csv>', 'explicit mod ids (comma-separated)', parseMods)
+    .option('--stage', 'git add regenerated files (pre-commit)');
 
-Commands:
-  list                     Print the discovered mod/group/variant structure
-  changed [scope]          Print mods affected by a scope (default: --changed)
-  new-mod <ModName>        Scaffold a new mod folder (UpperCamelCase name)
-  generate-configs [scope] Regenerate config.json for the target mods
-  pack [scope]             Pack changed mods into build/ (bump-by-hash)
-  build-manifest [--out p] [--assets dir]  Aggregate config.json into the manifest
-                           (and optionally copy shipped .it + manifest to dir)
-  check                    CI drift check: configs + build locks vs. sources
-  migrate                  One-time: generate config.yaml from legacy config.json
+const program = new Command();
 
-Scope options:
-  --all                    All mods (default for most commands)
-  --changed                Mods changed vs. git (use with --staged or --base)
-  --staged                 Diff the staged index (pre-commit)
-  --base <ref>             Diff against a ref (CI), e.g. origin/main
-  --mods <a,b,c>           Explicit mod ids
+program.name('uiscias').description('Uiscias build tooling').showHelpAfterError();
 
-Other options:
-  --check                  generate-configs: verify only, fail if stale
-  --out <path>             build-manifest: output path
-`;
+program
+  .command('list')
+  .description('Print the discovered mod/group/variant structure')
+  .action(() => runList());
 
-async function main(): Promise<void> {
-  const [command, ...rest] = process.argv.slice(2);
+withScope(program.command('changed'))
+  .description('Print mods affected by a scope (default: --changed)')
+  .action((opts: ScopeOptions) => runChanged(opts));
 
-  switch (command) {
-    case 'list':
-      runList();
-      break;
-    case 'changed':
-      runChanged(parseScopeArgs(rest));
-      break;
-    case 'new-mod':
-      await runNewMod({ name: rest[0] });
-      break;
-    case 'generate-configs':
-      await runGenerateConfigs({
-        ...parseScopeArgs(rest),
-        check: rest.includes('--check'),
-      });
-      break;
-    case 'pack':
-      await runPack({ ...parseScopeArgs(rest), force: rest.includes('--force') });
-      break;
-    case 'build-manifest': {
-      const outIdx = rest.indexOf('--out');
-      const assetsIdx = rest.indexOf('--assets');
-      await runBuildManifest({
-        out: outIdx >= 0 ? rest[outIdx + 1] : undefined,
-        assets: assetsIdx >= 0 ? rest[assetsIdx + 1] : undefined,
-      });
-      break;
-    }
-    case 'migrate':
-      await runMigrate();
-      break;
-    case 'check':
-      await runCheck();
-      break;
-    case undefined:
-    case '--help':
-    case '-h':
-      console.log(HELP);
-      break;
-    default:
-      console.error(`Unknown command: ${command}\n`);
-      console.log(HELP);
-      process.exitCode = 1;
-  }
-}
+program
+  .command('new-mod')
+  .description('Scaffold a new mod folder (UpperCamelCase name)')
+  .argument('[name]', 'mod id / folder name (UpperCamelCase)')
+  .action((name: string | undefined) => runNewMod({ name }));
 
-main().catch((err) => {
-  console.error(err instanceof Error ? err.message : err);
+withScope(program.command('generate-configs'))
+  .description('Regenerate config.json for the target mods')
+  .option('--check', 'verify only; fail if any config.json is stale')
+  .action((opts: ScopeOptions & { check?: boolean }) => runGenerateConfigs(opts));
+
+withScope(program.command('pack'))
+  .description('Pack changed mods into build/ (bump-by-hash)')
+  .option('--force', 'repack even when the source hash matches')
+  .action((opts: ScopeOptions & { force?: boolean }) => runPack(opts));
+
+program
+  .command('build-manifest')
+  .description('Aggregate config.json into manifestCatalog.json')
+  .option('--out <path>', 'output path for the manifest')
+  .option('--assets <dir>', 'also copy shipped .it + manifest into this dir')
+  .action((opts: { out?: string; assets?: string }) => runBuildManifest(opts));
+
+program
+  .command('check')
+  .description('CI drift check: configs + build locks vs. sources')
+  .action(() => runCheck());
+
+program
+  .command('migrate')
+  .description('One-time: generate config.yaml from legacy config.json')
+  .action(() => runMigrate());
+
+program.parseAsync(process.argv).catch((e) => {
+  console.error(err(e instanceof Error ? e.message : String(e)));
   process.exitCode = 1;
 });

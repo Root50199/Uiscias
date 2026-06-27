@@ -1,6 +1,7 @@
 import { getRepoRoot } from '../lib/repo';
 import { discoverMods } from '../lib/mods';
 import { resolveTargetMods, type ScopeOptions } from '../lib/scope';
+import { dim } from '../lib/term';
 
 /** Print the mods affected by the requested scope (a Phase 0 sanity tool). */
 export function runChanged(opts: ScopeOptions): void {
@@ -9,11 +10,11 @@ export function runChanged(opts: ScopeOptions): void {
   const targets = resolveTargetMods(repoRoot, mods, { ...opts, changed: true });
 
   if (targets.length === 0) {
-    console.log('No affected mods.');
+    console.log(dim('No affected mods.'));
     return;
   }
   for (const m of targets) {
-    console.log(`${m.kind.padEnd(14)} ${m.relDir}`);
+    console.log(`${dim(m.kind.padEnd(14))} ${m.relDir}`);
   }
-  console.log(`\n${targets.length} affected mod(s).`);
+  console.log(dim(`\n${targets.length} affected mod(s).`));
 }

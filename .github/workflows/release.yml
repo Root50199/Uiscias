@@ -40,6 +40,25 @@ jobs:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
+      # If the merged release PR carried the `prerelease` label, flip the
+      # freshly-created release. release-please always cuts a full release; this
+      # is the label-driven override so a release can be made a prerelease
+      # without editing it by hand afterward. github.sha is the release PR's
+      # merge commit, which resolves back to that PR and its labels.
+      - name: Mark release as prerelease if labeled
+        if: ${{ steps.rp.outputs.release_created == 'true' }}
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          labels=$(gh api "repos/${{ github.repository }}/commits/${{ github.sha }}/pulls" \
+            --jq '.[].labels[].name')
+          if echo "$labels" | grep -qx 'prerelease'; then
+            echo "Found 'prerelease' label -> marking ${{ steps.rp.outputs.tag_name }} as prerelease"
+            gh release edit "${{ steps.rp.outputs.tag_name }}" --prerelease
+          else
+            echo "No 'prerelease' label -> leaving ${{ steps.rp.outputs.tag_name }} as a full release"
+          fi
+
   # Only after a release is actually created: assemble + upload the assets.
   # Packing already happened locally (the .it files are committed), so this runs
   # on ubuntu-latest with no .exe — the tooling reads each build.lock.json,

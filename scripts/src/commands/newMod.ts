@@ -7,6 +7,7 @@ import prettier from 'prettier';
 import { getRepoRoot, getModsRoot } from '../lib/repo';
 import { orderKeys, writeJsonFile } from '../lib/json';
 import { humanizeModId } from '../lib/humanize';
+import { ok, err, dim } from '../lib/term';
 import { CONFIG_YAML_KEY_ORDER, FINDIAS_TAGS, type ConfigYaml } from '../schema';
 
 /** Folder-name format every mod id must follow (UpperCamelCase / PascalCase). */
@@ -84,12 +85,12 @@ export async function runNewMod(opts: NewModOptions): Promise<void> {
 
         const formatError = validateModIdFormat(answer);
         if (formatError) {
-          console.error(`Error: ${formatError}\n`);
+          console.error(err(`Error: ${formatError}\n`));
           continue;
         }
 
         if (exists(answer)) {
-          console.error(`Error: "${answer}" already exists — choose a different name.\n`);
+          console.error(err(`Error: "${answer}" already exists — choose a different name.\n`));
           continue;
         }
 
@@ -116,18 +117,18 @@ export async function runNewMod(opts: NewModOptions): Promise<void> {
   await writeConfigYamlTemplate(path.join(modDir, 'config.yaml'), modId);
   await writeModDescription(path.join(modDir, 'ModDescription.md'), modId);
 
-  console.log(`Created mod scaffold: ${relDir}/`);
-  console.log('  build/              (empty)');
-  console.log('  data/               (empty)');
-  console.log('  config.json         ({})');
-  console.log('  config.yaml         (edit values; trim findiasTags)');
-  console.log('  ModDescription.md   (placeholder)');
+  console.log(ok(`Created mod scaffold: ${relDir}/`));
+  console.log(dim('  build/              (empty)'));
+  console.log(dim('  data/               (empty)'));
+  console.log(dim('  config.json         ({})'));
+  console.log(dim('  config.yaml         (edit values; trim findiasTags)'));
+  console.log(dim('  ModDescription.md   (placeholder)'));
   console.log(
     '\nNext: drop your game files in data/, finish config.yaml, then commit\n' +
       '(the pre-commit hook generates config.json and packs the .it).',
   );
   console.log(
-    'Note: git does not track empty folders — build/ and data/ appear once you add files.',
+    dim('Note: git does not track empty folders — build/ and data/ appear once you add files.'),
   );
 }
 

@@ -1,5 +1,6 @@
 import { getRepoRoot } from '../lib/repo';
 import { discoverMods, groupMods } from '../lib/mods';
+import { bold, dim } from '../lib/term';
 
 /** Print the discovered mod/group/variant structure (a Phase 0 sanity tool). */
 export function runList(): void {
@@ -15,18 +16,22 @@ export function runList(): void {
     if (!g.hasVariants) {
       standalone++;
       const [m] = g.members;
-      console.log(`• ${m.id}`);
+      console.log(`${dim('•')} ${m.id}`);
     } else {
       variantGroups++;
-      console.log(`▾ ${g.parent?.id} (group, ${g.members.length} variants)`);
+      console.log(
+        `${dim('▾')} ${bold(g.parent?.id ?? '')} ${dim(`(group, ${g.members.length} variants)`)}`,
+      );
       for (const v of g.members) {
         variants++;
-        console.log(`    └ ${v.id}  [${v.relDir}]`);
+        console.log(`    ${dim('└')} ${v.id}  ${dim(`[${v.relDir}]`)}`);
       }
     }
   }
 
   console.log(
-    `\n${groups.length} groups — ${standalone} standalone, ${variantGroups} variant groups (${variants} variants).`,
+    dim(
+      `\n${groups.length} groups — ${standalone} standalone, ${variantGroups} variant groups (${variants} variants).`,
+    ),
   );
 }
