@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.13.0](https://github.com/Root50199/Uiscias/compare/v1.12.0...v1.13.0) (2026-06-27)
+
+
+### Mods added / updated
+
+* update dependencies and refactor file handling ([2731297](https://github.com/Root50199/Uiscias/commit/273129780f1b6b16bf7358099fa2692874b80d6a))
+* update dependencies and refactor file handling ([550276c](https://github.com/Root50199/Uiscias/commit/550276c108b1ead233ffc44c220774eb54adc917))
+
 ## [1.12.0](https://github.com/Root50199/Uiscias/compare/v1.11.0...v1.12.0) (2026-06-27)
 
 
