@@ -19,6 +19,19 @@ export function getRepoRoot(): string {
 }
 
 /**
+ * The single place that defines **where mod folders live**. Every mod is a
+ * folder directly under `<repoRoot>/mods/`. If this ever moves again, change it
+ * here only — discovery, packing, the CLI, and CI all resolve mods through
+ * `getModsRoot`.
+ */
+export const MODS_DIR = 'mods';
+
+/** Absolute path to the directory that contains every mod folder. */
+export function getModsRoot(repoRoot: string): string {
+  return path.join(repoRoot, MODS_DIR);
+}
+
+/**
  * Repo exclusions for mod discovery — the one place to add things the tooling
  * should ignore.
  *
@@ -27,8 +40,8 @@ export function getRepoRoot(): string {
  * to be listed here.
  */
 
-/** Top-level non-mod folders to skip. */
-export const NON_MOD_DIRS = new Set(['scripts', 'node_modules', 'docs', 'images']);
+/** Non-mod folders to skip if they ever appear under `mods/` (defensive). */
+export const NON_MOD_DIRS = new Set(['node_modules']);
 
 /**
  * Mod-shaped folders to skip anyway (e.g. scaffolding templates). These keep

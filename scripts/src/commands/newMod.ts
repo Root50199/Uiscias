@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import YAML from 'yaml';
 import prettier from 'prettier';
-import { getRepoRoot } from '../lib/repo';
+import { getRepoRoot, getModsRoot } from '../lib/repo';
 import { orderKeys, writeJsonFile } from '../lib/json';
 import { humanizeModId } from '../lib/humanize';
 import { CONFIG_YAML_KEY_ORDER, FINDIAS_TAGS, type ConfigYaml } from '../schema';
@@ -47,11 +47,10 @@ export async function runNewMod(opts: NewModOptions): Promise<void> {
   }
 
   const repoRoot = getRepoRoot();
-  const modDir = path.join(repoRoot, modId);
+  const modDir = path.join(getModsRoot(repoRoot), modId);
+  const relDir = path.relative(repoRoot, modDir).split(path.sep).join('/');
   if (fs.existsSync(modDir)) {
-    throw new NewModError(
-      `"${modId}" already exists at ${path.relative(repoRoot, modDir)}/ — refusing to overwrite.`,
-    );
+    throw new NewModError(`"${modId}" already exists at ${relDir}/ — refusing to overwrite.`);
   }
 
   fs.mkdirSync(path.join(modDir, 'build'), { recursive: true });
@@ -64,7 +63,7 @@ export async function runNewMod(opts: NewModOptions): Promise<void> {
   await writeConfigYamlTemplate(path.join(modDir, 'config.yaml'), modId);
   await writeModDescription(path.join(modDir, 'ModDescription.md'), modId);
 
-  console.log(`Created mod scaffold: ${modId}/`);
+  console.log(`Created mod scaffold: ${relDir}/`);
   console.log('  build/              (empty)');
   console.log('  data/               (empty)');
   console.log('  config.json         ({})');

@@ -1,6 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { NON_MOD_DIRS, EXCLUDED_MOD_IDS } from './repo';
+import { getModsRoot, NON_MOD_DIRS, EXCLUDED_MOD_IDS } from './repo';
+
+/** Repo-relative posix path for a mod folder (e.g. `mods/BriHpBars`). */
+function relDirOf(repoRoot: string, dir: string): string {
+  return path.relative(repoRoot, dir).split(path.sep).join('/');
+}
 
 export type ModKind = 'standalone' | 'variantParent' | 'variant';
 
@@ -9,7 +14,7 @@ export interface Mod {
   id: string;
   /** Absolute path to the mod's folder. */
   dir: string;
-  /** Repo-relative folder path, posix separators (e.g. `BriHpBars/BriHpBars1And2`). */
+  /** Repo-relative folder path, posix separators (e.g. `mods/BriHpBars/BriHpBars1And2`). */
   relDir: string;
   kind: ModKind;
   /** For variants, the parent group's id (folder name). */
@@ -39,28 +44,32 @@ function childDirNames(dir: string): string[] {
 }
 
 /**
- * Discover every mod in the repo.
+ * Discover every mod in the repo. Mods live under `<repoRoot>/mods/` (see
+ * `getModsRoot`); `relDir` stays repo-root-relative (e.g. `mods/BriHpBars`) so
+ * it lines up directly with the paths `git diff` reports.
  *
  * Shapes:
- * - A top-level folder with a `data/` is a **standalone** mod.
- * - A top-level folder with no `data/` but child folders that have `data/` is a
- *   **variantParent**; each such child is a **variant**.
+ * - A folder under `mods/` with a `data/` is a **standalone** mod.
+ * - A folder under `mods/` with no `data/` but child folders that have `data/`
+ *   is a **variantParent**; each such child is a **variant**.
  * - Anything else is ignored.
  */
 export function discoverMods(repoRoot: string): Mod[] {
   const mods: Mod[] = [];
+  const modsRoot = getModsRoot(repoRoot);
+  if (!isDir(modsRoot)) return mods;
 
-  for (const name of childDirNames(repoRoot)) {
+  for (const name of childDirNames(modsRoot)) {
     if (NON_MOD_DIRS.has(name) || EXCLUDED_MOD_IDS.has(name) || name.startsWith('.')) {
       continue;
     }
-    const dir = path.join(repoRoot, name);
+    const dir = path.join(modsRoot, name);
 
     if (hasDataDir(dir)) {
       mods.push({
         id: name,
         dir,
-        relDir: name,
+        relDir: relDirOf(repoRoot, dir),
         kind: 'standalone',
         dataDir: path.join(dir, 'data'),
       });
@@ -70,13 +79,13 @@ export function discoverMods(repoRoot: string): Mod[] {
     const variantNames = childDirNames(dir).filter((child) => hasDataDir(path.join(dir, child)));
     if (variantNames.length === 0) continue; // not a mod folder
 
-    mods.push({ id: name, dir, relDir: name, kind: 'variantParent' });
+    mods.push({ id: name, dir, relDir: relDirOf(repoRoot, dir), kind: 'variantParent' });
     for (const child of variantNames) {
       const childDir = path.join(dir, child);
       mods.push({
         id: child,
         dir: childDir,
-        relDir: `${name}/${child}`,
+        relDir: relDirOf(repoRoot, childDir),
         kind: 'variant',
         groupId: name,
         dataDir: path.join(childDir, 'data'),
