@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import { fse } from './io';
 
 /** Encryption key salt mabi-pack2 uses for Uiscias packs. */
 const PACK_KEY = '})wWb4?-sVGHNoPKpc';
@@ -11,7 +12,7 @@ export function packerExePath(repoRoot: string): string {
 }
 
 export function packerAvailable(repoRoot: string): boolean {
-  return fs.existsSync(packerExePath(repoRoot));
+  return fse.pathExistsSync(packerExePath(repoRoot));
 }
 
 /**
@@ -27,7 +28,7 @@ export function packerAvailable(repoRoot: string): boolean {
  */
 export function packDataFolder(repoRoot: string, dataDir: string, outItPath: string): void {
   const exe = packerExePath(repoRoot);
-  if (!fs.existsSync(exe)) {
+  if (!fse.pathExistsSync(exe)) {
     throw new Error(`mabi-pack2.exe not found at ${exe}`);
   }
 
@@ -37,19 +38,19 @@ export function packDataFolder(repoRoot: string, dataDir: string, outItPath: str
   const finalName = path.basename(outItPath);
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'uiscias-pack-'));
   try {
-    fs.cpSync(dataDir, path.join(tmp, 'data'), { recursive: true });
+    fse.copySync(dataDir, path.join(tmp, 'data'));
     execFileSync(exe, ['pack', '-i', '.', '-o', finalName, '-k', PACK_KEY], {
       cwd: tmp,
       stdio: 'pipe',
     });
 
     const produced = path.join(tmp, finalName);
-    if (!fs.existsSync(produced)) {
+    if (!fse.pathExistsSync(produced)) {
       throw new Error(`packer did not produce an output for ${dataDir}`);
     }
-    fs.mkdirSync(path.dirname(outItPath), { recursive: true });
-    fs.copyFileSync(produced, outItPath);
+    fse.ensureDirSync(path.dirname(outItPath));
+    fse.copySync(produced, outItPath);
   } finally {
-    fs.rmSync(tmp, { recursive: true, force: true });
+    fse.removeSync(tmp);
   }
 }

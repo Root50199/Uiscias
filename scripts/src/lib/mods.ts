@@ -1,10 +1,11 @@
-import fs from 'node:fs';
 import path from 'node:path';
+import { globSync } from 'tinyglobby';
 import { getModsRoot, NON_MOD_DIRS, EXCLUDED_MOD_IDS } from './repo';
+import { fse, relPosix } from './io';
 
 /** Repo-relative posix path for a mod folder (e.g. `mods/BriHpBars`). */
 function relDirOf(repoRoot: string, dir: string): string {
-  return path.relative(repoRoot, dir).split(path.sep).join('/');
+  return relPosix(repoRoot, dir);
 }
 
 export type ModKind = 'standalone' | 'variantParent' | 'variant';
@@ -23,23 +24,15 @@ export interface Mod {
   dataDir?: string;
 }
 
-function isDir(p: string): boolean {
-  try {
-    return fs.statSync(p).isDirectory();
-  } catch {
-    return false;
-  }
-}
-
 function hasDataDir(dir: string): boolean {
-  return isDir(path.join(dir, 'data'));
+  return fse.pathExistsSync(path.join(dir, 'data'));
 }
 
 function childDirNames(dir: string): string[] {
-  return fs
-    .readdirSync(dir, { withFileTypes: true })
-    .filter((d) => d.isDirectory())
-    .map((d) => d.name)
+  // tinyglobby marks directories with a trailing slash; strip it so names match
+  // the raw folder name (used as the mod id).
+  return globSync('*', { cwd: dir, onlyDirectories: true })
+    .map((name) => name.replace(/\/$/, ''))
     .sort((a, b) => a.localeCompare(b));
 }
 
@@ -57,7 +50,7 @@ function childDirNames(dir: string): string[] {
 export function discoverMods(repoRoot: string): Mod[] {
   const mods: Mod[] = [];
   const modsRoot = getModsRoot(repoRoot);
-  if (!isDir(modsRoot)) return mods;
+  if (!fse.pathExistsSync(modsRoot)) return mods;
 
   for (const name of childDirNames(modsRoot)) {
     if (NON_MOD_DIRS.has(name) || EXCLUDED_MOD_IDS.has(name) || name.startsWith('.')) {

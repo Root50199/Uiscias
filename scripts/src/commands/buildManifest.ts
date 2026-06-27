@@ -1,9 +1,8 @@
-import fs from 'node:fs';
 import path from 'node:path';
+import { fse, writeJsonFile } from '../lib/io';
 import { getRepoRoot } from '../lib/repo';
 import { discoverMods, groupMods, packTargets, type Mod, type ModGroup } from '../lib/mods';
 import { readConfigJson, readBuildLock, readCatalogConfig } from '../lib/config';
-import { writeJsonFile } from '../lib/json';
 import { ok, dim } from '../lib/term';
 import {
   manifestCatalogSchema,
@@ -29,7 +28,7 @@ function variantEntry(mod: Mod): ManifestVariant {
     throw new Error(`${mod.relDir}: missing build/build.lock.json (run pack first)`);
   }
   const itPath = path.join(buildDir, lock.fileName);
-  if (!fs.existsSync(itPath)) {
+  if (!fse.pathExistsSync(itPath)) {
     throw new Error(`${mod.relDir}: build.lock points to missing ${lock.fileName}`);
   }
 
@@ -38,7 +37,7 @@ function variantEntry(mod: Mod): ManifestVariant {
     modName: cfg.modName,
     fileName: lock.fileName,
     version: lock.version,
-    size: fs.statSync(itPath).size,
+    size: fse.statSync(itPath).size,
     updateType: cfg.updateType,
     usedFiles: cfg.usedFiles,
     modAuthor: cfg.modAuthor,
@@ -108,16 +107,16 @@ export async function runBuildManifest(opts: BuildManifestOptions): Promise<void
 
   if (opts.assets) {
     const assetsDir = path.resolve(repoRoot, opts.assets);
-    fs.mkdirSync(assetsDir, { recursive: true });
+    await fse.ensureDir(assetsDir);
     let copied = 0;
     for (const mod of packTargets(mods)) {
       const buildDir = path.join(mod.dir, 'build');
       const lock = readBuildLock(buildDir);
       if (!lock) throw new Error(`${mod.relDir}: missing build.lock.json (run pack first)`);
-      fs.copyFileSync(path.join(buildDir, lock.fileName), path.join(assetsDir, lock.fileName));
+      await fse.copy(path.join(buildDir, lock.fileName), path.join(assetsDir, lock.fileName));
       copied++;
     }
-    fs.copyFileSync(outPath, path.join(assetsDir, path.basename(outPath)));
+    await fse.copy(outPath, path.join(assetsDir, path.basename(outPath)));
     console.log(
       `${ok(`Copied ${copied} .it + manifest`)} ${dim(`into ${path.relative(repoRoot, assetsDir)}/.`)}`,
     );

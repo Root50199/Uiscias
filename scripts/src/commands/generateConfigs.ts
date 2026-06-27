@@ -1,12 +1,11 @@
-import fs from 'node:fs';
 import path from 'node:path';
+import { fse, readText, formatJson, writeJsonFile } from '../lib/io';
 import { getRepoRoot } from '../lib/repo';
 import { discoverMods } from '../lib/mods';
 import { resolveTargetMods, type ScopeOptions } from '../lib/scope';
 import { buildConfigJson, ConfigError } from '../lib/config';
-import { formatJson, writeJsonFile } from '../lib/json';
 import { gitAdd } from '../lib/git';
-import { ok, warn, err, dim, glyph } from '../lib/term';
+import { ok, warn, dim, glyph, Tally } from '../lib/term';
 
 export interface GenerateConfigsOptions extends ScopeOptions {
   /** Verify mode: fail if any config.json would change; do not write. */
@@ -23,28 +22,24 @@ export async function runGenerateConfigs(opts: GenerateConfigsOptions): Promise<
   const mods = discoverMods(repoRoot);
   const targets = resolveTargetMods(repoRoot, mods, opts);
 
-  const errors: string[] = [];
+  const tally = new Tally();
   const stale: string[] = [];
   const writtenPaths: string[] = [];
-  let written = 0;
-  let unchanged = 0;
 
   for (const mod of targets) {
     const jsonPath = path.join(mod.dir, 'config.json');
     let desired: string;
     try {
       desired = await formatJson(buildConfigJson(mod), jsonPath);
-    } catch (err) {
-      errors.push(err instanceof ConfigError ? err.message : `${mod.relDir}: ${String(err)}`);
+    } catch (e) {
+      tally.addError(e instanceof ConfigError ? e.message : `${mod.relDir}: ${String(e)}`);
       continue;
     }
 
-    const current = fs.existsSync(jsonPath)
-      ? fs.readFileSync(jsonPath, 'utf8').replace(/^\uFEFF/, '')
-      : null;
+    const current = fse.pathExistsSync(jsonPath) ? readText(jsonPath) : null;
 
     if (current === desired) {
-      unchanged++;
+      tally.bump('unchanged');
       continue;
     }
 
@@ -53,7 +48,7 @@ export async function runGenerateConfigs(opts: GenerateConfigsOptions): Promise<
     } else {
       await writeJsonFile(jsonPath, JSON.parse(desired));
       writtenPaths.push(jsonPath);
-      written++;
+      tally.bump('written');
     }
   }
 
@@ -64,21 +59,18 @@ export async function runGenerateConfigs(opts: GenerateConfigsOptions): Promise<
   if (opts.check) {
     const staleText = stale.length > 0 ? warn(`${stale.length} stale`) : dim('0 stale');
     console.log(
-      `Checked ${targets.length} mod(s): ${dim(`${unchanged} up to date`)}, ${staleText}.`,
+      `Checked ${targets.length} mod(s): ${dim(`${tally.get('unchanged')} up to date`)}, ${staleText}.`,
     );
     for (const s of stale) console.log(`  ${glyph.bad} ${warn('stale')}: ${s}`);
   } else {
     console.log(
-      `Generated configs for ${targets.length} mod(s): ${ok(`${written} written`)}, ${dim(`${unchanged} unchanged`)}.`,
+      `Generated configs for ${targets.length} mod(s): ${ok(`${tally.get('written')} written`)}, ${dim(`${tally.get('unchanged')} unchanged`)}.`,
     );
   }
 
-  if (errors.length > 0) {
-    console.error(err(`\n${errors.length} error(s):`));
-    for (const e of errors) console.error(`  ${glyph.bad} ${e}`);
-  }
+  tally.printErrors();
 
-  if (errors.length > 0 || (opts.check && stale.length > 0)) {
+  if (tally.hasErrors || (opts.check && stale.length > 0)) {
     process.exitCode = 1;
   }
 }
