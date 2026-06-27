@@ -1,0 +1,67 @@
+import { describe, expect, it } from 'vitest';
+import {
+  MANIFEST_SCHEMA_VERSION,
+  manifestCatalogSchema,
+  manifestGroupSchema,
+} from './manifestCatalog';
+
+const variant = {
+  modId: 'Zoom',
+  modName: 'Zoom Mod',
+  fileName: 'UisciasZoom_00001.it',
+  version: 1,
+  size: 1024,
+  updateType: 'stable',
+  usedFiles: ['data/x.xml'],
+  modAuthor: 'Root50199',
+  modAdditionalCredits: 'None',
+  recentUpdateNotes: 'n/a',
+} as const;
+
+const group = {
+  groupId: 'Zoom',
+  modName: 'Zoom Mod',
+  findiasTags: ['Zoom'],
+  hasVariants: false,
+  mutuallyExclusive: false,
+  variants: [variant],
+} as const;
+
+const catalog = {
+  metadata: {
+    schemaVersion: MANIFEST_SCHEMA_VERSION,
+    currentGameVersion: '1.0.0',
+    supportedGameVersion: '1.0.0',
+    generatedAt: new Date().toISOString(),
+  },
+  modList: [group],
+} as const;
+
+describe('manifestGroupSchema', () => {
+  it('accepts a well-formed group', () => {
+    expect(manifestGroupSchema.safeParse(group).success).toBe(true);
+  });
+
+  it('requires at least one variant', () => {
+    expect(manifestGroupSchema.safeParse({ ...group, variants: [] }).success).toBe(false);
+  });
+
+  it('rejects extra keys (strict)', () => {
+    expect(manifestGroupSchema.safeParse({ ...group, extra: 1 }).success).toBe(false);
+  });
+});
+
+describe('manifestCatalogSchema', () => {
+  it('accepts a full catalog', () => {
+    expect(manifestCatalogSchema.safeParse(catalog).success).toBe(true);
+  });
+
+  it('rejects a non-datetime generatedAt', () => {
+    const bad = { ...catalog, metadata: { ...catalog.metadata, generatedAt: 'yesterday' } };
+    expect(manifestCatalogSchema.safeParse(bad).success).toBe(false);
+  });
+
+  it('allows an empty modList', () => {
+    expect(manifestCatalogSchema.safeParse({ ...catalog, modList: [] }).success).toBe(true);
+  });
+});
