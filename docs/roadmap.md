@@ -44,9 +44,11 @@ schemas, and conventions referenced below.
 ## Phases
 
 **Status:** Phases 0–5 (the Uiscias producer pipeline) are **complete and
-verified locally**. Phase 6 (Findias consumer) is **not started**. The only
-unexercised piece is the live GitHub release, which requires a real merge to
-`main` (see Phase 5 note).
+verified locally**. Phase 6 (Findias consumer) is **implemented in Findias**
+(manifest provider, variant grouping, conflict prevention, freshness banner,
+prerelease toggle). The only unexercised piece is the live GitHub release, which
+requires a real merge to `main` (see Phase 5 note) — once a real release exists,
+the Findias consumer can be exercised end-to-end against it.
 
 ### Phase 0 — Schemas & conventions (foundation) ✅
 
@@ -147,16 +149,23 @@ _Exit:_ merging a `feat`/`fix` to `main` produces a release with all current
 `.it` files and a schema-valid `manifestCatalog.json`. **Config complete; first
 live release pending a real merge.**
 
-### Phase 6 — Findias integration
+### Phase 6 — Findias integration ✅ (implemented in Findias; live release pending)
 
-- [ ] Copy the manifest zod schema into Findias (parse leniently: tolerate
-      unknown/new top-level `metadata` fields).
-- [ ] Implement `ManifestCatalogProvider` (read release `manifestCatalog.json`,
-      validate, read `metadata`, flatten `modList` groups → `CatalogEntry[]`);
-      switch startup wiring to it.
-- [ ] UI: variant "pick one" selector per group; cross-group `usedFiles`
-      conflict warnings; freshness badge from `updateType` and the catalog-wide
-      `metadata.supportedGameVersion` vs the running client.
+- [x] Copy the manifest zod schema into Findias (`providers/manifestSchema.ts`),
+      parsed **leniently**: `findiasTags` as `string[]`, `updateType` with a
+      `volatile` fallback, passthrough `metadata`, and a `MANIFEST_SCHEMA_VERSION`
+      guard against a breaking bump.
+- [x] Implement `ManifestCatalogProvider` (read release `manifestCatalog.json`,
+      validate, read `metadata`); switch startup wiring to it. Findias keeps the
+      manifest's **grouped** shape (`{ metadata, groups }`) end-to-end rather than
+      flattening — there is now a single catalog source.
+- [x] UI: variant "pick one" selector per group (auto-switch on install);
+      cross-group `usedFiles` conflict prevention that **disables** enabling
+      actions and names the blocking mod; a catalog-wide freshness banner from
+      `metadata.supportedGameVersion` vs `currentGameVersion`, with the per-mod
+      `updateType` (stable/volatile) indicator shown only while that banner is
+      active. Also added a persisted "include prereleases" toggle (the manifest
+      currently ships only on prereleases).
 
 > Manifest shape: as of the metadata wrapper, `manifestCatalog.json` is
 > `{ metadata, modList }`. `metadata` carries `schemaVersion`,
@@ -164,6 +173,7 @@ live release pending a real merge.**
 > repo-root `catalog.yaml`), and a build-stamped `generatedAt`.
 
 _Exit:_ Findias lists mods from the manifest and prevents conflicting installs.
+**Consumer implemented; live end-to-end run pending the first real release.**
 
 ## Deferred / future work
 
