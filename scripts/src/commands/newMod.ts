@@ -12,6 +12,26 @@ import { CONFIG_YAML_KEY_ORDER, FINDIAS_TAGS, type ConfigYaml } from '../schema'
 /** Folder-name format every mod id must follow (UpperCamelCase / PascalCase). */
 const PASCAL_CASE = /^[A-Z][A-Za-z0-9]*$/;
 
+/**
+ * Validate a candidate mod id's format. Returns a human-readable error message,
+ * or `null` when the name is acceptable. Shared by the CLI-arg and interactive
+ * paths so the rules and wording stay in sync.
+ */
+function validateModIdFormat(name: string): string | null {
+  if (!name) {
+    return 'Mod name cannot be empty.';
+  }
+  if (!PASCAL_CASE.test(name)) {
+    return (
+      `Invalid mod name "${name}".\n` +
+      '  Mod names must be UpperCamelCase: start with a capital letter and contain\n' +
+      '  only letters and digits (no spaces, hyphens, or underscores).\n' +
+      `  e.g. "SomeModName"  (not "${name}")`
+    );
+  }
+  return null;
+}
+
 export interface NewModOptions {
   /** The requested mod id / folder name (raw, unvalidated). */
   name: string | undefined;
@@ -32,47 +52,55 @@ class NewModError extends Error {}
  * The name must be UpperCamelCase; anything else cancels with a clear message.
  */
 export async function runNewMod(opts: NewModOptions): Promise<void> {
+  const repoRoot = getRepoRoot();
+  const modsRoot = getModsRoot(repoRoot);
+  const exists = (id: string): boolean => fs.existsSync(path.join(modsRoot, id));
+
   let modId = (opts.name ?? '').trim();
 
-  // If no name was passed via CLI args, prompt the user interactively
-  if (!modId) {
-    const rl = readline.createInterface({ input, output });
-
-    while (!modId) {
-      const answer = await rl.question('Enter mod name (UpperCamelCase, e.g. SomeModName): ');
-      const cleanAnswer = answer.trim();
-
-      if (!cleanAnswer) {
-        console.log('Error: Mod name cannot be empty.\n');
-        continue;
-      }
-
-      if (!PASCAL_CASE.test(cleanAnswer)) {
-        console.log(
-          `Error: Invalid mod name "${cleanAnswer}".\n` +
-            'Mod names must start with a capital letter and contain only letters and digits.\n',
-        );
-        continue;
-      }
-
-      modId = cleanAnswer;
+  if (modId) {
+    // A name was passed via CLI: validate up front and fail fast. This keeps the
+    // command usable in non-interactive contexts (pipes, other scripts, CI).
+    const formatError = validateModIdFormat(modId);
+    if (formatError) {
+      throw new NewModError(formatError);
+    }
+  } else {
+    // No name passed: prompt interactively, re-asking until we get a valid,
+    // unused id. Without a TTY there is nobody to answer, so fail fast instead
+    // of looping forever on empty stdin.
+    if (!input.isTTY) {
+      throw new NewModError(
+        'Missing mod name.\n  Usage: npm run new-mod <ModName>   (UpperCamelCase, e.g. SomeModName)',
+      );
     }
 
-    rl.close();
-  } else {
-    // If a name WAS passed via CLI, validate it immediately as before
-    if (!PASCAL_CASE.test(modId)) {
-      throw new NewModError(
-        `Invalid mod name "${modId}".\n` +
-          '  Mod names must be UpperCamelCase: start with a capital letter and contain\n' +
-          '  only letters and digits (no spaces, hyphens, or underscores).\n' +
-          `  e.g. "SomeModName"  (not "${modId}")`,
-      );
+    const rl = readline.createInterface({ input, output });
+    try {
+      while (!modId) {
+        const answer = (
+          await rl.question('Enter mod name (UpperCamelCase, e.g. SomeModName): ')
+        ).trim();
+
+        const formatError = validateModIdFormat(answer);
+        if (formatError) {
+          console.error(`Error: ${formatError}\n`);
+          continue;
+        }
+
+        if (exists(answer)) {
+          console.error(`Error: "${answer}" already exists — choose a different name.\n`);
+          continue;
+        }
+
+        modId = answer;
+      }
+    } finally {
+      rl.close();
     }
   }
 
-  const repoRoot = getRepoRoot();
-  const modDir = path.join(getModsRoot(repoRoot), modId);
+  const modDir = path.join(modsRoot, modId);
   const relDir = path.relative(repoRoot, modDir).split(path.sep).join('/');
   if (fs.existsSync(modDir)) {
     throw new NewModError(`"${modId}" already exists at ${relDir}/ — refusing to overwrite.`);
