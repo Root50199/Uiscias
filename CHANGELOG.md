@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.12.0](https://github.com/Root50199/Uiscias/compare/v1.11.0...v1.12.0) (2026-06-27)
+
+
+### Mods added / updated
+
+* mark release as prerelease when its release PR is labeled ([1f83e9d](https://github.com/Root50199/Uiscias/commit/1f83e9de469b91cfd78cd4727c78004337280b38))
+* mark release as prerelease when its release PR is labeled ([0fab4a9](https://github.com/Root50199/Uiscias/commit/0fab4a93cb00f012fc5626e5f03138100bd481cb))
+
 ## [1.11.0](https://github.com/Root50199/Uiscias/compare/v1.10.0...v1.11.0) (2026-06-27)
 
 
