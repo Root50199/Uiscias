@@ -6,6 +6,7 @@ import { resolveTargetMods, type ScopeOptions } from '../lib/scope';
 import { buildConfigJson, ConfigError } from '../lib/config';
 import { formatJson, writeJsonFile } from '../lib/json';
 import { gitAdd } from '../lib/git';
+import { ok, warn, err, dim, glyph } from '../lib/term';
 
 export interface GenerateConfigsOptions extends ScopeOptions {
   /** Verify mode: fail if any config.json would change; do not write. */
@@ -61,19 +62,20 @@ export async function runGenerateConfigs(opts: GenerateConfigsOptions): Promise<
   }
 
   if (opts.check) {
+    const staleText = stale.length > 0 ? warn(`${stale.length} stale`) : dim('0 stale');
     console.log(
-      `Checked ${targets.length} mod(s): ${unchanged} up to date, ${stale.length} stale.`,
+      `Checked ${targets.length} mod(s): ${dim(`${unchanged} up to date`)}, ${staleText}.`,
     );
-    for (const s of stale) console.log(`  ✗ stale: ${s}`);
+    for (const s of stale) console.log(`  ${glyph.bad} ${warn('stale')}: ${s}`);
   } else {
     console.log(
-      `Generated configs for ${targets.length} mod(s): ${written} written, ${unchanged} unchanged.`,
+      `Generated configs for ${targets.length} mod(s): ${ok(`${written} written`)}, ${dim(`${unchanged} unchanged`)}.`,
     );
   }
 
   if (errors.length > 0) {
-    console.error(`\n${errors.length} error(s):`);
-    for (const e of errors) console.error(`  ! ${e}`);
+    console.error(err(`\n${errors.length} error(s):`));
+    for (const e of errors) console.error(`  ${glyph.bad} ${e}`);
   }
 
   if (errors.length > 0 || (opts.check && stale.length > 0)) {

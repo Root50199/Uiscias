@@ -309,7 +309,8 @@ scripts/
 │  │  ├─ pack.ts
 │  │  ├─ buildManifest.ts       # release aggregation → manifestCatalog.json (+ --assets)
 │  │  └─ check.ts               # CI drift check (hash-only, no packing)
-│  └─ index.ts                  # CLI entry (subcommands + scope flags)
+│  ├─ lib/term.ts               # picocolors semantic color helpers
+│  └─ index.ts                  # CLI entry (commander: subcommands + scope flags)
 ├─ Mabi-pack2/                  # mabi-pack2.exe (unchanged)
 ├─ pack.bat                     # legacy convenience wrapper (kept)
 ├─ GenerateConfigs.ps1          # LEGACY reference (kept)
@@ -323,6 +324,17 @@ Generated artifacts do **not** live under `scripts/`; they live next to each mod
 [Repository layout](#repository-layout). The release-only `manifestCatalog.json`
 is produced into the CI workspace and uploaded as a release asset (never
 committed).
+
+### CLI parsing & output
+
+The CLI entry (`index.ts`) is built on **commander**: each subcommand declares
+its own options (with a shared `withScope` helper for `--all`/`--changed`/
+`--staged`/`--base`/`--mods`/`--stage`), so `--help` is generated from the
+definitions (no drift), unknown flags error, and option values are validated.
+Terminal output uses **picocolors** via `lib/term.ts` (semantic `ok`/`warn`/
+`err`/`dim` + glyphs). picocolors auto-detects TTY / `NO_COLOR` / `FORCE_COLOR`,
+so commands are colored in a real terminal and on CI runners but degrade to
+plain text when piped (e.g. the non-interactive `pre-commit` hook).
 
 ### What counts as a mod (discovery & exclusions)
 

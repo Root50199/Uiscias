@@ -4,6 +4,7 @@ import { getRepoRoot } from '../lib/repo';
 import { discoverMods, packTargets } from '../lib/mods';
 import { computeDataHash } from '../lib/hash';
 import { readConfigJson, readBuildLock } from '../lib/config';
+import { ok, err, glyph } from '../lib/term';
 import { runGenerateConfigs } from './generateConfigs';
 
 /**
@@ -16,7 +17,8 @@ import { runGenerateConfigs } from './generateConfigs';
  */
 export async function runCheck(): Promise<void> {
   // 1. config.json freshness (also validates config.yaml + schema).
-  await runGenerateConfigs({ all: true, check: true });
+  // No scope flags = all mods (the default).
+  await runGenerateConfigs({ check: true });
 
   // 2. Pack drift: hashes must line up across data/ ↔ config.json ↔ build.lock.
   const repoRoot = getRepoRoot();
@@ -51,7 +53,9 @@ export async function runCheck(): Promise<void> {
     }
   }
 
-  console.log(`Pack drift: checked ${targets.length} mod(s), ${failures.length} problem(s).`);
-  for (const f of failures) console.error(`  ✗ ${f}`);
+  const problemText =
+    failures.length > 0 ? err(`${failures.length} problem(s)`) : ok('0 problems');
+  console.log(`Pack drift: checked ${targets.length} mod(s), ${problemText}.`);
+  for (const f of failures) console.error(`  ${glyph.bad} ${f}`);
   if (failures.length > 0) process.exitCode = 1;
 }

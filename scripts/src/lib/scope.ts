@@ -2,7 +2,6 @@ import { gitChangedPaths, modsForPaths } from './changed';
 import { type Mod } from './mods';
 
 export interface ScopeOptions {
-  all?: boolean;
   changed?: boolean;
   staged?: boolean;
   base?: string;
@@ -25,38 +24,4 @@ export function resolveTargetMods(repoRoot: string, mods: Mod[], opts: ScopeOpti
     return modsForPaths(paths, mods);
   }
   return mods;
-}
-
-/** Minimal flag/option parser for the tooling CLI. */
-export function parseScopeArgs(argv: string[]): ScopeOptions {
-  const opts: ScopeOptions = {};
-  for (let i = 0; i < argv.length; i++) {
-    const arg = argv[i];
-    switch (arg) {
-      case '--all':
-        opts.all = true;
-        break;
-      case '--changed':
-        opts.changed = true;
-        break;
-      case '--staged':
-        opts.staged = true;
-        break;
-      case '--stage':
-        opts.stage = true;
-        break;
-      case '--base':
-        opts.base = argv[++i];
-        break;
-      case '--mods':
-        opts.mods = (argv[++i] ?? '')
-          .split(',')
-          .map((s) => s.trim())
-          .filter(Boolean);
-        break;
-      default:
-        break;
-    }
-  }
-  return opts;
 }

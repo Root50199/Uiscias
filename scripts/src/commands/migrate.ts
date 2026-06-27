@@ -5,6 +5,7 @@ import { discoverMods, type Mod } from '../lib/mods';
 import { writeYamlFile } from '../lib/yaml';
 import { orderKeys } from '../lib/json';
 import { humanizeModId } from '../lib/humanize';
+import { ok, warn, glyph } from '../lib/term';
 import {
   CONFIG_YAML_KEY_ORDER,
   configYamlSchema,
@@ -132,10 +133,10 @@ export async function runMigrate(): Promise<void> {
     written++;
   }
 
-  console.log(`Wrote ${written} config.yaml file(s).`);
+  console.log(ok(`Wrote ${written} config.yaml file(s).`));
   if (warnings.length > 0) {
-    console.log(`\n${warnings.length} warning(s):`);
-    for (const w of warnings) console.log(`  ! ${w}`);
+    console.log(warn(`\n${warnings.length} warning(s):`));
+    for (const w of warnings) console.log(`  ${glyph.warn} ${w}`);
   }
 }
 

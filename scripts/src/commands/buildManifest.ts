@@ -4,6 +4,7 @@ import { getRepoRoot } from '../lib/repo';
 import { discoverMods, groupMods, packTargets, type Mod, type ModGroup } from '../lib/mods';
 import { readConfigJson, readBuildLock } from '../lib/config';
 import { writeJsonFile } from '../lib/json';
+import { ok, dim } from '../lib/term';
 import {
   manifestCatalogSchema,
   type ManifestCatalog,
@@ -91,7 +92,7 @@ export async function runBuildManifest(opts: BuildManifestOptions): Promise<void
 
   const variantCount = catalog.reduce((n, g) => n + g.variants.length, 0);
   console.log(
-    `Wrote ${path.relative(repoRoot, outPath)} — ${catalog.length} groups, ${variantCount} variants.`,
+    `${ok(`Wrote ${path.relative(repoRoot, outPath)}`)} ${dim(`— ${catalog.length} groups, ${variantCount} variants.`)}`,
   );
 
   if (opts.assets) {
@@ -106,6 +107,8 @@ export async function runBuildManifest(opts: BuildManifestOptions): Promise<void
       copied++;
     }
     fs.copyFileSync(outPath, path.join(assetsDir, path.basename(outPath)));
-    console.log(`Copied ${copied} .it + manifest into ${path.relative(repoRoot, assetsDir)}/.`);
+    console.log(
+      `${ok(`Copied ${copied} .it + manifest`)} ${dim(`into ${path.relative(repoRoot, assetsDir)}/.`)}`,
+    );
   }
 }

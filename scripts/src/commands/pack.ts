@@ -8,6 +8,7 @@ import { orderKeys, writeJsonFile } from '../lib/json';
 import { packDataFolder } from '../lib/packer';
 import { gitAddAll } from '../lib/git';
 import { readBuildLock } from '../lib/config';
+import { ok, err, dim, glyph } from '../lib/term';
 import { buildLockSchema, BUILD_LOCK_KEY_ORDER, type BuildLock } from '../schema';
 
 export interface PackOptions extends ScopeOptions {
@@ -89,11 +90,11 @@ export async function runPack(opts: PackOptions): Promise<void> {
   }
 
   console.log(
-    `Packed ${packed}, adopted ${adopted}, up to date ${skipped} (of ${targets.length} target(s)).`,
+    `${ok(`Packed ${packed}`)}, ${adopted > 0 ? ok(`adopted ${adopted}`) : dim('adopted 0')}, ${dim(`up to date ${skipped}`)} (of ${targets.length} target(s)).`,
   );
   if (errors.length > 0) {
-    console.error(`\n${errors.length} error(s):`);
-    for (const e of errors) console.error(`  ! ${e}`);
+    console.error(err(`\n${errors.length} error(s):`));
+    for (const e of errors) console.error(`  ${glyph.bad} ${e}`);
     process.exitCode = 1;
   }
 }
