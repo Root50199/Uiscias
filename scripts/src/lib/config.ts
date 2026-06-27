@@ -9,7 +9,9 @@ import {
   configYamlSchema,
   configJsonSchema,
   buildLockSchema,
+  catalogConfigSchema,
   type BuildLock,
+  type CatalogConfig,
   type ConfigJson,
   type ConfigYaml,
 } from '../schema';
@@ -40,6 +42,24 @@ export function loadConfigYaml(mod: Mod): ConfigYaml {
     throw new ConfigError(
       `${mod.relDir}: modId "${parsed.data.modId}" must equal folder name "${mod.id}"`,
     );
+  }
+
+  return parsed.data;
+}
+
+/** Load + validate the catalog-level `catalog.yaml` at the repo root. */
+export function readCatalogConfig(repoRoot: string): CatalogConfig {
+  const yamlPath = path.join(repoRoot, 'catalog.yaml');
+  if (!fs.existsSync(yamlPath)) {
+    throw new ConfigError(`missing catalog.yaml at repo root (${yamlPath})`);
+  }
+
+  const parsed = catalogConfigSchema.safeParse(readYamlFile(yamlPath));
+  if (!parsed.success) {
+    const issues = parsed.error.issues
+      .map((i) => `${i.path.join('.') || '(root)'}: ${i.message}`)
+      .join('; ');
+    throw new ConfigError(`invalid catalog.yaml — ${issues}`);
   }
 
   return parsed.data;

@@ -149,20 +149,31 @@ live release pending a real merge.**
 
 ### Phase 6 — Findias integration
 
-- [ ] Copy the manifest zod schema into Findias.
+- [ ] Copy the manifest zod schema into Findias (parse leniently: tolerate
+      unknown/new top-level `metadata` fields).
 - [ ] Implement `ManifestCatalogProvider` (read release `manifestCatalog.json`,
-      validate, flatten groups → `CatalogEntry[]`); switch startup wiring to it.
+      validate, read `metadata`, flatten `modList` groups → `CatalogEntry[]`);
+      switch startup wiring to it.
 - [ ] UI: variant "pick one" selector per group; cross-group `usedFiles`
-      conflict warnings; freshness badge from `updateType`.
+      conflict warnings; freshness badge from `updateType` and the catalog-wide
+      `metadata.supportedGameVersion` vs the running client.
+
+> Manifest shape: as of the metadata wrapper, `manifestCatalog.json` is
+> `{ metadata, modList }`. `metadata` carries `schemaVersion`,
+> `currentGameVersion`, `supportedGameVersion` (the latter two hand-edited in the
+> repo-root `catalog.yaml`), and a build-stamped `generatedAt`.
 
 _Exit:_ Findias lists mods from the manifest and prevents conflicting installs.
 
 ## Deferred / future work
 
-- **Client-version freshness:** port `verify-for-version` /
-  `VerifiedForGameVersion.json`, add `lastVerifiedGameVersion` to the manifest,
-  and have Findias flag mods not verified for the running client. (PowerShell
-  script + JSON are kept in-repo for reference.)
+- **Per-variant client-version freshness:** a catalog-wide signal already ships
+  (`metadata.supportedGameVersion` / `currentGameVersion` from `catalog.yaml`).
+  Still deferred is the finer-grained per-variant signal: port
+  `verify-for-version` / `VerifiedForGameVersion.json`, add
+  `lastVerifiedGameVersion` per variant, and have Findias flag mods not verified
+  for the running client. (PowerShell script + JSON are kept in-repo for
+  reference.)
 - **`ModDescription.md` formatting tooling:** these files are hand-edited; we may
   later add a linter/formatter for consistency.
 

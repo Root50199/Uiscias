@@ -44,7 +44,8 @@ For the phased build-out plan, see [`roadmap.md`](./roadmap.md).
 ## Repository layout
 
 Every mod is a folder inside the top-level **`mods/`** directory (the rest of the
-repo root holds tooling and config: `scripts/`, `docs/`, `package.json`, etc.).
+repo root holds tooling and config: `scripts/`, `docs/`, `package.json`,
+`catalog.yaml`, etc.).
 The location of `mods/` is defined in exactly one place — `MODS_DIR` /
 `getModsRoot` in `scripts/src/lib/repo.ts` — so it can be moved again by editing
 that constant alone. There are two mod shapes:
@@ -108,7 +109,8 @@ Findias keys on and the `<ModFileName>` segment of the `.it`). The parent's
 
 | Tier               | File                       | Authored by        | Committed          | Purpose                                                                                   |
 | ------------------ | -------------------------- | ------------------ | ------------------ | ----------------------------------------------------------------------------------------- |
-| Source             | `config.yaml`              | Human              | Yes                | The only hand-edited metadata.                                                            |
+| Source             | `config.yaml`              | Human              | Yes                | The only hand-edited per-mod metadata.                                                    |
+| Source             | `catalog.yaml` (repo root) | Human              | Yes                | Catalog-level metadata (game versions) folded into the manifest's `metadata` block.       |
 | Source             | `data/`                    | Human              | Yes                | Raw game files; the pack input.                                                           |
 | Generated (config) | `config.json`              | `generate-configs` | Yes                | Normalized metadata + `usedFiles` + `sourceHash`. The aggregation input for the manifest. |
 | Generated (binary) | `build/Uiscias<id>_<n>.it` | `pack`             | Yes (plain git)    | The packed mod. Latest version only.                                                      |
@@ -195,70 +197,86 @@ decide whether a repack + version bump is required.
 
 ### `manifestCatalog.json` (release asset)
 
-The manifest is a flat array of **groups**. Every entry is a group, so Findias
-has a single code path: a non-variant mod is simply a group with one variant.
+The manifest is an object with a `metadata` block and a `modList` of **groups**.
+Every entry in `modList` is a group, so Findias has a single code path: a
+non-variant mod is simply a group with one variant.
 
 ```json
-[
-  {
-    "groupId": "AchievmentUnhide",
-    "modName": "Achievment Unhide",
-    "findiasTags": ["UI", "QoL"],
-    "hasVariants": false,
-    "mutuallyExclusive": false,
-    "variants": [
-      {
-        "modId": "AchievmentUnhide",
-        "modName": "Achievment Unhide",
-        "fileName": "UisciasAchievmentUnhide_00002.it",
-        "version": 2,
-        "size": 20840,
-        "updateType": "volatile",
-        "usedFiles": ["data/db/AchievementTable.xml"],
-        "modAuthor": "Root50199",
-        "modAdditionalCredits": "None",
-        "recentUpdateNotes": "n/a"
-      }
-    ]
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "currentGameVersion": "1.2.4",
+    "supportedGameVersion": "1.2.3",
+    "generatedAt": "2026-06-27T07:45:00.000Z"
   },
-  {
-    "groupId": "BriHpBars",
-    "modName": "Bri Hp Bars",
-    "findiasTags": ["Combat", "UI", "QoL", "Bri Leith"],
-    "hasVariants": true,
-    "mutuallyExclusive": true,
-    "variants": [
-      {
-        "modId": "BriHpBars1And2",
-        "modName": "Bri Hp Bars 1 And 2",
-        "fileName": "UisciasBriHpBars1And2_00001.it",
-        "version": 1,
-        "size": 8624,
-        "updateType": "volatile",
-        "usedFiles": ["data/db/Race.xml"],
-        "modAuthor": "Root50199",
-        "modAdditionalCredits": "None",
-        "recentUpdateNotes": "n/a"
-      },
-      {
-        "modId": "BriHpBars1And3",
-        "modName": "Bri Hp Bars 1 And 3",
-        "fileName": "UisciasBriHpBars1And3_00001.it",
-        "version": 1,
-        "size": 8624,
-        "updateType": "volatile",
-        "usedFiles": ["data/db/Race.xml"],
-        "modAuthor": "Root50199",
-        "modAdditionalCredits": "None",
-        "recentUpdateNotes": "n/a"
-      }
-    ]
-  }
-]
+  "modList": [
+    {
+      "groupId": "AchievmentUnhide",
+      "modName": "Achievment Unhide",
+      "findiasTags": ["UI", "QoL"],
+      "hasVariants": false,
+      "mutuallyExclusive": false,
+      "variants": [
+        {
+          "modId": "AchievmentUnhide",
+          "modName": "Achievment Unhide",
+          "fileName": "UisciasAchievmentUnhide_00002.it",
+          "version": 2,
+          "size": 20840,
+          "updateType": "volatile",
+          "usedFiles": ["data/db/AchievementTable.xml"],
+          "modAuthor": "Root50199",
+          "modAdditionalCredits": "None",
+          "recentUpdateNotes": "n/a"
+        }
+      ]
+    },
+    {
+      "groupId": "BriHpBars",
+      "modName": "Bri Hp Bars",
+      "findiasTags": ["Combat", "UI", "QoL", "Bri Leith"],
+      "hasVariants": true,
+      "mutuallyExclusive": true,
+      "variants": [
+        {
+          "modId": "BriHpBars1And2",
+          "modName": "Bri Hp Bars 1 And 2",
+          "fileName": "UisciasBriHpBars1And2_00001.it",
+          "version": 1,
+          "size": 8624,
+          "updateType": "volatile",
+          "usedFiles": ["data/db/Race.xml"],
+          "modAuthor": "Root50199",
+          "modAdditionalCredits": "None",
+          "recentUpdateNotes": "n/a"
+        },
+        {
+          "modId": "BriHpBars1And3",
+          "modName": "Bri Hp Bars 1 And 3",
+          "fileName": "UisciasBriHpBars1And3_00001.it",
+          "version": 1,
+          "size": 8624,
+          "updateType": "volatile",
+          "usedFiles": ["data/db/Race.xml"],
+          "modAuthor": "Root50199",
+          "modAdditionalCredits": "None",
+          "recentUpdateNotes": "n/a"
+        }
+      ]
+    }
+  ]
+}
 ```
 
 Design notes:
 
+- The **`metadata`** block carries catalog-wide fields. `currentGameVersion`
+  and `supportedGameVersion` are hand-authored in the repo-root `catalog.yaml`
+  (see below); `schemaVersion` is a build-tooling constant
+  (`MANIFEST_SCHEMA_VERSION`) that lets a consumer detect an incompatible
+  format; `generatedAt` is stamped by `build-manifest` at release time. The
+  block is open to additional top-level fields later without disturbing
+  `modList`.
 - Each **variant** carries the real `modId`, `fileName`, and `version` so
   Findias can resolve and download the correct asset (this is the data its
   `CatalogEntry` needs). It is a bug to share one `modId` across variants.
@@ -267,11 +285,29 @@ Design notes:
   same `usedFiles`).
 - `usedFiles` enables **cross-mod conflict detection**: Findias warns when two
   selected mods from different groups modify the same file.
-- `updateType` is the **freshness** signal available now (static: how likely the
-  mod breaks on a game patch). A second, dynamic signal — "verified for the
-  current client version" — is **deferred future work** (see
-  [Deferred / future work](#deferred--future-work)). When added, the manifest
-  would gain a `lastVerifiedGameVersion` per variant.
+- `updateType` is the per-mod **freshness** signal (static: how likely the mod
+  breaks on a game patch). The `metadata` block adds a **catalog-wide** version
+  signal: `supportedGameVersion` (the client version the catalog is verified
+  against) vs. `currentGameVersion` (the latest known client version), which
+  Findias can compare to the running client. A finer-grained, **per-variant**
+  `lastVerifiedGameVersion` remains **deferred future work** (see
+  [Deferred / future work](#deferred--future-work)).
+
+### `catalog.yaml` (hand-edited, repo root)
+
+The catalog-level counterpart to each mod's `config.yaml`: the only hand-edited
+metadata that is not per-mod. It lives at the repository root and feeds the
+manifest's `metadata` block.
+
+```yaml
+currentGameVersion: '1.2.4' # latest known client version
+supportedGameVersion: '1.2.3' # client version the catalog is verified for
+```
+
+`build-manifest` reads + validates it (`catalogConfigSchema`), then emits these
+fields into `metadata` alongside the generated `schemaVersion` and
+`generatedAt`. It is **not** part of the per-mod drift check (`npm run check`),
+which only validates `config.json`/hashes.
 
 ## Tooling layout (where the build code lives)
 
@@ -571,12 +607,16 @@ Findias already anticipates this in its `architecture.md` as a swappable
 `ManifestCatalogProvider` — an **additive** module, no contract changes:
 
 1. Read the latest release's `manifestCatalog.json` asset; validate with the
-   copied zod schema.
-2. Flatten groups → normalized `CatalogEntry[]` (one per variant), preserving
-   `groupId` / `mutuallyExclusive` for the UI.
+   copied zod schema. The artifact is `{ metadata, modList }`, so Findias reads
+   `modList` for the groups and `metadata` for catalog-wide info. Its copy of
+   the schema should parse **leniently** (tolerate unknown/new top-level
+   `metadata` fields) so an older Findias can still read a newer manifest.
+2. Flatten `modList` groups → normalized `CatalogEntry[]` (one per variant),
+   preserving `groupId` / `mutuallyExclusive` for the UI.
 3. UI: variant "pick one" selector per group; cross-group `usedFiles` conflict
-   warnings; a freshness badge derived from `updateType` (plus the deferred
-   verified-version signal once it lands).
+   warnings; a freshness badge derived from `updateType` and the catalog-wide
+   `metadata.supportedGameVersion` vs the running client (plus the deferred
+   per-variant verified-version signal once it lands).
 
 ## Open items
 
@@ -600,10 +640,12 @@ Findias already anticipates this in its `architecture.md` as a swappable
 
 These are intentionally out of scope for the initial build-out:
 
-- **Client-version freshness.** The old `verify-for-version` script and
-  `VerifiedForGameVersion.json` (client version → verified mod ids) are **not**
-  ported yet. When revisited, the manifest gains a per-variant
-  `lastVerifiedGameVersion` and Findias compares it to the running client to
+- **Per-variant client-version freshness.** A catalog-wide signal already
+  ships: `metadata.supportedGameVersion` / `metadata.currentGameVersion` (from
+  `catalog.yaml`). The finer-grained, **per-variant** signal — the old
+  `verify-for-version` script and `VerifiedForGameVersion.json` (client version →
+  verified mod ids) — is **not** ported yet. When revisited, each variant gains
+  a `lastVerifiedGameVersion` and Findias compares it to the running client to
   flag out-of-date mods. The existing `VerifiedForGameVersion.json` file and the
   `VerifyForCurrentVersion.ps1` script remain in the repo for reference.
 - **`ModDescription.md` tooling.** These files are hand-edited for now; we may
