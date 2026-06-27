@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.14.0](https://github.com/Root50199/Uiscias/compare/v1.13.0...v1.14.0) (2026-06-27)
+
+
+### Mods added / updated
+
+* integrate Vitest for testing and add new test cases ([0b22c53](https://github.com/Root50199/Uiscias/commit/0b22c53ddb4abe799e8e2c05598af140832ea21c))
+* integrate Vitest for testing and add new test cases ([715957d](https://github.com/Root50199/Uiscias/commit/715957d5279ed086bcf7fbdcf1d8a75a654c49c9))
+
 ## [1.13.0](https://github.com/Root50199/Uiscias/compare/v1.12.0...v1.13.0) (2026-06-27)
 
 
