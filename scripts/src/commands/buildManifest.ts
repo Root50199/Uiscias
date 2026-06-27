@@ -2,11 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { getRepoRoot } from '../lib/repo';
 import { discoverMods, groupMods, packTargets, type Mod, type ModGroup } from '../lib/mods';
-import { readConfigJson, readBuildLock } from '../lib/config';
+import { readConfigJson, readBuildLock, readCatalogConfig } from '../lib/config';
 import { writeJsonFile } from '../lib/json';
 import { ok, dim } from '../lib/term';
 import {
   manifestCatalogSchema,
+  MANIFEST_SCHEMA_VERSION,
   type ManifestCatalog,
   type ManifestGroup,
   type ManifestVariant,
@@ -80,9 +81,19 @@ export async function runBuildManifest(opts: BuildManifestOptions): Promise<void
   const mods = discoverMods(repoRoot);
   const groups = groupMods(mods);
 
-  const catalog: ManifestCatalog = groups
-    .map(groupEntry)
-    .sort((a, b) => a.groupId.localeCompare(b.groupId));
+  const modList = groups.map(groupEntry).sort((a, b) => a.groupId.localeCompare(b.groupId));
+
+  // Catalog-level metadata: authored game versions + builder-stamped fields.
+  const catalogConfig = readCatalogConfig(repoRoot);
+  const catalog: ManifestCatalog = {
+    metadata: {
+      schemaVersion: MANIFEST_SCHEMA_VERSION,
+      currentGameVersion: catalogConfig.currentGameVersion,
+      supportedGameVersion: catalogConfig.supportedGameVersion,
+      generatedAt: new Date().toISOString(),
+    },
+    modList,
+  };
 
   // Validate before writing so a bad manifest never ships.
   manifestCatalogSchema.parse(catalog);
@@ -90,9 +101,9 @@ export async function runBuildManifest(opts: BuildManifestOptions): Promise<void
   const outPath = path.resolve(repoRoot, opts.out ?? 'manifestCatalog.json');
   await writeJsonFile(outPath, catalog);
 
-  const variantCount = catalog.reduce((n, g) => n + g.variants.length, 0);
+  const variantCount = modList.reduce((n, g) => n + g.variants.length, 0);
   console.log(
-    `${ok(`Wrote ${path.relative(repoRoot, outPath)}`)} ${dim(`— ${catalog.length} groups, ${variantCount} variants.`)}`,
+    `${ok(`Wrote ${path.relative(repoRoot, outPath)}`)} ${dim(`— ${modList.length} groups, ${variantCount} variants.`)}`,
   );
 
   if (opts.assets) {
