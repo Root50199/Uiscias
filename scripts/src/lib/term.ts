@@ -18,3 +18,39 @@ export const glyph = {
   warn: pc.yellow('!'),
   bad: pc.red('✗'),
 } as const;
+
+/**
+ * Small accumulator for the commands' "loop over mods, tally outcomes, then
+ * print a summary + any errors" shape. Holds named counts and an error list;
+ * each command still composes its own summary line (wording/colors stay exact).
+ */
+export class Tally {
+  private readonly counts = new Map<string, number>();
+  readonly errors: string[] = [];
+
+  /** Increment a named counter (created on first use). */
+  bump(key: string, by = 1): void {
+    this.counts.set(key, (this.counts.get(key) ?? 0) + by);
+  }
+
+  /** Current value of a named counter (0 if never bumped). */
+  get(key: string): number {
+    return this.counts.get(key) ?? 0;
+  }
+
+  /** Record an error message for the trailing error block. */
+  addError(message: string): void {
+    this.errors.push(message);
+  }
+
+  get hasErrors(): boolean {
+    return this.errors.length > 0;
+  }
+
+  /** Print the standard `N error(s):` block (no-op when there are none). */
+  printErrors(): void {
+    if (this.errors.length === 0) return;
+    console.error(err(`\n${this.errors.length} error(s):`));
+    for (const e of this.errors) console.error(`  ${glyph.bad} ${e}`);
+  }
+}

@@ -1,14 +1,14 @@
-import fs from 'node:fs';
 import path from 'node:path';
+import { globSync } from 'tinyglobby';
+import { fse, orderKeys, writeJsonFile } from '../lib/io';
 import { getRepoRoot } from '../lib/repo';
 import { discoverMods, packTargets, type Mod } from '../lib/mods';
 import { resolveTargetMods, type ScopeOptions } from '../lib/scope';
 import { computeDataHash } from '../lib/hash';
-import { orderKeys, writeJsonFile } from '../lib/json';
 import { packDataFolder } from '../lib/packer';
 import { gitAddAll } from '../lib/git';
 import { readBuildLock } from '../lib/config';
-import { ok, err, dim, glyph } from '../lib/term';
+import { ok, dim, Tally } from '../lib/term';
 import { buildLockSchema, BUILD_LOCK_KEY_ORDER, type BuildLock } from '../schema';
 
 export interface PackOptions extends ScopeOptions {
@@ -25,10 +25,8 @@ interface ExistingIt {
 }
 
 function listItFiles(buildDir: string, modId: string): ExistingIt[] {
-  if (!fs.existsSync(buildDir)) return [];
   const re = new RegExp(`^Uiscias${escapeRegExp(modId)}_(\\d{1,5})\\.it$`);
-  return fs
-    .readdirSync(buildDir)
+  return globSync('Uiscias*_*.it', { cwd: buildDir })
     .map((name) => {
       const m = re.exec(name);
       return m ? { name, version: Number(m[1]) } : undefined;
@@ -51,7 +49,7 @@ async function writeLock(buildDir: string, lock: BuildLock): Promise<void> {
 /** Delete every `.it` in buildDir except `keep`. */
 function pruneItFiles(buildDir: string, modId: string, keep: string): void {
   for (const it of listItFiles(buildDir, modId)) {
-    if (it.name !== keep) fs.rmSync(path.join(buildDir, it.name), { force: true });
+    if (it.name !== keep) fse.removeSync(path.join(buildDir, it.name));
   }
 }
 
@@ -66,22 +64,17 @@ export async function runPack(opts: PackOptions): Promise<void> {
   const mods = discoverMods(repoRoot);
   const targets = packTargets(resolveTargetMods(repoRoot, mods, opts));
 
-  let packed = 0;
-  let adopted = 0;
-  let skipped = 0;
-  const errors: string[] = [];
+  const tally = new Tally();
   const touchedBuildDirs: string[] = [];
 
   for (const mod of targets) {
     try {
       await packOne(repoRoot, mod, opts.force ?? false, (kind) => {
-        if (kind === 'packed') packed++;
-        else if (kind === 'adopted') adopted++;
-        else skipped++;
+        tally.bump(kind);
         if (kind !== 'skipped') touchedBuildDirs.push(path.join(mod.dir, 'build'));
       });
-    } catch (err) {
-      errors.push(`${mod.relDir}: ${err instanceof Error ? err.message : String(err)}`);
+    } catch (e) {
+      tally.addError(`${mod.relDir}: ${e instanceof Error ? e.message : String(e)}`);
     }
   }
 
@@ -89,14 +82,12 @@ export async function runPack(opts: PackOptions): Promise<void> {
     gitAddAll(repoRoot, touchedBuildDirs);
   }
 
+  const adopted = tally.get('adopted');
   console.log(
-    `${ok(`Packed ${packed}`)}, ${adopted > 0 ? ok(`adopted ${adopted}`) : dim('adopted 0')}, ${dim(`up to date ${skipped}`)} (of ${targets.length} target(s)).`,
+    `${ok(`Packed ${tally.get('packed')}`)}, ${adopted > 0 ? ok(`adopted ${adopted}`) : dim('adopted 0')}, ${dim(`up to date ${tally.get('skipped')}`)} (of ${targets.length} target(s)).`,
   );
-  if (errors.length > 0) {
-    console.error(err(`\n${errors.length} error(s):`));
-    for (const e of errors) console.error(`  ${glyph.bad} ${e}`);
-    process.exitCode = 1;
-  }
+  tally.printErrors();
+  if (tally.hasErrors) process.exitCode = 1;
 }
 
 type PackResult = 'packed' | 'adopted' | 'skipped';
@@ -114,7 +105,7 @@ async function packOne(
   const existing = listItFiles(buildDir, mod.id);
   const newest = existing.at(-1);
 
-  const lockFileExists = lock ? fs.existsSync(path.join(buildDir, lock.fileName)) : false;
+  const lockFileExists = lock ? fse.pathExistsSync(path.join(buildDir, lock.fileName)) : false;
   if (!force && lock && lock.builtFromHash === hash && lockFileExists) {
     report('skipped');
     return;

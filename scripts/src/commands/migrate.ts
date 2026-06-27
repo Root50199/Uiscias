@@ -1,15 +1,14 @@
-import fs from 'node:fs';
 import path from 'node:path';
+import { fse, readText, writeYamlFile, orderKeys } from '../lib/io';
 import { getRepoRoot } from '../lib/repo';
 import { discoverMods, type Mod } from '../lib/mods';
-import { writeYamlFile } from '../lib/yaml';
-import { orderKeys } from '../lib/json';
 import { humanizeModId } from '../lib/humanize';
-import { ok, warn, glyph } from '../lib/term';
+import { ok, warn, glyph, Tally } from '../lib/term';
 import {
   CONFIG_YAML_KEY_ORDER,
   configYamlSchema,
   FINDIAS_TAGS,
+  formatZodIssues,
   normalizeUpdateType,
   type ConfigYaml,
   type FindiasTag,
@@ -28,11 +27,10 @@ interface LegacyConfig {
 
 function readLegacy(dir: string): LegacyConfig | undefined {
   const p = path.join(dir, 'config.json');
-  if (!fs.existsSync(p)) return undefined;
+  if (!fse.pathExistsSync(p)) return undefined;
   try {
     // Legacy files were written by PowerShell with a UTF-8 BOM, which breaks JSON.parse.
-    const text = fs.readFileSync(p, 'utf8').replace(/^\uFEFF/, '');
-    return JSON.parse(text) as LegacyConfig;
+    return JSON.parse(readText(p)) as LegacyConfig;
   } catch (err) {
     console.warn(
       `  ! ${path.relative(process.cwd(), p)}: failed to read legacy config (${(err as Error).message})`,
@@ -59,9 +57,10 @@ function cleanTags(tags: string[] | undefined): FindiasTag[] {
 function readTagsMd(dir: string): string[] {
   for (const name of ['Tags.md', 'tags.md']) {
     const p = path.join(dir, name);
-    if (fs.existsSync(p)) {
-      const text = fs.readFileSync(p, 'utf8').replace(/^\uFEFF/, '');
-      return text.split(',').map((s) => s.trim());
+    if (fse.pathExistsSync(p)) {
+      return readText(p)
+        .split(',')
+        .map((s) => s.trim());
     }
   }
   return [];
@@ -89,7 +88,7 @@ export async function runMigrate(): Promise<void> {
   }
 
   const warnings: string[] = [];
-  let written = 0;
+  const tally = new Tally();
 
   for (const mod of mods) {
     const legacy = readLegacy(mod.dir);
@@ -120,9 +119,7 @@ export async function runMigrate(): Promise<void> {
 
     const parsed = configYamlSchema.safeParse(candidate);
     if (!parsed.success) {
-      warnings.push(
-        `${mod.relDir}: SKIPPED — ${parsed.error.issues.map((i) => i.message).join('; ')}`,
-      );
+      warnings.push(`${mod.relDir}: SKIPPED — ${formatZodIssues(parsed.error, { path: false })}`);
       continue;
     }
 
@@ -130,10 +127,10 @@ export async function runMigrate(): Promise<void> {
       path.join(mod.dir, 'config.yaml'),
       orderKeys(parsed.data, CONFIG_YAML_KEY_ORDER),
     );
-    written++;
+    tally.bump('written');
   }
 
-  console.log(ok(`Wrote ${written} config.yaml file(s).`));
+  console.log(ok(`Wrote ${tally.get('written')} config.yaml file(s).`));
   if (warnings.length > 0) {
     console.log(warn(`\n${warnings.length} warning(s):`));
     for (const w of warnings) console.log(`  ${glyph.warn} ${w}`);

@@ -1,10 +1,10 @@
-import fs from 'node:fs';
 import path from 'node:path';
+import { fse } from '../lib/io';
 import { getRepoRoot } from '../lib/repo';
 import { discoverMods, packTargets } from '../lib/mods';
 import { computeDataHash } from '../lib/hash';
 import { readConfigJson, readBuildLock } from '../lib/config';
-import { ok, err, glyph } from '../lib/term';
+import { ok, err, glyph, Tally } from '../lib/term';
 import { runGenerateConfigs } from './generateConfigs';
 
 /**
@@ -23,7 +23,7 @@ export async function runCheck(): Promise<void> {
   // 2. Pack drift: hashes must line up across data/ ↔ config.json ↔ build.lock.
   const repoRoot = getRepoRoot();
   const targets = packTargets(discoverMods(repoRoot));
-  const failures: string[] = [];
+  const tally = new Tally();
 
   for (const mod of targets) {
     const hash = computeDataHash(mod.dir, mod.dataDir!);
@@ -31,30 +31,30 @@ export async function runCheck(): Promise<void> {
     let sourceHash: string | undefined;
     try {
       sourceHash = readConfigJson(mod).sourceHash;
-    } catch (err) {
-      failures.push(`${mod.relDir}: unreadable config.json (${(err as Error).message})`);
+    } catch (e) {
+      tally.addError(`${mod.relDir}: unreadable config.json (${(e as Error).message})`);
       continue;
     }
     if (sourceHash !== hash) {
-      failures.push(`${mod.relDir}: config.json sourceHash stale (run generate-configs)`);
+      tally.addError(`${mod.relDir}: config.json sourceHash stale (run generate-configs)`);
     }
 
     const buildDir = path.join(mod.dir, 'build');
     const lock = readBuildLock(buildDir);
     if (!lock) {
-      failures.push(`${mod.relDir}: missing/invalid build.lock.json (run pack)`);
+      tally.addError(`${mod.relDir}: missing/invalid build.lock.json (run pack)`);
       continue;
     }
     if (lock.builtFromHash !== hash) {
-      failures.push(`${mod.relDir}: build.lock stale — data changed without a repack`);
+      tally.addError(`${mod.relDir}: build.lock stale — data changed without a repack`);
     }
-    if (!fs.existsSync(path.join(buildDir, lock.fileName))) {
-      failures.push(`${mod.relDir}: build.lock points to missing ${lock.fileName}`);
+    if (!fse.pathExistsSync(path.join(buildDir, lock.fileName))) {
+      tally.addError(`${mod.relDir}: build.lock points to missing ${lock.fileName}`);
     }
   }
 
-  const problemText = failures.length > 0 ? err(`${failures.length} problem(s)`) : ok('0 problems');
+  const problemText = tally.hasErrors ? err(`${tally.errors.length} problem(s)`) : ok('0 problems');
   console.log(`Pack drift: checked ${targets.length} mod(s), ${problemText}.`);
-  for (const f of failures) console.error(`  ${glyph.bad} ${f}`);
-  if (failures.length > 0) process.exitCode = 1;
+  for (const f of tally.errors) console.error(`  ${glyph.bad} ${f}`);
+  if (tally.hasErrors) process.exitCode = 1;
 }

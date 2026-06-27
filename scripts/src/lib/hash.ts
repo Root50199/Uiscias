@@ -1,19 +1,14 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import { globSync } from 'tinyglobby';
+import { relPosix } from './io';
 
 /** All files under `dir`, recursively, as absolute paths. */
 export function listFilesRecursive(dir: string): string[] {
-  const out: string[] = [];
-  const walk = (d: string) => {
-    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
-      const full = path.join(d, e.name);
-      if (e.isDirectory()) walk(full);
-      else if (e.isFile()) out.push(full);
-    }
-  };
-  if (fs.existsSync(dir)) walk(dir);
-  return out;
+  return globSync('**/*', { cwd: dir, onlyFiles: true, dot: true }).map((rel) =>
+    path.join(dir, rel),
+  );
 }
 
 /**
@@ -22,7 +17,7 @@ export function listFilesRecursive(dir: string): string[] {
  */
 export function scanUsedFiles(modDir: string, dataDir: string): string[] {
   return listFilesRecursive(dataDir)
-    .map((f) => path.relative(modDir, f).split(path.sep).join('/'))
+    .map((f) => relPosix(modDir, f))
     .sort((a, b) => a.localeCompare(b));
 }
 
@@ -50,10 +45,7 @@ function readForHash(full: string): Buffer {
 export function computeDataHash(modDir: string, dataDir: string): string {
   const hash = crypto.createHash('sha256');
   const files = listFilesRecursive(dataDir)
-    .map((full) => ({
-      rel: path.relative(modDir, full).split(path.sep).join('/'),
-      full,
-    }))
+    .map((full) => ({ rel: relPosix(modDir, full), full }))
     .sort((a, b) => a.rel.localeCompare(b.rel));
 
   for (const f of files) {

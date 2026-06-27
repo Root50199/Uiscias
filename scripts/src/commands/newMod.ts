@@ -1,11 +1,8 @@
-import fs from 'node:fs';
 import path from 'node:path';
 import readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
-import YAML from 'yaml';
-import prettier from 'prettier';
+import { fse, formatText, orderKeys, writeJsonFile, writeYamlFile, relPosix } from '../lib/io';
 import { getRepoRoot, getModsRoot } from '../lib/repo';
-import { orderKeys, writeJsonFile } from '../lib/json';
 import { humanizeModId } from '../lib/humanize';
 import { ok, err, dim } from '../lib/term';
 import { CONFIG_YAML_KEY_ORDER, FINDIAS_TAGS, type ConfigYaml } from '../schema';
@@ -55,7 +52,7 @@ class NewModError extends Error {}
 export async function runNewMod(opts: NewModOptions): Promise<void> {
   const repoRoot = getRepoRoot();
   const modsRoot = getModsRoot(repoRoot);
-  const exists = (id: string): boolean => fs.existsSync(path.join(modsRoot, id));
+  const exists = (id: string): boolean => fse.pathExistsSync(path.join(modsRoot, id));
 
   let modId = (opts.name ?? '').trim();
 
@@ -102,13 +99,13 @@ export async function runNewMod(opts: NewModOptions): Promise<void> {
   }
 
   const modDir = path.join(modsRoot, modId);
-  const relDir = path.relative(repoRoot, modDir).split(path.sep).join('/');
-  if (fs.existsSync(modDir)) {
+  const relDir = relPosix(repoRoot, modDir);
+  if (fse.pathExistsSync(modDir)) {
     throw new NewModError(`"${modId}" already exists at ${relDir}/ — refusing to overwrite.`);
   }
 
-  fs.mkdirSync(path.join(modDir, 'build'), { recursive: true });
-  fs.mkdirSync(path.join(modDir, 'data'), { recursive: true });
+  fse.ensureDirSync(path.join(modDir, 'build'));
+  fse.ensureDirSync(path.join(modDir, 'data'));
 
   // config.json: intentionally empty — `generate-configs` (or the pre-commit
   // hook) fills it in once the mod has real data + a finished config.yaml.
@@ -151,17 +148,14 @@ async function writeConfigYamlTemplate(filepath: string, modId: string): Promise
     CONFIG_YAML_KEY_ORDER,
   );
 
-  const formatted = await prettier.format(YAML.stringify(template), {
-    ...(await prettier.resolveConfig(filepath)),
-    parser: 'yaml',
-  });
-  fs.writeFileSync(filepath, formatted, 'utf8');
+  await writeYamlFile(filepath, template);
 }
 
 async function writeModDescription(filepath: string, modId: string): Promise<void> {
-  const formatted = await prettier.format(`# ${modId}\nDescription coming soon.\n`, {
-    ...(await prettier.resolveConfig(filepath)),
-    parser: 'markdown',
-  });
-  fs.writeFileSync(filepath, formatted, 'utf8');
+  const formatted = await formatText(
+    `# ${modId}\nDescription coming soon.\n`,
+    'markdown',
+    filepath,
+  );
+  await fse.outputFile(filepath, formatted, 'utf8');
 }

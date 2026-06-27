@@ -1,7 +1,5 @@
-import fs from 'node:fs';
 import path from 'node:path';
-import { readYamlFile } from './yaml';
-import { orderKeys, readJsonFile } from './json';
+import { fse, readYamlFile, orderKeys, readJsonFile } from './io';
 import { scanUsedFiles, computeDataHash } from './hash';
 import type { Mod } from './mods';
 import {
@@ -10,6 +8,7 @@ import {
   configJsonSchema,
   buildLockSchema,
   catalogConfigSchema,
+  parseOrThrow,
   type BuildLock,
   type CatalogConfig,
   type ConfigJson,
@@ -26,43 +25,37 @@ export class ConfigError extends Error {}
 /** Load + validate a mod's config.yaml, enforcing modId === folder name. */
 export function loadConfigYaml(mod: Mod): ConfigYaml {
   const yamlPath = path.join(mod.dir, 'config.yaml');
-  if (!fs.existsSync(yamlPath)) {
+  if (!fse.pathExistsSync(yamlPath)) {
     throw new ConfigError(`${mod.relDir}: missing config.yaml`);
   }
 
-  const parsed = configYamlSchema.safeParse(readYamlFile(yamlPath));
-  if (!parsed.success) {
-    const issues = parsed.error.issues
-      .map((i) => `${i.path.join('.') || '(root)'}: ${i.message}`)
-      .join('; ');
-    throw new ConfigError(`${mod.relDir}: invalid config.yaml — ${issues}`);
-  }
+  const data = parseOrThrow(
+    configYamlSchema,
+    readYamlFile(yamlPath),
+    (issues) => new ConfigError(`${mod.relDir}: invalid config.yaml — ${issues}`),
+  );
 
-  if (parsed.data.modId !== mod.id) {
+  if (data.modId !== mod.id) {
     throw new ConfigError(
-      `${mod.relDir}: modId "${parsed.data.modId}" must equal folder name "${mod.id}"`,
+      `${mod.relDir}: modId "${data.modId}" must equal folder name "${mod.id}"`,
     );
   }
 
-  return parsed.data;
+  return data;
 }
 
 /** Load + validate the catalog-level `catalog.yaml` at the repo root. */
 export function readCatalogConfig(repoRoot: string): CatalogConfig {
   const yamlPath = path.join(repoRoot, 'catalog.yaml');
-  if (!fs.existsSync(yamlPath)) {
+  if (!fse.pathExistsSync(yamlPath)) {
     throw new ConfigError(`missing catalog.yaml at repo root (${yamlPath})`);
   }
 
-  const parsed = catalogConfigSchema.safeParse(readYamlFile(yamlPath));
-  if (!parsed.success) {
-    const issues = parsed.error.issues
-      .map((i) => `${i.path.join('.') || '(root)'}: ${i.message}`)
-      .join('; ');
-    throw new ConfigError(`invalid catalog.yaml — ${issues}`);
-  }
-
-  return parsed.data;
+  return parseOrThrow(
+    catalogConfigSchema,
+    readYamlFile(yamlPath),
+    (issues) => new ConfigError(`invalid catalog.yaml — ${issues}`),
+  );
 }
 
 /** Build the generated config.json object for a mod (deterministic key order). */
@@ -90,7 +83,7 @@ export function readConfigJson(mod: Mod): ConfigJson {
 /** Read + validate a build/build.lock.json, if present. */
 export function readBuildLock(buildDir: string): BuildLock | undefined {
   const p = path.join(buildDir, 'build.lock.json');
-  if (!fs.existsSync(p)) return undefined;
+  if (!fse.pathExistsSync(p)) return undefined;
   const parsed = buildLockSchema.safeParse(readJsonFile(p));
   return parsed.success ? parsed.data : undefined;
 }
