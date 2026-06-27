@@ -1,5 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import readline from 'node:readline/promises';
+import { stdin as input, stdout as output } from 'node:process';
 import YAML from 'yaml';
 import prettier from 'prettier';
 import { getRepoRoot, getModsRoot } from '../lib/repo';
@@ -30,20 +32,43 @@ class NewModError extends Error {}
  * The name must be UpperCamelCase; anything else cancels with a clear message.
  */
 export async function runNewMod(opts: NewModOptions): Promise<void> {
-  const modId = (opts.name ?? '').trim();
+  let modId = (opts.name ?? '').trim();
 
+  // If no name was passed via CLI args, prompt the user interactively
   if (!modId) {
-    throw new NewModError(
-      'Missing mod name.\n  Usage: npm run new-mod <ModName>   (UpperCamelCase, e.g. SomeModName)',
-    );
-  }
-  if (!PASCAL_CASE.test(modId)) {
-    throw new NewModError(
-      `Invalid mod name "${modId}".\n` +
-        '  Mod names must be UpperCamelCase: start with a capital letter and contain\n' +
-        '  only letters and digits (no spaces, hyphens, or underscores).\n' +
-        `  e.g. "SomeModName"  (not "${modId}")`,
-    );
+    const rl = readline.createInterface({ input, output });
+
+    while (!modId) {
+      const answer = await rl.question('Enter mod name (UpperCamelCase, e.g. SomeModName): ');
+      const cleanAnswer = answer.trim();
+
+      if (!cleanAnswer) {
+        console.log('Error: Mod name cannot be empty.\n');
+        continue;
+      }
+
+      if (!PASCAL_CASE.test(cleanAnswer)) {
+        console.log(
+          `Error: Invalid mod name "${cleanAnswer}".\n` +
+            'Mod names must start with a capital letter and contain only letters and digits.\n',
+        );
+        continue;
+      }
+
+      modId = cleanAnswer;
+    }
+
+    rl.close();
+  } else {
+    // If a name WAS passed via CLI, validate it immediately as before
+    if (!PASCAL_CASE.test(modId)) {
+      throw new NewModError(
+        `Invalid mod name "${modId}".\n` +
+          '  Mod names must be UpperCamelCase: start with a capital letter and contain\n' +
+          '  only letters and digits (no spaces, hyphens, or underscores).\n' +
+          `  e.g. "SomeModName"  (not "${modId}")`,
+      );
+    }
   }
 
   const repoRoot = getRepoRoot();
