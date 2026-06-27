@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.0](https://github.com/Root50199/Uiscias/compare/v1.8.0...v1.9.0) (2026-06-27)
+
+
+### Mods added / updated
+
+* deleting old pack files ([5e92abd](https://github.com/Root50199/Uiscias/commit/5e92abdfe839a8a87e3499412f9530704cc9f809))
+* move all mod folders under a top-level mods/ directory ([0b4414f](https://github.com/Root50199/Uiscias/commit/0b4414f0f0f7e5127c3d192928acc07cfe65bf8f))
+
 ## [1.8.0](https://github.com/Root50199/Uiscias/compare/v1.7.0...v1.8.0) (2026-06-26)
 
 
