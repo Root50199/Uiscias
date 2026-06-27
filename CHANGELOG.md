@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/Root50199/Uiscias/compare/v1.9.0...v1.10.0) (2026-06-27)
+
+
+### Mods added / updated
+
+* enhance mod ID validation in newMod command ([2284068](https://github.com/Root50199/Uiscias/commit/228406832609f1c1d6b94d799bde49dd2aa9d778))
+
 ## [1.9.0](https://github.com/Root50199/Uiscias/compare/v1.8.0...v1.9.0) (2026-06-27)
 
 
