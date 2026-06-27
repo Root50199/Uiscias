@@ -25,6 +25,7 @@ schemas, and conventions referenced below.
 | `manifestCatalog.json` generation | At **release time** in CI, aggregated from committed `config.json`                            |
 | Commit hook scope                 | `pre-commit` = validate yaml + regenerate `config.json` + **pack changed mods** + prettier    |
 | Build script language             | **Node/TypeScript** (legacy PowerShell scripts kept as references)                            |
+| Mod location                      | All mods live under **`mods/`**; single source of truth `MODS_DIR`/`getModsRoot` in `repo.ts` |
 | Release tooling                   | Conventional Commits + **release-please**                                                     |
 | Version bump signal               | `sourceHash` of `data/` **only** (metadata edits don't repack), recorded in `build.lock.json` |
 | Release runner                    | **`ubuntu-latest`** (packing stays local; no `.exe` in CI)                                    |

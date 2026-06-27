@@ -43,12 +43,16 @@ For the phased build-out plan, see [`roadmap.md`](./roadmap.md).
 
 ## Repository layout
 
-Each mod is a top-level folder at the repo root. There are two shapes:
+Every mod is a folder inside the top-level **`mods/`** directory (the rest of the
+repo root holds tooling and config: `scripts/`, `docs/`, `package.json`, etc.).
+The location of `mods/` is defined in exactly one place — `MODS_DIR` /
+`getModsRoot` in `scripts/src/lib/repo.ts` — so it can be moved again by editing
+that constant alone. There are two mod shapes:
 
 ### Single mod (no variants)
 
 ```
-AchievmentUnhide/
+mods/AchievmentUnhide/
 ├─ config.yaml            # hand-edited source metadata
 ├─ config.json            # GENERATED, committed (metadata + usedFiles + sourceHash)
 ├─ ModDescription.md      # human description (+ images/)
@@ -68,7 +72,7 @@ are **mutually exclusive**: they modify the same files, so only one may be
 installed at a time.
 
 ```
-BriHpBars/                       # parent group folder (no data/)
+mods/BriHpBars/                  # parent group folder (no data/)
 ├─ config.yaml                   # group-level metadata (modName, tags, etc.)
 ├─ config.json                   # GENERATED group config (hasVariants: true)
 ├─ BriHpBars1And2/               # a variant
@@ -286,7 +290,7 @@ scripts/
 │  │  ├─ manifestCatalog.ts
 │  │  └─ index.ts               # barrel export
 │  ├─ lib/                      # shared helpers
-│  │  ├─ repo.ts                # repo root + NON_MOD_DIRS / EXCLUDED_MOD_IDS
+│  │  ├─ repo.ts                # repo root + MODS_DIR/getModsRoot + exclusions
 │  │  ├─ mods.ts                # discover mod/variant folders; group detection
 │  │  ├─ changed.ts             # git-diff → affected mod set (--changed)
 │  │  ├─ scope.ts               # --all/--changed/--mods/--staged/--stage parsing
@@ -322,15 +326,19 @@ committed).
 
 ### What counts as a mod (discovery & exclusions)
 
-Mod discovery (`lib/mods.ts`) treats every top-level folder as a mod unless it is
-excluded in `lib/repo.ts`:
+Mod discovery (`lib/mods.ts`) scans the `mods/` directory (resolved via
+`getModsRoot`) and treats every folder there as a mod unless it is excluded in
+`lib/repo.ts`:
 
-- **`NON_MOD_DIRS`** — infrastructure folders (`scripts`, `node_modules`, `docs`,
-  `images`). Dot-folders (`.github`, `.husky`, `.git`, …) are skipped by the
-  leading-dot rule.
+- **`NON_MOD_DIRS`** — non-mod folder names to skip if they ever appear under
+  `mods/` (defensive; e.g. `node_modules`). Dot-folders (`.github`, `.husky`,
+  `.git`, …) are skipped by the leading-dot rule.
 - **`EXCLUDED_MOD_IDS`** — mod-shaped folders to ignore anyway, currently
   `NewModTemplate` (scaffolding, never built or shipped). Add future templates or
   experimental folders here.
+
+Because discovery is confined to `mods/`, repo-root tooling folders (`scripts/`,
+`docs/`, config files) are never mistaken for mods.
 
 Excluded folders are skipped by `generate-configs`, `pack`, `check`, and
 `build-manifest`, so a template can keep example artifacts without entering the
