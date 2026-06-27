@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.11.0](https://github.com/Root50199/Uiscias/compare/v1.10.0...v1.11.0) (2026-06-27)
+
+
+### Mods added / updated
+
+* add catalog.yaml for game version management and update manifes… ([c6cc056](https://github.com/Root50199/Uiscias/commit/c6cc05669e75f4e87b8a8a50a698ec2a96ac914d))
+* add catalog.yaml for game version management and update manifest structure ([5ac9825](https://github.com/Root50199/Uiscias/commit/5ac98257a9e666c4941bfa6e9ebb4c10a642da49))
+
+
+### Fixes
+
+* standardize quotes in catalog.yaml for game version entries ([509110e](https://github.com/Root50199/Uiscias/commit/509110e2735cc60e489efc85f0d5e43a4f83d6a4))
+
 ## [1.10.0](https://github.com/Root50199/Uiscias/compare/v1.9.0...v1.10.0) (2026-06-27)
 
 
