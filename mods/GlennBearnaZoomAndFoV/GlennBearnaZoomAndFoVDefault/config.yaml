@@ -1,14 +1,10 @@
-modId: GleannBearnaZoomAndFoV
-modName: Gleann Bearna Zoom And Fo V
+modId: GlennBearnaZoomAndFoVDefault
+modName: Glenn Bearna Zoom And FoV Default
 modAuthor: Root50199
 modAdditionalCredits: None
-updateType: volatile
+updateType: stable
 recentUpdateNotes: n/a
 findiasTags:
   - Combat
-  - Fx
-  - Lag Helper
-  - Arcana
-  - QoL
   - Zoom
   - FoV
