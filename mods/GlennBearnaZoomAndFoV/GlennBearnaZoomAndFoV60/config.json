@@ -1,19 +1,18 @@
 {
-  "modId": "GleannBearnaZoomAndFoV",
-  "modName": "Gleann Bearna Zoom And Fo V",
+  "modId": "GlennBearnaZoomAndFoV60",
+  "modName": "Glenn Bearna Zoom FoV 60",
   "modAuthor": "Root50199",
   "modAdditionalCredits": "None",
-  "updateType": "volatile",
-  "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana", "QoL", "Zoom", "FoV"],
+  "updateType": "stable",
+  "findiasTags": ["Combat", "Zoom", "FoV"],
   "recentUpdateNotes": "n/a",
-  "isVariant": false,
+  "isVariant": true,
   "hasVariants": false,
   "usedFiles": [
     "data/world/Glenn_Bearna_boss_dungeon01_day/Glenn_Bearna_boss_dungeon01_day.rgn",
     "data/world/Glenn_Bearna_boss_dungeon01_night/Glenn_Bearna_boss_dungeon01_night.rgn",
     "data/world/Glenn_Bearna_dungeon_day/Glenn_Bearna_dungeon_day.rgn",
-    "data/world/Glenn_Bearna_dungeon01_night/Glenn_Bearna_dungeon01_night.rgn",
-    "data/world/Private_Island_152/Private_Island_152.rgn"
+    "data/world/Glenn_Bearna_dungeon01_night/Glenn_Bearna_dungeon01_night.rgn"
   ],
-  "sourceHash": "sha256-ed3cf4cbaa3bd0ace91b4f72b05bb42b467c5d67fb66e00bed5f4355bfcaef8a"
+  "sourceHash": "sha256-37f6e316db0aed22d4ffda50c42938b3ccb3400c4e443c0678989a218d1bc421"
 }
