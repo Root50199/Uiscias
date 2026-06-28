@@ -278,13 +278,15 @@ Design notes:
   block is open to additional top-level fields later without disturbing
   `modList`.
 - Each **variant** carries the real `modId`, `fileName`, and `version` so
-  Findias can resolve and download the correct asset (this is the data its
-  `CatalogEntry` needs). It is a bug to share one `modId` across variants.
+  Findias can resolve and download the correct asset (this maps to its
+  `CatalogVariant`). It is a bug to share one `modId` across variants.
 - `mutuallyExclusive: true` tells Findias to render a "pick one" selector for a
   variant group and prevent installing two variants at once (they touch the
-  same `usedFiles`).
-- `usedFiles` enables **cross-mod conflict detection**: Findias warns when two
-  selected mods from different groups modify the same file.
+  same `usedFiles`); Findias **auto-switches** — installing one removes the
+  previously-installed sibling.
+- `usedFiles` enables **cross-mod conflict detection**: Findias prevents two
+  **enabled** mods from different groups from modifying the same file, disabling
+  the conflicting action and naming the blocker.
 - `updateType` is the per-mod **freshness** signal (static: how likely the mod
   breaks on a game patch). The `metadata` block adds a **catalog-wide** version
   signal: `supportedGameVersion` (the client version the catalog is verified
@@ -603,20 +605,27 @@ UisciasModExampleBar_00001.it   # carried forward unchanged
 
 ## Findias integration (consumer side)
 
-Findias already anticipates this in its `architecture.md` as a swappable
-`ManifestCatalogProvider` — an **additive** module, no contract changes:
+Findias consumes this via its `ManifestCatalogProvider` (now **implemented**; see
+Findias `architecture.md`). The confirmed consumer contract:
 
 1. Read the latest release's `manifestCatalog.json` asset; validate with the
-   copied zod schema. The artifact is `{ metadata, modList }`, so Findias reads
-   `modList` for the groups and `metadata` for catalog-wide info. Its copy of
-   the schema should parse **leniently** (tolerate unknown/new top-level
-   `metadata` fields) so an older Findias can still read a newer manifest.
-2. Flatten `modList` groups → normalized `CatalogEntry[]` (one per variant),
-   preserving `groupId` / `mutuallyExclusive` for the UI.
-3. UI: variant "pick one" selector per group; cross-group `usedFiles` conflict
-   warnings; a freshness badge derived from `updateType` and the catalog-wide
-   `metadata.supportedGameVersion` vs the running client (plus the deferred
-   per-variant verified-version signal once it lands).
+   **copied** zod schema. The artifact is `{ metadata, modList }`, so Findias
+   reads `modList` for the groups and `metadata` for catalog-wide info. Findias's
+   copy parses **leniently** — `findiasTags` as `string[]` (open, not the closed
+   enum), `updateType` with a `volatile` fallback, and passthrough `metadata` — so
+   an older Findias can still read a newer manifest. A `MANIFEST_SCHEMA_VERSION`
+   guard rejects a manifest whose `metadata.schemaVersion` is too new.
+2. Findias keeps the **grouped** shape (`{ metadata, groups }`) end-to-end rather
+   than flattening — there is a single catalog source — preserving `groupId` /
+   `mutuallyExclusive` / `variants` directly for the UI. The `usedFiles` arrays
+   drive cross-mod conflict prevention.
+3. UI: variant "pick one" selector per group (auto-switch on install); cross-group
+   `usedFiles` conflict prevention that disables enabling actions and names the
+   blocking mod; a catalog-wide freshness banner from
+   `metadata.supportedGameVersion` vs `metadata.currentGameVersion`, with the
+   per-mod `updateType` (stable/volatile) indicator surfaced only while that banner
+   is active. (The deferred per-variant verified-version signal can refine this
+   later.) A persisted "include prereleases" toggle controls release selection.
 
 ## Open items
 
@@ -631,8 +640,9 @@ Findias already anticipates this in its `architecture.md` as a swappable
   `.release-please-manifest.json` baseline is `1.0.0`, so the first automated
   release bumps from there (e.g. `1.0.1`/`1.1.0`); to make the _first_ tag itself
   `1.0.0`, add a one-time `release-as: 1.0.0` (or lower the baseline).
-- **Phase 6 (Findias consumer) not started:** copy the schema into Findias and
-  implement `ManifestCatalogProvider` + variant/conflict UI.
+- **Phase 6 (Findias consumer) implemented:** the schema is copied into Findias
+  and `ManifestCatalogProvider` + the variant/conflict/freshness UI are built. The
+  one remaining step is exercising it against a real GitHub release.
 - Decide later whether to publish the shared schema as `@uiscias/schema` instead
   of copying it into both repos.
 
