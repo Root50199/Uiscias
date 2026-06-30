@@ -17,7 +17,7 @@ export interface GenerateConfigsOptions extends ScopeOptions {
  * their config.yaml + a scan of data/. Deterministic: unchanged input produces
  * byte-identical output, so re-running is a no-op.
  */
-export async function runGenerateConfigs(opts: GenerateConfigsOptions): Promise<void> {
+export const runGenerateConfigs = async (opts: GenerateConfigsOptions): Promise<void> => {
   const repoRoot = getRepoRoot();
   const mods = discoverMods(repoRoot);
   const targets = resolveTargetMods(repoRoot, mods, opts);
@@ -73,4 +73,4 @@ export async function runGenerateConfigs(opts: GenerateConfigsOptions): Promise<
   if (tally.hasErrors || (opts.check && stale.length > 0)) {
     process.exitCode = 1;
   }
-}
+};

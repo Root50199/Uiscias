@@ -14,7 +14,7 @@ export interface ScopeOptions {
  * Resolve which mods a command should operate on, from `--all` / `--changed`
  * (`--staged` / `--base`) / `--mods <csv>`. Defaults to all mods.
  */
-export function resolveTargetMods(repoRoot: string, mods: Mod[], opts: ScopeOptions): Mod[] {
+export const resolveTargetMods = (repoRoot: string, mods: Mod[], opts: ScopeOptions): Mod[] => {
   if (opts.mods && opts.mods.length > 0) {
     const wanted = new Set(opts.mods);
     return mods.filter((m) => wanted.has(m.id));
@@ -24,14 +24,14 @@ export function resolveTargetMods(repoRoot: string, mods: Mod[], opts: ScopeOpti
     return modsForPaths(paths, mods);
   }
   return mods;
-}
+};
 
 /**
  * Map changed paths to affected mods. Picks the most specific mod whose folder
  * contains the path; when a variant changes, its parent group is included too
  * (so the group config/manifest can be refreshed).
  */
-export function modsForPaths(paths: string[], mods: Mod[]): Mod[] {
+export const modsForPaths = (paths: string[], mods: Mod[]): Mod[] => {
   const byRelDirDesc = [...mods].sort((a, b) => b.relDir.length - a.relDir.length);
   const result = new Map<string, Mod>();
 
@@ -47,4 +47,4 @@ export function modsForPaths(paths: string[], mods: Mod[]): Mod[] {
   }
 
   return [...result.values()];
-}
+};

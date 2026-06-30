@@ -1,4 +1,5 @@
 import path from 'node:path';
+import { z } from 'zod';
 import { fse, readText, writeYamlFile, orderKeys } from '../lib/io';
 import { getRepoRoot } from '../lib/repo';
 import { discoverMods, type Mod } from '../lib/mods';
@@ -7,54 +8,60 @@ import { ok, warn, glyph, Tally } from '../lib/term';
 import {
   CONFIG_YAML_KEY_ORDER,
   configYamlSchema,
-  FINDIAS_TAGS,
+  findiasTagSchema,
   formatZodIssues,
   normalizeUpdateType,
   type ConfigYaml,
   type FindiasTag,
 } from '../schema';
 
-interface LegacyConfig {
-  modID?: string;
-  modId?: string;
-  modName?: string;
-  modAuthor?: string;
-  modAdditionalCredits?: string;
-  updateType?: string;
-  recentUpdateNotes?: string;
-  findiasTags?: string[];
-}
+const legacyConfigSchema = z
+  .object({
+    modID: z.string().optional(),
+    modId: z.string().optional(),
+    modName: z.string().optional(),
+    modAuthor: z.string().optional(),
+    modAdditionalCredits: z.string().optional(),
+    updateType: z.string().optional(),
+    recentUpdateNotes: z.string().optional(),
+    findiasTags: z.array(z.string()).optional(),
+  })
+  .passthrough();
 
-function readLegacy(dir: string): LegacyConfig | undefined {
+type LegacyConfig = z.infer<typeof legacyConfigSchema>;
+
+const readLegacy = (dir: string): LegacyConfig | undefined => {
   const p = path.join(dir, 'config.json');
   if (!fse.pathExistsSync(p)) return undefined;
   try {
     // Legacy files were written by PowerShell with a UTF-8 BOM, which breaks JSON.parse.
-    return JSON.parse(readText(p)) as LegacyConfig;
+    const parsed = legacyConfigSchema.safeParse(JSON.parse(readText(p)));
+    return parsed.success ? parsed.data : undefined;
   } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
     console.warn(
-      `  ! ${path.relative(process.cwd(), p)}: failed to read legacy config (${(err as Error).message})`,
+      `  ! ${path.relative(process.cwd(), p)}: failed to read legacy config (${message})`,
     );
     return undefined;
   }
-}
+};
 
-function cleanTags(tags: string[] | undefined): FindiasTag[] {
-  const valid = new Set<string>(FINDIAS_TAGS);
+const cleanTags = (tags: string[] | undefined): FindiasTag[] => {
   const seen = new Set<string>();
   const out: FindiasTag[] = [];
   for (const raw of tags ?? []) {
     const t = raw.trim();
-    if (valid.has(t) && !seen.has(t)) {
-      seen.add(t);
-      out.push(t as FindiasTag);
+    const parsed = findiasTagSchema.safeParse(t);
+    if (parsed.success && !seen.has(parsed.data)) {
+      seen.add(parsed.data);
+      out.push(parsed.data);
     }
   }
   return out;
-}
+};
 
 /** Read comma-separated tags from a legacy `Tags.md`/`tags.md`, if present. */
-function readTagsMd(dir: string): string[] {
+const readTagsMd = (dir: string): string[] => {
   for (const name of ['Tags.md', 'tags.md']) {
     const p = path.join(dir, name);
     if (fse.pathExistsSync(p)) {
@@ -64,12 +71,26 @@ function readTagsMd(dir: string): string[] {
     }
   }
   return [];
-}
+};
 
 /** Union of tags declared in a mod's legacy config.json and its Tags.md. */
-function collectTags(dir: string, legacy: LegacyConfig | undefined): FindiasTag[] {
-  return cleanTags([...(legacy?.findiasTags ?? []), ...readTagsMd(dir)]);
-}
+const collectTags = (dir: string, legacy: LegacyConfig | undefined): FindiasTag[] =>
+  cleanTags([...(legacy?.findiasTags ?? []), ...readTagsMd(dir)]);
+
+const resolveModName = (
+  mod: Mod,
+  legacy: LegacyConfig | undefined,
+  parentName: Map<string, string | undefined>,
+): string => {
+  if (mod.kind === 'variantParent') return humanizeModId(mod.id);
+  if (mod.kind === 'variant') {
+    const dupOfParent =
+      legacy?.modName && mod.groupId && legacy.modName === parentName.get(mod.groupId);
+    if (!legacy?.modName || dupOfParent) return humanizeModId(mod.id);
+    return legacy.modName;
+  }
+  return legacy?.modName?.trim() || humanizeModId(mod.id);
+};
 
 /**
  * One-time migration: produce a `config.yaml` for every mod/variant/parent from
@@ -77,7 +98,7 @@ function collectTags(dir: string, legacy: LegacyConfig | undefined): FindiasTag[
  * separately via `git mv`; run this AFTER the renames so ids match folders.
  * Does not touch `config.json` (Phase 2 `generate-configs` regenerates those).
  */
-export async function runMigrate(): Promise<void> {
+export const runMigrate = async (): Promise<void> => {
   const repoRoot = getRepoRoot();
   const mods = discoverMods(repoRoot);
 
@@ -135,19 +156,4 @@ export async function runMigrate(): Promise<void> {
     console.log(warn(`\n${warnings.length} warning(s):`));
     for (const w of warnings) console.log(`  ${glyph.warn} ${w}`);
   }
-}
-
-function resolveModName(
-  mod: Mod,
-  legacy: LegacyConfig | undefined,
-  parentName: Map<string, string | undefined>,
-): string {
-  if (mod.kind === 'variantParent') return humanizeModId(mod.id);
-  if (mod.kind === 'variant') {
-    const dupOfParent =
-      legacy?.modName && mod.groupId && legacy.modName === parentName.get(mod.groupId);
-    if (!legacy?.modName || dupOfParent) return humanizeModId(mod.id);
-    return legacy.modName;
-  }
-  return legacy?.modName?.trim() || humanizeModId(mod.id);
-}
+};

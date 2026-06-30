@@ -3,7 +3,7 @@ import { discoverMods, groupMods } from '../lib/mods';
 import { bold, dim } from '../lib/term';
 
 /** Print the discovered mod/group/variant structure (a Phase 0 sanity tool). */
-export function runList(): void {
+export const runList = (): void => {
   const repoRoot = getRepoRoot();
   const mods = discoverMods(repoRoot);
   const groups = groupMods(mods);
@@ -34,4 +34,4 @@ export function runList(): void {
       `\n${groups.length} groups — ${standalone} standalone, ${variantGroups} variant groups (${variants} variants).`,
     ),
   );
-}
+};

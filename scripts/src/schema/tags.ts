@@ -43,6 +43,5 @@ export const LEGACY_UPDATE_TYPE_MAP: Record<string, UpdateType> = {
   maintenancerequired: 'volatile',
 };
 
-export function normalizeUpdateType(raw: string): UpdateType | undefined {
-  return LEGACY_UPDATE_TYPE_MAP[raw.trim().toLowerCase()];
-}
+export const normalizeUpdateType = (raw: string): UpdateType | undefined =>
+  LEGACY_UPDATE_TYPE_MAP[raw.trim().toLowerCase()];

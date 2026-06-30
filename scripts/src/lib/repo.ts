@@ -6,7 +6,7 @@ import path from 'node:path';
  * tooling works regardless of the cwd a hook/CI invokes it from; falls back to
  * the current working directory outside a git checkout.
  */
-export function getRepoRoot(): string {
+export const getRepoRoot = (): string => {
   try {
     const out = execFileSync('git', ['rev-parse', '--show-toplevel'], {
       encoding: 'utf8',
@@ -16,7 +16,7 @@ export function getRepoRoot(): string {
     // not a git repo (or git unavailable) — fall back to cwd
   }
   return path.resolve(process.cwd());
-}
+};
 
 /**
  * The single place that defines **where mod folders live**. Every mod is a
@@ -27,9 +27,7 @@ export function getRepoRoot(): string {
 export const MODS_DIR = 'mods';
 
 /** Absolute path to the directory that contains every mod folder. */
-export function getModsRoot(repoRoot: string): string {
-  return path.join(repoRoot, MODS_DIR);
-}
+export const getModsRoot = (repoRoot: string): string => path.join(repoRoot, MODS_DIR);
 
 /**
  * Repo exclusions for mod discovery — the one place to add things the tooling

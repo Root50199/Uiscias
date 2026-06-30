@@ -4,7 +4,7 @@ import { resolveTargetMods, type ScopeOptions } from '../lib/scope';
 import { dim } from '../lib/term';
 
 /** Print the mods affected by the requested scope (a Phase 0 sanity tool). */
-export function runChanged(opts: ScopeOptions): void {
+export const runChanged = (opts: ScopeOptions): void => {
   const repoRoot = getRepoRoot();
   const mods = discoverMods(repoRoot);
   const targets = resolveTargetMods(repoRoot, mods, { ...opts, changed: true });
@@ -17,4 +17,4 @@ export function runChanged(opts: ScopeOptions): void {
     console.log(`${dim(m.kind.padEnd(14))} ${m.relDir}`);
   }
   console.log(dim(`\n${targets.length} affected mod(s).`));
-}
+};

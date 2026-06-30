@@ -24,7 +24,9 @@ interface ExistingIt {
   version: number;
 }
 
-function listItFiles(buildDir: string, modId: string): ExistingIt[] {
+const escapeRegExp = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const listItFiles = (buildDir: string, modId: string): ExistingIt[] => {
   const re = new RegExp(`^Uiscias${escapeRegExp(modId)}_(\\d{1,5})\\.it$`);
   return globSync('Uiscias*_*.it', { cwd: buildDir })
     .map((name) => {
@@ -33,25 +35,21 @@ function listItFiles(buildDir: string, modId: string): ExistingIt[] {
     })
     .filter((x): x is ExistingIt => x !== undefined)
     .sort((a, b) => a.version - b.version);
-}
+};
 
-function escapeRegExp(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-async function writeLock(buildDir: string, lock: BuildLock): Promise<void> {
+const writeLock = async (buildDir: string, lock: BuildLock): Promise<void> => {
   await writeJsonFile(
     path.join(buildDir, 'build.lock.json'),
-    orderKeys(buildLockSchema.parse(lock), BUILD_LOCK_KEY_ORDER),
+    buildLockSchema.parse(orderKeys(lock, BUILD_LOCK_KEY_ORDER)),
   );
-}
+};
 
 /** Delete every `.it` in buildDir except `keep`. */
-function pruneItFiles(buildDir: string, modId: string, keep: string): void {
+const pruneItFiles = (buildDir: string, modId: string, keep: string): void => {
   for (const it of listItFiles(buildDir, modId)) {
     if (it.name !== keep) fse.removeSync(path.join(buildDir, it.name));
   }
-}
+};
 
 /**
  * Pack target mods into their `build/` folder, bumping the version only when the
@@ -59,7 +57,7 @@ function pruneItFiles(buildDir: string, modId: string, keep: string): void {
  * the latest `.it` per mod. On first run for a mod that already has a committed
  * `.it` but no lock, the existing `.it` is *adopted* (lock written, no repack).
  */
-export async function runPack(opts: PackOptions): Promise<void> {
+export const runPack = async (opts: PackOptions): Promise<void> => {
   const repoRoot = getRepoRoot();
   const mods = discoverMods(repoRoot);
   const targets = packTargets(resolveTargetMods(repoRoot, mods, opts));
@@ -88,17 +86,20 @@ export async function runPack(opts: PackOptions): Promise<void> {
   );
   tally.printErrors();
   if (tally.hasErrors) process.exitCode = 1;
-}
+};
 
 type PackResult = 'packed' | 'adopted' | 'skipped';
 
-async function packOne(
+const packOne = async (
   repoRoot: string,
   mod: Mod,
   force: boolean,
   report: (kind: PackResult) => void,
-): Promise<void> {
-  const dataDir = mod.dataDir!;
+): Promise<void> => {
+  if (!mod.dataDir) {
+    throw new Error('missing data/');
+  }
+  const dataDir = mod.dataDir;
   const buildDir = path.join(mod.dir, 'build');
   const hash = computeDataHash(mod.dir, dataDir);
   const lock = readBuildLock(buildDir);
@@ -129,4 +130,4 @@ async function packOne(
   pruneItFiles(buildDir, mod.id, outName);
   await writeLock(buildDir, { version: nextVersion, fileName: outName, builtFromHash: hash });
   report('packed');
-}
+};
