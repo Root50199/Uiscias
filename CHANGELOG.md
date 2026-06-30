@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.16.0](https://github.com/Root50199/Uiscias/compare/v1.15.0...v1.16.0) (2026-06-30)
+
+
+### Mods added / updated
+
+* added a range indicator to pall ([f564f8b](https://github.com/Root50199/Uiscias/commit/f564f8ba8223801c4f19809a43f26fb14c408e76))
+* added a range indicator to pall ([0c39cff](https://github.com/Root50199/Uiscias/commit/0c39cff6cfbb25e6ff9002a00e3f0de5079dbe53))
+* added a range indicator to pall Merge pull request [#40](https://github.com/Root50199/Uiscias/issues/40) from Root50199/review2 ([f564f8b](https://github.com/Root50199/Uiscias/commit/f564f8ba8223801c4f19809a43f26fb14c408e76))
+
 ## [1.15.0](https://github.com/Root50199/Uiscias/compare/v1.14.0...v1.15.0) (2026-06-30)
 
 
