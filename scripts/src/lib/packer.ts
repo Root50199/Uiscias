@@ -7,13 +7,11 @@ import { fse } from './io';
 /** Encryption key salt mabi-pack2 uses for Uiscias packs. */
 const PACK_KEY = '})wWb4?-sVGHNoPKpc';
 
-export function packerExePath(repoRoot: string): string {
-  return path.join(repoRoot, 'scripts', 'Mabi-pack2', 'mabi-pack2.exe');
-}
+export const packerExePath = (repoRoot: string): string =>
+  path.join(repoRoot, 'scripts', 'Mabi-pack2', 'mabi-pack2.exe');
 
-export function packerAvailable(repoRoot: string): boolean {
-  return fse.pathExistsSync(packerExePath(repoRoot));
-}
+export const packerAvailable = (repoRoot: string): boolean =>
+  fse.pathExistsSync(packerExePath(repoRoot));
 
 /**
  * Pack a mod's `data/` into a single `.it` at `outItPath`. The pack input is a
@@ -26,7 +24,7 @@ export function packerAvailable(repoRoot: string): boolean {
  * therefore pack to a temp file that already carries the final basename and only
  * ever copy it to its destination under that same name. See `docs/packing.md`.
  */
-export function packDataFolder(repoRoot: string, dataDir: string, outItPath: string): void {
+export const packDataFolder = (repoRoot: string, dataDir: string, outItPath: string): void => {
   const exe = packerExePath(repoRoot);
   if (!fse.pathExistsSync(exe)) {
     throw new Error(`mabi-pack2.exe not found at ${exe}`);
@@ -53,4 +51,4 @@ export function packDataFolder(repoRoot: string, dataDir: string, outItPath: str
   } finally {
     fse.removeSync(tmp);
   }
-}
+};

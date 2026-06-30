@@ -1,16 +1,16 @@
 import { execFileSync } from 'node:child_process';
 
 /** `git add -- <paths>` (stages additions/modifications of specific files). */
-export function gitAdd(repoRoot: string, paths: string[]): void {
+export const gitAdd = (repoRoot: string, paths: string[]): void => {
   if (paths.length === 0) return;
   execFileSync('git', ['add', '--', ...paths], { cwd: repoRoot, stdio: 'pipe' });
-}
+};
 
 /** `git add -A -- <paths>` (also stages deletions, e.g. pruned old `.it`). */
-export function gitAddAll(repoRoot: string, paths: string[]): void {
+export const gitAddAll = (repoRoot: string, paths: string[]): void => {
   if (paths.length === 0) return;
   execFileSync('git', ['add', '-A', '--', ...paths], { cwd: repoRoot, stdio: 'pipe' });
-}
+};
 
 export interface ChangedOptions {
   /** Use the staged index (`git diff --cached`). For pre-commit hooks. */
@@ -20,7 +20,7 @@ export interface ChangedOptions {
 }
 
 /** Repo-relative paths (posix) that changed, per the requested git scope. */
-export function gitChangedPaths(repoRoot: string, opts: ChangedOptions): string[] {
+export const gitChangedPaths = (repoRoot: string, opts: ChangedOptions): string[] => {
   const args = ['diff', '--name-only'];
   if (opts.staged) {
     args.push('--cached');
@@ -35,4 +35,4 @@ export function gitChangedPaths(repoRoot: string, opts: ChangedOptions): string[
     .split('\n')
     .map((s) => s.trim().replace(/\\/g, '/'))
     .filter(Boolean);
-}
+};

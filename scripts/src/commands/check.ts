@@ -15,7 +15,7 @@ import { runGenerateConfigs } from './generateConfigs';
  *  - build.lock.json is missing, stale, or points to a missing .it.
  * Backstops `--no-verify` commits and hook misconfiguration.
  */
-export async function runCheck(): Promise<void> {
+export const runCheck = async (): Promise<void> => {
   // 1. config.json freshness (also validates config.yaml + schema).
   // No scope flags = all mods (the default).
   await runGenerateConfigs({ check: true });
@@ -26,13 +26,18 @@ export async function runCheck(): Promise<void> {
   const tally = new Tally();
 
   for (const mod of targets) {
-    const hash = computeDataHash(mod.dir, mod.dataDir!);
+    if (!mod.dataDir) {
+      tally.addError(`${mod.relDir}: missing data/ (cannot compute hash)`);
+      continue;
+    }
+    const hash = computeDataHash(mod.dir, mod.dataDir);
 
     let sourceHash: string | undefined;
     try {
       sourceHash = readConfigJson(mod).sourceHash;
     } catch (e) {
-      tally.addError(`${mod.relDir}: unreadable config.json (${(e as Error).message})`);
+      const message = e instanceof Error ? e.message : String(e);
+      tally.addError(`${mod.relDir}: unreadable config.json (${message})`);
       continue;
     }
     if (sourceHash !== hash) {
@@ -57,4 +62,4 @@ export async function runCheck(): Promise<void> {
   console.log(`Pack drift: checked ${targets.length} mod(s), ${problemText}.`);
   for (const f of tally.errors) console.error(`  ${glyph.bad} ${f}`);
   if (tally.hasErrors) process.exitCode = 1;
-}
+};

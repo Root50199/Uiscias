@@ -15,7 +15,7 @@ const PASCAL_CASE = /^[A-Z][A-Za-z0-9]*$/;
  * or `null` when the name is acceptable. Shared by the CLI-arg and interactive
  * paths so the rules and wording stay in sync.
  */
-export function validateModIdFormat(name: string): string | null {
+export const validateModIdFormat = (name: string): string | null => {
   if (!name) {
     return 'Mod name cannot be empty.';
   }
@@ -28,7 +28,7 @@ export function validateModIdFormat(name: string): string | null {
     );
   }
   return null;
-}
+};
 
 export interface NewModOptions {
   /** The requested mod id / folder name (raw, unvalidated). */
@@ -49,7 +49,7 @@ class NewModError extends Error {}
  *
  * The name must be UpperCamelCase; anything else cancels with a clear message.
  */
-export async function runNewMod(opts: NewModOptions): Promise<void> {
+export const runNewMod = async (opts: NewModOptions): Promise<void> => {
   const repoRoot = getRepoRoot();
   const modsRoot = getModsRoot(repoRoot);
   const exists = (id: string): boolean => fse.pathExistsSync(path.join(modsRoot, id));
@@ -127,14 +127,14 @@ export async function runNewMod(opts: NewModOptions): Promise<void> {
   console.log(
     dim('Note: git does not track empty folders — build/ and data/ appear once you add files.'),
   );
-}
+};
 
 /**
  * Emit a `config.yaml` pre-filled with every field and **all** allowed
  * `findiasTags` (sourced from the schema, so new tags appear here automatically)
  * for the author to trim down.
  */
-async function writeConfigYamlTemplate(filepath: string, modId: string): Promise<void> {
+const writeConfigYamlTemplate = async (filepath: string, modId: string): Promise<void> => {
   const template = orderKeys<ConfigYaml>(
     {
       modId,
@@ -149,13 +149,13 @@ async function writeConfigYamlTemplate(filepath: string, modId: string): Promise
   );
 
   await writeYamlFile(filepath, template);
-}
+};
 
-async function writeModDescription(filepath: string, modId: string): Promise<void> {
+const writeModDescription = async (filepath: string, modId: string): Promise<void> => {
   const formatted = await formatText(
     `# ${modId}\nDescription coming soon.\n`,
     'markdown',
     filepath,
   );
   await fse.outputFile(filepath, formatted, 'utf8');
-}
+};

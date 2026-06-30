@@ -20,7 +20,7 @@ export interface BuildManifestOptions {
 }
 
 /** One installable entry, assembled from a mod's config.json + build.lock + .it. */
-function variantEntry(mod: Mod): ManifestVariant {
+const variantEntry = (mod: Mod): ManifestVariant => {
   const cfg = readConfigJson(mod);
   const buildDir = path.join(mod.dir, 'build');
   const lock = readBuildLock(buildDir);
@@ -44,9 +44,9 @@ function variantEntry(mod: Mod): ManifestVariant {
     modAdditionalCredits: cfg.modAdditionalCredits,
     recentUpdateNotes: cfg.recentUpdateNotes,
   };
-}
+};
 
-function groupEntry(group: ModGroup): ManifestGroup {
+const groupEntry = (group: ModGroup): ManifestGroup => {
   if (group.hasVariants && group.parent) {
     const parent = readConfigJson(group.parent);
     return {
@@ -69,13 +69,13 @@ function groupEntry(group: ModGroup): ManifestGroup {
     mutuallyExclusive: false,
     variants: [variantEntry(mod)],
   };
-}
+};
 
 /**
  * Aggregate every mod's config.json + build artifacts into manifestCatalog.json,
  * grouping variants. This is a release-time artifact and is not committed.
  */
-export async function runBuildManifest(opts: BuildManifestOptions): Promise<void> {
+export const runBuildManifest = async (opts: BuildManifestOptions): Promise<void> => {
   const repoRoot = getRepoRoot();
   const mods = discoverMods(repoRoot);
   const groups = groupMods(mods);
@@ -121,4 +121,4 @@ export async function runBuildManifest(opts: BuildManifestOptions): Promise<void
       `${ok(`Copied ${copied} .it + manifest`)} ${dim(`into ${path.relative(repoRoot, assetsDir)}/.`)}`,
     );
   }
-}
+};

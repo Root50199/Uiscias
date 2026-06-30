@@ -4,9 +4,7 @@ import { getModsRoot, NON_MOD_DIRS, EXCLUDED_MOD_IDS } from './repo';
 import { fse, relPosix } from './io';
 
 /** Repo-relative posix path for a mod folder (e.g. `mods/BriHpBars`). */
-function relDirOf(repoRoot: string, dir: string): string {
-  return relPosix(repoRoot, dir);
-}
+const relDirOf = (repoRoot: string, dir: string): string => relPosix(repoRoot, dir);
 
 export type ModKind = 'standalone' | 'variantParent' | 'variant';
 
@@ -24,17 +22,14 @@ export interface Mod {
   dataDir?: string;
 }
 
-function hasDataDir(dir: string): boolean {
-  return fse.pathExistsSync(path.join(dir, 'data'));
-}
+const hasDataDir = (dir: string): boolean => fse.pathExistsSync(path.join(dir, 'data'));
 
-function childDirNames(dir: string): string[] {
+const childDirNames = (dir: string): string[] =>
   // tinyglobby marks directories with a trailing slash; strip it so names match
   // the raw folder name (used as the mod id).
-  return globSync('*', { cwd: dir, onlyDirectories: true })
+  globSync('*', { cwd: dir, onlyDirectories: true })
     .map((name) => name.replace(/\/$/, ''))
     .sort((a, b) => a.localeCompare(b));
-}
 
 /**
  * Discover every mod in the repo. Mods live under `<repoRoot>/mods/` (see
@@ -47,7 +42,7 @@ function childDirNames(dir: string): string[] {
  *   is a **variantParent**; each such child is a **variant**.
  * - Anything else is ignored.
  */
-export function discoverMods(repoRoot: string): Mod[] {
+export const discoverMods = (repoRoot: string): Mod[] => {
   const mods: Mod[] = [];
   const modsRoot = getModsRoot(repoRoot);
   if (!fse.pathExistsSync(modsRoot)) return mods;
@@ -87,16 +82,12 @@ export function discoverMods(repoRoot: string): Mod[] {
   }
 
   return mods;
-}
+};
 
 /** Mods that actually get packed (have a `data/`): standalone + variants. */
-export function packTargets(mods: Mod[]): Mod[] {
-  return mods.filter((m) => m.kind !== 'variantParent');
-}
+export const packTargets = (mods: Mod[]): Mod[] => mods.filter((m) => m.kind !== 'variantParent');
 
-export function findMod(mods: Mod[], id: string): Mod | undefined {
-  return mods.find((m) => m.id === id);
-}
+export const findMod = (mods: Mod[], id: string): Mod | undefined => mods.find((m) => m.id === id);
 
 export interface ModGroup {
   parent?: Mod; // variantParent, when the group has variants
@@ -106,7 +97,7 @@ export interface ModGroup {
 }
 
 /** Group mods for manifest emission: a standalone is its own group of one. */
-export function groupMods(mods: Mod[]): ModGroup[] {
+export const groupMods = (mods: Mod[]): ModGroup[] => {
   const groups: ModGroup[] = [];
   const variantsByParent = new Map<string, Mod[]>();
 
@@ -131,4 +122,4 @@ export function groupMods(mods: Mod[]): ModGroup[] {
   }
 
   return groups;
-}
+};

@@ -11,13 +11,15 @@ describe('orderKeys', () => {
   });
 
   it('drops keys that are not in the order list', () => {
-    const out = orderKeys({ a: 1, secret: 9 } as Record<string, number>, ['a']);
+    const value: Record<string, number> = { a: 1, secret: 9 };
+    const out = orderKeys(value, ['a']);
     expect(out).toEqual({ a: 1 });
     expect(Object.keys(out)).toEqual(['a']);
   });
 
   it('skips order keys absent from the value', () => {
-    const out = orderKeys({ a: 1 } as Record<string, number>, ['a', 'b']);
+    const value: Record<string, number> = { a: 1 };
+    const out = orderKeys(value, ['a', 'b']);
     expect(Object.keys(out)).toEqual(['a']);
   });
 });
