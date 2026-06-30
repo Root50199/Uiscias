@@ -29,19 +29,3 @@ export type FindiasTag = z.infer<typeof findiasTagSchema>;
 export const UPDATE_TYPES = ['stable', 'volatile'] as const;
 export const updateTypeSchema = z.enum(UPDATE_TYPES);
 export type UpdateType = z.infer<typeof updateTypeSchema>;
-
-/**
- * Maps legacy/aliased `updateType` strings (case-insensitive) onto the
- * canonical enum. Used only by the one-time migration; new `config.yaml` files
- * must already use a canonical value.
- */
-export const LEGACY_UPDATE_TYPE_MAP: Record<string, UpdateType> = {
-  stable: 'stable',
-  volatile: 'volatile',
-  evergreen: 'stable',
-  needsmaintenance: 'volatile',
-  maintenancerequired: 'volatile',
-};
-
-export const normalizeUpdateType = (raw: string): UpdateType | undefined =>
-  LEGACY_UPDATE_TYPE_MAP[raw.trim().toLowerCase()];

@@ -4,7 +4,6 @@ import { runChanged } from './commands/changed';
 import { runGenerateConfigs } from './commands/generateConfigs';
 import { runPack } from './commands/pack';
 import { runBuildManifest } from './commands/buildManifest';
-import { runMigrate } from './commands/migrate';
 import { runCheck } from './commands/check';
 import { runNewMod } from './commands/newMod';
 import { err } from './lib/term';
@@ -67,11 +66,6 @@ program
   .command('check')
   .description('CI drift check: configs + build locks vs. sources')
   .action(() => runCheck());
-
-program
-  .command('migrate')
-  .description('One-time: generate config.yaml from legacy config.json')
-  .action(() => runMigrate());
 
 program.parseAsync(process.argv).catch((e) => {
   console.error(err(e instanceof Error ? e.message : String(e)));

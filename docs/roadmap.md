@@ -32,7 +32,7 @@ schemas, and conventions referenced below.
 | Release runner                    | **`ubuntu-latest`** (packing stays local; no `.exe` in CI)                                    |
 | Schema sharing                    | **Copied** into Uiscias and Findias (package later)                                           |
 | Variant naming                    | Parent + variants share a prefix (e.g. `BriHpBars` / `BriHpBars1And2`)                        |
-| `updateType` enum                 | `stable` \| `volatile` (legacy values migrated)                                               |
+| `updateType` enum                 | `stable` \| `volatile`                                                                        |
 | Key casing                        | camelCase: `modId`, `usedFiles`                                                               |
 | `findiasTags`                     | **Optional** (defaults to `[]`); unknown tags still fail validation                           |
 | `ModDescription.md`               | Hand-edited (generation **dropped**)                                                          |
@@ -54,8 +54,7 @@ the Findias consumer can be exercised end-to-end against it.
 
 - [x] Define zod schemas: `configYaml`, `configJson`, `manifestCatalog`,
       `buildLock` (+ shared `tags`).
-- [x] Lock the allowed `findiasTags` set and the `updateType` enum; write the
-      legacy-value migration map.
+- [x] Lock the allowed `findiasTags` set and the `updateType` enum.
 - [x] Stand up the Node/TS tooling project under `scripts/` (TypeScript, the
       shared schema module, a small mod-discovery + git-diff helper).
 
@@ -65,15 +64,13 @@ list affected mod folders from a git ref. **Done** (typecheck passes;
 
 ### Phase 1 — Migrate inputs ✅
 
-- [x] Generate `config.yaml` for every existing mod from its current
-      `config.json` (50 files; `migrate` command).
-- [x] Fold `tags.md` / `Tags.md` into `findiasTags`; normalize tag casing;
-      remove the `tags.md` files (16 removed).
+- [x] Generate `config.yaml` for every existing mod (50 files).
+- [x] Fold standalone tag files into `findiasTags`; normalize tag casing.
 - [x] Rename mismatched variant folders to the shared-prefix convention
       (`HpBars` → `BriHpBars` + variants; `ExpandedAuctionHouse` variants →
       `ExpandedAuctionHouseHighRes` / `…LowRes`; including their committed `.it`).
-- [x] Normalize legacy keys (`usedfiles` → `usedFiles`, `modID` → `modId`) — done
-      when `generate-configs` rewrites each `config.json`.
+- [x] Standardize `config.json` keys on camelCase (`modId`, `usedFiles`) via
+      `generate-configs`.
 
 _Exit:_ every mod has a schema-valid `config.yaml`; folder names follow the
 variant convention. **Done.**

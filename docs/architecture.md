@@ -147,9 +147,7 @@ none). Allowed values: `Combat`, `QoL`, `UI`, `Bri Leith`, `Arcana`,
 `Lag Helper`, `Fx`, `Zoom`, `FoV`, `Visual Clarity`. Unknown tags fail
 validation.
 
-`updateType` is canonicalized to exactly `stable | volatile`. Legacy values
-(`evergreen`, `needsmaintenance`, `maintenanceRequired`) are migrated:
-`evergreen → stable`, the rest `→ volatile`.
+`updateType` must be exactly `stable` or `volatile`.
 
 ### `config.json` (generated, committed)
 
@@ -178,8 +176,6 @@ validation.
   (tags, credits) deliberately do **not** change it, so they never force a
   needless repack/version bump; they still update `config.json` and flow to the
   manifest. A variant-parent (no `data/`) hashes to the empty digest.
-- **Key normalization vs. today:** legacy files use `usedfiles` and `modID`;
-  the generator standardizes on camelCase `usedFiles` and `modId`.
 
 ### `build/build.lock.json` (generated)
 
@@ -321,7 +317,7 @@ deleted). The packer binary stays where it is today.
 scripts/
 ├─ src/                         # new Node/TS tooling
 │  ├─ schema/                   # zod schemas + z.infer types (copied to Findias)
-│  │  ├─ tags.ts                # findiasTags + updateType enums (+ legacy map)
+│  │  ├─ tags.ts                # findiasTags + updateType enums
 │  │  ├─ configYaml.ts
 │  │  ├─ configJson.ts
 │  │  ├─ buildLock.ts
@@ -342,7 +338,6 @@ scripts/
 │  ├─ commands/
 │  │  ├─ list.ts                # print discovered mod/group/variant tree
 │  │  ├─ changed.ts             # print mods affected by a git scope
-│  │  ├─ migrate.ts             # ONE-TIME: legacy config.json + Tags.md → config.yaml
 │  │  ├─ generateConfigs.ts
 │  │  ├─ pack.ts
 │  │  ├─ buildManifest.ts       # release aggregation → manifestCatalog.json (+ --assets)
@@ -413,10 +408,6 @@ needed:
 | `powershell-pack-mods`          | legacy `Packmods.ps1`                                 |
 | `powershell-generate-mod-desc`  | legacy `GenerateModDesc.ps1`                          |
 | `powershell-verify-for-version` | legacy `VerifyForCurrentVersion.ps1`                  |
-
-A one-time `migrate` subcommand also exists (it generated the initial
-`config.yaml` files from legacy `config.json` + `Tags.md`); it is not wired to an
-npm script because it should not be re-run.
 
 ## Build scripts
 
@@ -629,10 +620,6 @@ Findias `architecture.md`). The confirmed consumer contract:
 
 ## Open items
 
-- **Migration — done.** Every mod now has a schema-valid `config.yaml`;
-  `tags.md`/`Tags.md` folded into `findiasTags` and removed; variant folders
-  renamed to the shared-prefix convention; legacy `usedfiles`/`modID` keys
-  normalized to `usedFiles`/`modId`; each `build/` pruned to the latest `.it`.
 - **First live release not yet run.** The release workflow, `release-please`
   config, asset assembly, and drift check are in place but have only been
   verified locally — the end-to-end GitHub release + carry-forward will first
