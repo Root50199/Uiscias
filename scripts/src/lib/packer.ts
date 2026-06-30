@@ -7,11 +7,8 @@ import { fse } from './io';
 /** Encryption key salt mabi-pack2 uses for Uiscias packs. */
 const PACK_KEY = '})wWb4?-sVGHNoPKpc';
 
-export const packerExePath = (repoRoot: string): string =>
+const packerExePath = (repoRoot: string): string =>
   path.join(repoRoot, 'scripts', 'Mabi-pack2', 'mabi-pack2.exe');
-
-export const packerAvailable = (repoRoot: string): boolean =>
-  fse.pathExistsSync(packerExePath(repoRoot));
 
 /**
  * Pack a mod's `data/` into a single `.it` at `outItPath`. The pack input is a

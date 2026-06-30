@@ -24,7 +24,7 @@ schemas, and conventions referenced below.
 | `.it` storage                     | Commit **latest only** per mod as **plain git files** (no LFS); older versions in releases    |
 | `manifestCatalog.json` generation | At **release time** in CI, aggregated from committed `config.json`                            |
 | Commit hook scope                 | `pre-commit` = validate yaml + regenerate `config.json` + **pack changed mods** + prettier    |
-| Build script language             | **Node/TypeScript** (legacy PowerShell scripts kept as references)                            |
+| Build script language             | **Node/TypeScript**                                                                           |
 | CLI parsing & color               | **commander** (subcommands + generated help) + **picocolors** (TTY-aware color)               |
 | Mod location                      | All mods live under **`mods/`**; single source of truth `MODS_DIR`/`getModsRoot` in `repo.ts` |
 | Release tooling                   | Conventional Commits + **release-please**                                                     |
@@ -39,7 +39,7 @@ schemas, and conventions referenced below.
 | Release versioning                | `release-please` **`node`** type; version in `package.json`, baseline **`1.0.0`** (fresh)     |
 | Excluded folders                  | dot-folders + `NON_MOD_DIRS`; templates via `EXCLUDED_MOD_IDS` (`NewModTemplate`)             |
 | Line endings                      | `.gitattributes` (LF text, binary `.it`/assets); hashing normalizes CRLF→LF for parity        |
-| Client-version freshness          | **Deferred** (`verify-for-version` not ported; PS script + JSON kept for reference)           |
+| Client-version freshness          | **Deferred** (catalog-wide signal ships; per-variant `verify-for-version` not ported)         |
 
 ## Phases
 
@@ -109,10 +109,7 @@ repack verified; idempotent).
       prettier (`lint-staged`); fails on invalid yaml. (`--stage` does the
       `git add`.)
 - [x] Add npm scripts: `generate-configs`, `pack`, `build-manifest` (+ `check`,
-      `typecheck`, `mods`, `changed`).
-- [x] Retain legacy PowerShell scripts under `powershell-` prefixed npm scripts
-      (`powershell-generate-configs`, `powershell-pack-mods`,
-      `powershell-generate-mod-desc`, `powershell-verify-for-version`).
+      `typecheck`, `mods`, `changed`, `new-mod`).
 - [x] Add `.gitattributes` (LF text, binary `.it`/assets) for cross-platform
       consistency.
 
@@ -176,11 +173,9 @@ _Exit:_ Findias lists mods from the manifest and prevents conflicting installs.
 
 - **Per-variant client-version freshness:** a catalog-wide signal already ships
   (`metadata.supportedGameVersion` / `currentGameVersion` from `catalog.yaml`).
-  Still deferred is the finer-grained per-variant signal: port
-  `verify-for-version` / `VerifiedForGameVersion.json`, add
-  `lastVerifiedGameVersion` per variant, and have Findias flag mods not verified
-  for the running client. (PowerShell script + JSON are kept in-repo for
-  reference.)
+  Still deferred is the finer-grained per-variant signal: add
+  `lastVerifiedGameVersion` per variant and have Findias flag mods not verified
+  for the running client.
 - **`ModDescription.md` formatting tooling:** these files are hand-edited; we may
   later add a linter/formatter for consistency.
 

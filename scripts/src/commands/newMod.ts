@@ -15,7 +15,7 @@ const PASCAL_CASE = /^[A-Z][A-Za-z0-9]*$/;
  * or `null` when the name is acceptable. Shared by the CLI-arg and interactive
  * paths so the rules and wording stay in sync.
  */
-export const validateModIdFormat = (name: string): string | null => {
+const validateModIdFormat = (name: string): string | null => {
   if (!name) {
     return 'Mod name cannot be empty.';
   }
