@@ -20,3 +20,4 @@ See actual file for detailed changes.
 ![Big Blue Pall](images/BigBluePall.gif)
 ![BoP](images/BoP.gif)
 ![Pulse](images/Pulse.gif)
+![Pall Range](images/pallrange.png)

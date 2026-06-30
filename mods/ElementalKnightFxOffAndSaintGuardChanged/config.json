@@ -5,9 +5,12 @@
   "modAdditionalCredits": "None",
   "updateType": "stable",
   "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana", "Visual Clarity"],
-  "recentUpdateNotes": "n/a",
+  "recentUpdateNotes": "added an indicator for Pall's range",
   "isVariant": false,
   "hasVariants": false,
-  "usedFiles": ["data/gfx/fx/effect/Multiclass_fx.xml"],
-  "sourceHash": "sha256-774e630cb60dacc8acaa611eaebf16720e31b09246a196e8a2d22427578be126"
+  "usedFiles": [
+    "data/gfx/fx/effect/Multiclass_fx.xml",
+    "data/material/fx/effect/effect_Late_add_line_37.dds"
+  ],
+  "sourceHash": "sha256-c06760c88f8f521460ad60f885aa6512ab63abd424799ebe6b886e6b33919c71"
 }
