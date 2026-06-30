@@ -8,18 +8,45 @@ A collection of `.it` mods for Mabinogi (North America). These mods are intended
 
 Releases contain packed `.it` files ready for use. Place them in `Mabinogi\appdata\package` to install; delete to uninstall.
 
-Source files for building your own `.it` packages live in each mod folder at the repository root.
+Source files for building your own `.it` packages live under `mods/` in this repo.
 
 ## Repository layout
 
-Each mod is a top-level folder:
+Mod sources sit in the top-level `mods/` folder. Each mod is a subfolder there.
+
+### Single mod
 
 ```
-{ModName}/
-  config.json   # mod metadata (see below)
-  README.md     # mod-specific description and notes
-  data/         # game files
+mods/{ModName}/
+  config.yaml   # hand-edited metadata (source of truth)
+  config.json   # generated metadata + file hashes (committed)
+  README.md     # description and notes (renders on GitHub)
   images/       # optional screenshots and examples
+  data/         # game files (pack input)
+  build/
+    Uiscias{ModName}_00001.it   # generated, committed (latest version only)
+    build.lock.json             # generated version lock
+```
+
+### Mod with variants
+
+Some mods ship multiple mutually exclusive options (e.g. different resolutions).
+The parent folder holds group metadata; each variant is a self-contained subfolder
+with its own `data/`, `config.yaml`, `config.json`, `README.md`, and `build/`.
+
+```
+mods/{GroupName}/
+  config.yaml
+  config.json
+  README.md
+  {GroupName}VariantA/
+    config.yaml
+    config.json
+    README.md
+    data/
+    build/
+  {GroupName}VariantB/
+    ...
 ```
 
 ### Update types

@@ -56,7 +56,7 @@ that constant alone. There are two mod shapes:
 mods/AchievmentUnhide/
 ├─ config.yaml            # hand-edited source metadata
 ├─ config.json            # GENERATED, committed (metadata + usedFiles + sourceHash)
-├─ ModDescription.md      # human description (+ images/)
+├─ README.md              # human description (+ images/)
 ├─ images/                # optional screenshots/gifs
 ├─ data/                  # raw game files this mod modifies (the pack input)
 └─ build/
@@ -437,7 +437,7 @@ by scope:
 > versions are retained by **release history** (each release is an immutable
 > snapshot), which satisfies the retention goal without binary churn in git.
 
-> `ModDescription.md` is **hand-edited**, not generated (there is no reliable
+> `README.md` is **hand-edited**, not generated (there is no reliable
 > source to generate it from). Light formatting/consistency tooling for these
 > files is a possible future item — see
 > [Deferred / future work](#deferred--future-work).
@@ -628,6 +628,6 @@ These are intentionally out of scope for the initial build-out:
   `catalog.yaml`). The finer-grained, **per-variant** signal is **not** ported
   yet. When revisited, each variant gains a `lastVerifiedGameVersion` and Findias
   compares it to the running client to flag out-of-date mods.
-- **`ModDescription.md` tooling.** These files are hand-edited for now; we may
+- **`README.md` tooling.** These files are hand-edited for now; we may
   later add tooling to enforce consistent formatting across them.
 - **Publishing a shared schema package** (`@uiscias/schema`) instead of copying.

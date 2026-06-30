@@ -10,7 +10,7 @@ schemas, and conventions referenced below.
 ## Guiding principles
 
 - One hand-edited source file per mod (`config.yaml`); everything else is
-  generated. (`ModDescription.md` is also hand-edited.)
+  generated. (`README.md` is also hand-edited.)
 - Idempotent + incremental: no-op runs produce no diff; changes rebuild only the
   affected mods.
 - Commits auto-generate configs **and** pack changed mods, scoped to what
@@ -35,7 +35,7 @@ schemas, and conventions referenced below.
 | `updateType` enum                 | `stable` \| `volatile`                                                                        |
 | Key casing                        | camelCase: `modId`, `usedFiles`                                                               |
 | `findiasTags`                     | **Optional** (defaults to `[]`); unknown tags still fail validation                           |
-| `ModDescription.md`               | Hand-edited (generation **dropped**)                                                          |
+| `README.md`                       | Hand-edited (generation **dropped**)                                                          |
 | Release versioning                | `release-please` **`node`** type; version in `package.json`, baseline **`1.0.0`** (fresh)     |
 | Excluded folders                  | dot-folders + `NON_MOD_DIRS`; templates via `EXCLUDED_MOD_IDS` (`NewModTemplate`)             |
 | Line endings                      | `.gitattributes` (LF text, binary `.it`/assets); hashing normalizes CRLF→LF for parity        |
@@ -176,7 +176,7 @@ _Exit:_ Findias lists mods from the manifest and prevents conflicting installs.
   Still deferred is the finer-grained per-variant signal: add
   `lastVerifiedGameVersion` per variant and have Findias flag mods not verified
   for the running client.
-- **`ModDescription.md` formatting tooling:** these files are hand-edited; we may
+- **`README.md` formatting tooling:** these files are hand-edited; we may
   later add a linter/formatter for consistency.
 
 ## Out of scope (for now)

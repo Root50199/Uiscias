@@ -45,7 +45,7 @@ class NewModError extends Error {}
  *   ├─ data/               (empty)
  *   ├─ config.json         ({})
  *   ├─ config.yaml         (all fields + every allowed tag, for trimming)
- *   └─ ModDescription.md   (title + placeholder)
+ *   └─ README.md           (title + placeholder)
  *
  * The name must be UpperCamelCase; anything else cancels with a clear message.
  */
@@ -112,14 +112,14 @@ export const runNewMod = async (opts: NewModOptions): Promise<void> => {
   await writeJsonFile(path.join(modDir, 'config.json'), {});
 
   await writeConfigYamlTemplate(path.join(modDir, 'config.yaml'), modId);
-  await writeModDescription(path.join(modDir, 'ModDescription.md'), modId);
+  await writeReadme(path.join(modDir, 'README.md'), modId);
 
   console.log(ok(`Created mod scaffold: ${relDir}/`));
   console.log(dim('  build/              (empty)'));
   console.log(dim('  data/               (empty)'));
   console.log(dim('  config.json         ({})'));
   console.log(dim('  config.yaml         (edit values; trim findiasTags)'));
-  console.log(dim('  ModDescription.md   (placeholder)'));
+  console.log(dim('  README.md           (placeholder)'));
   console.log(
     '\nNext: drop your game files in data/, finish config.yaml, then commit\n' +
       '(the pre-commit hook generates config.json and packs the .it).',
@@ -151,7 +151,7 @@ const writeConfigYamlTemplate = async (filepath: string, modId: string): Promise
   await writeYamlFile(filepath, template);
 };
 
-const writeModDescription = async (filepath: string, modId: string): Promise<void> => {
+const writeReadme = async (filepath: string, modId: string): Promise<void> => {
   const formatted = await formatText(
     `# ${modId}\nDescription coming soon.\n`,
     'markdown',
