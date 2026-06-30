@@ -15,11 +15,6 @@ import {
   type ConfigYaml,
 } from '../schema';
 
-export interface LoadedConfig {
-  mod: Mod;
-  yaml: ConfigYaml;
-}
-
 export class ConfigError extends Error {}
 
 /** Load + validate a mod's config.yaml, enforcing modId === folder name. */

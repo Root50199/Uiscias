@@ -24,7 +24,7 @@ schemas, and conventions referenced below.
 | `.it` storage                     | Commit **latest only** per mod as **plain git files** (no LFS); older versions in releases    |
 | `manifestCatalog.json` generation | At **release time** in CI, aggregated from committed `config.json`                            |
 | Commit hook scope                 | `pre-commit` = validate yaml + regenerate `config.json` + **pack changed mods** + prettier    |
-| Build script language             | **Node/TypeScript** (legacy PowerShell scripts kept as references)                            |
+| Build script language             | **Node/TypeScript**                                                                           |
 | CLI parsing & color               | **commander** (subcommands + generated help) + **picocolors** (TTY-aware color)               |
 | Mod location                      | All mods live under **`mods/`**; single source of truth `MODS_DIR`/`getModsRoot` in `repo.ts` |
 | Release tooling                   | Conventional Commits + **release-please**                                                     |
@@ -32,14 +32,14 @@ schemas, and conventions referenced below.
 | Release runner                    | **`ubuntu-latest`** (packing stays local; no `.exe` in CI)                                    |
 | Schema sharing                    | **Copied** into Uiscias and Findias (package later)                                           |
 | Variant naming                    | Parent + variants share a prefix (e.g. `BriHpBars` / `BriHpBars1And2`)                        |
-| `updateType` enum                 | `stable` \| `volatile` (legacy values migrated)                                               |
+| `updateType` enum                 | `stable` \| `volatile`                                                                        |
 | Key casing                        | camelCase: `modId`, `usedFiles`                                                               |
 | `findiasTags`                     | **Optional** (defaults to `[]`); unknown tags still fail validation                           |
 | `ModDescription.md`               | Hand-edited (generation **dropped**)                                                          |
 | Release versioning                | `release-please` **`node`** type; version in `package.json`, baseline **`1.0.0`** (fresh)     |
 | Excluded folders                  | dot-folders + `NON_MOD_DIRS`; templates via `EXCLUDED_MOD_IDS` (`NewModTemplate`)             |
 | Line endings                      | `.gitattributes` (LF text, binary `.it`/assets); hashing normalizes CRLF→LF for parity        |
-| Client-version freshness          | **Deferred** (`verify-for-version` not ported; PS script + JSON kept for reference)           |
+| Client-version freshness          | **Deferred** (catalog-wide signal ships; per-variant `verify-for-version` not ported)         |
 
 ## Phases
 
@@ -54,8 +54,7 @@ the Findias consumer can be exercised end-to-end against it.
 
 - [x] Define zod schemas: `configYaml`, `configJson`, `manifestCatalog`,
       `buildLock` (+ shared `tags`).
-- [x] Lock the allowed `findiasTags` set and the `updateType` enum; write the
-      legacy-value migration map.
+- [x] Lock the allowed `findiasTags` set and the `updateType` enum.
 - [x] Stand up the Node/TS tooling project under `scripts/` (TypeScript, the
       shared schema module, a small mod-discovery + git-diff helper).
 
@@ -65,15 +64,13 @@ list affected mod folders from a git ref. **Done** (typecheck passes;
 
 ### Phase 1 — Migrate inputs ✅
 
-- [x] Generate `config.yaml` for every existing mod from its current
-      `config.json` (50 files; `migrate` command).
-- [x] Fold `tags.md` / `Tags.md` into `findiasTags`; normalize tag casing;
-      remove the `tags.md` files (16 removed).
+- [x] Generate `config.yaml` for every existing mod (50 files).
+- [x] Fold standalone tag files into `findiasTags`; normalize tag casing.
 - [x] Rename mismatched variant folders to the shared-prefix convention
       (`HpBars` → `BriHpBars` + variants; `ExpandedAuctionHouse` variants →
       `ExpandedAuctionHouseHighRes` / `…LowRes`; including their committed `.it`).
-- [x] Normalize legacy keys (`usedfiles` → `usedFiles`, `modID` → `modId`) — done
-      when `generate-configs` rewrites each `config.json`.
+- [x] Standardize `config.json` keys on camelCase (`modId`, `usedFiles`) via
+      `generate-configs`.
 
 _Exit:_ every mod has a schema-valid `config.yaml`; folder names follow the
 variant convention. **Done.**
@@ -112,10 +109,7 @@ repack verified; idempotent).
       prettier (`lint-staged`); fails on invalid yaml. (`--stage` does the
       `git add`.)
 - [x] Add npm scripts: `generate-configs`, `pack`, `build-manifest` (+ `check`,
-      `typecheck`, `mods`, `changed`).
-- [x] Retain legacy PowerShell scripts under `powershell-` prefixed npm scripts
-      (`powershell-generate-configs`, `powershell-pack-mods`,
-      `powershell-generate-mod-desc`, `powershell-verify-for-version`).
+      `typecheck`, `mods`, `changed`, `new-mod`).
 - [x] Add `.gitattributes` (LF text, binary `.it`/assets) for cross-platform
       consistency.
 
@@ -179,11 +173,9 @@ _Exit:_ Findias lists mods from the manifest and prevents conflicting installs.
 
 - **Per-variant client-version freshness:** a catalog-wide signal already ships
   (`metadata.supportedGameVersion` / `currentGameVersion` from `catalog.yaml`).
-  Still deferred is the finer-grained per-variant signal: port
-  `verify-for-version` / `VerifiedForGameVersion.json`, add
-  `lastVerifiedGameVersion` per variant, and have Findias flag mods not verified
-  for the running client. (PowerShell script + JSON are kept in-repo for
-  reference.)
+  Still deferred is the finer-grained per-variant signal: add
+  `lastVerifiedGameVersion` per variant and have Findias flag mods not verified
+  for the running client.
 - **`ModDescription.md` formatting tooling:** these files are hand-edited; we may
   later add a linter/formatter for consistency.
 

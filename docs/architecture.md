@@ -147,9 +147,7 @@ none). Allowed values: `Combat`, `QoL`, `UI`, `Bri Leith`, `Arcana`,
 `Lag Helper`, `Fx`, `Zoom`, `FoV`, `Visual Clarity`. Unknown tags fail
 validation.
 
-`updateType` is canonicalized to exactly `stable | volatile`. Legacy values
-(`evergreen`, `needsmaintenance`, `maintenanceRequired`) are migrated:
-`evergreen → stable`, the rest `→ volatile`.
+`updateType` must be exactly `stable` or `volatile`.
 
 ### `config.json` (generated, committed)
 
@@ -178,8 +176,6 @@ validation.
   (tags, credits) deliberately do **not** change it, so they never force a
   needless repack/version bump; they still update `config.json` and flow to the
   manifest. A variant-parent (no `data/`) hashes to the empty digest.
-- **Key normalization vs. today:** legacy files use `usedfiles` and `modID`;
-  the generator standardizes on camelCase `usedFiles` and `modId`.
 
 ### `build/build.lock.json` (generated)
 
@@ -313,15 +309,14 @@ which only validates `config.json`/hashes.
 
 ## Tooling layout (where the build code lives)
 
-The new build tooling is **Node/TypeScript** and lives under `scripts/`,
-alongside the existing PowerShell scripts (which are **kept as references**, not
-deleted). The packer binary stays where it is today.
+The build tooling is **Node/TypeScript** and lives under `scripts/`. The packer
+binary stays where it is today; `pack.bat` is a legacy manual-pack reference only.
 
 ```
 scripts/
-├─ src/                         # new Node/TS tooling
+├─ src/                         # Node/TS tooling
 │  ├─ schema/                   # zod schemas + z.infer types (copied to Findias)
-│  │  ├─ tags.ts                # findiasTags + updateType enums (+ legacy map)
+│  │  ├─ tags.ts                # findiasTags + updateType enums
 │  │  ├─ configYaml.ts
 │  │  ├─ configJson.ts
 │  │  ├─ buildLock.ts
@@ -330,31 +325,25 @@ scripts/
 │  ├─ lib/                      # shared helpers
 │  │  ├─ repo.ts                # repo root + MODS_DIR/getModsRoot + exclusions
 │  │  ├─ mods.ts                # discover mod/variant folders; group detection
-│  │  ├─ changed.ts             # git-diff → affected mod set (--changed)
 │  │  ├─ scope.ts               # --all/--changed/--mods/--staged/--stage parsing
 │  │  ├─ hash.ts                # sourceHash over data/ (CRLF→LF normalized)
-│  │  ├─ json.ts                # deterministic, Prettier-stable JSON I/O (BOM-safe)
-│  │  ├─ yaml.ts                # YAML I/O (BOM-safe)
-│  │  ├─ git.ts                 # git add helpers (for --stage)
-│  │  ├─ config.ts             # load yaml / build + read config.json + build.lock
+│  │  ├─ io.ts                  # BOM-safe text/JSON/YAML I/O + Prettier formatting
+│  │  ├─ git.ts                 # git diff + git add helpers (for --stage)
+│  │  ├─ config.ts              # load yaml / build + read config.json + build.lock
 │  │  ├─ humanize.ts            # camelCase modId → display name
-│  │  └─ packer.ts              # mabi-pack2.exe wrapper
+│  │  ├─ packer.ts              # mabi-pack2.exe wrapper
+│  │  └─ term.ts                # picocolors semantic color helpers
 │  ├─ commands/
 │  │  ├─ list.ts                # print discovered mod/group/variant tree
 │  │  ├─ changed.ts             # print mods affected by a git scope
-│  │  ├─ migrate.ts             # ONE-TIME: legacy config.json + Tags.md → config.yaml
+│  │  ├─ newMod.ts              # scaffold a new mod folder
 │  │  ├─ generateConfigs.ts
 │  │  ├─ pack.ts
 │  │  ├─ buildManifest.ts       # release aggregation → manifestCatalog.json (+ --assets)
 │  │  └─ check.ts               # CI drift check (hash-only, no packing)
-│  ├─ lib/term.ts               # picocolors semantic color helpers
 │  └─ index.ts                  # CLI entry (commander: subcommands + scope flags)
-├─ Mabi-pack2/                  # mabi-pack2.exe (unchanged)
-├─ pack.bat                     # legacy convenience wrapper (kept)
-├─ GenerateConfigs.ps1          # LEGACY reference (kept)
-├─ Packmods.ps1                 # LEGACY reference (kept)
-├─ GenerateModDesc.ps1          # LEGACY reference (kept)
-└─ VerifyForCurrentVersion.ps1  # LEGACY reference (kept; functionality deferred)
+├─ Mabi-pack2/                  # mabi-pack2.exe
+└─ pack.bat                     # legacy manual-pack reference (not wired to npm)
 ```
 
 Generated artifacts do **not** live under `scripts/`; they live next to each mod
@@ -396,33 +385,21 @@ drift check or any release.
 
 ### npm scripts
 
-The new Node commands take the canonical names; the legacy PowerShell scripts
-are retained under a `powershell-` prefix so they can still be run if ever
-needed:
-
-| Script                          | Runs                                                  |
-| ------------------------------- | ----------------------------------------------------- |
-| `generate-configs`              | new Node generator (`--all`/`--changed`/`--mods`)     |
-| `pack`                          | new Node packer                                       |
-| `build-manifest`                | new Node manifest aggregator (used by CI; `--assets`) |
-| `check`                         | CI drift check (hash-only; no packing)                |
-| `mods`                          | list discovered mods/groups/variants                  |
-| `changed`                       | list mods affected by a git scope                     |
-| `typecheck`                     | `tsc --noEmit` over the tooling                       |
-| `powershell-generate-configs`   | legacy `GenerateConfigs.ps1`                          |
-| `powershell-pack-mods`          | legacy `Packmods.ps1`                                 |
-| `powershell-generate-mod-desc`  | legacy `GenerateModDesc.ps1`                          |
-| `powershell-verify-for-version` | legacy `VerifyForCurrentVersion.ps1`                  |
-
-A one-time `migrate` subcommand also exists (it generated the initial
-`config.yaml` files from legacy `config.json` + `Tags.md`); it is not wired to an
-npm script because it should not be re-run.
+| Script             | Runs                                                    |
+| ------------------ | ------------------------------------------------------- |
+| `generate-configs` | regenerate `config.json` (`--all`/`--changed`/`--mods`) |
+| `pack`             | pack changed mods into `build/`                         |
+| `build-manifest`   | manifest aggregator (used by CI; `--assets`)            |
+| `check`            | CI drift check (hash-only; no packing)                  |
+| `new-mod`          | scaffold a new mod folder                               |
+| `mods`             | list discovered mods/groups/variants                    |
+| `changed`          | list mods affected by a git scope                       |
+| `typecheck`        | `tsc --noEmit` over the tooling                         |
 
 ## Build scripts
 
-The active maintainer scripts are **Node/TypeScript** (the legacy interactive
-PowerShell + WinForms scripts cannot run unattended in hooks/CI, so they are
-retained only as references). They are non-interactive and selectable by scope:
+The maintainer scripts are **Node/TypeScript**, non-interactive, and selectable
+by scope:
 `--all`, `--changed` (diff vs. a git ref), or `--mods <id,id,...>`.
 
 ### `generate-configs`
@@ -629,10 +606,6 @@ Findias `architecture.md`). The confirmed consumer contract:
 
 ## Open items
 
-- **Migration — done.** Every mod now has a schema-valid `config.yaml`;
-  `tags.md`/`Tags.md` folded into `findiasTags` and removed; variant folders
-  renamed to the shared-prefix convention; legacy `usedfiles`/`modID` keys
-  normalized to `usedFiles`/`modId`; each `build/` pruned to the latest `.it`.
 - **First live release not yet run.** The release workflow, `release-please`
   config, asset assembly, and drift check are in place but have only been
   verified locally — the end-to-end GitHub release + carry-forward will first
@@ -652,12 +625,9 @@ These are intentionally out of scope for the initial build-out:
 
 - **Per-variant client-version freshness.** A catalog-wide signal already
   ships: `metadata.supportedGameVersion` / `metadata.currentGameVersion` (from
-  `catalog.yaml`). The finer-grained, **per-variant** signal — the old
-  `verify-for-version` script and `VerifiedForGameVersion.json` (client version →
-  verified mod ids) — is **not** ported yet. When revisited, each variant gains
-  a `lastVerifiedGameVersion` and Findias compares it to the running client to
-  flag out-of-date mods. The existing `VerifiedForGameVersion.json` file and the
-  `VerifyForCurrentVersion.ps1` script remain in the repo for reference.
+  `catalog.yaml`). The finer-grained, **per-variant** signal is **not** ported
+  yet. When revisited, each variant gains a `lastVerifiedGameVersion` and Findias
+  compares it to the running client to flag out-of-date mods.
 - **`ModDescription.md` tooling.** These files are hand-edited for now; we may
   later add tooling to enforce consistent formatting across them.
 - **Publishing a shared schema package** (`@uiscias/schema`) instead of copying.
