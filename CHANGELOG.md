@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.0](https://github.com/Root50199/Uiscias/compare/v1.14.0...v1.15.0) (2026-06-30)
+
+
+### Mods added / updated
+
+* adding duplicate achievement unhide mod for testing purposes ([9359784](https://github.com/Root50199/Uiscias/commit/935978404ac22e2b14bd85c89126a2ac6322fae0))
+
 ## [1.14.0](https://github.com/Root50199/Uiscias/compare/v1.13.0...v1.14.0) (2026-06-27)
 
 
