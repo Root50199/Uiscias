@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.0](https://github.com/Root50199/Uiscias/compare/v1.17.0...v1.18.0) (2026-07-01)
+
+
+### Mods added / updated
+
+* re-adding conflicting mod test for prerelease tests ([8ccc1d3](https://github.com/Root50199/Uiscias/commit/8ccc1d3d9953399e7647a8fbc3d23cb446ba7565))
+
 ## [1.17.0](https://github.com/Root50199/Uiscias/compare/v1.16.0...v1.17.0) (2026-07-01)
 
 
