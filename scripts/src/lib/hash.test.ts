@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { computeDataHash, listFilesRecursive, scanUsedFiles } from './hash';
+import { computeDataHash, listFilesRecursive, scanImages, scanUsedFiles } from './hash';
 
 /** Create `<modDir>/data/<rel>` (with parent dirs) and return the mod dir. */
 async function makeMod(
@@ -70,5 +70,22 @@ describe('hash', () => {
     expect(listFilesRecursive(m.dataDir).sort()).toEqual(
       [join(m.dataDir, 'a.xml'), join(m.dataDir, 'nested', 'b.xml')].sort(),
     );
+  });
+
+  describe('scanImages', () => {
+    it('returns [] when there is no images/ folder', async () => {
+      const m = await makeMod(root, { 'a.xml': '1' });
+      expect(scanImages(m.modDir)).toEqual([]);
+    });
+
+    it('returns sorted, images/-relative names for supported extensions only', async () => {
+      const m = await makeMod(root, { 'a.xml': '1' });
+      const imagesDir = join(m.modDir, 'images');
+      await fs.mkdir(imagesDir, { recursive: true });
+      await fs.writeFile(join(imagesDir, 'b.png'), 'x');
+      await fs.writeFile(join(imagesDir, 'a.gif'), 'x');
+      await fs.writeFile(join(imagesDir, 'notes.txt'), 'x');
+      expect(scanImages(m.modDir)).toEqual(['a.gif', 'b.png']);
+    });
   });
 });

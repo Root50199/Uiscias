@@ -17,6 +17,10 @@ export const manifestVariantSchema = z
     modAuthor: z.string().min(1),
     modAdditionalCredits: z.string().min(1),
     recentUpdateNotes: z.string().min(1),
+    // Optional docs: the README.md text (verbatim) and fully-qualified,
+    // release-pinned raw.githubusercontent.com URLs for the mod's images.
+    readme: z.string().min(1).optional(),
+    images: z.array(z.string().url()).optional(),
   })
   .strict();
 
@@ -33,6 +37,9 @@ export const manifestGroupSchema = z
     hasVariants: z.boolean(),
     mutuallyExclusive: z.boolean(),
     variants: z.array(manifestVariantSchema).min(1),
+    // Optional group-level docs (a variant may override these with its own).
+    readme: z.string().min(1).optional(),
+    images: z.array(z.string().url()).optional(),
   })
   .strict();
 

@@ -1,6 +1,6 @@
 import path from 'node:path';
-import { fse, readYamlFile, orderKeys, readJsonFile } from './io';
-import { scanUsedFiles, computeDataHash } from './hash';
+import { fse, readText, readYamlFile, orderKeys, readJsonFile } from './io';
+import { scanUsedFiles, scanImages, computeDataHash } from './hash';
 import type { Mod } from './mods';
 import {
   CONFIG_JSON_KEY_ORDER,
@@ -53,10 +53,20 @@ export const readCatalogConfig = (repoRoot: string): CatalogConfig => {
   );
 };
 
+/** Read a mod's README.md verbatim, or `undefined` when it has none. */
+const readReadme = (mod: Mod): string | undefined => {
+  const readmePath = path.join(mod.dir, 'README.md');
+  if (!fse.pathExistsSync(readmePath)) return undefined;
+  const text = readText(readmePath).trim();
+  return text.length > 0 ? text : undefined;
+};
+
 /** Build the generated config.json object for a mod (deterministic key order). */
 export const buildConfigJson = (mod: Mod): ConfigJson => {
   const yaml = loadConfigYaml(mod);
   const dataDir = mod.dataDir ?? path.join(mod.dir, 'data');
+  const readme = readReadme(mod);
+  const images = scanImages(mod.dir);
 
   const config: ConfigJson = {
     ...yaml,
@@ -64,6 +74,9 @@ export const buildConfigJson = (mod: Mod): ConfigJson => {
     hasVariants: mod.kind === 'variantParent',
     usedFiles: mod.dataDir ? scanUsedFiles(mod.dir, mod.dataDir) : [],
     sourceHash: computeDataHash(mod.dir, dataDir),
+    // Omit when absent so docs-less mods regenerate byte-identically.
+    ...(readme ? { readme } : {}),
+    ...(images.length > 0 ? { images } : {}),
   };
 
   // Validate the generated shape, then enforce key order for stable output.
