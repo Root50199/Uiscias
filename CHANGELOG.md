@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.19.0](https://github.com/Root50199/Uiscias/compare/v1.18.0...v1.19.0) (2026-07-01)
+
+
+### Mods added / updated
+
+* add markdown validation ([8d4b777](https://github.com/Root50199/Uiscias/commit/8d4b77748829d9b13fa5b7bb30ec6af55f301b01))
+
 ## [1.18.0](https://github.com/Root50199/Uiscias/compare/v1.17.0...v1.18.0) (2026-07-01)
 
 
