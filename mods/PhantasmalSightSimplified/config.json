@@ -9,5 +9,7 @@
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/gfx/fx/effect/g23_specialization.xml"],
-  "sourceHash": "sha256-a3064cb361ffe176e4c01ebbfac590d6b98808e4d0fefe1ee932b07131cdbdae"
+  "sourceHash": "sha256-a3064cb361ffe176e4c01ebbfac590d6b98808e4d0fefe1ee932b07131cdbdae",
+  "readme": "# Phantasmal Sight Simplified\n\n## What it does:\n\nNow only displays blue and gold nodes for gathering to reduce visual clutter.\n\n### How it's made:\n\nSee the actual file.\n\n#### Example Images and GIFs:\n\n![Phantasmal Sight Simp Example](images/phantasmal_sight_simp_example.jpg)",
+  "images": ["phantasmal_sight_simp_example.jpg"]
 }

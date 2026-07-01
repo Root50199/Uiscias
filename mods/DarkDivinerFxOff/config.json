@@ -9,5 +9,6 @@
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/gfx/fx/effect/multiclass_fx03.xml"],
-  "sourceHash": "sha256-ec172217cfb6392431ce87adbd75c7d5a970e34e7ff13ba831f15435ea2d63c1"
+  "sourceHash": "sha256-ec172217cfb6392431ce87adbd75c7d5a970e34e7ff13ba831f15435ea2d63c1",
+  "readme": "# Dark Diviner Fx Off\n\n## What it does:\n\nRemoves all effects of diviner arcana skills.\n\n### How it's made:\n\nCompletely blank all the effect blocks.\n\n#### Example Images and GIFs:"
 }

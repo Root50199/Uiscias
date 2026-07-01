@@ -12,5 +12,7 @@
     "data/material/fx/cursor/munchkincat_clap_decal_blue.dds",
     "data/material/fx/cursor/munchkincat_clap_decal_red.dds"
   ],
-  "sourceHash": "sha256-7df5e5b70cd80552c0c3e3483501b2cc68eaeaa06c16ff8c85da4333f268887b"
+  "sourceHash": "sha256-7df5e5b70cd80552c0c3e3483501b2cc68eaeaa06c16ff8c85da4333f268887b",
+  "readme": "# Purrling Ley Lines Dim\n\n## What it does:\n\nRemoves the center paw and dims the white of the Purrling Ley Lines.\n\n### How it's made:\n\npaint.net\n\n#### Example Images and GIFs:\n\n![red cat circle](images/redcatcircle.png)\n\n![blue cat circle](images/bluecatcircle.png)",
+  "images": ["bluecatcircle.png", "redcatcircle.png"]
 }

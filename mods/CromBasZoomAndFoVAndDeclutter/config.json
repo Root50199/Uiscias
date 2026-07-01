@@ -9,5 +9,7 @@
   "isVariant": false,
   "hasVariants": true,
   "usedFiles": [],
-  "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "readme": "# CromBasZoomAndFoVAndDeclutter\n\n## What it does:\n\nSets max zoom to it's maximum and set FoV at 45(Default), 60 or 90 depending on your chosen variant.\nRemoves all the props and fog in and around the rooms to help with lag and visibility.\n\n### How it's made:\n\nThe .rgn files are opened with Mabioned and then the props are manually deleted from there. It also allows you to edit the embedded xml to set the zoom and FoV.\n\n#### Example Images and GIFs:\n\n![Crom room 1 and 3](images/Cromroom1and3.png)\n![Crom room 2](images/Cromroom2.png)\n![Crom Boss room](images/Crombossroom.png)",
+  "images": ["CromBossroom.png", "Cromroom1and3.png", "Cromroom2.png"]
 }

@@ -12,5 +12,7 @@
     "data/db/layout2/Specialization/SpecializationFrame.xml",
     "data/db/layout2/Specialization/SpecializationMain.xml"
   ],
-  "sourceHash": "sha256-33ed3fdc089f93722e741e21b8941393556000a702c08c9459bd8441c6b02605"
+  "sourceHash": "sha256-33ed3fdc089f93722e741e21b8941393556000a702c08c9459bd8441c6b02605",
+  "readme": "# Tech U I\n\n## What it does:\n\nExpands the technique window to display all techs at once.\n\n### How it's made:\n\nSee files\n\n#### Example Images and GIFs:\n\n![Technique Window](images/technique_window.png)",
+  "images": ["talent_window.png", "technique_window.png"]
 }

@@ -27,5 +27,6 @@
     "data/gfx/fx/effect/SkillRenewal2017.xml",
     "data/gfx/fx/posteffect/blur.xml"
   ],
-  "sourceHash": "sha256-86f6901d6a23ff9110d5caa59e94b78c00cbab218c1ad642181d2f27b8f5618c"
+  "sourceHash": "sha256-86f6901d6a23ff9110d5caa59e94b78c00cbab218c1ad642181d2f27b8f5618c",
+  "readme": "# Skill Minimized\n\n## What it does:\n\n<space for manual text entry>\n\n### How it's made:\n\n<space for manual text entry>\n\n#### Example Images and GIFs:\n\n<Drop image reference or remove block>"
 }

@@ -44,5 +44,6 @@
     "data/gfx/scene/dungeon/MRD/scene_prop_mrd_column_b04.pmg",
     "data/gfx/scene/dungeon/MRD/scene_prop_mrd_column_b04.set"
   ],
-  "sourceHash": "sha256-db80c327ae37ee4d8021a2d7b6f8cdaed21bc4a16038d5b59a89441329ca9cab"
+  "sourceHash": "sha256-db80c327ae37ee4d8021a2d7b6f8cdaed21bc4a16038d5b59a89441329ca9cab",
+  "readme": "# Bri Pillar Be Gone\n\n## What it does:\n\nRemoves the pillars outside the map in all gates.\n\n### How it's made:\n\nJust replaces the pillar models with blank files.\n\n#### Example Images and GIFs:\n\n<Drop image reference or remove block>"
 }

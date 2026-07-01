@@ -50,5 +50,7 @@
     "data/material/terrain/glennbearnasnow02_only/glennbearnasnow02_only.dds",
     "data/material/terrain/glennbearnasnow03_only/glennbearnasnow03_only.dds"
   ],
-  "sourceHash": "sha256-aff6155b68718d1264afeb7229998bfd03c79ea6776d7440552eaafae9fcc390"
+  "sourceHash": "sha256-aff6155b68718d1264afeb7229998bfd03c79ea6776d7440552eaafae9fcc390",
+  "readme": "# Glenn Simplified\n\n## What it does:\n\nRemoves the trees outside the map and replaces the white snow floor with grass so it's much easier on the eyes.\n\n### How it's made:\n\nReplaces all the snow textures with grass. Replace all the tree models with blank files.\n\n#### Example Images and GIFs:\n\n![Glenn Simp Example](images/glenn_simp_example.jpg)",
+  "images": ["glenn_simp_example.jpg"]
 }
