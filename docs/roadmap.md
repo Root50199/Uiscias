@@ -23,7 +23,7 @@ schemas, and conventions referenced below.
 | --------------------------------- | --------------------------------------------------------------------------------------------- |
 | `.it` storage                     | Commit **latest only** per mod as **plain git files** (no LFS); older versions in releases    |
 | `manifestCatalog.json` generation | At **release time** in CI, aggregated from committed `config.json`                            |
-| Commit hook scope                 | `pre-commit` = validate yaml + regenerate `config.json` + **pack changed mods** + prettier    |
+| Commit hook scope                 | `pre-commit` = yaml → generate-configs → pack (changed) → prettier + markdownlint             |
 | Build script language             | **Node/TypeScript**                                                                           |
 | CLI parsing & color               | **commander** (subcommands + generated help) + **picocolors** (TTY-aware color)               |
 | Mod location                      | All mods live under **`mods/`**; single source of truth `MODS_DIR`/`getModsRoot` in `repo.ts` |
@@ -35,7 +35,7 @@ schemas, and conventions referenced below.
 | `updateType` enum                 | `stable` \| `volatile`                                                                        |
 | Key casing                        | camelCase: `modId`, `usedFiles`                                                               |
 | `findiasTags`                     | **Optional** (defaults to `[]`); unknown tags still fail validation                           |
-| `README.md`                       | Hand-edited (generation **dropped**)                                                          |
+| `README.md`                       | Hand-edited; linted via markdownlint-cli2 + Prettier on scoped paths                          |
 | Release versioning                | `release-please` **`node`** type; version in `package.json`, baseline **`1.0.0`** (fresh)     |
 | Excluded folders                  | dot-folders + `NON_MOD_DIRS`; templates via `EXCLUDED_MOD_IDS` (`NewModTemplate`)             |
 | Line endings                      | `.gitattributes` (LF text, binary `.it`/assets); hashing normalizes CRLF→LF for parity        |
@@ -106,7 +106,8 @@ repack verified; idempotent).
 
 - [x] `pre-commit` (for changed mods): validate yaml → `generate-configs` →
       `pack` → `git add` regenerated `config.json` + `.it` + `build.lock.json` →
-      prettier (`lint-staged`); fails on invalid yaml. (`--stage` does the
+      prettier + markdownlint (`lint-staged`, scoped to mod READMEs, `docs/`,
+      and the root `README.md`); fails on invalid yaml. (`--stage` does the
       `git add`.)
 - [x] Add npm scripts: `generate-configs`, `pack`, `build-manifest` (+ `check`,
       `typecheck`, `mods`, `changed`, `new-mod`).
@@ -176,8 +177,6 @@ _Exit:_ Findias lists mods from the manifest and prevents conflicting installs.
   Still deferred is the finer-grained per-variant signal: add
   `lastVerifiedGameVersion` per variant and have Findias flag mods not verified
   for the running client.
-- **`README.md` formatting tooling:** these files are hand-edited; we may
-  later add a linter/formatter for consistency.
 
 ## Out of scope (for now)
 

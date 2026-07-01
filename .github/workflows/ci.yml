@@ -26,6 +26,9 @@ jobs:
       - name: Check formatting
         run: npm run format:check
 
+      - name: Lint markdown
+        run: npm run lint:md
+
   validate:
     runs-on: ubuntu-latest
     steps:

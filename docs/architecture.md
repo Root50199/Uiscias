@@ -52,7 +52,7 @@ that constant alone. There are two mod shapes:
 
 ### Single mod (no variants)
 
-```
+```text
 mods/AchievmentUnhide/
 ├─ config.yaml            # hand-edited source metadata
 ├─ config.json            # GENERATED, committed (metadata + usedFiles + sourceHash)
@@ -72,7 +72,7 @@ variant subfolders. Each variant is a fully self-contained mod (its own
 are **mutually exclusive**: they modify the same files, so only one may be
 installed at a time.
 
-```
+```text
 mods/BriHpBars/                  # parent group folder (no data/)
 ├─ config.yaml                   # group-level metadata (modName, tags, etc.)
 ├─ config.json                   # GENERATED group config (hasVariants: true)
@@ -312,7 +312,7 @@ which only validates `config.json`/hashes.
 The build tooling is **Node/TypeScript** and lives under `scripts/`. The packer
 binary stays where it is today; `pack.bat` is a legacy manual-pack reference only.
 
-```
+```text
 scripts/
 ├─ src/                         # Node/TS tooling
 │  ├─ schema/                   # zod schemas + z.infer types (copied to Findias)
@@ -385,16 +385,18 @@ drift check or any release.
 
 ### npm scripts
 
-| Script             | Runs                                                    |
-| ------------------ | ------------------------------------------------------- |
-| `generate-configs` | regenerate `config.json` (`--all`/`--changed`/`--mods`) |
-| `pack`             | pack changed mods into `build/`                         |
-| `build-manifest`   | manifest aggregator (used by CI; `--assets`)            |
-| `check`            | CI drift check (hash-only; no packing)                  |
-| `new-mod`          | scaffold a new mod folder                               |
-| `mods`             | list discovered mods/groups/variants                    |
-| `changed`          | list mods affected by a git scope                       |
-| `typecheck`        | `tsc --noEmit` over the tooling                         |
+| Script                    | Runs                                                    |
+| ------------------------- | ------------------------------------------------------- |
+| `generate-configs`        | regenerate `config.json` (`--all`/`--changed`/`--mods`) |
+| `pack`                    | pack changed mods into `build/`                         |
+| `build-manifest`          | manifest aggregator (used by CI; `--assets`)            |
+| `check`                   | CI drift check (hash-only; no packing)                  |
+| `new-mod`                 | scaffold a new mod folder                               |
+| `mods`                    | list discovered mods/groups/variants                    |
+| `changed`                 | list mods affected by a git scope                       |
+| `typecheck`               | `tsc --noEmit` over the tooling                         |
+| `format` / `format:check` | Prettier write / check (repo-wide; `.prettierignore`)   |
+| `lint:md`                 | markdownlint on scoped README + docs paths (see above)  |
 
 ## Build scripts
 
@@ -438,9 +440,10 @@ by scope:
 > snapshot), which satisfies the retention goal without binary churn in git.
 
 > `README.md` is **hand-edited**, not generated (there is no reliable
-> source to generate it from). Light formatting/consistency tooling for these
-> files is a possible future item — see
-> [Deferred / future work](#deferred--future-work).
+> source to generate it from). Mod READMEs, `docs/**/*.md`, and the root
+> `README.md` are linted via `markdownlint-cli2` (see
+> [Markdown linting](#markdown-linting-readme--docs)); `images/` folders may
+> still hold screenshots even though READMEs no longer embed them.
 
 ## Local hooks (Git / Husky)
 
@@ -457,11 +460,37 @@ all-mods commands.
      `build.lock.json`), writing the new `.it` + `build.lock.json`,
   4. `git add` the regenerated `config.json`, `.it`, and `build.lock.json` so
      they land in the same commit,
-  5. run prettier (via `lint-staged`).
+  5. run prettier + markdownlint (via `lint-staged`; see
+     [Markdown linting](#markdown-linting-readme--docs)).
      Each maintainer is on Windows with `mabi-pack2.exe` available locally (see the
      environment rules), so packing in the hook is viable.
 - The same operations are also available as explicit, all-mods npm commands
   (`npm run generate-configs`, `npm run pack`) for bulk rebuilds or recovery.
+
+### Markdown linting (README + docs)
+
+Hand-edited markdown is validated with **markdownlint-cli2**, configured in
+[`.markdownlint-cli2.yaml`](../.markdownlint-cli2.yaml). The config extends
+`markdownlint/style/prettier` so content rules (headings, structure) are
+enforced without fighting Prettier on formatting.
+
+**Scoped paths** (everything else — notably `CHANGELOG.md` — is out of scope):
+
+- `mods/**/README.md`
+- `docs/**/*.md`
+- `README.md` (repo root)
+
+**Where it runs:**
+
+| Trigger                      | What happens                                                                        |
+| ---------------------------- | ----------------------------------------------------------------------------------- |
+| `pre-commit` (`lint-staged`) | On staged scoped files: Prettier `--write`, then `markdownlint-cli2 --fix`          |
+| CI `format` job              | `npm run format:check` (Prettier) then `npm run lint:md` (markdownlint, no `--fix`) |
+| Local                        | `npm run lint:md`; `npm run format` for Prettier                                    |
+
+`new-mod` scaffolds a README that already matches the expected three-section
+shape (`## What it does` / `### How it's made`). Image markdown is not used in
+mod READMEs; optional assets may still live under each mod's `images/` folder.
 
 ### Why `pre-commit` and not `pre-push`
 
@@ -567,7 +596,7 @@ CI later is possible — it is simply not needed by this design.)
 
 Release `1.0.0` ships:
 
-```
+```text
 UisciasModExampleFoo_00001.it
 UisciasModExampleBar_00001.it
 ```
@@ -575,7 +604,7 @@ UisciasModExampleBar_00001.it
 A change to `ModExampleFoo` only: `pack` bumps Foo to `_00002` (Bar untouched).
 The next release globs the tree and ships:
 
-```
+```text
 UisciasModExampleFoo_00002.it   # new
 UisciasModExampleBar_00001.it   # carried forward unchanged
 ```
@@ -628,6 +657,4 @@ These are intentionally out of scope for the initial build-out:
   `catalog.yaml`). The finer-grained, **per-variant** signal is **not** ported
   yet. When revisited, each variant gains a `lastVerifiedGameVersion` and Findias
   compares it to the running client to flag out-of-date mods.
-- **`README.md` tooling.** These files are hand-edited for now; we may
-  later add tooling to enforce consistent formatting across them.
 - **Publishing a shared schema package** (`@uiscias/schema`) instead of copying.

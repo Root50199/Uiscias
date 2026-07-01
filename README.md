@@ -16,7 +16,7 @@ Mod sources sit in the top-level `mods/` folder. Each mod is a subfolder there.
 
 ### Single mod
 
-```
+```text
 mods/{ModName}/
   config.yaml   # hand-edited metadata (source of truth)
   config.json   # generated metadata + file hashes (committed)
@@ -34,7 +34,7 @@ Some mods ship multiple mutually exclusive options (e.g. different resolutions).
 The parent folder holds group metadata; each variant is a self-contained subfolder
 with its own `data/`, `config.yaml`, `config.json`, `README.md`, and `build/`.
 
-```
+```text
 mods/{GroupName}/
   config.yaml
   config.json

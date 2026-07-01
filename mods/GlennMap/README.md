@@ -1,13 +1,9 @@
 ﻿# Glenn Map
 
-## What it does:
+## What it does
 
 Adds the Day/Night Circles and VHM 80% safe spots to the map
 
-### How it's made:
+### How it's made
 
 Paint.net
-
-#### Example Images and GIFs:
-
-![Map](images/map.jpg)

@@ -1,11 +1,9 @@
 ﻿# Glenn Cutscene Skip
 
-## What it does:
+## What it does
 
 Auto skips the Glenn Boss cutscenes
 
-### How it's made:
+### How it's made
 
 Remove all scene info
-
-#### Example Images and GIFs:

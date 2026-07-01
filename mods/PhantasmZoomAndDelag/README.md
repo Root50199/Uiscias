@@ -1,14 +1,10 @@
 ﻿# Phantasm Zoom And Delag
 
-## What it does:
+## What it does
 
 Allows max zoom out and sets FoV to 90.
 Removes all the extra walls and props. Completely removes the unused rooms.
 
-### How it's made:
+### How it's made
 
 Mabioned
-
-#### Example Images and GIFs:
-
-<Drop image reference or remove block>

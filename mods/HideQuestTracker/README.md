@@ -1,11 +1,9 @@
 ﻿# Hide Quest Tracker
 
-## What it does:
+## What it does
 
 Hides the quest tracker.
 
-### How it's made:
+### How it's made
 
 add a visible="false" tag
-
-#### Example Images and GIFs:

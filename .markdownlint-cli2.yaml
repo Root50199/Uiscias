@@ -1,0 +1,6 @@
+config:
+  extends: markdownlint/style/prettier
+globs:
+  - mods/**/README.md
+  - docs/**/*.md
+  - README.md
