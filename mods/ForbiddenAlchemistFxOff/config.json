@@ -9,5 +9,6 @@
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/gfx/fx/effect/Mfx_AAM01.xml"],
-  "sourceHash": "sha256-dbc20cee77a22fc4237a663b31e67970f44764da4ff53dc9d170bcb0f7b7fc9a"
+  "sourceHash": "sha256-dbc20cee77a22fc4237a663b31e67970f44764da4ff53dc9d170bcb0f7b7fc9a",
+  "readme": "# Explosive Vanguard Fx Off\n\n## What it does\n\nRemoves most FA arcana effects. Serpent Call and the earth spikes are still visible.\n\n### How it's made\n\nBlank the entire effect block. Serpent Call and the earth spikes are other files."
 }

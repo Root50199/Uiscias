@@ -13,5 +13,7 @@
     "data/db/layout2/Auction/TradeAuctionMarketTab.xml",
     "data/db/layout2/Auction/TradeAuctionMyMarketTab.xml"
   ],
-  "sourceHash": "sha256-3a2a112e3effd9ebca593e1705c56fd1c9d18df4044044353cc44490d08faae1"
+  "sourceHash": "sha256-3a2a112e3effd9ebca593e1705c56fd1c9d18df4044044353cc44490d08faae1",
+  "readme": "# Expanded Auction House\n\n## What it does\n\nExpands the auction house window vertically and increases the items per page. This does also allows you to auto re-list all your auctions with 1 action.\n\n### How it's made\n\nSee actual file.",
+  "images": ["high_res_ah_buyer.png", "high_res_ah_seller.png"]
 }

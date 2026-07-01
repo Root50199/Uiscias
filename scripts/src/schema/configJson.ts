@@ -23,6 +23,11 @@ export const configJsonSchema = z
     hasVariants: z.boolean(),
     usedFiles: z.array(z.string()),
     sourceHash: sourceHashSchema,
+    // Optional docs: the mod's README.md text (verbatim) and the image file
+    // names scanned from its images/ folder. Both are omitted when absent, so a
+    // mod without docs regenerates a byte-identical config.json.
+    readme: z.string().min(1).optional(),
+    images: z.array(z.string().min(1)).optional(),
   })
   .strict();
 
@@ -40,4 +45,6 @@ export const CONFIG_JSON_KEY_ORDER: (keyof ConfigJson)[] = [
   'hasVariants',
   'usedFiles',
   'sourceHash',
+  'readme',
+  'images',
 ];

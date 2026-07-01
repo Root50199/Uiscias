@@ -30,6 +30,9 @@ describe('config', () => {
     return { id: 'Zoom', dir, relDir: 'mods/Zoom', kind, dataDir };
   }
 
+  /** Base config.json keys always present (no README / images). */
+  const BASE_KEYS = CONFIG_JSON_KEY_ORDER.filter((k) => k !== 'readme' && k !== 'images');
+
   describe('loadConfigYaml', () => {
     it('loads and validates config.yaml, applying defaults', async () => {
       const mod = await makeMod();
@@ -64,7 +67,10 @@ describe('config', () => {
       const mod = await makeMod();
       const cfg = buildConfigJson(mod);
 
-      expect(Object.keys(cfg)).toEqual(CONFIG_JSON_KEY_ORDER);
+      // No README / images, so those keys are omitted (docs-less mods stay lean).
+      expect(Object.keys(cfg)).toEqual(BASE_KEYS);
+      expect(cfg.readme).toBeUndefined();
+      expect(cfg.images).toBeUndefined();
       expect(cfg.usedFiles).toEqual(['data/x.xml']);
       expect(cfg.sourceHash).toMatch(/^sha256-[0-9a-f]{64}$/);
       expect(cfg.isVariant).toBe(false);
@@ -74,6 +80,26 @@ describe('config', () => {
     it('flags variants via isVariant', async () => {
       const mod = await makeMod('variant');
       expect(buildConfigJson(mod).isVariant).toBe(true);
+    });
+
+    it('reads README.md verbatim and scans images/ in canonical key order', async () => {
+      const mod = await makeMod();
+      await fs.writeFile(join(mod.dir, 'README.md'), '# Zoom\n\nHello.\n', 'utf8');
+      const imagesDir = join(mod.dir, 'images');
+      await fs.mkdir(imagesDir, { recursive: true });
+      await fs.writeFile(join(imagesDir, 'b.png'), 'x');
+      await fs.writeFile(join(imagesDir, 'a.gif'), 'x');
+
+      const cfg = buildConfigJson(mod);
+      expect(Object.keys(cfg)).toEqual(CONFIG_JSON_KEY_ORDER);
+      expect(cfg.readme).toBe('# Zoom\n\nHello.');
+      expect(cfg.images).toEqual(['a.gif', 'b.png']);
+    });
+
+    it('omits readme for an empty README.md', async () => {
+      const mod = await makeMod();
+      await fs.writeFile(join(mod.dir, 'README.md'), '   \n', 'utf8');
+      expect(buildConfigJson(mod).readme).toBeUndefined();
     });
   });
 

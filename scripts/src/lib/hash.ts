@@ -17,6 +17,23 @@ export const scanUsedFiles = (modDir: string, dataDir: string): string[] =>
     .map((f) => relPosix(modDir, f))
     .sort((a, b) => a.localeCompare(b));
 
+/** Image extensions surfaced in the README carousel. */
+const IMAGE_EXTENSIONS = new Set(['.png', '.gif', '.jpg', '.jpeg', '.webp']);
+
+/**
+ * Image file names under a mod's `images/` folder, expressed relative to that
+ * folder (e.g. `Journal_Achievment_example.png`), posix separators, sorted.
+ * Returns `[]` when there is no `images/` folder. These names are stored in
+ * config.json and later resolved to release-pinned URLs at manifest time.
+ */
+export const scanImages = (modDir: string): string[] => {
+  const imagesDir = path.join(modDir, 'images');
+  return listFilesRecursive(imagesDir)
+    .map((f) => relPosix(imagesDir, f))
+    .filter((rel) => IMAGE_EXTENSIONS.has(path.extname(rel).toLowerCase()))
+    .sort((a, b) => a.localeCompare(b));
+};
+
 const sha256 = (buf: Buffer): string => crypto.createHash('sha256').update(buf).digest('hex');
 
 /**

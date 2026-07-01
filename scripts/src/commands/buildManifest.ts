@@ -1,26 +1,51 @@
 import path from 'node:path';
 import { fse, writeJsonFile } from '../lib/io';
-import { getRepoRoot } from '../lib/repo';
+import { getRepoRoot, rawContentBase } from '../lib/repo';
 import { discoverMods, groupMods, packTargets, type Mod, type ModGroup } from '../lib/mods';
 import { readConfigJson, readBuildLock, readCatalogConfig } from '../lib/config';
 import { ok, dim } from '../lib/term';
 import {
   manifestCatalogSchema,
   MANIFEST_SCHEMA_VERSION,
+  type ConfigJson,
   type ManifestCatalog,
   type ManifestGroup,
   type ManifestVariant,
 } from '../schema';
+
+/** Git ref used to pin image URLs when none is supplied (local/dev builds). */
+const DEFAULT_REF = 'main';
 
 export interface BuildManifestOptions {
   /** Output path for the generated manifestCatalog.json. */
   out?: string;
   /** If set, also copy every shipped .it + the manifest into this directory. */
   assets?: string;
+  /**
+   * Git ref (branch, tag, or SHA) that image URLs are pinned to. CI passes the
+   * release tag; local builds fall back to `main`.
+   */
+  ref?: string;
 }
 
+/**
+ * Optional docs for a mod: its README text and its images resolved to
+ * release-pinned raw.githubusercontent.com URLs. `mod.relDir` is a repo-relative
+ * posix path (e.g. `mods/AchievmentUnhide`), so it drops straight into the URL.
+ */
+const docsFor = (
+  mod: Mod,
+  cfg: ConfigJson,
+  rawBase: string,
+): Pick<ManifestVariant, 'readme' | 'images'> => ({
+  ...(cfg.readme ? { readme: cfg.readme } : {}),
+  ...(cfg.images && cfg.images.length > 0
+    ? { images: cfg.images.map((name) => `${rawBase}/${mod.relDir}/images/${name}`) }
+    : {}),
+});
+
 /** One installable entry, assembled from a mod's config.json + build.lock + .it. */
-const variantEntry = (mod: Mod): ManifestVariant => {
+const variantEntry = (mod: Mod, rawBase: string): ManifestVariant => {
   const cfg = readConfigJson(mod);
   const buildDir = path.join(mod.dir, 'build');
   const lock = readBuildLock(buildDir);
@@ -43,10 +68,11 @@ const variantEntry = (mod: Mod): ManifestVariant => {
     modAuthor: cfg.modAuthor,
     modAdditionalCredits: cfg.modAdditionalCredits,
     recentUpdateNotes: cfg.recentUpdateNotes,
+    ...docsFor(mod, cfg, rawBase),
   };
 };
 
-const groupEntry = (group: ModGroup): ManifestGroup => {
+const groupEntry = (group: ModGroup, rawBase: string): ManifestGroup => {
   if (group.hasVariants && group.parent) {
     const parent = readConfigJson(group.parent);
     return {
@@ -55,7 +81,8 @@ const groupEntry = (group: ModGroup): ManifestGroup => {
       findiasTags: parent.findiasTags,
       hasVariants: true,
       mutuallyExclusive: true,
-      variants: group.members.map(variantEntry),
+      variants: group.members.map((member) => variantEntry(member, rawBase)),
+      ...docsFor(group.parent, parent, rawBase),
     };
   }
 
@@ -67,7 +94,8 @@ const groupEntry = (group: ModGroup): ManifestGroup => {
     findiasTags: cfg.findiasTags,
     hasVariants: false,
     mutuallyExclusive: false,
-    variants: [variantEntry(mod)],
+    variants: [variantEntry(mod, rawBase)],
+    ...docsFor(mod, cfg, rawBase),
   };
 };
 
@@ -80,7 +108,10 @@ export const runBuildManifest = async (opts: BuildManifestOptions): Promise<void
   const mods = discoverMods(repoRoot);
   const groups = groupMods(mods);
 
-  const modList = groups.map(groupEntry).sort((a, b) => a.groupId.localeCompare(b.groupId));
+  const rawBase = rawContentBase(opts.ref ?? DEFAULT_REF);
+  const modList = groups
+    .map((group) => groupEntry(group, rawBase))
+    .sort((a, b) => a.groupId.localeCompare(b.groupId));
 
   // Catalog-level metadata: authored game versions + builder-stamped fields.
   const catalogConfig = readCatalogConfig(repoRoot);

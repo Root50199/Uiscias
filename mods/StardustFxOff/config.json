@@ -9,5 +9,6 @@
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/gfx/fx/effect/Option_weapon.xml"],
-  "sourceHash": "sha256-01146d687115ffb8b5497e0161cdd628bab8246d89ba5b8eb67a5ea93a132ada"
+  "sourceHash": "sha256-01146d687115ffb8b5497e0161cdd628bab8246d89ba5b8eb67a5ea93a132ada",
+  "readme": "# Stardust And Weapon Fx Off\n\n## What it does\n\nremoves the light trail when moving and attack effects from stardust.\n\n### How it's made\n\nBlank the effect blocks."
 }

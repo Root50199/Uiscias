@@ -24,5 +24,6 @@
     "data/gfx/gui/gui_ver2/pink.dds",
     "data/gfx/gui/gui_ver2/skyblue.dds"
   ],
-  "sourceHash": "sha256-48439764d27b561967395d9de9268b20ed70c55dd1a0b8784665c982a2f4f06d"
+  "sourceHash": "sha256-48439764d27b561967395d9de9268b20ed70c55dd1a0b8784665c982a2f4f06d",
+  "readme": "# Damage Numbers Off\n\n## What it does\n\nRemoves the small damage numbers, so if your in game settings are \"hide other's damage skins\" and you are using a damage skin yourself, you will only see you own damage numbers.\nNote this will also hide the damage numbers of enemies hitting you or other players. This includes the burn from glen.\n\n### How it's made\n\nRemove the part of .dds image file containing the numbers from each interface color's file."
 }

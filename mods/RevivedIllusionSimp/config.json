@@ -33,5 +33,7 @@
     "data/material/interior/dungeon/nrd/dg_nrd_room_01_01.dds",
     "data/material/interior/dungeon/nrd/dg_nrd_room_01_05.dds"
   ],
-  "sourceHash": "sha256-a6b806b1b2dd7b34781e57cf6d5a6187249a86b00a2ed61d2935baf17e845de8"
+  "sourceHash": "sha256-a6b806b1b2dd7b34781e57cf6d5a6187249a86b00a2ed61d2935baf17e845de8",
+  "readme": "# Revived Illusion Simp\n\n## What it does\n\nRevived Illusion Simplified changes the following:\nVisually removes the walls in Revived illusion.\nVisually removes the hallway torches in Revived illusion.\nRemoves the fire effects from the torches and candles in Revived illusion.\n\n### How it's made\n\nBlanking the files.",
+  "images": ["ri_example.png"]
 }

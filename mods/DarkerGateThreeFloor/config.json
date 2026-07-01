@@ -16,5 +16,7 @@
     "data/material/interior/dungeon/MRD/scene_prop_mrd_3s_square01_05.dds",
     "data/material/interior/dungeon/MRD/scene_prop_mrd_3s_square01_06.dds"
   ],
-  "sourceHash": "sha256-5692a715ba0372a2b9545ba3121be03dc9f5bd557f18195c2628d464d875bb12"
+  "sourceHash": "sha256-5692a715ba0372a2b9545ba3121be03dc9f5bd557f18195c2628d464d875bb12",
+  "readme": "# Gate Three Floor\n\n## What it does\n\nDarkens the floor so if the brightness bug occurs you can not go blind.\n\n### How it's made\n\nJust lower the image brightness in paint.net",
+  "images": ["gate_three_floor.png"]
 }

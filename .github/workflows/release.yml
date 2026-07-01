@@ -72,7 +72,7 @@ jobs:
       # and unchanged mods carry forward automatically (each build/ holds exactly
       # one latest .it).
       - name: Build manifest + collect assets
-        run: npm run build-manifest -- --out manifestCatalog.json --assets release-assets
+        run: npm run build-manifest -- --out manifestCatalog.json --assets release-assets --ref "${{ needs.release-please.outputs.tag_name }}"
 
       - name: Upload assets to release
         env:

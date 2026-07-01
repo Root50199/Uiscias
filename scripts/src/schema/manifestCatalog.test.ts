@@ -49,6 +49,27 @@ describe('manifestGroupSchema', () => {
   it('rejects extra keys (strict)', () => {
     expect(manifestGroupSchema.safeParse({ ...group, extra: 1 }).success).toBe(false);
   });
+
+  it('accepts optional readme + image URLs on a variant and group', () => {
+    const withDocs = {
+      ...group,
+      readme: '# Zoom',
+      images: ['https://raw.githubusercontent.com/Root50199/Uiscias/v1/mods/Zoom/images/a.png'],
+      variants: [
+        {
+          ...variant,
+          readme: '# Zoom variant',
+          images: ['https://raw.githubusercontent.com/Root50199/Uiscias/v1/mods/Zoom/images/b.png'],
+        },
+      ],
+    };
+    expect(manifestGroupSchema.safeParse(withDocs).success).toBe(true);
+  });
+
+  it('rejects non-URL image entries', () => {
+    const bad = { ...group, images: ['a.png'] };
+    expect(manifestGroupSchema.safeParse(bad).success).toBe(false);
+  });
 });
 
 describe('manifestCatalogSchema', () => {

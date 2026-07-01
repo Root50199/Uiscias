@@ -60,7 +60,8 @@ program
   .description('Aggregate config.json into manifestCatalog.json')
   .option('--out <path>', 'output path for the manifest')
   .option('--assets <dir>', 'also copy shipped .it + manifest into this dir')
-  .action((opts: { out?: string; assets?: string }) => runBuildManifest(opts));
+  .option('--ref <ref>', 'git ref (tag/branch/SHA) to pin image URLs to')
+  .action((opts: { out?: string; assets?: string; ref?: string }) => runBuildManifest(opts));
 
 program
   .command('check')

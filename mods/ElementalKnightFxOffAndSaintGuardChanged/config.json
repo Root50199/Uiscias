@@ -12,5 +12,7 @@
     "data/gfx/fx/effect/Multiclass_fx.xml",
     "data/material/fx/effect/effect_Late_add_line_37.dds"
   ],
-  "sourceHash": "sha256-c06760c88f8f521460ad60f885aa6512ab63abd424799ebe6b886e6b33919c71"
+  "sourceHash": "sha256-c06760c88f8f521460ad60f885aa6512ab63abd424799ebe6b886e6b33919c71",
+  "readme": "# Elemental Knight Fx Off And Saint Guard Changed\n\n## What it does\n\nUnfortunately ek and saint are in the same file so these can't be separated. If you want one or the other then you would need to custom mod just one of them and repack it. If there is enough interest I can make them variants.\n\nRemoves all effects from elemental knight and changes some saint effects.\nDrastically reduce particle count of Blessing of Protection. I may come back to this later to increase the duration of the remaining shell to actually match the buffs duration\nPulse of Purification was made into a bright green and made less visually intense. the strobing walls were shrunk down. The blinding flash at the end is removed entirely.\nPall of ruination now puts a giant blue effect on affected enemies for its duration.\n\n### How it's made\n\nBlank all effect blocks for EK.\ncustom animation replaces Pall's normal little blob.\nSee actual file for detailed changes.",
+  "images": ["BigBluePall.gif", "BoP.gif", "pallrange.png", "Pulse.gif"]
 }

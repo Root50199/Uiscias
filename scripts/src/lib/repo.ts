@@ -30,6 +30,17 @@ export const MODS_DIR = 'mods';
 export const getModsRoot = (repoRoot: string): string => path.join(repoRoot, MODS_DIR);
 
 /**
+ * GitHub coordinates for this repo, used to build release-pinned
+ * `raw.githubusercontent.com` URLs for README images at manifest time.
+ */
+export const REPO_OWNER = 'Root50199';
+export const REPO_NAME = 'Uiscias';
+
+/** Base raw-content URL for a given git ref (branch, tag, or SHA). */
+export const rawContentBase = (ref: string): string =>
+  `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${ref}`;
+
+/**
  * Repo exclusions for mod discovery — the one place to add things the tooling
  * should ignore.
  *
