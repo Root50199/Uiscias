@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.0](https://github.com/Root50199/Uiscias/compare/v1.19.0...v1.20.0) (2026-07-01)
+
+
+### Mods added / updated
+
+* enhance manifest generation with README and image support ([a19cee9](https://github.com/Root50199/Uiscias/commit/a19cee92a47a7768e83eef9455d6e11a345a20f4))
+
 ## [1.19.0](https://github.com/Root50199/Uiscias/compare/v1.18.0...v1.19.0) (2026-07-01)
 
 
