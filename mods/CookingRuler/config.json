@@ -13,6 +13,6 @@
     "data/UisciasAmountRuler.dds"
   ],
   "sourceHash": "sha256-3a7623df60ae598fe7b439d81da5f70b816bd1b3afe0431eb1e911de095c1bf4",
-  "readme": "# Cooking Ruler\n\n## What it does:\n\nExpands the cooking bar and adds and overlay with tick marks every 1%\n\n### How it's made:\n\nThe ruler was made in paint.net and the size and position of the gauge was edited in the xml.\n\n#### Example Images and GIFs:\n\n![Cooking Ruler](images/cooking_ruler.png)",
+  "readme": "# Cooking Ruler\n\n## What it does\n\nExpands the cooking bar and adds and overlay with tick marks every 1%\n\n### How it's made\n\nThe ruler was made in paint.net and the size and position of the gauge was edited in the xml.",
   "images": ["cooking_ruler.png"]
 }

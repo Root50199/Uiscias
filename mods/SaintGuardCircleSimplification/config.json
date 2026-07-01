@@ -10,6 +10,6 @@
   "hasVariants": false,
   "usedFiles": ["data/material/fx/cursor/SG_decal1.dds"],
   "sourceHash": "sha256-164088b76b0f6718eb4ae37624b88d2e17cfe91584565f8cbb978f9c90c8d39f",
-  "readme": "# Saint Guard Circle Simplification\n\n## What it does:\n\nremoves all but the outer edge of the SG's circle and makes it a dark blue to keep it visible but unobtrusive.\n\n### How it's made:\n\npaint.net\n\n#### Example Images and GIFs:\n\n![sg circle](images/sgcircle.png)",
+  "readme": "# Saint Guard Circle Simplification\n\n## What it does\n\nremoves all but the outer edge of the SG's circle and makes it a dark blue to keep it visible but unobtrusive.\n\n### How it's made\n\npaint.net",
   "images": ["sgcircle.png"]
 }

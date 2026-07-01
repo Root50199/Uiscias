@@ -15,5 +15,5 @@
     "data/world/Glenn_Bearna_dungeon01_night/Glenn_Bearna_dungeon01_night.rgn"
   ],
   "sourceHash": "sha256-0bb190b51089ae9e8f63f8d97bd9db956cd7d5bd6495a0642c56f48e46dc2e1c",
-  "readme": "# Glenn Bearna Zoom And FoV\n\n## What it does:\n\nAllows farther max zoom and sets FoV bases on chosen variant. There are also variants to remove all the unnecessary props.\n\n### How it's made:\n\nMabioned.\n\n#### Example Images and GIFs:\n\n<Drop image reference or remove block>\n\n![Room 2 no props 90 FoV](images/glenroom2.png)\n![Room 3 no props 90 FoV](images/glenroom3.png)\n![Boss Room no props 90 FoV](images/glenbossroom.png)"
+  "readme": "# Glenn Bearna Zoom And FoV\n\n## What it does\n\nAllows farther max zoom and sets FoV bases on chosen variant. There are also variants to remove all the unnecessary props.\n\n### How it's made\n\nMabioned."
 }

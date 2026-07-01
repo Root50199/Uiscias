@@ -13,6 +13,6 @@
     "data/material/fx/effect/common_effect_Late_add_13.dds"
   ],
   "sourceHash": "sha256-8400e1be12f0c114de9104e361e32f77c7d1e836d98b4d37cc98a717abad7316",
-  "readme": "# Dark Diviner Timer\n\n## What it does:\n\nRemoves most of the effects from vortex and replaces the center of vortex and the overhead ball from Thunderblight with a timer. Reduces the amount of extra particles in most DD skills.\n\n### How it's made:\n\nSwap some of the swirly animations out for the timer images.\n\n#### Example Images and GIFs:\n\n![Thunderblight Example](images/DDThunderblight.gif)\n![Vortex Example](images/DDVortex.gif)",
+  "readme": "# Dark Diviner Timer\n\n## What it does\n\nRemoves most of the effects from vortex and replaces the center of vortex and the overhead ball from Thunderblight with a timer. Reduces the amount of extra particles in most DD skills.\n\n### How it's made\n\nSwap some of the swirly animations out for the timer images.",
   "images": ["DDThunderblight.gif", "DDVortex.gif"]
 }

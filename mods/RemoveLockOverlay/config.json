@@ -14,6 +14,6 @@
     "data/gfx/gui/GUI_inven2tab.dds"
   ],
   "sourceHash": "sha256-e35e4244bd174392f61a9ac2da24aed5dc1f8ae57439419e6b2e73d5a67b0808",
-  "readme": "# Remove Lock Overlay\n\n## What it does:\n\nRemoves the lock overlay from masterplan and other lockable bags. This is purely visual to let you see what is in the bag, it does not allow you to add items.\n\n### How it's made:\n\nblank the image files\n\n#### Example Images and GIFs:\n\n![Remove Lock Overlay](images/remove_lock_overlay.png)",
+  "readme": "# Remove Lock Overlay\n\n## What it does\n\nRemoves the lock overlay from masterplan and other lockable bags. This is purely visual to let you see what is in the bag, it does not allow you to add items.\n\n### How it's made\n\nblank the image files",
   "images": ["remove_lock_overlay.png"]
 }

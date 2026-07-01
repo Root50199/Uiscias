@@ -10,5 +10,5 @@
   "hasVariants": false,
   "usedFiles": ["data/gfx/fx/effect/Mfx_BL01.xml", "data/gfx/fx/effect/Mfx_BL02.xml"],
   "sourceHash": "sha256-7005874ef3cd55432d04845857aa043a1af42a500f48e39c5c4870dd17966dc0",
-  "readme": "# Explosive Vanguard Fx Off\n\n## What it does:\n\nRemoves all EV arcana effects.\n\n### How it's made:\n\nBlank the entire effect block.\n\n#### Example Images and GIFs:"
+  "readme": "# Explosive Vanguard Fx Off\n\n## What it does\n\nRemoves all EV arcana effects.\n\n### How it's made\n\nBlank the entire effect block."
 }

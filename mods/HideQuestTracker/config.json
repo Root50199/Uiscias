@@ -10,5 +10,5 @@
   "hasVariants": false,
   "usedFiles": ["data/db/layout2/QuestNoti/QuestNotiView.xml"],
   "sourceHash": "sha256-4688b3809db89812b0c1dc909d6523f0d2a2ac77107028e22bef9fdbbb49b42c",
-  "readme": "# Hide Quest Tracker\n\n## What it does:\n\nHides the quest tracker.\n\n### How it's made:\n\nadd a visible=\"false\" tag\n\n#### Example Images and GIFs:"
+  "readme": "# Hide Quest Tracker\n\n## What it does\n\nHides the quest tracker.\n\n### How it's made\n\nadd a visible=\"false\" tag"
 }

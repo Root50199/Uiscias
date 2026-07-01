@@ -10,5 +10,5 @@
   "hasVariants": false,
   "usedFiles": ["data/gfx/fx/effect/Multiclass_fx02.xml"],
   "sourceHash": "sha256-afef1aa7842238d485b74f6212be5dfcec2f201abb1befd5764000e71006c6a5",
-  "readme": "# Alchemic Sharpshooter Fx Off\n\n## What it does:\n\nReduces most of the fx from Stinger.\n\n### How it's made:\n\nJust blanking out most of the <effect> blocks.\n\n#### Example Images and GIFs:\n\n<Drop image reference or remove block>"
+  "readme": "# Alchemic Sharpshooter Fx Off\n\n## What it does\n\nReduces most of the fx from Stinger.\n\n### How it's made\n\nTBD"
 }
