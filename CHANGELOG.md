@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.17.0](https://github.com/Root50199/Uiscias/compare/v1.16.0...v1.17.0) (2026-07-01)
+
+
+### Mods added / updated
+
+* remove conflicting mod and silencing catalog warning ([a2433b9](https://github.com/Root50199/Uiscias/commit/a2433b9dc205f16088a74d448653a893414f4609))
+
+
+### Fixes
+
+* update current and supported game versions to 06.25.26 ([716e63f](https://github.com/Root50199/Uiscias/commit/716e63f4fe78dc551f42d1cfce1c82731aa24fea))
+* update supported game version to match current game version ([052a93e](https://github.com/Root50199/Uiscias/commit/052a93e40ba0c72d7d6a47a3cfe7a7c593d3d74a))
+
 ## [1.16.0](https://github.com/Root50199/Uiscias/compare/v1.15.0...v1.16.0) (2026-06-30)
 
 
