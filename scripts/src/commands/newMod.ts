@@ -153,7 +153,7 @@ const writeConfigYamlTemplate = async (filepath: string, modId: string): Promise
 
 const writeReadme = async (filepath: string, modId: string): Promise<void> => {
   const formatted = await formatText(
-    `# ${modId}\nDescription coming soon.\n`,
+    `# ${humanizeModId(modId)}\n\n## What it does\n\nDescription coming soon.\n\n### How it's made\n\nDescription coming soon.\n`,
     'markdown',
     filepath,
   );

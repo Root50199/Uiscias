@@ -1,15 +1,9 @@
 ﻿# Purrling Ley Lines Dim
 
-## What it does:
+## What it does
 
 Removes the center paw and dims the white of the Purrling Ley Lines.
 
-### How it's made:
+### How it's made
 
 paint.net
-
-#### Example Images and GIFs:
-
-![red cat circle](images/redcatcircle.png)
-
-![blue cat circle](images/bluecatcircle.png)

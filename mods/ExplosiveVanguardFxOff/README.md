@@ -1,11 +1,9 @@
 ﻿# Explosive Vanguard Fx Off
 
-## What it does:
+## What it does
 
 Removes all EV arcana effects.
 
-### How it's made:
+### How it's made
 
 Blank the entire effect block.
-
-#### Example Images and GIFs:

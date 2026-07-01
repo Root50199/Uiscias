@@ -15,7 +15,7 @@ A mod's `data/` folder holds raw game files. `mabi-pack2.exe pack` compresses an
 encrypts that folder into a single `.it` package that Mabinogi loads from
 `appdata\package`. We invoke it as:
 
-```
+```shell
 mabi-pack2.exe pack -i . -o <FinalName>.it -k <PACK_KEY>
 ```
 

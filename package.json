@@ -18,6 +18,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "lint:md": "markdownlint-cli2",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -27,6 +28,8 @@
     "fs-extra": "^11.3.5",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.8",
+    "markdownlint": "^0.41.0",
+    "markdownlint-cli2": "^0.23.0",
     "picocolors": "^1.1.1",
     "prettier": "^3.8.4",
     "tinyglobby": "^0.2.17",
@@ -37,6 +40,19 @@
     "zod": "^4.4.3"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,md,yml,yaml,css}": "prettier --write"
+    "*.{js,jsx,ts,tsx,json,yml,yaml,css}": "prettier --write",
+    "CHANGELOG.md": "prettier --write",
+    "mods/**/README.md": [
+      "prettier --write",
+      "markdownlint-cli2 --fix"
+    ],
+    "docs/**/*.md": [
+      "prettier --write",
+      "markdownlint-cli2 --fix"
+    ],
+    "README.md": [
+      "prettier --write",
+      "markdownlint-cli2 --fix"
+    ]
   }
 }
