@@ -66,8 +66,9 @@ const variantEntry = (mod: Mod, rawBase: string): ManifestVariant => {
     updateType: cfg.updateType,
     usedFiles: cfg.usedFiles,
     modAuthor: cfg.modAuthor,
-    modAdditionalCredits: cfg.modAdditionalCredits,
-    recentUpdateNotes: cfg.recentUpdateNotes,
+    // Optional: carry through only when the config set them.
+    ...(cfg.modAdditionalCredits ? { modAdditionalCredits: cfg.modAdditionalCredits } : {}),
+    ...(cfg.recentUpdateNotes ? { recentUpdateNotes: cfg.recentUpdateNotes } : {}),
     ...docsFor(mod, cfg, rawBase),
   };
 };

@@ -14,8 +14,6 @@ const variant = {
   updateType: 'stable',
   usedFiles: ['data/x.xml'],
   modAuthor: 'Root50199',
-  modAdditionalCredits: 'None',
-  recentUpdateNotes: 'n/a',
 } as const;
 
 const group = {
@@ -69,6 +67,14 @@ describe('manifestGroupSchema', () => {
   it('rejects non-URL image entries', () => {
     const bad = { ...group, images: ['a.png'] };
     expect(manifestGroupSchema.safeParse(bad).success).toBe(false);
+  });
+
+  it('accepts optional credits + notes on a variant', () => {
+    const withCredits = {
+      ...group,
+      variants: [{ ...variant, modAdditionalCredits: 'Thanks Bri', recentUpdateNotes: 'Fixed X' }],
+    };
+    expect(manifestGroupSchema.safeParse(withCredits).success).toBe(true);
   });
 });
 

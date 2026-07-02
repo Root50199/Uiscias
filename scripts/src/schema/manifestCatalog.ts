@@ -15,8 +15,9 @@ export const manifestVariantSchema = z
     updateType: updateTypeSchema,
     usedFiles: z.array(z.string()),
     modAuthor: z.string().min(1),
-    modAdditionalCredits: z.string().min(1),
-    recentUpdateNotes: z.string().min(1),
+    // Optional: present only when the mod's config sets them.
+    modAdditionalCredits: z.string().min(1).optional(),
+    recentUpdateNotes: z.string().min(1).optional(),
     // Optional docs: the README.md text (verbatim) and fully-qualified,
     // release-pinned raw.githubusercontent.com URLs for the mod's images.
     readme: z.string().min(1).optional(),
