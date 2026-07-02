@@ -5,7 +5,7 @@
   "modAdditionalCredits": "Ported and maintained by Root50199",
   "updateType": "volatile",
   "findiasTags": ["QoL", "UI"],
-  "recentUpdateNotes": "n/a",
+  "recentUpdateNotes": "none",
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/db/commercecommon.xml", "data/db/npcclientappearance.xml"],

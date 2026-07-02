@@ -1,5 +1,9 @@
 modId: RemoveLockOverlay
 modName: Remove Lock Overlay
 modAuthor: Root50199
+modAdditionalCredits: n/a
 updateType: stable
-findiasTags: []
+recentUpdateNotes: none
+findiasTags:
+  - QoL
+  - UI
