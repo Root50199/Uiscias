@@ -6,7 +6,7 @@
   "findiasTags": ["UI", "QoL", "Combat"],
   "isVariant": false,
   "hasVariants": false,
-  "usedFiles": ["data/db/layout2/Skill/SkillDesc.xml", "data/db/layout2/Skill/SkillReadyView.xml"],
-  "sourceHash": "sha256-c00392f5881f7cda72408f182c941b3d4e2410873d34d2b93ce063111bf8134c",
+  "usedFiles": ["data/db/layout2/Skill/SkillReadyView.xml"],
+  "sourceHash": "sha256-315c6da366410d6d73a14ba8099fde1a747e052103f4997be50581421955768a",
   "readme": "# Hide Skill Ready View\n\n## What it does\n\nDisables the \"skillreadyview\" popup when skills like Doppelganger are charged.\n\n### How it's made\n\nadd a visible=\"false\" tag"
 }

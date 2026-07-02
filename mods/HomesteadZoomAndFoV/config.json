@@ -1,0 +1,14 @@
+{
+  "modId": "HomesteadZoomAndFoV",
+  "modName": "Homestead Zoom And FoV",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": ["FoV", "Zoom"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": ["data/world/Farm_Grassland_90/Farm_Grassland_90.rgn"],
+  "sourceHash": "sha256-604b3a6ad339bc0167a85043df744cc4bbc51aa9e38c457edaaf2a2e07815486",
+  "readme": "# Homestead Zoom And FoV\n\n## What it does\n\nAllows farther zoom out and sets FoV to 90 in the homestead"
+}
