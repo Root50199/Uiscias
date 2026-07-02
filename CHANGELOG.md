@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.2](https://github.com/Root50199/Uiscias/compare/v1.20.1...v1.20.2) (2026-07-02)
+
+
+### Fixes
+
+* add spaces to the ek and hs mod ([7dc5458](https://github.com/Root50199/Uiscias/commit/7dc5458decf417992aaaac3e967b82bb4d0a6f97))
+
 ## [1.20.1](https://github.com/Root50199/Uiscias/compare/v1.20.0...v1.20.1) (2026-07-02)
 
 
