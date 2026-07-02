@@ -5,10 +5,8 @@ const valid = {
   modId: 'Zoom',
   modName: 'Zoom Mod',
   modAuthor: 'Root50199',
-  modAdditionalCredits: 'None',
   updateType: 'stable',
   findiasTags: ['Zoom'],
-  recentUpdateNotes: 'n/a',
   isVariant: false,
   hasVariants: false,
   usedFiles: ['data/x.xml'],
@@ -28,8 +26,17 @@ describe('sourceHashSchema', () => {
 });
 
 describe('configJsonSchema', () => {
-  it('accepts a fully-formed config', () => {
+  it('accepts a config without the optional credits/notes', () => {
     expect(configJsonSchema.safeParse(valid).success).toBe(true);
+  });
+
+  it('accepts optional credits + notes when present', () => {
+    const withCredits = {
+      ...valid,
+      modAdditionalCredits: 'Thanks Bri',
+      recentUpdateNotes: 'Fixed the thing',
+    };
+    expect(configJsonSchema.safeParse(withCredits).success).toBe(true);
   });
 
   it('rejects unknown keys (strict)', () => {

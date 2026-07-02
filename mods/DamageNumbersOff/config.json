@@ -2,10 +2,8 @@
   "modId": "DamageNumbersOff",
   "modName": "Damage Numbers Off",
   "modAuthor": "Root50199",
-  "modAdditionalCredits": "None",
   "updateType": "stable",
   "findiasTags": ["UI", "Combat", "Fx", "Lag Helper", "Visual Clarity"],
-  "recentUpdateNotes": "n/a",
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": [

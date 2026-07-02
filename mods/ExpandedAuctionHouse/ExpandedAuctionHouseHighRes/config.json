@@ -2,10 +2,8 @@
   "modId": "ExpandedAuctionHouseHighRes",
   "modName": "Expanded Auction House High Res",
   "modAuthor": "Root50199",
-  "modAdditionalCredits": "None",
   "updateType": "stable",
   "findiasTags": ["UI", "QoL", "1440p Required"],
-  "recentUpdateNotes": "n/a",
   "isVariant": true,
   "hasVariants": false,
   "usedFiles": [

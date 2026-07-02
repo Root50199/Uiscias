@@ -10,9 +10,11 @@ export const configYamlSchema = z
     modId: z.string().min(1),
     modName: z.string().min(1),
     modAuthor: z.string().min(1),
-    modAdditionalCredits: z.string().min(1).default('None'),
+    // Optional: omit the key (or comment it out) to leave it unset. A bare blank
+    // `key:` parses to null and fails validation by design — fill it or comment it.
+    modAdditionalCredits: z.string().min(1).optional(),
     updateType: updateTypeSchema,
-    recentUpdateNotes: z.string().min(1).default('n/a'),
+    recentUpdateNotes: z.string().min(1).optional(),
     // Optional: not every mod has tags. Omitting the key is the same as [].
     findiasTags: findiasTagsSchema.default([]),
   })

@@ -2,10 +2,8 @@
   "modId": "GlennCutsceneSkip",
   "modName": "Glenn Cutscene Skip",
   "modAuthor": "Root50199",
-  "modAdditionalCredits": "None",
   "updateType": "stable",
   "findiasTags": ["Combat", "Cutscene Skip", "Glenn Bearna"],
-  "recentUpdateNotes": "n/a",
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": [

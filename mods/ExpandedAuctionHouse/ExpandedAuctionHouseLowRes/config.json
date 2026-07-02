@@ -2,10 +2,8 @@
   "modId": "ExpandedAuctionHouseLowRes",
   "modName": "Expanded Auction House Low Res",
   "modAuthor": "Root50199",
-  "modAdditionalCredits": "None",
   "updateType": "stable",
   "findiasTags": ["UI", "QoL"],
-  "recentUpdateNotes": "n/a",
   "isVariant": true,
   "hasVariants": false,
   "usedFiles": [

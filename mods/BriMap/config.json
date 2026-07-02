@@ -2,10 +2,8 @@
   "modId": "BriMap",
   "modName": "Bri Map",
   "modAuthor": "Root50199",
-  "modAdditionalCredits": "None",
   "updateType": "volatile",
   "findiasTags": ["UI", "Bri Leith"],
-  "recentUpdateNotes": "n/a",
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": [
