@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.20.1](https://github.com/Root50199/Uiscias/compare/v1.20.0...v1.20.1) (2026-07-02)
+
+
+### Fixes
+
+* ensure that mod renames delete old packed it files ([13820be](https://github.com/Root50199/Uiscias/commit/13820be547fb59c0e262bd9fa748542007a901ea))
+* renaming saint guard to harmonic saint ([c3ae45a](https://github.com/Root50199/Uiscias/commit/c3ae45a47a32a0de80d42418f751d84911a6f9f4))
+
 ## [1.20.0](https://github.com/Root50199/Uiscias/compare/v1.19.0...v1.20.0) (2026-07-01)
 
 
