@@ -30,19 +30,19 @@ describe('config', () => {
     return { id: 'Zoom', dir, relDir: 'mods/Zoom', kind, dataDir };
   }
 
-  /** Base config.json keys always present (no README / images). */
-  const BASE_KEYS = CONFIG_JSON_KEY_ORDER.filter((k) => k !== 'readme' && k !== 'images');
+  /** Optional keys omitted when the config.yaml leaves them unset. */
+  const OPTIONAL_KEYS = ['readme', 'images', 'modAdditionalCredits', 'recentUpdateNotes'] as const;
+  /** Base config.json keys always present (no README / images / credits / notes). */
+  const BASE_KEYS = CONFIG_JSON_KEY_ORDER.filter((k) => !OPTIONAL_KEYS.includes(k));
 
   describe('loadConfigYaml', () => {
-    it('loads and validates config.yaml, applying defaults', async () => {
+    it('loads and validates config.yaml, leaving optional fields unset', async () => {
       const mod = await makeMod();
       const yaml = loadConfigYaml(mod);
-      expect(yaml).toMatchObject({
-        modId: 'Zoom',
-        modAdditionalCredits: 'None',
-        recentUpdateNotes: 'n/a',
-        findiasTags: [],
-      });
+      expect(yaml.modId).toBe('Zoom');
+      expect(yaml.modAdditionalCredits).toBeUndefined();
+      expect(yaml.recentUpdateNotes).toBeUndefined();
+      expect(yaml.findiasTags).toEqual([]);
     });
 
     it('throws when config.yaml is missing', () => {
@@ -67,10 +67,12 @@ describe('config', () => {
       const mod = await makeMod();
       const cfg = buildConfigJson(mod);
 
-      // No README / images, so those keys are omitted (docs-less mods stay lean).
+      // No README / images / credits / notes, so those keys are omitted (lean mods).
       expect(Object.keys(cfg)).toEqual(BASE_KEYS);
       expect(cfg.readme).toBeUndefined();
       expect(cfg.images).toBeUndefined();
+      expect(cfg.modAdditionalCredits).toBeUndefined();
+      expect(cfg.recentUpdateNotes).toBeUndefined();
       expect(cfg.usedFiles).toEqual(['data/x.xml']);
       expect(cfg.sourceHash).toMatch(/^sha256-[0-9a-f]{64}$/);
       expect(cfg.isVariant).toBe(false);
@@ -82,6 +84,21 @@ describe('config', () => {
       expect(buildConfigJson(mod).isVariant).toBe(true);
     });
 
+    it('includes optional credits + notes when the yaml sets them', async () => {
+      const mod = await makeMod();
+      await fs.writeFile(
+        join(mod.dir, 'config.yaml'),
+        `${YAML_MIN}modAdditionalCredits: Thanks Bri\nrecentUpdateNotes: Fixed the thing\n`,
+        'utf8',
+      );
+      const cfg = buildConfigJson(mod);
+      expect(cfg.modAdditionalCredits).toBe('Thanks Bri');
+      expect(cfg.recentUpdateNotes).toBe('Fixed the thing');
+      // Present optional fields still land in canonical order (no README / images).
+      const keysNoDocs = CONFIG_JSON_KEY_ORDER.filter((k) => k !== 'readme' && k !== 'images');
+      expect(Object.keys(cfg)).toEqual(keysNoDocs);
+    });
+
     it('reads README.md verbatim and scans images/ in canonical key order', async () => {
       const mod = await makeMod();
       await fs.writeFile(join(mod.dir, 'README.md'), '# Zoom\n\nHello.\n', 'utf8');
@@ -91,7 +108,11 @@ describe('config', () => {
       await fs.writeFile(join(imagesDir, 'a.gif'), 'x');
 
       const cfg = buildConfigJson(mod);
-      expect(Object.keys(cfg)).toEqual(CONFIG_JSON_KEY_ORDER);
+      // YAML_MIN sets no credits/notes, so those keys are absent; readme/images present.
+      const keysWithDocs = CONFIG_JSON_KEY_ORDER.filter(
+        (k) => k !== 'modAdditionalCredits' && k !== 'recentUpdateNotes',
+      );
+      expect(Object.keys(cfg)).toEqual(keysWithDocs);
       expect(cfg.readme).toBe('# Zoom\n\nHello.');
       expect(cfg.images).toEqual(['a.gif', 'b.png']);
     });

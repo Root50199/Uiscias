@@ -1,11 +1,12 @@
 import path from 'node:path';
 import readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
-import { fse, formatText, orderKeys, writeJsonFile, writeYamlFile, relPosix } from '../lib/io';
+import { Document, isMap, isScalar } from 'yaml';
+import { fse, formatText, writeJsonFile, relPosix } from '../lib/io';
 import { getRepoRoot, getModsRoot } from '../lib/repo';
 import { humanizeModId } from '../lib/humanize';
 import { ok, err, dim } from '../lib/term';
-import { CONFIG_YAML_KEY_ORDER, FINDIAS_TAGS, type ConfigYaml } from '../schema';
+import { FINDIAS_TAGS } from '../schema';
 
 /** Folder-name format every mod id must follow (UpperCamelCase / PascalCase). */
 const PASCAL_CASE = /^[A-Z][A-Za-z0-9]*$/;
@@ -130,25 +131,36 @@ export const runNewMod = async (opts: NewModOptions): Promise<void> => {
 };
 
 /**
- * Emit a `config.yaml` pre-filled with every field and **all** allowed
+ * Emit a `config.yaml` pre-filled with the required fields and **all** allowed
  * `findiasTags` (sourced from the schema, so new tags appear here automatically)
- * for the author to trim down.
+ * for the author to trim down. The two optional fields (`modAdditionalCredits`,
+ * `recentUpdateNotes`) are emitted **commented out** in their canonical
+ * positions: authors can see they exist, but a commented/omitted key means
+ * "unset" and is dropped from the generated config.json / manifest.
  */
 const writeConfigYamlTemplate = async (filepath: string, modId: string): Promise<void> => {
-  const template = orderKeys<ConfigYaml>(
-    {
-      modId,
-      modName: humanizeModId(modId),
-      modAuthor: 'Root50199',
-      modAdditionalCredits: 'None',
-      updateType: 'stable',
-      recentUpdateNotes: 'n/a',
-      findiasTags: [...FINDIAS_TAGS],
-    },
-    CONFIG_YAML_KEY_ORDER,
-  );
+  const doc = new Document({
+    modId,
+    modName: humanizeModId(modId),
+    modAuthor: 'Root50199',
+    updateType: 'stable',
+    findiasTags: [...FINDIAS_TAGS],
+  });
 
-  await writeYamlFile(filepath, template);
+  // Attach the optional fields as comment lines before the key that would
+  // follow them, so they render in schema order (credits before updateType,
+  // notes before findiasTags). A leading space yields `# key:` after `#`.
+  const commentBeforeKey = (key: string, comment: string): void => {
+    if (!isMap(doc.contents)) return;
+    for (const item of doc.contents.items) {
+      if (isScalar(item.key) && item.key.value === key) item.key.commentBefore = comment;
+    }
+  };
+  commentBeforeKey('updateType', ' modAdditionalCredits:');
+  commentBeforeKey('findiasTags', ' recentUpdateNotes:');
+
+  const text = await formatText(doc.toString(), 'yaml', filepath);
+  await fse.outputFile(filepath, text, 'utf8');
 };
 
 const writeReadme = async (filepath: string, modId: string): Promise<void> => {
