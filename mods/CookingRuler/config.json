@@ -2,7 +2,6 @@
   "modId": "CookingRuler",
   "modName": "Cooking Ruler",
   "modAuthor": "Root50199",
-  "modAdditionalCredits": "Heavily modified, but originally from [this Erinn World thread](https://www.erinn.world/forum.php?mod=viewthread&tid=16795&extra=page%3D2&page=1) by 隐翅.",
   "updateType": "stable",
   "findiasTags": ["UI", "QoL"],
   "isVariant": false,
@@ -12,6 +11,6 @@
     "data/UisciasAmountRuler.dds"
   ],
   "sourceHash": "sha256-3a7623df60ae598fe7b439d81da5f70b816bd1b3afe0431eb1e911de095c1bf4",
-  "readme": "# Cooking Ruler\n\n## What it does\n\nExpands the cooking bar and adds and overlay with tick marks every 1%\n\n### How it's made\n\nThe ruler was made in paint.net and the size and position of the gauge was edited in the xml.",
+  "readme": "# Cooking Ruler\n\n## What it does\n\nExpands the cooking bar and adds and overlay with tick marks every 1%.\n\nHeavily modified, but originally from [this Erinn World thread](https://www.erinn.world/forum.php?mod=viewthread&tid=16795&extra=page%3D2&page=1) by 隐翅.\n\n### How it's made\n\nThe ruler was made in paint.net and the size and position of the gauge was edited in the xml.",
   "images": ["cooking_ruler.png"]
 }
