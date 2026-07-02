@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.22.0](https://github.com/Root50199/Uiscias/compare/v1.21.0...v1.22.0) (2026-07-02)
+
+
+### Mods added / updated
+
+* fix: added new mods, fixed some accidental crossovers ([b7aadba](https://github.com/Root50199/Uiscias/commit/b7aadbac8a098836b56a11cf6167228d8e1513d9))
+
+
+### Fixes
+
+* fixed some accidental crossover and added some mods ([bcd14c8](https://github.com/Root50199/Uiscias/commit/bcd14c8f8468c29d6b3742c504a248df78d7cb54))
+* fixed some accidental crossovers and added some mods ([7723c7a](https://github.com/Root50199/Uiscias/commit/7723c7a05cde1cb0be113062304bc25627bdfb32))
+
 ## [1.21.0](https://github.com/Root50199/Uiscias/compare/v1.20.2...v1.21.0) (2026-07-02)
 
 
