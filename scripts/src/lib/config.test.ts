@@ -31,7 +31,12 @@ describe('config', () => {
   }
 
   /** Optional keys omitted when the config.yaml leaves them unset. */
-  const OPTIONAL_KEYS = ['readme', 'images', 'modAdditionalCredits', 'recentUpdateNotes'] as const;
+  const OPTIONAL_KEYS: readonly (typeof CONFIG_JSON_KEY_ORDER)[number][] = [
+    'readme',
+    'images',
+    'modAdditionalCredits',
+    'recentUpdateNotes',
+  ];
   /** Base config.json keys always present (no README / images / credits / notes). */
   const BASE_KEYS = CONFIG_JSON_KEY_ORDER.filter((k) => !OPTIONAL_KEYS.includes(k));
 
