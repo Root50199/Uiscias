@@ -9,11 +9,30 @@ const minimal = {
 } as const;
 
 describe('configYamlSchema', () => {
-  it('applies defaults for optional fields', () => {
+  it('leaves optional credits/notes unset when the key is omitted', () => {
     const parsed = configYamlSchema.parse(minimal);
-    expect(parsed.modAdditionalCredits).toBe('None');
-    expect(parsed.recentUpdateNotes).toBe('n/a');
+    expect(parsed.modAdditionalCredits).toBeUndefined();
+    expect(parsed.recentUpdateNotes).toBeUndefined();
     expect(parsed.findiasTags).toEqual([]);
+  });
+
+  it('keeps optional credits/notes when provided', () => {
+    const parsed = configYamlSchema.parse({
+      ...minimal,
+      modAdditionalCredits: 'Thanks Bri',
+      recentUpdateNotes: 'Fixed the thing',
+    });
+    expect(parsed.modAdditionalCredits).toBe('Thanks Bri');
+    expect(parsed.recentUpdateNotes).toBe('Fixed the thing');
+  });
+
+  it('rejects a blank optional field (null or empty string)', () => {
+    // A bare `key:` in YAML parses to null; `key: ""` is empty. Both fail by
+    // design so authors comment the line or fill it, never leave it ambiguous.
+    expect(configYamlSchema.safeParse({ ...minimal, modAdditionalCredits: null }).success).toBe(
+      false,
+    );
+    expect(configYamlSchema.safeParse({ ...minimal, recentUpdateNotes: '' }).success).toBe(false);
   });
 
   it('rejects unknown keys (strict)', () => {
