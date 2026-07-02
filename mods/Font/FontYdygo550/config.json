@@ -1,0 +1,14 @@
+{
+  "modId": "FontYdygo550",
+  "modName": "Font Ydygo550",
+  "modAuthor": "Unknown",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": ["data/gfx/font/nanumgothicbold.ttf"],
+  "sourceHash": "sha256-41ab185246b3dafc36547746e68ca79d665f31e7749c8fe557eb3a6c7697b83e",
+  "readme": "# Font\n\n## What it does\n\nSwaps the games text font based on chosen variant."
+}

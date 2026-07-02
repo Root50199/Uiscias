@@ -1,0 +1,14 @@
+{
+  "modId": "FontRobotoMedium",
+  "modName": "Font Roboto Medium",
+  "modAuthor": "Tekashi",
+  "modAdditionalCredits": "none",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": ["data/gfx/font/nanumgothicbold.ttf"],
+  "sourceHash": "sha256-e387ed379d68c4d6b8ba8a41e31cc1433ed638e7d21d700cee987c59b8207d47",
+  "readme": "# Font\n\n## What it does\n\nSwaps the games text font based on chosen variant."
+}

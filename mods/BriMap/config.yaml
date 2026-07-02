@@ -2,6 +2,7 @@ modId: BriMap
 modName: Bri Map
 modAuthor: Root50199
 updateType: volatile
+recentUpdateNotes: removed fog from all maps and disabled zoom on the gate 1 map
 findiasTags:
   - UI
   - Bri Leith

@@ -1,0 +1,23 @@
+{
+  "modId": "Font",
+  "modName": "Font",
+  "modAuthor": "ShaggyZE, Tekashi, Matthew Welch, Unknown",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": true,
+  "usedFiles": [],
+  "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "readme": "# Font\n\n## What it does\n\nSwaps the games text font based on chosen variant.",
+  "images": [
+    "FontFudd.png",
+    "FontInterstate.png",
+    "FontPowerred.png",
+    "FontRobotoMedium.png",
+    "FontUoTiara.png",
+    "FontWhiteRabbit.png",
+    "FontYdygo550.png"
+  ]
+}

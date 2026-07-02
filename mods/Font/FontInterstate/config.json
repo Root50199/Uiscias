@@ -1,0 +1,14 @@
+{
+  "modId": "FontInterstate",
+  "modName": "Font Interstate",
+  "modAuthor": "ShaggyZE",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": ["data/gfx/font/nanumgothicbold.ttf"],
+  "sourceHash": "sha256-d544a436121280a83a61da3e804ec0743f58ffb820be08b97e11f1c98722aabe",
+  "readme": "# Font\n\n## What it does\n\nSwaps the games text font based on chosen variant."
+}

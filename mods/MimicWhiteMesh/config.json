@@ -1,0 +1,42 @@
+{
+  "modId": "MimicWhiteMesh",
+  "modName": "Mimic White Mesh",
+  "modAuthor": "Amaretto(Mimics), Jragon0(Strange Books)",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": [
+    "1440p Required",
+    "Arcana",
+    "Audio",
+    "Bri Leith",
+    "Combat",
+    "Crom Bas",
+    "Cutscene Skip",
+    "FoV",
+    "Fx",
+    "Glenn Bearna",
+    "Lag Helper",
+    "QoL",
+    "Rabbie Phantasm",
+    "Tech Duinn",
+    "UI",
+    "Visual Clarity",
+    "Zoom"
+  ],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/gfx/chapter3/monster/mesh/picturebooks/c3_picturebooks_mesh.pmg",
+    "data/gfx/char/chapter3/monster/mesh/picturebooks/c3_picturebooks_mesh.pmg",
+    "data/gfx/char/monster/mesh/mimic/mimic01_mesh.pmg",
+    "data/gfx/char/monster/mesh/mimic/mimic02_mesh.pmg",
+    "data/gfx/char/monster/mesh/mimic/mimic03_mesh.pmg",
+    "data/gfx/char/monster/mesh/mimic/mimic04_mesh.pmg",
+    "data/gfx/char/monster/mesh/mimic/mimic05_mesh.pmg",
+    "data/gfx/char/monster/mesh/mimic/mimic06_mesh.pmg"
+  ],
+  "sourceHash": "sha256-9c2c9fe634b4b1bc9438b30300bb50b9d8683a314d8ccd0fde31d2f834c09847",
+  "readme": "# Mimic White Mesh\n\n## What it does\n\nSwaps the Mimic and strange book meshes for pure white versions",
+  "images": ["Mimic.png"]
+}
