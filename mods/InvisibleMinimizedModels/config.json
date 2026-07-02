@@ -1,0 +1,19 @@
+{
+  "modId": "InvisibleMinimizedModels",
+  "modName": "Invisible Minimized Models",
+  "modAuthor": "Unknown",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Fx", "Lag Helper"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/gfx/char/giant/female/mentle/giant_female_dummy_01.pmg",
+    "data/gfx/char/giant/male/mentle/giant_male_dummy_01.pmg",
+    "data/gfx/char/human/female/mantle/female_dummy_01.pmg",
+    "data/gfx/char/human/male/mantle/male_dummy_01.pmg"
+  ],
+  "sourceHash": "sha256-50cb1273d460e986672c54d87f2e4ec4fb6ebf95866354394f39121149e341b7",
+  "readme": "# Invisible Minimized Models\n\n## What it does\n\nDescription coming soon.\n\n### How it's made\n\nDescription coming soon."
+}

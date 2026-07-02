@@ -1,0 +1,14 @@
+{
+  "modId": "FontUoTiara",
+  "modName": "Font Uo Tiara",
+  "modAuthor": "ShaggyZE",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": ["data/gfx/font/nanumgothicbold.ttf"],
+  "sourceHash": "sha256-23b770e643c4eba7496a1817eef58eaac8f4de7262773e57d6b02a4e58b9706e",
+  "readme": "# Font\n\n## What it does\n\nSwaps the games text font based on chosen variant."
+}

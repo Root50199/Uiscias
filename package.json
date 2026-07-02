@@ -9,6 +9,7 @@
     "mods": "tsx scripts/src/index.ts list",
     "changed": "tsx scripts/src/index.ts changed",
     "new-mod": "tsx scripts/src/index.ts new-mod",
+    "mabi-xml-edit": "tsx scripts/src/index.ts mabiXmlEdit",
     "generate-configs": "tsx scripts/src/index.ts generate-configs",
     "pack": "tsx scripts/src/index.ts pack",
     "build-manifest": "tsx scripts/src/index.ts build-manifest",
@@ -24,6 +25,8 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^26.0.0",
+    "@types/readline-sync": "^1.4.8",
+    "@types/xml2js": "^0.4.14",
     "commander": "^15.0.0",
     "fs-extra": "^11.3.5",
     "husky": "^9.1.7",
@@ -54,5 +57,9 @@
       "prettier --write",
       "markdownlint-cli2 --fix"
     ]
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10",
+    "xml2js": "^0.6.2"
   }
 }

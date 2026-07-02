@@ -1,0 +1,19 @@
+{
+  "modId": "AlternateSuccessAnimation",
+  "modName": "Alternate Success Animation",
+  "modAuthor": "Unknown",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Audio", "Fx", "Cosmetic"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/gfx/char/human/anim/emotion/uni_natural_emotion_skill_fail_short.ani",
+    "data/gfx/char/human/anim/emotion/uni_natural_emotion_skill_fail_short.mov",
+    "data/gfx/char/human/anim/emotion/uni_natural_emotion_skill_success.ani",
+    "data/gfx/char/human/anim/emotion/uni_natural_emotion_skill_success.mov"
+  ],
+  "sourceHash": "sha256-9cfa818594c8297b1c0c9bec038c35da4b53d85615dc52876dec403c04bbeac6",
+  "readme": "# Alternate Success Animation\n\n## What it does\n\nSwaps the gather/crafting success/fail animations and sound fx."
+}

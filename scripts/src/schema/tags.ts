@@ -7,6 +7,7 @@ export const FINDIAS_TAGS = [
   'Audio',
   'Bri Leith',
   'Combat',
+  'Cosmetic',
   'Crom Bas',
   'Cutscene Skip',
   'FoV',

@@ -1,0 +1,14 @@
+{
+  "modId": "FontPowerred",
+  "modName": "Font Powerred",
+  "modAuthor": "ShaggyZE",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": ["data/gfx/font/nanumgothicbold.ttf"],
+  "sourceHash": "sha256-d87f6dcd6c3c539dfcf5eda8d78f458793e588112426bdbbc4f726d6d0ffbced",
+  "readme": "# Font\n\n## What it does\n\nSwaps the games text font based on chosen variant."
+}

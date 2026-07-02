@@ -1,0 +1,14 @@
+{
+  "modId": "AntHellFoV",
+  "modName": "Ant Hell FoV",
+  "modAuthor": "ShaggyZE",
+  "modAdditionalCredits": "ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["FoV"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": ["data/db/undergroundmaze.xml"],
+  "sourceHash": "sha256-0adb841bce05e7ffdb35050bfecd6c1d49f38f325d18960f3b92adfafd77bfc5",
+  "readme": "# Ant Hell FoV\n\n## What it does\n\nSets FoV to 90 and pushes back to distant fog.\n\n### How it's made"
+}

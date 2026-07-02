@@ -1,0 +1,14 @@
+{
+  "modId": "FontFudd",
+  "modName": "Font Fudd",
+  "modAuthor": "ShaggyZE",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": ["data/gfx/font/nanumgothicbold.ttf"],
+  "sourceHash": "sha256-3bdbad2c695e354412077ecfefefb8cd6384d501b82aa2fa72a13b55e5004c9d",
+  "readme": "# Font\n\n## What it does\n\nSwaps the games text font based on chosen variant."
+}

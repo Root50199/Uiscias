@@ -1,0 +1,15 @@
+{
+  "modId": "BanditSpotter",
+  "modName": "Bandit Spotter",
+  "modAuthor": "Florn",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "volatile",
+  "findiasTags": ["QoL", "UI"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": ["data/db/commercecommon.xml", "data/db/npcclientappearance.xml"],
+  "sourceHash": "sha256-951f080f3650470b1d59f4d0ff450b3187e927d245525ef18972e9d431a0b736",
+  "readme": "# Bandit Spotter\n\n## What it does\n\nMakes the name tag appear on bandit and they appear on the map as NPCs",
+  "images": ["BanditSpotter.png"]
+}

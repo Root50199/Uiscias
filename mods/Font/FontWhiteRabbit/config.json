@@ -1,0 +1,14 @@
+{
+  "modId": "FontWhiteRabbit",
+  "modName": "Font White Rabbit",
+  "modAuthor": "Matthew Welch",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": ["data/gfx/font/nanumgothicbold.ttf"],
+  "sourceHash": "sha256-d95441afa428fdccfce2bccdf0206c1cf9236afe4794925e037f6dcefe083230",
+  "readme": "# Font\n\n## What it does\n\nA font reminiscent of the characters displayed on old text based terminal screens. Smoothed out and cleaned up for a new millennium, this is the font to use for all your computing applications."
+}
