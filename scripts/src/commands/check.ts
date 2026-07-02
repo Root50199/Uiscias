@@ -4,6 +4,7 @@ import { getRepoRoot } from '../lib/repo';
 import { discoverMods, packTargets } from '../lib/mods';
 import { computeDataHash } from '../lib/hash';
 import { readConfigJson, readBuildLock } from '../lib/config';
+import { itBelongsToId } from '../lib/itFile';
 import { ok, err, glyph, Tally } from '../lib/term';
 import { runGenerateConfigs } from './generateConfigs';
 
@@ -55,6 +56,11 @@ export const runCheck = async (): Promise<void> => {
     }
     if (!fse.pathExistsSync(path.join(buildDir, lock.fileName))) {
       tally.addError(`${mod.relDir}: build.lock points to missing ${lock.fileName}`);
+    }
+    if (!itBelongsToId(lock.fileName, mod.id)) {
+      tally.addError(
+        `${mod.relDir}: build.lock ${lock.fileName} doesn't match mod id (folder renamed? run pack)`,
+      );
     }
   }
 
