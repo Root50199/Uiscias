@@ -1,10 +1,11 @@
-modId: BriLootUI
-modName: Bri Loot UI
+modId: DarkDivinerFx
+modName: Dark Diviner Fx
 modAuthor: Root50199
 modAdditionalCredits: None
 updateType: stable
 recentUpdateNotes: n/a
 findiasTags:
-  - UI
-  - QoL
-  - Bri Leith
+  - Combat
+  - Fx
+  - Lag Helper
+  - Arcana

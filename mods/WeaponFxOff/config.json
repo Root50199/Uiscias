@@ -27,9 +27,8 @@
     "data/gfx/fx/effect/enhance_weapon_trail_R.xml",
     "data/gfx/fx/effect/enhance_weapon_trail_S.xml",
     "data/gfx/fx/effect/enhance_weapon_trail.xml",
-    "data/gfx/fx/effect/enhance_weapon.xml",
-    "data/gfx/fx/effect/Option_weapon.xml"
+    "data/gfx/fx/effect/enhance_weapon.xml"
   ],
-  "sourceHash": "sha256-e6aa73062edc502cd7f9dc65bb49dd328bfb3c15adbfde36d735f7293f1f644c",
+  "sourceHash": "sha256-7c059f42983b5cf6d53bb8c91b3d49044acb3360c8d25c5b202e9710292c534e",
   "readme": "# Skill Skins Off\n\n## What it does\n\nRemoves all the impact effects from special upgraded weapons and critical hits.\n\n### How it's made\n\nblank the effect blocks."
 }

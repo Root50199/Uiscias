@@ -1,10 +1,9 @@
-modId: BriLootUI
-modName: Bri Loot UI
+modId: HomesteadZoomAndFoV
+modName: Homestead Zoom And FoV
 modAuthor: Root50199
 modAdditionalCredits: None
 updateType: stable
 recentUpdateNotes: n/a
 findiasTags:
-  - UI
-  - QoL
-  - Bri Leith
+  - FoV
+  - Zoom

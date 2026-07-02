@@ -1,0 +1,14 @@
+{
+  "modId": "DarkDivinerFx",
+  "modName": "Dark Diviner Fx",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "None",
+  "updateType": "stable",
+  "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
+  "recentUpdateNotes": "n/a",
+  "isVariant": false,
+  "hasVariants": true,
+  "usedFiles": [],
+  "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "readme": "# Dark Diviner Fx Off\n\n## What it does\n\nRemoves all effects of diviner arcana skills.\n\n### How it's made\n\nCompletely blank all the effect blocks."
+}
