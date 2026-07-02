@@ -1,9 +1,9 @@
 modId: TalentAndArcanaWindow
 modName: Talent and Arcana Window
 modAuthor: Root50199
-# modAdditionalCredits:
+modAdditionalCredits: none
 updateType: stable
-# recentUpdateNotes:
+recentUpdateNotes: none
 findiasTags:
   - UI
   - QoL

@@ -2,8 +2,10 @@
   "modId": "RemoveLockOverlay",
   "modName": "Remove Lock Overlay",
   "modAuthor": "Root50199",
+  "modAdditionalCredits": "n/a",
   "updateType": "stable",
-  "findiasTags": [],
+  "findiasTags": ["QoL", "UI"],
+  "recentUpdateNotes": "none",
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": [

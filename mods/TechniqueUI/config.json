@@ -2,8 +2,10 @@
   "modId": "TechniqueUI",
   "modName": "Technique UI",
   "modAuthor": "Root50199",
+  "modAdditionalCredits": "none",
   "updateType": "stable",
   "findiasTags": ["UI", "QoL"],
+  "recentUpdateNotes": "none",
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": [
