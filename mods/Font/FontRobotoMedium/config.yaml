@@ -1,9 +1,9 @@
 modId: FontRobotoMedium
 modName: Font Roboto Medium
 modAuthor: Tekashi
-modAdditionalCredits: none
+# modAdditionalCredits:
 updateType: stable
-recentUpdateNotes: none
+# recentUpdateNotes:
 findiasTags:
   - QoL
   - UI

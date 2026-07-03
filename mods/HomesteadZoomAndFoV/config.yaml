@@ -1,9 +1,9 @@
 modId: HomesteadZoomAndFoV
 modName: Homestead Zoom And FoV
 modAuthor: Root50199
-modAdditionalCredits: None
+# modAdditionalCredits:
 updateType: stable
-recentUpdateNotes: n/a
+# recentUpdateNotes:
 findiasTags:
   - FoV
   - Zoom

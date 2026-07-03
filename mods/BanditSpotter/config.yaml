@@ -3,7 +3,7 @@ modName: Bandit Spotter
 modAuthor: Florn
 modAdditionalCredits: Ported and maintained by Root50199
 updateType: volatile
-recentUpdateNotes: none
+# recentUpdateNotes:
 findiasTags:
   - QoL
   - UI

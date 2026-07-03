@@ -3,7 +3,7 @@ modName: Font
 modAuthor: ShaggyZE, Tekashi, Matthew Welch, Unknown
 modAdditionalCredits: Ported and maintained by Root50199
 updateType: stable
-recentUpdateNotes: none
+# recentUpdateNotes:
 findiasTags:
   - QoL
   - UI

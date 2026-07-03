@@ -1,9 +1,9 @@
 modId: TechniqueUI
 modName: Technique UI
 modAuthor: Root50199
-modAdditionalCredits: none
+# modAdditionalCredits:
 updateType: stable
-recentUpdateNotes: none
+# recentUpdateNotes:
 findiasTags:
   - UI
   - QoL
