@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.23.0](https://github.com/Root50199/Uiscias/compare/v1.22.0...v1.23.0) (2026-07-03)
+
+
+### Mods added / updated
+
+* introduce optionalModTextSchema for modAdditionalCredits and recentUpdateNotes validation across config files ([af4d7b6](https://github.com/Root50199/Uiscias/commit/af4d7b6d0c191536a241d7a51a3dc89c48c09b04))
+* update config files to remove 'recentUpdateNotes' and 'modAdditionalCredits' entries across multiple mods for consistency ([538d849](https://github.com/Root50199/Uiscias/commit/538d849dd310237910d8a2acbb61f6a62d058a3a))
+
 ## [1.22.0](https://github.com/Root50199/Uiscias/compare/v1.21.0...v1.22.0) (2026-07-02)
 
 
