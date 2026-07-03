@@ -3,7 +3,7 @@ modName: Font White Rabbit
 modAuthor: Matthew Welch
 modAdditionalCredits: Ported and maintained by Root50199
 updateType: stable
-recentUpdateNotes: none
+# recentUpdateNotes:
 findiasTags:
   - QoL
   - UI

@@ -1,9 +1,9 @@
 modId: ProductionUncap
 modName: Production Uncap
 modAuthor: Root50199
-modAdditionalCredits: None
+# modAdditionalCredits:
 updateType: volatile
-recentUpdateNotes: none
+# recentUpdateNotes:
 findiasTags:
   - QoL
   - UI

@@ -35,6 +35,24 @@ describe('configYamlSchema', () => {
     expect(configYamlSchema.safeParse({ ...minimal, recentUpdateNotes: '' }).success).toBe(false);
   });
 
+  it.each(['n/a', 'none', 'None', 'N/A'] as const)(
+    'rejects placeholder modAdditionalCredits: %s',
+    (value) => {
+      expect(configYamlSchema.safeParse({ ...minimal, modAdditionalCredits: value }).success).toBe(
+        false,
+      );
+    },
+  );
+
+  it.each(['n/a', 'none', 'None', 'N/A'] as const)(
+    'rejects placeholder recentUpdateNotes: %s',
+    (value) => {
+      expect(configYamlSchema.safeParse({ ...minimal, recentUpdateNotes: value }).success).toBe(
+        false,
+      );
+    },
+  );
+
   it('rejects unknown keys (strict)', () => {
     expect(configYamlSchema.safeParse({ ...minimal, extra: 1 }).success).toBe(false);
   });

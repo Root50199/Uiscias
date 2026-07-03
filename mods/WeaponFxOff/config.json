@@ -2,10 +2,8 @@
   "modId": "WeaponFxOff",
   "modName": "Weapon Fx Off",
   "modAuthor": "Root50199",
-  "modAdditionalCredits": "none",
   "updateType": "stable",
   "findiasTags": ["Combat", "Fx", "Lag Helper"],
-  "recentUpdateNotes": "none",
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": [

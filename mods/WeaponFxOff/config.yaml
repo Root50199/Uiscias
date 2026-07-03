@@ -1,9 +1,9 @@
 modId: WeaponFxOff
 modName: Weapon Fx Off
 modAuthor: Root50199
-modAdditionalCredits: none
+# modAdditionalCredits:
 updateType: stable
-recentUpdateNotes: none
+# recentUpdateNotes:
 findiasTags:
   - Combat
   - Fx
