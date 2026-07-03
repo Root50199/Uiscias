@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { optionalModTextSchema } from './optionalModText';
 import { findiasTagsSchema, updateTypeSchema } from './tags';
 
 /**
@@ -12,9 +13,9 @@ export const configYamlSchema = z
     modAuthor: z.string().min(1),
     // Optional: omit the key (or comment it out) to leave it unset. A bare blank
     // `key:` parses to null and fails validation by design — fill it or comment it.
-    modAdditionalCredits: z.string().min(1).optional(),
+    modAdditionalCredits: optionalModTextSchema,
     updateType: updateTypeSchema,
-    recentUpdateNotes: z.string().min(1).optional(),
+    recentUpdateNotes: optionalModTextSchema,
     // Optional: not every mod has tags. Omitting the key is the same as [].
     findiasTags: findiasTagsSchema.default([]),
   })

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { optionalModTextSchema } from './optionalModText';
 import { findiasTagsSchema, updateTypeSchema } from './tags';
 
 /** A content hash, e.g. `sha256-<64 hex chars>`. */
@@ -16,10 +17,10 @@ export const configJsonSchema = z
     modName: z.string().min(1),
     modAuthor: z.string().min(1),
     // Optional: omitted upstream when the config.yaml leaves them unset.
-    modAdditionalCredits: z.string().min(1).optional(),
+    modAdditionalCredits: optionalModTextSchema,
     updateType: updateTypeSchema,
     findiasTags: findiasTagsSchema,
-    recentUpdateNotes: z.string().min(1).optional(),
+    recentUpdateNotes: optionalModTextSchema,
     isVariant: z.boolean(),
     hasVariants: z.boolean(),
     usedFiles: z.array(z.string()),
