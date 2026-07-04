@@ -8,6 +8,8 @@
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": [
+    "data/gfx/gui/stagedungeon_curtain_light.dds",
+    "data/gfx/gui/stagedungeon_curtain.dds",
     "data/gfx/scene/avon/dungeon_rj/dg_avon_rj_charnelhouse_in_ceiling_01.pmg",
     "data/gfx/scene/avon/dungeon_rj/dg_avon_rj_charnelhouse_out_ceiling_01.pmg",
     "data/gfx/scene/avon/dungeon_rj/dg_avon_rj_loginstage_effect_01.pmg",
@@ -25,6 +27,6 @@
     "data/gfx/scene/avon/dungeon/dg_avon_stage_fog_01.pmg",
     "data/gfx/scene/avon/dungeon/dg_avon_stage_fog_01.xml"
   ],
-  "sourceHash": "sha256-8ca4ed84dc9c19b0705e3fb6521ef85ef2593e2bf2a59a2199577c445b7cf43f",
+  "sourceHash": "sha256-74fd22ac4271beb19bf16f61b9f40b46a412fd9c4f4b3e772f38876aca813a08",
   "readme": "# Theater Dungeon Fog Removal\n\n## What it does\n\nRemoves props and walls."
 }
