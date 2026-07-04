@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.24.0](https://github.com/Root50199/Uiscias/compare/v1.23.0...v1.24.0) (2026-07-04)
+
+
+### Mods added / updated
+
+* added new mods, fixed bug in bri map ([3d0f79f](https://github.com/Root50199/Uiscias/commit/3d0f79f550460a99552d2f2e36d6b37a6e9cf28d))
+
 ## [1.23.0](https://github.com/Root50199/Uiscias/compare/v1.22.0...v1.23.0) (2026-07-03)
 
 
