@@ -1,0 +1,30 @@
+{
+  "modId": "TheaterDungeonSimplification",
+  "modName": "Theater Dungeon Simplification",
+  "modAuthor": "Synesthesia and unknown",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Fx", "Lag Helper", "Visual Clarity"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/gfx/scene/avon/dungeon_rj/dg_avon_rj_charnelhouse_in_ceiling_01.pmg",
+    "data/gfx/scene/avon/dungeon_rj/dg_avon_rj_charnelhouse_out_ceiling_01.pmg",
+    "data/gfx/scene/avon/dungeon_rj/dg_avon_rj_loginstage_effect_01.pmg",
+    "data/gfx/scene/avon/dungeon_rj/dg_avon_rj_square_stage_g15s2_column_01.pmg",
+    "data/gfx/scene/avon/dungeon_rj/dg_avon_rj_square_stage_g15s2_leftwall_01.pmg",
+    "data/gfx/scene/avon/dungeon_rj/dg_avon_rj_square_stage_g15s2_middlewall_01.pmg",
+    "data/gfx/scene/avon/dungeon_rj/dg_avon_rj_square_stage_g15s2_rightwall_01.pmg",
+    "data/gfx/scene/avon/dungeon_rj/dg_avon_rj_stage_ceiling_01.pmg",
+    "data/gfx/scene/avon/dungeon/dg_avon_border_area_01_ceiling_mission.pmg",
+    "data/gfx/scene/avon/dungeon/dg_avon_border_area_01_day_ceiling_mission.pmg",
+    "data/gfx/scene/avon/dungeon/dg_avon_bossroom_01_ceiling.pmg",
+    "data/gfx/scene/avon/dungeon/dg_avon_castle_hall_01_ceiling_mission.pmg",
+    "data/gfx/scene/avon/dungeon/dg_avon_castle_wall_01_ceiling_mission.pmg",
+    "data/gfx/scene/avon/dungeon/dg_avon_cemetery_01_ceiling_mission.pmg",
+    "data/gfx/scene/avon/dungeon/dg_avon_stage_fog_01.pmg",
+    "data/gfx/scene/avon/dungeon/dg_avon_stage_fog_01.xml"
+  ],
+  "sourceHash": "sha256-8ca4ed84dc9c19b0705e3fb6521ef85ef2593e2bf2a59a2199577c445b7cf43f",
+  "readme": "# Theater Dungeon Fog Removal\n\n## What it does\n\nRemoves props and walls."
+}

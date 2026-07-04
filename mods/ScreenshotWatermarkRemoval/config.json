@@ -1,0 +1,13 @@
+{
+  "modId": "ScreenshotWatermarkRemoval",
+  "modName": "Screenshot Watermark Removal",
+  "modAuthor": "Amaretto",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Cosmetic", "QoL"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": ["data/gfx/image/copyright_usa.raw"],
+  "sourceHash": "sha256-7b8b12627b112cbdb2ccc4a0fdb01b35f35bc61d1ab206b80839ac415e5f4e35",
+  "readme": "# Screenshot Watermark Removal\n\n## What it does\n\nRemoves the watermark in the lower right corner of screenshots taken by the client."
+}
