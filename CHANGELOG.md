@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.27.0](https://github.com/Root50199/Uiscias/compare/v1.26.0...v1.27.0) (2026-07-05)
+
+
+### Mods added / updated
+
+* adding the mute game sounds mod ([cc0bc9c](https://github.com/Root50199/Uiscias/commit/cc0bc9c70a96654a65d350fe7a499165aada4bc2))
+
 ## [1.26.0](https://github.com/Root50199/Uiscias/compare/v1.25.0...v1.26.0) (2026-07-05)
 
 
