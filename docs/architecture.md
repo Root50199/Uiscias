@@ -131,9 +131,9 @@ types are derived with `z.infer`.
 modId: AchievmentUnhide # MUST equal the folder name
 modName: Achievment Unhide # human-readable display name
 modAuthor: Root50199
-modAdditionalCredits: None
+# modAdditionalCredits: # optional credits
 updateType: volatile # one of: stable | volatile
-recentUpdateNotes: n/a # optional human note (defaults to "n/a")
+# recentUpdateNotes: # optional human note (defaults to "n/a")
 findiasTags: # OPTIONAL subset of the allowed tag set (see below)
   - UI
   - QoL
