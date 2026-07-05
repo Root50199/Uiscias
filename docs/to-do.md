@@ -6,7 +6,7 @@
 
 - [x] Simplify Paladin & Dark Knight
 - [x] Font (Roboto Medium)
-- [ ] Theater Mission Curtain
+- [x] Theater Mission Curtain
 - [ ] Munchkin Cat Sounds
 - [ ] Welsh Corgi Sound
 - [x] Personal Sound Pack
@@ -31,41 +31,40 @@
 - [x] Alternate Fail Animation
 - [x] Alternate Fail Animation File
 - [x] Invisible Male/Female Human Minimization Fix
-- [ ] Alchemist Shock Removal
 - [ ] Remove Rain, Sand and Snow 1/2/3 (look at their method)
 - [x] Blacksmith Minigame Simplification
 - [x] Tailoring Minigame Simplification 1
 - [x] Tailoring Minigame Simplification 2
 - [x] Screenshot Watermark Removal (test if this even does anything)
 - [x] Theater Dungeon Fog Removal (map fog, dungeon fog?)
-- [ ] Belfast Delagger 1/2
-- [ ] Barri Hallway Wall Removal 1/2/3/4/5
-- [ ] Barri Room Wall Removal 1/2/3/4/5
-- [ ] Barri Boss Room Wall Removal
-- [ ] Fiodh-Coil Hallway Wall Removal 1/2/3/4/5
-- [ ] Fiodh-Coil Room Wall Removal 1/2/3/4/5/6
-- [ ] Runda Hallway Wall Removal 1/2/3/4/5
-- [ ] Runda Water Surface Removal
-- [ ] Runda Room Wall Removal 1/2/3/4/5
-- [ ] Runda Boss Room Wall Removal
-- [ ] Runda Siren Boss Room Wall Removal
-- [ ] Rano Plains Tree Removal 1/2/3/4
-- [ ] Rano Forest Tree Removal 1/2/3
-- [ ] Rano Cactus Removal 1/2
-- [ ] Rano Fence Removal
-- [ ] Rano Gateway Removal
-- [ ] Rano Grass Removal 1/2/3/4/5/6/7/8/9/10/11
-- [ ] Rano Miscellaneous Removal 1/2
-- [ ] Rano Rock Removal
-- [ ] Rano Shrub Removal 0/1/2
-- [ ] Rano Tree Removal 1/2/3/4/5/6
-- [ ] Flower Tailltean Tree
-- [ ] Tailltean houses into Ropes 1
-- [ ] Tara houses into Ropes 1/2
-- [ ] Tara Tree Removal 1/2/3
-- [ ] Tara Castle Wall Removal 1/2
-- [ ] Transparent Shadow Mission Wall 1/2/3/4
-- [ ] All sound files
+- [x] Belfast Delagger 1/2
+- [x] Barri Hallway Wall Removal 1/2/3/4/5
+- [x] Barri Room Wall Removal 1/2/3/4/5
+- [x] Barri Boss Room Wall Removal
+- [x] Fiodh-Coil Hallway Wall Removal 1/2/3/4/5
+- [x] Fiodh-Coil Room Wall Removal 1/2/3/4/5/6
+- [x] Runda Hallway Wall Removal 1/2/3/4/5
+- [x] Runda Water Surface Removal
+- [x] Runda Room Wall Removal 1/2/3/4/5
+- [x] Runda Boss Room Wall Removal
+- [x] Runda Siren Boss Room Wall Removal
+- [x] Rano Plains Tree Removal 1/2/3/4
+- [x] Rano Forest Tree Removal 1/2/3
+- [x] Rano Cactus Removal 1/2
+- [x] Rano Fence Removal
+- [x] Rano Gateway Removal
+- [x] Rano Grass Removal 1/2/3/4/5/6/7/8/9/10/11
+- [x] Rano Miscellaneous Removal 1/2
+- [x] Rano Rock Removal
+- [x] Rano Shrub Removal 0/1/2
+- [x] Rano Tree Removal 1/2/3/4/5/6
+- [x] Flower Tailltean Tree
+- [x] Tailltean houses into Ropes 1
+- [x] Tara houses into Ropes 1/2
+- [x] Tara Tree Removal 1/2/3
+- [x] Tara Castle Wall Removal 1/2
+- [x] Transparent Shadow Mission Wall 1/2/3/4
+- [x] Mute sound files
 - [ ] Quest Interface Abberviated 1/2
 
 ## In-Progress
@@ -83,6 +82,7 @@
 
 ## No
 
+- Alchemist Shock Removal
 - Unfiltered Chat
 - What does "Soun Removal (organize)" actually do? Is it not bird_flap.wav?
 - Shadow Mission Boards (does this work?)
