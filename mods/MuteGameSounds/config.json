@@ -98,7 +98,6 @@
     "data/sound/repair_full01.wav",
     "data/sound/repair_full02.wav",
     "data/sound/sheep.wav",
-    "data/sound/skill_sb_collapse_wave_casting.wav",
     "data/sound/stove_dry.wav",
     "data/sound/stove_wetness.wav",
     "data/sound/tara_campanile.wav",
@@ -124,6 +123,6 @@
     "data/sound/welshcorgi/Corgi_waiting_Attack_2.wav",
     "data/sound/welshcorgi/Corgi_waiting_Attack_3.wav"
   ],
-  "sourceHash": "sha256-8e758ff985ce21fc714736ece576df4894c5bbb46e8aaa30ab2f37ab9a9810c7",
+  "sourceHash": "sha256-074227d51b8990730c51701ddf90c87d9458e714d56c4b08a6ee77ec9162f0d5",
   "readme": "# Mute Game Sounds\n\n## What it does\n\nMutes a bunch of annoying game sounds.\n\n### How it's made\n\nReplaces game sounds with blank sound files."
 }
