@@ -34,7 +34,15 @@ const validateModIdFormat = (name: string): string | null => {
 export interface NewModOptions {
   /** The requested mod id / folder name (raw, unvalidated). */
   name: string | undefined;
+  /**
+   * When true, scaffold a variant group (a parent folder with two stub variant
+   * subfolders) instead of a single standalone mod.
+   */
+  variant?: boolean;
 }
+
+/** Hardcoded stub variant suffixes; authors rename these after scaffolding. */
+const VARIANT_SUFFIXES = ['Variant1', 'Variant2'] as const;
 
 class NewModError extends Error {}
 
@@ -44,9 +52,14 @@ class NewModError extends Error {}
  *   <ModId>/
  *   ├─ build/              (empty)
  *   ├─ data/               (empty)
+ *   ├─ images/             (empty)
  *   ├─ config.json         ({})
  *   ├─ config.yaml         (all fields + every allowed tag, for trimming)
  *   └─ README.md           (title + placeholder)
+ *
+ * With `opts.variant`, scaffold a variant group instead: a parent folder (no
+ * `data/`/`build/`, only `images/` + config/README) plus two stub variant
+ * subfolders (`<ModId>Variant1`, `<ModId>Variant2`), each with the full layout.
  *
  * The name must be UpperCamelCase; anything else cancels with a clear message.
  */
@@ -105,19 +118,60 @@ export const runNewMod = async (opts: NewModOptions): Promise<void> => {
     throw new NewModError(`"${modId}" already exists at ${relDir}/ — refusing to overwrite.`);
   }
 
-  fse.ensureDirSync(path.join(modDir, 'build'));
-  fse.ensureDirSync(path.join(modDir, 'data'));
+  if (opts.variant) {
+    await scaffoldVariantGroup(modDir, modId);
+    printVariantSummary(relDir, modId);
+    return;
+  }
 
-  // config.json: intentionally empty — `generate-configs` (or the pre-commit
-  // hook) fills it in once the mod has real data + a finished config.yaml.
-  await writeJsonFile(path.join(modDir, 'config.json'), {});
+  await scaffoldModFolder(modDir, modId, { withDataDirs: true });
+  printStandaloneSummary(relDir);
+};
 
-  await writeConfigYamlTemplate(path.join(modDir, 'config.yaml'), modId);
-  await writeReadme(path.join(modDir, 'README.md'), modId);
+/**
+ * Write the shared per-folder scaffold: `config.json` ({}), a `config.yaml`
+ * template, and a placeholder `README.md`. An empty `images/` folder is created
+ * at every level; `build/`/`data/` are created only when `withDataDirs` is set
+ * (a variant parent must NOT have `data/`, or mod discovery treats it as a
+ * standalone mod — see `scripts/src/lib/mods.ts`).
+ *
+ * config.json is intentionally empty — `generate-configs` (or the pre-commit
+ * hook) fills it in once the mod has real data + a finished config.yaml.
+ */
+const scaffoldModFolder = async (
+  dir: string,
+  id: string,
+  opts: { withDataDirs: boolean },
+): Promise<void> => {
+  if (opts.withDataDirs) {
+    fse.ensureDirSync(path.join(dir, 'build'));
+    fse.ensureDirSync(path.join(dir, 'data'));
+  }
+  fse.ensureDirSync(path.join(dir, 'images'));
 
+  await writeJsonFile(path.join(dir, 'config.json'), {});
+  await writeConfigYamlTemplate(path.join(dir, 'config.yaml'), id);
+  await writeReadme(path.join(dir, 'README.md'), id);
+};
+
+/**
+ * Scaffold a variant group: the parent folder (no `data/`/`build/`, so it is
+ * discovered as a `variantParent`) plus two stub variant subfolders that each
+ * get the full standalone layout.
+ */
+const scaffoldVariantGroup = async (parentDir: string, parentId: string): Promise<void> => {
+  await scaffoldModFolder(parentDir, parentId, { withDataDirs: false });
+  for (const suffix of VARIANT_SUFFIXES) {
+    const variantId = `${parentId}${suffix}`;
+    await scaffoldModFolder(path.join(parentDir, variantId), variantId, { withDataDirs: true });
+  }
+};
+
+const printStandaloneSummary = (relDir: string): void => {
   console.log(ok(`Created mod scaffold: ${relDir}/`));
   console.log(dim('  build/              (empty)'));
   console.log(dim('  data/               (empty)'));
+  console.log(dim('  images/             (empty)'));
   console.log(dim('  config.json         ({})'));
   console.log(dim('  config.yaml         (edit values; trim findiasTags)'));
   console.log(dim('  README.md           (placeholder)'));
@@ -126,7 +180,34 @@ export const runNewMod = async (opts: NewModOptions): Promise<void> => {
       '(the pre-commit hook generates config.json and packs the .it).',
   );
   console.log(
-    dim('Note: git does not track empty folders — build/ and data/ appear once you add files.'),
+    dim(
+      'Note: git does not track empty folders — build/, data/, and images/ appear once you add files.',
+    ),
+  );
+};
+
+const printVariantSummary = (relDir: string, modId: string): void => {
+  console.log(ok(`Created variant group scaffold: ${relDir}/`));
+  console.log(dim('  images/             (empty)'));
+  console.log(dim('  config.json         ({})'));
+  console.log(dim('  config.yaml         (edit values; trim findiasTags)'));
+  console.log(dim('  README.md           (placeholder)'));
+  for (const suffix of VARIANT_SUFFIXES) {
+    console.log(dim(`  ${modId}${suffix}/`));
+    console.log(dim('    build/  data/  images/  (empty)'));
+    console.log(dim('    config.json         ({})'));
+    console.log(dim('    config.yaml         (edit values; trim findiasTags)'));
+    console.log(dim('    README.md           (placeholder)'));
+  }
+  console.log(
+    "\nNext: rename the stub variant folders, drop game files in each variant's data/,\n" +
+      'finish each config.yaml, then commit (the pre-commit hook generates config.json\n' +
+      'and packs the .it for every variant).',
+  );
+  console.log(
+    dim(
+      'Note: git does not track empty folders — build/, data/, and images/ appear once you add files.',
+    ),
   );
 };
 

@@ -4,12 +4,12 @@
 
 ## Tekashi Mods
 
-[ ] Simplify Paladin & Dark Knight
-[ ] Font (Roboto Medium)
+[x] Simplify Paladin & Dark Knight
+[x] Font (Roboto Medium)
 [ ] Theater Mission Curtain
 [ ] Munchkin Cat Sounds
 [ ] Welsh Corgi Sound
-[ ] Personal Sound Pack
+[x] Personal Sound Pack
 
 ## Misc
 

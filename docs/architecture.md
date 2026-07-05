@@ -131,9 +131,9 @@ types are derived with `z.infer`.
 modId: AchievmentUnhide # MUST equal the folder name
 modName: Achievment Unhide # human-readable display name
 modAuthor: Root50199
-modAdditionalCredits: None
+# modAdditionalCredits: # optional credits
 updateType: volatile # one of: stable | volatile
-recentUpdateNotes: n/a # optional human note (defaults to "n/a")
+# recentUpdateNotes: # optional human note (defaults to "n/a")
 findiasTags: # OPTIONAL subset of the allowed tag set (see below)
   - UI
   - QoL
@@ -392,6 +392,7 @@ drift check or any release.
 | `build-manifest`          | manifest aggregator (used by CI; `--assets`)            |
 | `check`                   | CI drift check (hash-only; no packing)                  |
 | `new-mod`                 | scaffold a new mod folder                               |
+| `new-mod-variant`         | scaffold a variant group (parent + two stub variants)   |
 | `mods`                    | list discovered mods/groups/variants                    |
 | `changed`                 | list mods affected by a git scope                       |
 | `typecheck`               | `tsc --noEmit` over the tooling                         |

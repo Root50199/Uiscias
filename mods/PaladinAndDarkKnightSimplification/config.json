@@ -1,0 +1,29 @@
+{
+  "modId": "PaladinAndDarkKnightSimplification",
+  "modName": "Paladin And Dark Knight Simplification",
+  "modAuthor": "Unknown",
+  "updateType": "stable",
+  "findiasTags": ["Lag Helper"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/gfx/char/paladin/mesh/darkknight_female_01_bss.pmg",
+    "data/gfx/char/paladin/mesh/darkknight_female_02_bss.pmg",
+    "data/gfx/char/paladin/mesh/darkknight_female_03_bss.pmg",
+    "data/gfx/char/paladin/mesh/darkknight_female_04_bss.pmg",
+    "data/gfx/char/paladin/mesh/darkknight_male_01_bss.pmg",
+    "data/gfx/char/paladin/mesh/darkknight_male_02_bss.pmg",
+    "data/gfx/char/paladin/mesh/darkknight_male_03_bss.pmg",
+    "data/gfx/char/paladin/mesh/darkknight_male_04_bss.pmg",
+    "data/gfx/char/paladin/mesh/paladin_female_01_bss.pmg",
+    "data/gfx/char/paladin/mesh/paladin_female_02_bss.pmg",
+    "data/gfx/char/paladin/mesh/paladin_female_03_bss.pmg",
+    "data/gfx/char/paladin/mesh/paladin_female_04_bss.pmg",
+    "data/gfx/char/paladin/mesh/paladin_male_01_bss.pmg",
+    "data/gfx/char/paladin/mesh/paladin_male_02_bss.pmg",
+    "data/gfx/char/paladin/mesh/paladin_male_03_bss.pmg",
+    "data/gfx/char/paladin/mesh/paladin_male_04_bss.pmg"
+  ],
+  "sourceHash": "sha256-6703758e85fbb58ac342d4d1b84c14d55d5472d98cec569aa389cb8b2f274b9a",
+  "readme": "# Paladin And Dark Knight Simplification\n\n## What it does\n\nSimplifies the Paladin and Dark Knight graphics considerably.\n\n### How it's made\n\nDescription coming soon."
+}

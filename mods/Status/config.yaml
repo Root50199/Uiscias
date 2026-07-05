@@ -1,8 +1,8 @@
 modId: Status
 modName: Status
 modAuthor: Root50199
-updateType: volatile
+updateType: stable
 findiasTags:
-  - UI
   - Combat
   - Fx
+  - UI

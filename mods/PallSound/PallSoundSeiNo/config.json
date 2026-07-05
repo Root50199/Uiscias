@@ -1,0 +1,15 @@
+{
+  "modId": "PallSoundSeiNo",
+  "modName": "Pall Sound Sei No",
+  "modAuthor": "Unknown & Tekashi",
+  "updateType": "stable",
+  "findiasTags": ["Audio", "Combat"],
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/sound/skill_sb_collapse_wave_casting.wav",
+    "data/sound/skill_sb_collapse_wave_process.wav"
+  ],
+  "sourceHash": "sha256-337b7be26d79e297a2cf1fd60727082e23bf1c2d8fc560aad45537e376ae5c81",
+  "readme": "# Pall Sound Variant 2\n\n## What it does\n\nIncreases the volume of the prep pall sound and replaces the finished casting sound with \"Sei No\" so you can be sure that it finished casting.\n\n### How it's made\n\nDescription coming soon."
+}

@@ -43,7 +43,10 @@ program
   .command('new-mod')
   .description('Scaffold a new mod folder (UpperCamelCase name)')
   .argument('[name]', 'mod id / folder name (UpperCamelCase)')
-  .action((name: string | undefined) => runNewMod({ name }));
+  .option('--variant', 'scaffold a variant group with two stub variants')
+  .action((name: string | undefined, opts: { variant?: boolean }) =>
+    runNewMod({ name, variant: opts.variant ?? false }),
+  );
 
 withScope(program.command('generate-configs'))
   .description('Regenerate config.json for the target mods')
