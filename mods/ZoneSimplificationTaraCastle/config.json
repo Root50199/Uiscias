@@ -1,0 +1,22 @@
+{
+  "modId": "ZoneSimplificationTaraCastle",
+  "modName": "Zone Simplification Tara Castle",
+  "modAuthor": "Tekashi",
+  "modAdditionalCredits": "Edited and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Lag Helper", "QoL"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/material/interior/tara/town/interior_tara_castle_room_01_rep.dds",
+    "data/material/interior/tara/town/interior_tara_castle_room_01.dds",
+    "data/material/interior/tara/town/scene_int_tara_castle_gatehall_01_rep.dds",
+    "data/material/interior/tara/town/scene_int_tara_castle_gatehall_01.dds",
+    "data/material/interior/tara/town/scene_int_tara_castle_gatehall_02_rep.dds",
+    "data/material/interior/tara/town/scene_int_tara_castle_gatehall_02.dds",
+    "data/material/interior/tara/town/scene_prop_tara_castle_int_stuff_01_rep.dds",
+    "data/material/interior/tara/town/scene_prop_tara_castle_int_stuff_01.dds"
+  ],
+  "sourceHash": "sha256-ff1ee8602a3b5dd6138ffad4fe0a906a2af5a8277cf75db6c61a6d816a31f8ec",
+  "readme": "# Zone Simplification Tara Castle\n\n## What it does\n\nRemoves the walls inside tara castle overworld and shadow missions."
+}
