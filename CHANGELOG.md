@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.29.0](https://github.com/Root50199/Uiscias/compare/v1.28.0...v1.29.0) (2026-07-05)
+
+
+### Mods added / updated
+
+* renaming sacred guard to sacred guardian ([b5c2b66](https://github.com/Root50199/Uiscias/commit/b5c2b6666429e48f63aba60d1cb5cabbf993f8d5))
+* switching name of Saint Guard to Sacredt Guard ([0156a11](https://github.com/Root50199/Uiscias/commit/0156a118e57d1f1d4bcaf64e1ebf56e005c461a8))
+
+
+### Fixes
+
+* adding missing alpha font types ([1c66948](https://github.com/Root50199/Uiscias/commit/1c66948acbe26ce6fa8c40c6a666ff530e32c265))
+
 ## [1.28.0](https://github.com/Root50199/Uiscias/compare/v1.27.1...v1.28.0) (2026-07-05)
 
 
