@@ -1,0 +1,25 @@
+{
+  "modId": "ZoneSimplificationFiodhAndCoil",
+  "modName": "Zone Simplification Fiodh And Coil",
+  "modAuthor": "Unknown",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Lag Helper"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/gfx/scene/dungeon/woodsruins/dg_woodsruins_alley1_01.pmg",
+    "data/gfx/scene/dungeon/woodsruins/dg_woodsruins_alley2_01.pmg",
+    "data/gfx/scene/dungeon/woodsruins/dg_woodsruins_alley2_02.pmg",
+    "data/gfx/scene/dungeon/woodsruins/dg_woodsruins_alley3_01.pmg",
+    "data/gfx/scene/dungeon/woodsruins/dg_woodsruins_alley4_01.pmg",
+    "data/gfx/scene/dungeon/woodsruins/dg_woodsruins_room1_01.pmg",
+    "data/gfx/scene/dungeon/woodsruins/dg_woodsruins_room2_01.pmg",
+    "data/gfx/scene/dungeon/woodsruins/dg_woodsruins_room2_02.pmg",
+    "data/gfx/scene/dungeon/woodsruins/dg_woodsruins_room3_01.pmg",
+    "data/gfx/scene/dungeon/woodsruins/dg_woodsruins_room4_01.pmg"
+  ],
+  "sourceHash": "sha256-142f8fb48eb0544c14fc487a5c78208a1e85130f34472bcf15f2c4d3f829db7d",
+  "readme": "# Zone Simplification Fiodh And Coil\n\n## What it does\n\nRemoves walls.",
+  "images": ["Coil.png", "Fiodh.png"]
+}
