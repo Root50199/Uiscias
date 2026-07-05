@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.30.0](https://github.com/Root50199/Uiscias/compare/v1.29.0...v1.30.0) (2026-07-05)
+
+
+### Mods added / updated
+
+* enhance humanizeModId to better handle complex acronyms and phrases ([1f4b06d](https://github.com/Root50199/Uiscias/commit/1f4b06d1f0aa2533a80a3de885cc535d596b8b72))
+* making releases auto-merge ([fc96181](https://github.com/Root50199/Uiscias/commit/fc96181011af65898044dda88525d502be93a629))
+
 ## [1.29.0](https://github.com/Root50199/Uiscias/compare/v1.28.0...v1.29.0) (2026-07-05)
 
 
