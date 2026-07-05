@@ -2,6 +2,8 @@
 
 ## What it does
 
+In addition to the below changes, this version also makes it so if mana shield active it turns the entity blue.
+
 Being in deadly turns the entity red.
 Adds an icon and displays duration for demigod.
 Displays duration for Phoenix's Flame of Resurrection.
