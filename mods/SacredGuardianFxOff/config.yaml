@@ -1,10 +1,10 @@
-modId: SaintGuardCircleSimplification
-modName: Saint Guard Circle Simplification
+modId: SacredGuardianFxOff
+modName: Sacred Guardian Fx Off
 modAuthor: Root50199
 # modAdditionalCredits:
 updateType: stable
 findiasTags:
   - Combat
   - Fx
+  - Lag Helper
   - Arcana
-  - Visual Clarity
