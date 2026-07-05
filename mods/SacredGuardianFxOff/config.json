@@ -1,6 +1,6 @@
 {
-  "modId": "SaintGuardFxOff",
-  "modName": "Saint Guard Fx Off",
+  "modId": "SacredGuardianFxOff",
+  "modName": "Sacred Guardian Fx Off",
   "modAuthor": "Root50199",
   "updateType": "stable",
   "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
@@ -8,5 +8,5 @@
   "hasVariants": false,
   "usedFiles": ["data/gfx/fx/effect/Mfx_SG01.xml", "data/gfx/fx/effect/Mfx_SG02.xml"],
   "sourceHash": "sha256-47c20726ba7cff975863c9df75c219482cebfe83c7350eadcd214a89babfaeba",
-  "readme": "# Saint Guard Fx Off\n\n## What it does\n\nRemoves most of the effects from the SG arcana.\n\n### How it's made\n\nSee files."
+  "readme": "# Sacred Guardian Fx Off\n\n## What it does\n\nRemoves most of the effects from the SG arcana.\n\n### How it's made\n\nSee files."
 }
