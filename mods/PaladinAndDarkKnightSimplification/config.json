@@ -1,0 +1,12 @@
+{
+  "modId": "PaladinAndDarkKnightSimplification",
+  "modName": "Paladin And Dark Knight Simplification",
+  "modAuthor": "Unknown",
+  "updateType": "stable",
+  "findiasTags": ["Lag Helper"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [],
+  "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "readme": "# Paladin And Dark Knight Simplification\n\n## What it does\n\nSimplifies the Paladin and Dark Knight graphics considerably.\n\n### How it's made\n\nDescription coming soon."
+}
