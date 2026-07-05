@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.26.0](https://github.com/Root50199/Uiscias/compare/v1.25.0...v1.26.0) (2026-07-05)
+
+
+### Mods added / updated
+
+* tiara imports ([bde5fa0](https://github.com/Root50199/Uiscias/commit/bde5fa0a498e5285cdc0cfd4878df6dc4607ba1a))
+
 ## [1.25.0](https://github.com/Root50199/Uiscias/compare/v1.24.0...v1.25.0) (2026-07-05)
 
 
