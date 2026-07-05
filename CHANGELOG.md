@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.25.0](https://github.com/Root50199/Uiscias/compare/v1.24.0...v1.25.0) (2026-07-05)
+
+
+### Mods added / updated
+
+* adding ability to scaffold variant mod folders ([967129b](https://github.com/Root50199/Uiscias/commit/967129b606c8975cb1314b12aa7fb4ac93b22063))
+* adding new pall sound mod ([363f300](https://github.com/Root50199/Uiscias/commit/363f30070cfca75d2cae2f5b51dc04f6f0e95a30))
+* adding paladin and dark knight simplification ([1187ad3](https://github.com/Root50199/Uiscias/commit/1187ad374fa7112b473ae04c0c18c326b4b9ade7))
+* adding Tekashis sound pack ([ab75efe](https://github.com/Root50199/Uiscias/commit/ab75efecf9ea55814ca6ac6901b3adf22e910002))
+* splitting status mod into variants ([ca46fcc](https://github.com/Root50199/Uiscias/commit/ca46fcc47215dc6c1730676194f6cd94236c7b1f))
+
+
+### Fixes
+
+* adding actual data files ([57a9fb1](https://github.com/Root50199/Uiscias/commit/57a9fb1b4cedf7c745ff024fd662351a0df3e57c))
+* updating roboto font type to google provider ([de68a20](https://github.com/Root50199/Uiscias/commit/de68a20945c0cf814729c5779c42a4d04c8cdb8c))
+* updating the paladin and dark knight simplification to start from v1 ([a067ca4](https://github.com/Root50199/Uiscias/commit/a067ca40702702584147118ea82fadb1e5af7a9f))
+
 ## [1.24.0](https://github.com/Root50199/Uiscias/compare/v1.23.0...v1.24.0) (2026-07-04)
 
 
