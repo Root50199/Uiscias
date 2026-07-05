@@ -2,7 +2,7 @@
 
 ## What it does
 
-Description coming soon.
+Increases the volume of the prep pall sound and replaces the finished casting sound with "Sei No" so you can be sure that it finished casting.
 
 ### How it's made
 

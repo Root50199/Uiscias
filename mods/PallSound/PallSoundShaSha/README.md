@@ -1,9 +1,9 @@
-# Pall Sound Variant 1
+# Pall Sound
 
 ## What it does
 
-Description coming soon.
+Increases the volume of the prep pall sound and replaces the finished casting sound with Irusan's "shasha" so you can be sure that it finished casting.
 
 ### How it's made
 
-Description coming soon.
+Replaces sounds files for Pall.
