@@ -1,0 +1,28 @@
+{
+  "modId": "ZoneSimplificationRundal",
+  "modName": "Zone Simplification Rundal",
+  "modAuthor": "Unknown",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Lag Helper"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/gfx/scene/emainmacha/dungeon/alley/dg_runda_alley1_01.pmg",
+    "data/gfx/scene/emainmacha/dungeon/alley/dg_runda_alley2_01.pmg",
+    "data/gfx/scene/emainmacha/dungeon/alley/dg_runda_alley2_02.pmg",
+    "data/gfx/scene/emainmacha/dungeon/alley/dg_runda_alley3_01.pmg",
+    "data/gfx/scene/emainmacha/dungeon/alley/dg_runda_alley4_01.pmg",
+    "data/gfx/scene/emainmacha/dungeon/room/dg_runda_room_boss_siren.pmg",
+    "data/gfx/scene/emainmacha/dungeon/room/dg_runda_room_boss.pmg",
+    "data/gfx/scene/emainmacha/dungeon/room/dg_runda_room1_01.pmg",
+    "data/gfx/scene/emainmacha/dungeon/room/dg_runda_room2_01.pmg",
+    "data/gfx/scene/emainmacha/dungeon/room/dg_runda_room2_02.pmg",
+    "data/gfx/scene/emainmacha/dungeon/room/dg_runda_room3_01.pmg",
+    "data/gfx/scene/emainmacha/dungeon/room/dg_runda_room4_01.pmg",
+    "data/gfx/scene/emainmacha/dungeon/room/dg_runda_watersurface.pmg"
+  ],
+  "sourceHash": "sha256-861776f9e59eb33c6fbf1e7bf911f2e01c303e5ad448863876b434e1ceabf7a3",
+  "readme": "# Zone Simplification Rundal\n\n## What it does\n\nReduces props and textures.",
+  "images": ["Rundal.png"]
+}

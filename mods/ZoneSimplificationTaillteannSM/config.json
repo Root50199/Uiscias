@@ -1,0 +1,19 @@
+{
+  "modId": "ZoneSimplificationTaillteannSM",
+  "modName": "Zone Simplification Taillteann Shadow Missions",
+  "modAuthor": "Amaretto",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Combat", "Lag Helper", "QoL"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/material/obj/taillteann/flat/dungeon_prop_taill_wall_01.dds",
+    "data/material/obj/taillteann/flat/dungeon_prop_taill_wall_02_a.dds",
+    "data/material/obj/taillteann/flat/dungeon_prop_taill_wall_02_b.dds",
+    "data/material/obj/taillteann/highgloss/dungeon_prop_taill_pattern_01.dds"
+  ],
+  "sourceHash": "sha256-f91a5b1b4425119f3453f3c0dea39a5378758cad78a00e7cf16674189b253a5f",
+  "readme": "# Zone Simplification Taillteann SM\n\n## What it does\n\nRemoves the walls in Taillteann Shadow Missions.",
+  "images": ["TailWalls.png"]
+}
