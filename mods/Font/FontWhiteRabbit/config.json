@@ -7,7 +7,7 @@
   "findiasTags": ["QoL", "UI"],
   "isVariant": true,
   "hasVariants": false,
-  "usedFiles": ["data/gfx/font/nanumgothicbold.ttf"],
-  "sourceHash": "sha256-d95441afa428fdccfce2bccdf0206c1cf9236afe4794925e037f6dcefe083230",
+  "usedFiles": ["data/gfx/font/alphanumeric.ttf", "data/gfx/font/nanumgothicbold.ttf"],
+  "sourceHash": "sha256-ead5ebbec61d323559a84c5492c65250a1cfebf685afd96a56ba98da11e3562a",
   "readme": "# Font\n\n## What it does\n\nA font reminiscent of the characters displayed on old text based terminal screens. Smoothed out and cleaned up for a new millennium, this is the font to use for all your computing applications."
 }

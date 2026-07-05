@@ -7,7 +7,7 @@
   "findiasTags": ["QoL", "UI"],
   "isVariant": true,
   "hasVariants": false,
-  "usedFiles": ["data/gfx/font/nanumgothicbold.ttf"],
-  "sourceHash": "sha256-41ab185246b3dafc36547746e68ca79d665f31e7749c8fe557eb3a6c7697b83e",
+  "usedFiles": ["data/gfx/font/alphanumeric.ttf", "data/gfx/font/nanumgothicbold.ttf"],
+  "sourceHash": "sha256-fb13224d1dddc4005106835d2af13df9bda8cec65423832a9bcfc4b3b7a64027",
   "readme": "# Font\n\n## What it does\n\nSwaps the games text font based on chosen variant."
 }
