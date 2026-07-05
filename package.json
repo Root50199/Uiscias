@@ -9,6 +9,7 @@
     "mods": "tsx scripts/src/index.ts list",
     "changed": "tsx scripts/src/index.ts changed",
     "new-mod": "tsx scripts/src/index.ts new-mod",
+    "new-mod-variant": "tsx scripts/src/index.ts new-mod --variant",
     "mabi-xml-edit": "tsx scripts/src/index.ts mabiXmlEdit",
     "generate-configs": "tsx scripts/src/index.ts generate-configs",
     "pack": "tsx scripts/src/index.ts pack",

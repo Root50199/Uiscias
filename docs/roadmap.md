@@ -110,7 +110,7 @@ repack verified; idempotent).
       and the root `README.md`); fails on invalid yaml. (`--stage` does the
       `git add`.)
 - [x] Add npm scripts: `generate-configs`, `pack`, `build-manifest` (+ `check`,
-      `typecheck`, `mods`, `changed`, `new-mod`).
+      `typecheck`, `mods`, `changed`, `new-mod`, `new-mod-variant`).
 - [x] Add `.gitattributes` (LF text, binary `.it`/assets) for cross-platform
       consistency.
 

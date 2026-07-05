@@ -392,6 +392,7 @@ drift check or any release.
 | `build-manifest`          | manifest aggregator (used by CI; `--assets`)            |
 | `check`                   | CI drift check (hash-only; no packing)                  |
 | `new-mod`                 | scaffold a new mod folder                               |
+| `new-mod-variant`         | scaffold a variant group (parent + two stub variants)   |
 | `mods`                    | list discovered mods/groups/variants                    |
 | `changed`                 | list mods affected by a git scope                       |
 | `typecheck`               | `tsc --noEmit` over the tooling                         |
