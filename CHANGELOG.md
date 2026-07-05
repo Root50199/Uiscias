@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.28.0](https://github.com/Root50199/Uiscias/compare/v1.27.1...v1.28.0) (2026-07-05)
+
+
+### Mods added / updated
+
+* added pet summon anim ([4be51ea](https://github.com/Root50199/Uiscias/commit/4be51ea4a969ca4302517e1d99482982773b3d9f))
+
 ## [1.27.1](https://github.com/Root50199/Uiscias/compare/v1.27.0...v1.27.1) (2026-07-05)
 
 
