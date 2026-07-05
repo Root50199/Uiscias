@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.27.1](https://github.com/Root50199/Uiscias/compare/v1.27.0...v1.27.1) (2026-07-05)
+
+
+### Fixes
+
+* remove pall sound from mute mod ([08e4b0e](https://github.com/Root50199/Uiscias/commit/08e4b0eccf035c2281d5438fcdf62ffdaa880b1e))
+
 ## [1.27.0](https://github.com/Root50199/Uiscias/compare/v1.26.0...v1.27.0) (2026-07-05)
 
 
