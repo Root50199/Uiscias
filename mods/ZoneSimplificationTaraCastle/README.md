@@ -2,4 +2,4 @@
 
 ## What it does
 
-Removes the walls inside tara castle overworld and shadow missions.
+Removes the walls inside Tara Castle overworld and shadow missions.

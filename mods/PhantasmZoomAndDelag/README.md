@@ -1,4 +1,4 @@
-﻿# Phantasm Zoom And Delag
+# Phantasm Zoom And Delag
 
 ## What it does
 
@@ -7,4 +7,4 @@ Removes all the extra walls and props. Completely removes the unused rooms.
 
 ### How it's made
 
-Mabioned
+Mabioned.

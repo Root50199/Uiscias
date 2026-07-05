@@ -17,6 +17,10 @@ describe('humanizeModId', () => {
 
   it('preserves the FoV acronym instead of splitting it', () => {
     expect(humanizeModId('WideFoV')).toBe('Wide FoV');
+    expect(humanizeModId('BriLeithZoomAndFoVDefault')).toBe('Bri Leith Zoom And FoV Default');
+    expect(humanizeModId('CromBasZoomAndFoVAndDeclutter60FoV')).toBe(
+      'Crom Bas Zoom And FoV And Declutter 60 FoV',
+    );
   });
 
   it('leaves a single word untouched', () => {

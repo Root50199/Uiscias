@@ -1,4 +1,4 @@
-﻿# Skill Skins Off
+# Weapon Fx Off
 
 ## What it does
 
@@ -6,4 +6,4 @@ Removes all the impact effects from special upgraded weapons and critical hits.
 
 ### How it's made
 
-blank the effect blocks.
+Blank the effect blocks.

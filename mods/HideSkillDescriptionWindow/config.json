@@ -8,5 +8,5 @@
   "hasVariants": false,
   "usedFiles": ["data/db/layout2/Skill/SkillDesc.xml"],
   "sourceHash": "sha256-c640c7be0ae2e8e39034930c2c605f65a06b9b04bb8be3fbf0d8026e713a9d9c",
-  "readme": "# Hide Skill Description Window\n\n## What it does\n\nDisables the skill description window that opens when you press Alt+a F-key skill. Keep in mind this will prevent you from toggling the \"Immediately activate skill on target\" without removing the mod, so make sure are your skills are set right beforehand.\n\n### How it's made\n\nadd a visible=\"false\" tag and remove all window content."
+  "readme": "# Hide Skill Description Window\n\n## What it does\n\nDisables the skill description window that opens when you press Alt+A on an F-key skill. Keep in mind this will prevent you from toggling the \"Immediately activate skill on target\" option without removing the mod, so make sure your skills are set correctly beforehand.\n\n### How it's made\n\nAdd a `visible=\"false\"` tag and remove all window content."
 }

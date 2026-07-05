@@ -2,8 +2,8 @@
 
 ## What it does
 
-Increases the volume of the prep pall sound and replaces the finished casting sound with various replacements.
+Increases the volume of the prep Pall sound and replaces the finished casting sound with various replacements.
 
 ### How it's made
 
-Replaces sounds files for Pall.
+Replaces sound files for Pall.

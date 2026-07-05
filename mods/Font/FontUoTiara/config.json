@@ -9,5 +9,5 @@
   "hasVariants": false,
   "usedFiles": ["data/gfx/font/alphanumeric.ttf", "data/gfx/font/nanumgothicbold.ttf"],
   "sourceHash": "sha256-6e03f8f514b372416330aae6af534ce23711ac6359365a226f03f530325a346e",
-  "readme": "# Font\n\n## What it does\n\nSwaps the games text font based on chosen variant."
+  "readme": "# Font Uo Tiara\n\n## What it does\n\nSwaps the game's text font based on chosen variant."
 }

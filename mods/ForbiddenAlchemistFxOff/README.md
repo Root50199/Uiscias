@@ -1,4 +1,4 @@
-﻿# Explosive Vanguard Fx Off
+# Forbidden Alchemist Fx Off
 
 ## What it does
 

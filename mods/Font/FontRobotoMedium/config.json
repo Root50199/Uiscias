@@ -8,5 +8,5 @@
   "hasVariants": false,
   "usedFiles": ["data/gfx/font/alphanumeric.ttf", "data/gfx/font/nanumgothicbold.ttf"],
   "sourceHash": "sha256-d16f67216f2dc76a284727344e549c023d6b081b923a784086a958b09f20071b",
-  "readme": "# Font\n\n## What it does\n\nSwaps the games text font based on chosen variant."
+  "readme": "# Font Roboto Medium\n\n## What it does\n\nSwaps the game's text font based on chosen variant."
 }

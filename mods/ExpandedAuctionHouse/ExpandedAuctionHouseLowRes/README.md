@@ -1,8 +1,8 @@
-﻿# Expanded Auction House
+# Expanded Auction House Low Res
 
 ## What it does
 
-Adds a scroll bar to the auction house window and increases the items per page. This does also allows you to auto re-list all your auctions with 1 action.
+Adds a scrollbar to the auction house window and increases the items per page. This also allows you to automatically relist all your auctions with one action.
 
 ### How it's made
 

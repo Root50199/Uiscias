@@ -8,6 +8,6 @@
   "hasVariants": false,
   "usedFiles": ["data/gfx/gui/map_jpg/minimap_glennbearna_boss_room_day_kor.jpg"],
   "sourceHash": "sha256-0d0166fbad6c8ef1885ec7e9e2abe038d0df0a3d77fafbc56b6bad9ce78a56f9",
-  "readme": "# Glenn Map\n\n## What it does\n\nAdds the Day/Night Circles and VHM 80% safe spots to the map\n\n### How it's made\n\nPaint.net",
+  "readme": "# Glenn Map\n\n## What it does\n\nAdds the Day/Night Circles and VHM 80% safe spots to the map.\n\n### How it's made\n\nPaint.NET",
   "images": ["map.jpg"]
 }

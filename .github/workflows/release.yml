@@ -40,6 +40,22 @@ jobs:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
+      # If release-please left an open release PR, turn on GitHub native
+      # auto-merge. Branch protection on main requires the CI checks (format,
+      # validate, test), so GitHub holds the merge until they pass. We use the
+      # App token (not GITHUB_TOKEN) so that when auto-merge finally lands the
+      # PR, the resulting push to main re-triggers this workflow and cuts the
+      # release. --repo avoids needing a git checkout in this job. Idempotent:
+      # re-arming an already-armed PR is a no-op.
+      - name: Enable auto-merge on the release PR
+        if: ${{ steps.rp.outputs.pr }}
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          RELEASE_PR: ${{ steps.rp.outputs.pr }}
+        run: |
+          pr_number=$(echo "$RELEASE_PR" | jq -r '.number')
+          gh pr merge "$pr_number" --auto --squash --repo "${{ github.repository }}"
+
   # Only after a release is actually created: assemble + upload the assets.
   # Packing already happened locally (the .it files are committed), so this runs
   # on ubuntu-latest with no .exe — the tooling reads each build.lock.json,

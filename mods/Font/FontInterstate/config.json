@@ -9,5 +9,5 @@
   "hasVariants": false,
   "usedFiles": ["data/gfx/font/alphanumeric.ttf", "data/gfx/font/nanumgothicbold.ttf"],
   "sourceHash": "sha256-cf97c195b37e3d020e80140bf7c201d3600138d1324747e1a82c8b777d009ebd",
-  "readme": "# Font\n\n## What it does\n\nSwaps the games text font based on chosen variant."
+  "readme": "# Font Interstate\n\n## What it does\n\nSwaps the game's text font based on chosen variant."
 }

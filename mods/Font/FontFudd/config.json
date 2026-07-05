@@ -9,5 +9,5 @@
   "hasVariants": false,
   "usedFiles": ["data/gfx/font/alphanumeric.ttf", "data/gfx/font/nanumgothicbold.ttf"],
   "sourceHash": "sha256-9e9cd12e6a246a024794ea6bc7dd1a31d0dfb3e01c33aa39173180b51d1c28ba",
-  "readme": "# Font\n\n## What it does\n\nSwaps the games text font based on chosen variant."
+  "readme": "# Font Fudd\n\n## What it does\n\nSwaps the game's text font based on chosen variant."
 }

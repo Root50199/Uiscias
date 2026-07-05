@@ -11,6 +11,6 @@
     "data/gfx/gui/map_jpg/minimap_NewRabbieDungeon_F2_kr.jpg"
   ],
   "sourceHash": "sha256-262c074b148caf5ec5b19dd51bf70991a2956b3b829a9acca22b961e5043e751",
-  "readme": "# Phantasm Map\n\n## What it does\n\nRemoves the unused rooms and has colored rose markers on the rooms that can spawn that colored rose.\n\n### How it's made\n\npaint.net",
+  "readme": "# Phantasm Map\n\n## What it does\n\nRemoves the unused rooms and has colored rose markers on the rooms that can spawn that colored rose.\n\n### How it's made\n\nPaint.NET",
   "images": ["phantasm_f1.jpg", "phantasm_f2.jpg"]
 }

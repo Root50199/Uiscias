@@ -8,5 +8,5 @@
   "hasVariants": false,
   "usedFiles": ["data/db/Dissolution.xml", "data/db/Production.xml"],
   "sourceHash": "sha256-62a50993cc1cd87ea73debc3fce9b38be3d7e243604f02aadf184d0e20f3dceb",
-  "readme": "# Production Uncap\n\n## What it does\n\nSets the auto production cap on everything to 9999 and removes the phantasmal sight requirement from anything that had it.\n\n### How it's made\n\nSet ApplySpecialization to false"
+  "readme": "# Production Uncap\n\n## What it does\n\nSets the auto production cap on everything to 9999 and removes the phantasmal sight requirement from anything that had it.\n\n### How it's made\n\nSet `ApplySpecialization` to `false`."
 }

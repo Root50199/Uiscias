@@ -2,4 +2,4 @@
 
 ## What it does
 
-Removes the top of most of the trees in rano.
+Removes the top of most of the trees in Rano.

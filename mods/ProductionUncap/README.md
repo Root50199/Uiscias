@@ -6,4 +6,4 @@ Sets the auto production cap on everything to 9999 and removes the phantasmal si
 
 ### How it's made
 
-Set ApplySpecialization to false
+Set `ApplySpecialization` to `false`.

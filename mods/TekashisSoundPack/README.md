@@ -2,7 +2,7 @@
 
 ## What it does
 
-Replaces many sounds effects in the game with more modern replacements.
+Replaces many sound effects in the game with more modern replacements.
 
 ### How it's made
 

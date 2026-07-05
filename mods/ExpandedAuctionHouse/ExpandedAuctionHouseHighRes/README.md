@@ -1,8 +1,8 @@
-﻿# Expanded Auction House
+# Expanded Auction House High Res
 
 ## What it does
 
-Expands the auction house window vertically and increases the items per page. This does also allows you to auto re-list all your auctions with 1 action.
+Expands the auction house window vertically and increases the items per page. This also allows you to automatically relist all your auctions with one action.
 
 ### How it's made
 

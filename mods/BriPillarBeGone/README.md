@@ -1,4 +1,4 @@
-﻿# Bri Pillar Be Gone
+# Bri Pillar Be Gone
 
 ## What it does
 

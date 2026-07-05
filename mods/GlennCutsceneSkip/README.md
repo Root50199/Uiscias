@@ -1,9 +1,9 @@
-﻿# Glenn Cutscene Skip
+# Glenn Cutscene Skip
 
 ## What it does
 
-Auto skips the Glenn Boss cutscenes
+Automatically skips the Glenn boss cutscenes.
 
 ### How it's made
 
-Remove all scene info
+Removes all scene info.

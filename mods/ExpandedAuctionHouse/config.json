@@ -8,6 +8,6 @@
   "hasVariants": true,
   "usedFiles": [],
   "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "readme": "# Expanded Auction House\n\n## What it does\n\nExpands the auction house window vertically or adds a scroll bar, depending on variant, and increases the items per page. This does also allows you to auto re-list all your auctions with 1 action. The high res version requires a 1440p+ display to fit on screen.\n\n### How it's made\n\nSee actual file.",
+  "readme": "# Expanded Auction House\n\n## What it does\n\nExpands the auction house window vertically or adds a scrollbar, depending on variant, and increases the items per page. This also allows you to automatically relist all your auctions with one action. The high-res version requires a 1440p+ display to fit on screen.\n\n### How it's made\n\nSee actual file.",
   "images": ["high_res_ah_buyer.png", "high_res_ah_seller.png", "Lowresbuy.png", "Lowressell.png"]
 }

@@ -1,4 +1,4 @@
-﻿# Talent Window
+# Talent And Arcana Window
 
 ## What it does
 

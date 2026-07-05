@@ -61,5 +61,5 @@
     "data/world/Glenn_Bearna_dungeon01_night/Glenn_Bearna_dungeon01_night.rgn"
   ],
   "sourceHash": "sha256-122c8d739cc9a632be9f6a483f24bb1fe6b4fb76b5bc7d48715fd7949d35eb29",
-  "readme": "# Glenn Bearna Zoom And FoV\n\n## What it does\n\nAllows farther max zoom and sets FoV bases on chosen variant. There are also variants to remove all the unnecessary props.\n\n### How it's made\n\nMabioned."
+  "readme": "# Glenn Bearna Zoom And FoV 90 With Declutter\n\n## What it does\n\nAllows farther max zoom and sets FoV based on chosen variant. There are also variants to remove all the unnecessary props.\n\n### How it's made\n\nMabioned."
 }

@@ -1,8 +1,8 @@
-﻿# Bri Loot U I
+# Bri Loot UI
 
 ## What it does
 
-Widens the Bri Lieth lott distribution window and displays loot in rows of 5, making it possible to see all drops at once and more easily get water and obol count.
+Widens the Bri Leith loot distribution window and displays loot in rows of 5, making it possible to see all drops at once and more easily get water and obol count.
 
 ### How it's made
 

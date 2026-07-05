@@ -9,7 +9,7 @@
   "hasVariants": true,
   "usedFiles": [],
   "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "readme": "# Font\n\n## What it does\n\nSwaps the games text font based on chosen variant.",
+  "readme": "# Font\n\n## What it does\n\nSwaps the game's text font based on chosen variant.",
   "images": [
     "FontFudd.png",
     "FontInterstate.png",

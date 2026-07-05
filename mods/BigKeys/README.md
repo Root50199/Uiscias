@@ -2,4 +2,4 @@
 
 ## What it does
 
-Makes the dropped dungeon key model huge
+Makes the dropped dungeon key model huge.

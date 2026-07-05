@@ -1,4 +1,4 @@
-﻿# Explosive Vanguard Fx Off
+# Explosive Vanguard Fx Off
 
 ## What it does
 

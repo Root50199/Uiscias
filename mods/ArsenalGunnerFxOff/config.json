@@ -8,5 +8,5 @@
   "hasVariants": false,
   "usedFiles": ["data/gfx/fx/effect/Mfx_SMA01.xml"],
   "sourceHash": "sha256-637e9274ae138d33bcbe1415d25e26777e6f34f7d4b577fd9b629d5418bb09ab",
-  "readme": "# Arsenal Gunner Fx Off\n\n## What it does\n\nRemoves most of the effects from Arsenal Gunner.\n\n### How it's made\n\nTBD"
+  "readme": "# Arsenal Gunner Fx Off\n\n## What it does\n\nRemoves most of the effects from Arsenal Gunner."
 }

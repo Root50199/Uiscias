@@ -1,9 +1,9 @@
-﻿# Gate Three Floor
+# Darker Gate Three Floor
 
 ## What it does
 
-Darkens the floor so if the brightness bug occurs you can not go blind.
+Darkens the floor so if the brightness bug occurs you cannot go blind.
 
 ### How it's made
 
-Just lower the image brightness in paint.net
+Just lower the image brightness in Paint.NET.

@@ -1,4 +1,4 @@
-﻿# Glenn Simplified
+# Glenn Simplified
 
 ## What it does
 
@@ -8,4 +8,4 @@ Based on a mod from the [Erinn World forums](https://erinn.world/forum.php?mod=v
 
 ### How it's made
 
-Replaces all the snow textures with grass. Replace all the tree models with blank files.
+Replaces all the snow textures with grass. Replaces all the tree models with blank files.

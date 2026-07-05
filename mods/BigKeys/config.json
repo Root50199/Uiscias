@@ -14,6 +14,6 @@
     "data/gfx/char/item/mesh/item_roomkey_001.pmg"
   ],
   "sourceHash": "sha256-eeafcc7ba14c82c50bfe64a525b375c8fac0a0d1a1cb5dd4bff3aa34440ec630",
-  "readme": "# Big Keys\n\n## What it does\n\nMakes the dropped dungeon key model huge",
+  "readme": "# Big Keys\n\n## What it does\n\nMakes the dropped dungeon key model huge.",
   "images": ["Key.png"]
 }

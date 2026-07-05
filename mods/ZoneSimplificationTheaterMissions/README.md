@@ -1,4 +1,4 @@
-# Theater Dungeon Fog Removal
+# Zone Simplification Theater Missions
 
 ## What it does
 
