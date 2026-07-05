@@ -27,5 +27,5 @@
     "data/gfx/scene/avon/dungeon/dg_avon_stage_fog_01.xml"
   ],
   "sourceHash": "sha256-74fd22ac4271beb19bf16f61b9f40b46a412fd9c4f4b3e772f38876aca813a08",
-  "readme": "# Theater Dungeon Fog Removal\n\n## What it does\n\nRemoves props and walls."
+  "readme": "# Zone Simplification Theater Missions\n\n## What it does\n\nRemoves props and walls."
 }

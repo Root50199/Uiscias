@@ -1,9 +1,9 @@
-﻿# Moonlight Island Zoom And FoV
+# Moonlight Island Zoom And FoV
 
 ## What it does
 
-Increases max zoom out and sets FoV to 90
+Increases max zoom out and sets FoV to 90.
 
 ### How it's made
 
-Mabioned
+Mabioned.

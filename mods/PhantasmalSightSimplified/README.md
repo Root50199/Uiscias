@@ -1,4 +1,4 @@
-﻿# Phantasmal Sight Simplified
+# Phantasmal Sight Simplified
 
 ## What it does
 

@@ -8,6 +8,6 @@
   "hasVariants": false,
   "usedFiles": ["data/db/layout2/Etc/RewardDistributeView/PartyRewardDistributeView.xml"],
   "sourceHash": "sha256-d26aa08b681154d2ceb8e4d83369055de34b0f505be8d934085dc7492f3caffe",
-  "readme": "# Bri Loot U I\n\n## What it does\n\nWidens the Bri Lieth lott distribution window and displays loot in rows of 5, making it possible to see all drops at once and more easily get water and obol count.\n\n### How it's made\n\nA full rewrite of most of the UI file and there isn't a simple way to explain it here.",
+  "readme": "# Bri Loot UI\n\n## What it does\n\nWidens the Bri Leith loot distribution window and displays loot in rows of 5, making it possible to see all drops at once and more easily get water and obol count.\n\n### How it's made\n\nA full rewrite of most of the UI file and there isn't a simple way to explain it here.",
   "images": ["bri_loot_ui.png"]
 }

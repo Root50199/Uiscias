@@ -1,5 +1,5 @@
-# Font
+# Font Ydygo 550
 
 ## What it does
 
-Swaps the games text font based on chosen variant.
+Swaps the game's text font based on chosen variant.

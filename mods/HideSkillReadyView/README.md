@@ -1,9 +1,9 @@
-﻿# Hide Skill Ready View
+# Hide Skill Ready View
 
 ## What it does
 
-Disables the "skillreadyview" popup when skills like Doppelganger are charged.
+Disables the `skillreadyview` popup when skills like Doppelganger are charged.
 
 ### How it's made
 
-add a visible="false" tag
+Add a `visible="false"` tag.

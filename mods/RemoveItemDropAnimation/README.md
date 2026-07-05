@@ -2,4 +2,4 @@
 
 ## What it does
 
-Skips the bouncing animation when an item drops, allowing alt to immediately show its name.
+Skips the bouncing animation when an item drops, allowing Alt to immediately show its name.

@@ -8,6 +8,6 @@
   "hasVariants": true,
   "usedFiles": [],
   "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "readme": "# Glenn Bearna Zoom And FoV\n\n## What it does\n\nAllows farther max zoom and sets FoV bases on chosen variant. There are also variants to remove all the unnecessary props.\n\n### How it's made\n\nMabioned.",
+  "readme": "# Glenn Bearna Zoom And FoV\n\n## What it does\n\nAllows farther max zoom and sets FoV based on chosen variant. There are also variants to remove all the unnecessary props.\n\n### How it's made\n\nMabioned.",
   "images": ["glenbossroom.png", "glenroom2.png", "glenroom3.png"]
 }

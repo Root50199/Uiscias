@@ -8,5 +8,5 @@
   "hasVariants": false,
   "usedFiles": ["data/db/CustomEffectDesc.xml"],
   "sourceHash": "sha256-96c5b16c3e534e7843dded0c2dbcbc737cb22165baa045aee4fb4e53f42d6c8b",
-  "readme": "# Skill Skins Off\n\n## What it does\n\nMakes all custom skill skins invisible.\n\n### How it's made\n\nset all the effect references to 0"
+  "readme": "# Skill Skins Off\n\n## What it does\n\nMakes all custom skill skins invisible.\n\n### How it's made\n\nSet all the effect references to `0`."
 }

@@ -28,5 +28,5 @@
     "data/gfx/fx/effect/enhance_weapon.xml"
   ],
   "sourceHash": "sha256-7c059f42983b5cf6d53bb8c91b3d49044acb3360c8d25c5b202e9710292c534e",
-  "readme": "# Skill Skins Off\n\n## What it does\n\nRemoves all the impact effects from special upgraded weapons and critical hits.\n\n### How it's made\n\nblank the effect blocks."
+  "readme": "# Weapon Fx Off\n\n## What it does\n\nRemoves all the impact effects from special upgraded weapons and critical hits.\n\n### How it's made\n\nBlank the effect blocks."
 }

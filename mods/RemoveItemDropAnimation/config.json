@@ -14,5 +14,5 @@
     "data/gfx/char/item/anim/item_appear02.ani"
   ],
   "sourceHash": "sha256-2d8660e9625eda591575d2b9ff3de2e6c9bc9d9c7590f3b88f008ecf9d4ef5f7",
-  "readme": "# Remove Item Drop Animation\n\n## What it does\n\nSkips the bouncing animation when an item drops, allowing alt to immediately show its name."
+  "readme": "# Remove Item Drop Animation\n\n## What it does\n\nSkips the bouncing animation when an item drops, allowing Alt to immediately show its name."
 }

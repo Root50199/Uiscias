@@ -18,5 +18,5 @@
     "data/material/interior/tara/town/scene_prop_tara_castle_int_stuff_01.dds"
   ],
   "sourceHash": "sha256-ff1ee8602a3b5dd6138ffad4fe0a906a2af5a8277cf75db6c61a6d816a31f8ec",
-  "readme": "# Zone Simplification Tara Castle\n\n## What it does\n\nRemoves the walls inside tara castle overworld and shadow missions."
+  "readme": "# Zone Simplification Tara Castle\n\n## What it does\n\nRemoves the walls inside Tara Castle overworld and shadow missions."
 }

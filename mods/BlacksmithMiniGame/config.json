@@ -9,6 +9,6 @@
   "hasVariants": false,
   "usedFiles": ["data/gfx/gui/blacksmith.dds"],
   "sourceHash": "sha256-83378aee8daab2cf0fb945fddcf7cd53112934b5f405a99485aa8294a72b5dfe",
-  "readme": "# Blacksmith Mini Game\n\n## What it does\n\nRemoves the background image and changes the cursor and hit marks to X's",
+  "readme": "# Blacksmith Mini Game\n\n## What it does\n\nRemoves the background image and changes the cursor and hit marks to X's.",
   "images": ["blacksmith.png"]
 }

@@ -18,6 +18,6 @@
     "data/gfx/char/monster/mesh/mimic/mimic06_mesh.pmg"
   ],
   "sourceHash": "sha256-9c2c9fe634b4b1bc9438b30300bb50b9d8683a314d8ccd0fde31d2f834c09847",
-  "readme": "# Mimic White Mesh\n\n## What it does\n\nSwaps the Mimic and strange book meshes for pure white versions",
+  "readme": "# Mimic White Mesh\n\n## What it does\n\nSwaps the Mimic and strange book meshes for pure white versions.",
   "images": ["Mimic.png"]
 }

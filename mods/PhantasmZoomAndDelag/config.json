@@ -13,5 +13,5 @@
     "data/world/New_Rabbie01/New_Rabbie01.rgn"
   ],
   "sourceHash": "sha256-f7c3eda2e85d29273b775f9209af87fa87c0ec7acb17fb5ac826bfab2d3a6eaa",
-  "readme": "# Phantasm Zoom And Delag\n\n## What it does\n\nAllows max zoom out and sets FoV to 90.\nRemoves all the extra walls and props. Completely removes the unused rooms.\n\n### How it's made\n\nMabioned"
+  "readme": "# Phantasm Zoom And Delag\n\n## What it does\n\nAllows max zoom out and sets FoV to 90.\nRemoves all the extra walls and props. Completely removes the unused rooms.\n\n### How it's made\n\nMabioned."
 }

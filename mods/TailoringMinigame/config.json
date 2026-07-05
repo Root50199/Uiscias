@@ -9,6 +9,6 @@
   "hasVariants": false,
   "usedFiles": ["data/gfx/gui/tailoring_2.dds", "data/gfx/gui/tailoring.dds"],
   "sourceHash": "sha256-d60642fc2d7bafa9bdded3fc41d5f5a25c9ed26f3eded8af79668f68b1a24b45",
-  "readme": "# Tailoring Minigame\n\n## What it does\n\nRemoves the background image and changes the cursor and target marks to X's",
+  "readme": "# Tailoring Minigame\n\n## What it does\n\nRemoves the background image and changes the cursor and target marks to X's.",
   "images": ["tailoring.png"]
 }

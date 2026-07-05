@@ -11,5 +11,5 @@
     "data/sound/skill_sb_collapse_wave_process.wav"
   ],
   "sourceHash": "sha256-15be16bb2f1156da828d68be7c14dc0947ab5215fee6b8ab6c9dd3d4f6891ba6",
-  "readme": "# Pall Sound\n\n## What it does\n\nIncreases the volume of the prep pall sound and replaces the finished casting sound with Irusan's \"shasha\" so you can be sure that it finished casting.\n\n### How it's made\n\nReplaces sounds files for Pall."
+  "readme": "# Pall Sound Sha Sha\n\n## What it does\n\nIncreases the volume of the prep Pall sound and replaces the finished casting sound with Irusan's \"shasha\" so you can be sure that it finished casting.\n\n### How it's made\n\nReplaces sound files for Pall."
 }

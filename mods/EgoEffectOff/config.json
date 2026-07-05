@@ -8,5 +8,5 @@
   "hasVariants": false,
   "usedFiles": ["data/db/NewEgoWeapon/NewEgoEffect.xml"],
   "sourceHash": "sha256-e05e1cc42b8989684fc884ce241bdd6ab5c6548828001af8f7c327f0d967b632",
-  "readme": "# Ego Effect Off\n\n## What it does\n\nCompletely removes effects from custom ego effect skins.\n\n### How it's made\n\nSet all intensities and effect references to 0."
+  "readme": "# Ego Effect Off\n\n## What it does\n\nCompletely removes effects from custom ego effect skins.\n\n### How it's made\n\nSet all intensities and effect references to `0`."
 }

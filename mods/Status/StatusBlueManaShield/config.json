@@ -8,5 +8,5 @@
   "hasVariants": false,
   "usedFiles": ["data/db/CharacterCondition.xml"],
   "sourceHash": "sha256-e805c3ae54c63fe6927c77fda20186b63ae18486f18f7073137ec218da045e83",
-  "readme": "# Status\n\n## What it does\n\nIn addition to the below changes, this version also makes it so if mana shield active it turns the entity blue.\n\nBeing in deadly turns the entity red.\nAdds an icon and displays duration for demigod.\nDisplays duration for Phoenix's Flame of Resurrection.\nDisplays duration for Crisis escape.\nDisplays duration for speed potion.\nDisplays duration for Safeguard from Succubus Queen\nChanges the icon for the whale pet's waterwave to the same icon as the foxyquin debuff.\n\n### How it's made\n\nTBD"
+  "readme": "# Status Blue Mana Shield\n\n## What it does\n\nIn addition to the below changes, this version also makes it so if mana shield is active it turns the entity blue.\n\nBeing in Deadly turns the entity red.\nAdds an icon and displays duration for Demigod.\nDisplays duration for Phoenix's Flame of Resurrection.\nDisplays duration for Crisis Escape.\nDisplays duration for speed potion.\nDisplays duration for Safeguard from Succubus Queen.\nChanges the icon for the whale pet's Water Wave to the same icon as the Foxy Quin debuff."
 }

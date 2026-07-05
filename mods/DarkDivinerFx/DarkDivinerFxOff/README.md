@@ -1,9 +1,9 @@
-﻿# Dark Diviner Fx Off
+# Dark Diviner Fx Off
 
 ## What it does
 
-Removes all effects of diviner arcana skills.
+Removes all effects of Dark Diviner arcana skills.
 
 ### How it's made
 
-Completely blank all the effect blocks.
+Completely blanks all the effect blocks.

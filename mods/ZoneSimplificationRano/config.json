@@ -44,6 +44,6 @@
     "data/gfx/scene/iria/iria_sw/prop/scene_prop_iria_sw_tree_06.pmg"
   ],
   "sourceHash": "sha256-4484cacf4062e5a2760173d4022b23c3f6ae12d51a9029969e269ba7c2428be8",
-  "readme": "# Zone Simplification Rano\n\n## What it does\n\nRemoves the top of most of the trees in rano.",
+  "readme": "# Zone Simplification Rano\n\n## What it does\n\nRemoves the top of most of the trees in Rano.",
   "images": ["KaruTrees.png", "RanoTrees.png"]
 }

@@ -1,8 +1,8 @@
-﻿# Stardust And Weapon Fx Off
+# Stardust Fx Off
 
 ## What it does
 
-removes the light trail when moving and attack effects from stardust.
+Removes the light trail when moving and attack effects from Stardust.
 
 ### How it's made
 

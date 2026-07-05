@@ -2,4 +2,4 @@
 
 ## What it does
 
-Allows farther zoom out and sets FoV to 90 in the homestead
+Allows farther zoom out and sets FoV to 90 in the homestead.

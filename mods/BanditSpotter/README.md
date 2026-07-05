@@ -2,4 +2,4 @@
 
 ## What it does
 
-Makes the name tag appear on bandit and they appear on the map as NPCs
+Makes the name tag appear on bandits and makes them appear on the map as NPCs.
