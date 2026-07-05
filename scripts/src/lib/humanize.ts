@@ -4,9 +4,11 @@
  */
 export const humanizeModId = (id: string): string => {
   let s = id
+    .replace(/FoVAnd/g, 'FoV And')
+    .replace(/FoVDefault/g, 'FoV Default')
     .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
     .replace(/([A-Za-z])(\d)/g, '$1 $2')
     .replace(/(\d)([A-Za-z])/g, '$1 $2');
-  s = s.replace(/\bFo V\b/g, 'FoV');
+  s = s.replace(/Fo V/g, 'FoV');
   return s.replace(/\s+/g, ' ').trim();
 };
