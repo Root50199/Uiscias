@@ -1,0 +1,12 @@
+{
+  "modId": "PallSound",
+  "modName": "Pall Sound",
+  "modAuthor": "Multiple Authors",
+  "updateType": "stable",
+  "findiasTags": ["Audio"],
+  "isVariant": false,
+  "hasVariants": true,
+  "usedFiles": [],
+  "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "readme": "# Pall Sound\n\n## What it does\n\nIncreases the volume of the prep pall sound and replaces the finished casting sound with various replacements.\n\n### How it's made\n\nReplaces sounds files for Pall."
+}
