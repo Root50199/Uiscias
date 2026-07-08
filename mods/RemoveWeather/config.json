@@ -1,0 +1,17 @@
+{
+  "modId": "RemoveWeather",
+  "modName": "Remove Weather",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Lag Helper"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/gfx/fx/effect/effect_blizzard_mesh.xml",
+    "data/gfx/fx/effect/effect_weather_rain.xml",
+    "data/gfx/fx/effect/effect_weather_snow.xml",
+    "data/gfx/fx/effect/event_snow.xml"
+  ],
+  "sourceHash": "sha256-c9074932f41ef4a099d3765e930c18cb48389fd20696b69b832126e638d49fad",
+  "readme": "# Remove Weather\n\n## What it does\n\nRemoves most weather effects, including things like event candy rain/snow."
+}

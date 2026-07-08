@@ -1,0 +1,22 @@
+{
+  "modId": "MapsIriaCaves",
+  "modName": "Maps Iria Caves",
+  "modAuthor": "Tera and Arcane_kirbysama",
+  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/gfx/gui/map_jpg/minimap_iria_connous_underworld.jpg",
+    "data/gfx/gui/map_jpg/minimap_iria_nw_tunnel_n_eng.jpg",
+    "data/gfx/gui/map_jpg/minimap_iria_nw_tunnel_s_eng.jpg"
+  ],
+  "sourceHash": "sha256-364ae06bd29e7ce6ae20d4efd36292638b11fbbce993f09b0307b85727963ae8",
+  "readme": "# Maps Iria Caves\n\n## What it does\n\nAdds custom maps for the 2 Solea caves and ant hell.",
+  "images": [
+    "minimap_iria_connous_underworld.jpg",
+    "minimap_iria_nw_tunnel_n_eng.jpg",
+    "minimap_iria_nw_tunnel_s_eng.jpg"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "modId": "MapsTaillteannShadowMissions",
+  "modName": "Maps Taillteann Shadow Missions",
+  "modAuthor": "Rydian",
+  "modAdditionalCredits": "Ported, edited and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/gfx/gui/map_jpg/minimap_taillteann_eng_rep.jpg",
+    "data/gfx/gui/map_jpg/minimap_taillteann_sliab_cuilin_eng_rep.jpg"
+  ],
+  "sourceHash": "sha256-1970754c923398b25655468e9273eaaa877da3c75c49d616b66aa61e2b6bf95f",
+  "readme": "# Maps Taillteann Shadow Missions\n\n## What it does\n\nAdds custom maps for Taillteann and Sliab Cuilin Shadow Missions.",
+  "images": ["minimap_taillteann_eng_rep.jpg", "minimap_taillteann_sliab_cuilin_eng_rep.jpg"]
+}

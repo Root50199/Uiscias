@@ -4,6 +4,7 @@
   "modAuthor": "Unknown, Tekashi and Root50199",
   "updateType": "stable",
   "findiasTags": ["Combat", "Fx", "QoL"],
+  "recentUpdateNotes": "removed the tuan file since seeing tuan activate can be important.",
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": [
@@ -44,10 +45,9 @@
     "data/gfx/char/chapter4/pet/anim/puffy/pet_puffy_summon.ani",
     "data/gfx/char/chapter4/pet/anim/raiden/pet_raiden_summon.ani",
     "data/gfx/char/chapter4/pet/anim/snowman/pet_snowman_summon.ani",
-    "data/gfx/char/chapter4/pet/anim/souloftuan/pet_c4_souloftuan_summon.ani",
     "data/gfx/char/chapter4/pet/anim/welshcorgi/pet_welshcorgi_summon.ani",
     "data/gfx/char/chapter4/pet/anim/whale/pet_whale_summon.ani"
   ],
-  "sourceHash": "sha256-113c85bf44ddb06d3fbb59c16d11201866818ba5c30a744bc03368ef5a5dae75",
+  "sourceHash": "sha256-21f4e72eb1929180df2676f1f499331d1b8d21a192eea53fb82b0ad0546d3890",
   "readme": "# Remove Pet Summon Animations\n\n## What it does\n\nRemoves the pet summon animations so they just appear instantly."
 }

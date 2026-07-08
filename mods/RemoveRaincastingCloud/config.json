@@ -1,0 +1,12 @@
+{
+  "modId": "RemoveRaincastingCloud",
+  "modName": "Remove Raincasting Cloud",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Combat", "Fx", "Lag Helper", "Visual Clarity"],
+  "isVariant": false,
+  "hasVariants": true,
+  "usedFiles": [],
+  "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "readme": "# Remove Raincasting Cloud\n\n## What it does\n\nRemoves the cloud from raincasting. Filled circle adds a fill color to the ground range indicator that fades from green to yellow to red as it times out. Blank circle leaves only the outer ring."
+}
