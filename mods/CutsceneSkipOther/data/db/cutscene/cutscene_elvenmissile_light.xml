@@ -1,0 +1,93 @@
+<cutscene>
+	<scenario name="elven_missile_camera_light">
+		<stage region="current" origin="player_pos" />
+		<client_sequence wait_server_reply="false">
+
+
+		<system cmd="nop">
+
+		<sequence>
+
+			<camera cmd="stop" />
+			<camera cmd="stop_target" />
+			<camera cmd="set_fov" fov="70" />
+			<camera cmd="set_relate_pos" pos="120 414 350" />
+			<camera cmd="set_target_relate_pos" pos="-15 82 -18" />
+			<camera cmd="rotate" speed="40.0" axis="0 1 0" />
+
+		</sequence>
+
+
+
+		<sequence>
+
+			<system cmd="wait" duration="650" />
+			<camera cmd="stop" />
+			<camera cmd="stop_target" />
+			<camera cmd="set_fov" fov="110" />
+
+
+			<camera cmd="set_relate_pos" pos="-218 167 -199" />
+			<camera cmd="set_target_relate_pos" pos="251 77 14" />
+
+
+			<camera cmd="move_to_relate" start_speed="100.0" acceleration="0.0" pos="-399 167 -270" />
+			<camera cmd="move_target_to_relate" start_speed="100.0" acceleration="0.0" pos="251 77 14" />
+
+		</sequence>
+
+		<sequence>
+
+			<system cmd="wait" duration="800" />
+			<camera cmd="vibrate" on="true" duration="20000" amount="4 4 4" />
+
+		</sequence>
+
+		<sequence>
+
+			<system cmd="wait" duration="800" />
+			<effect cmd="fadein" duration="500" color="FFFFFF" />
+
+		</sequence>
+
+		<sequence>
+
+			<system cmd="wait" duration="1000" />
+			<effect cmd="blur" name="default" />
+
+		</sequence>
+
+		<sequence>
+
+			<system cmd="wait" duration="1500" />
+			<camera cmd="stop" />
+			<camera cmd="stop_target" />
+			<camera cmd="set_fov" fov="110" />
+			<camera cmd="set_relate_pos" pos="-218 1089 -725" />
+			<camera cmd="set_target_relate_pos" pos="274 77 14" />
+
+		</sequence>
+
+		<sequence>
+
+			<system cmd="wait" duration="1100" />
+			<effect cmd="stop_blur" />
+
+		</sequence>
+
+
+
+
+		<sequence>
+
+			<system cmd="wait" duration="2800" />
+
+		</sequence>
+
+		</system>
+
+
+
+		</client_sequence>
+	</scenario>
+</cutscene

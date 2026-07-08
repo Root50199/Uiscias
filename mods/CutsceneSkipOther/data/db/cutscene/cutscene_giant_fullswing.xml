@@ -1,0 +1,146 @@
+<cutscene>
+
+	<scenario name="full_swing_camera_male">
+		<stage region="current" origin="player_pos" />
+		<client_sequence wait_server_reply="false">
+
+
+		<system cmd="nop">
+
+		<sequence>
+
+			<camera cmd="stop" />
+			<camera cmd="stop_target" />
+			<camera cmd="set_fov" fov="90" />
+
+			<camera cmd="set_relate_pos" pos="278 267 -362" />
+			<camera cmd="set_target_relate_pos" pos="0 163 9" />
+
+			<camera cmd="rotate" speed="60.0" axis="0 1 0" />
+
+		</sequence>
+
+
+
+
+		<sequence>
+
+			<system cmd="wait" duration="650" />
+			<camera cmd="stop" />
+			<camera cmd="stop_target" />
+			<camera cmd="set_fov" fov="100" />
+
+			<camera cmd="set_relate_pos" pos="-267 243 -263" />
+			<camera cmd="set_target_relate_pos" pos="145 95 2" />
+
+			<camera cmd="move_to_relate" start_speed="300.0" acceleration="0.0" pos="-339 257 -436" />
+			<camera cmd="move_target_to_relate" start_speed="300.0" acceleration="0.0" pos="145 95 2" />
+
+
+		</sequence>
+
+
+		<sequence>
+
+			<system cmd="wait" duration="800" />
+			<camera cmd="vibrate" on="true" duration="20000" amount="6 6 6" />
+
+		</sequence>
+
+		<sequence>
+
+			<system cmd="wait" duration="800" />
+			<effect cmd="fadein" duration="500" color="FFFFFF" alpha="30" />
+
+		</sequence>
+
+
+		<sequence>
+
+			<system cmd="wait" duration="2600" />
+
+		</sequence>
+
+
+		</system>
+
+
+		</client_sequence>
+
+	</scenario>
+
+
+
+
+	<scenario name="full_swing_camera_female">
+		<stage region="current" origin="player_pos" />
+		<client_sequence wait_server_reply="false">
+
+
+		<system cmd="nop">
+
+		<sequence>
+
+			<camera cmd="stop" />
+			<camera cmd="stop_target" />
+			<camera cmd="set_fov" fov="90" />
+
+			<camera cmd="set_relate_pos" pos="278 267 -362" />
+			<camera cmd="set_target_relate_pos" pos="0 163 9" />
+
+			<camera cmd="rotate" speed="60.0" axis="0 1 0" />
+
+		</sequence>
+
+
+
+
+		<sequence>
+
+			<system cmd="wait" duration="650" />
+			<camera cmd="stop" />
+			<camera cmd="stop_target" />
+			<camera cmd="set_fov" fov="100" />
+
+			<camera cmd="set_relate_pos" pos="-267 243 -263" />
+			<camera cmd="set_target_relate_pos" pos="145 95 2" />
+
+			<camera cmd="move_to_relate" start_speed="300.0" acceleration="0.0" pos="-339 257 -436" />
+			<camera cmd="move_target_to_relate" start_speed="300.0" acceleration="0.0" pos="145 95 2" />
+
+
+		</sequence>
+
+
+		<sequence>
+
+			<system cmd="wait" duration="800" />
+			<camera cmd="vibrate" on="true" duration="20000" amount="6 6 6" />
+
+		</sequence>
+
+		<sequence>
+
+			<system cmd="wait" duration="800" />
+			<effect cmd="fadein" duration="500" color="FFFFFF" alpha="30" />
+
+		</sequence>
+
+
+		<sequence>
+
+			<system cmd="wait" duration="2600" />
+
+
+
+		</sequence>
+
+
+		</system>
+
+
+		</client_sequence>
+
+	</scenario>
+
+</cutscene
