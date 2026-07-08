@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.31.0](https://github.com/Root50199/Uiscias/compare/v1.30.0...v1.31.0) (2026-07-08)
+
+
+### Mods added / updated
+
+* added cutscene skips ([4b7f30e](https://github.com/Root50199/Uiscias/commit/4b7f30ec069585e6670f842738ec433e72026e72))
+* added cutscene skips ([d3b1308](https://github.com/Root50199/Uiscias/commit/d3b13088fcdd6b9d0efda07e20f9702cdc2036cc))
+
 ## [1.30.0](https://github.com/Root50199/Uiscias/compare/v1.29.0...v1.30.0) (2026-07-05)
 
 
