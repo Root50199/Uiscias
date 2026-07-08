@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.32.0](https://github.com/Root50199/Uiscias/compare/v1.31.0...v1.32.0) (2026-07-08)
+
+
+### Mods added / updated
+
+* added new mods ([a7bbeac](https://github.com/Root50199/Uiscias/commit/a7bbeac603c63df6aff702a124d67b7d39a7ecd6))
+* added new mods ([3fdd758](https://github.com/Root50199/Uiscias/commit/3fdd758995adf6679330fb685e034f45a8aaa534))
+
 ## [1.31.0](https://github.com/Root50199/Uiscias/compare/v1.30.0...v1.31.0) (2026-07-08)
 
 
