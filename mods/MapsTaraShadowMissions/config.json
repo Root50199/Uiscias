@@ -1,0 +1,17 @@
+{
+  "modId": "MapsTaraShadowMissions",
+  "modName": "Maps Tara Shadow Missions",
+  "modAuthor": "Unknown and Rydian",
+  "modAdditionalCredits": "Ported, edited and maintained by Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/gfx/gui/map_jpg/minimap_tara_eng_rep.jpg",
+    "data/gfx/gui/map_jpg/minimap_tara_n_field_eng_rep.jpg"
+  ],
+  "sourceHash": "sha256-5317b6c797062169c5d831257c2d796d3ea920703853704b7ba887b2eb9a8ff8",
+  "readme": "# Maps Tara Shadow Missions\n\n## What it does\n\nAdds custom maps for tara city and corrib shadow missions.",
+  "images": ["minimap_tara_eng_rep.jpg", "minimap_tara_n_field_eng_rep.jpg"]
+}

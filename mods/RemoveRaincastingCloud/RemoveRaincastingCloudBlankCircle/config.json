@@ -1,0 +1,13 @@
+{
+  "modId": "RemoveRaincastingCloudBlankCircle",
+  "modName": "Remove Raincasting Cloud Blank Circle",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Combat", "Fx", "Lag Helper"],
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": ["data/gfx/fx/effect/c3_g10_s1_cloud.xml"],
+  "sourceHash": "sha256-6890c909f31facee2a568eb6b2ed62c0e272b9db1a6675b68d3c6aea6d8b322a",
+  "readme": "# Remove Raincasting Cloud Variant 2\n\n## What it does\n\nRemoves the cloud from raincasting. Blank circle leaves only the outer ring.",
+  "images": ["BlankCloud.png"]
+}

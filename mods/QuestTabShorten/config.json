@@ -1,0 +1,13 @@
+{
+  "modId": "QuestTabShorten",
+  "modName": "Quest Tab Shorten",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": ["data/db/Questcategory.xml"],
+  "sourceHash": "sha256-406798c6b37551004fcc87496df337a325f87f80daaf0cde6adca5cd6fcb9bc2",
+  "readme": "# Quest Tab Shorten\n\n## What it does\n\nShortens the names for many of the tabs in the quest window.",
+  "images": ["QuestTabspng.png"]
+}

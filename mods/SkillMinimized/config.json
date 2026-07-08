@@ -6,25 +6,7 @@
   "findiasTags": ["Combat", "Fx", "Lag Helper"],
   "isVariant": false,
   "hasVariants": false,
-  "usedFiles": [
-    "data/gfx/fx/effect/c2_g6_pet_snowfield.xml",
-    "data/gfx/fx/effect/c3_g10_s1_cloud.xml",
-    "data/gfx/fx/effect/C3_G11_cutscene.xml",
-    "data/gfx/fx/effect/c3_g9_s2_monster_spider12.xml",
-    "data/gfx/fx/effect/c4_g14_s3_fire_horse_black.xml",
-    "data/gfx/fx/effect/c4_g14_s3_fire_horse_cyan.xml",
-    "data/gfx/fx/effect/c4_g14_s3_fire_horse_white.xml",
-    "data/gfx/fx/effect/c4_g14_s3_fire_horse.xml",
-    "data/gfx/fx/effect/c4_g16_pet_ice_dragon.xml",
-    "data/gfx/fx/effect/C5_doll_effect.xml",
-    "data/gfx/fx/effect/c5_pet_cloud.xml",
-    "data/gfx/fx/effect/fx_c2_ruins.xml",
-    "data/gfx/fx/effect/pet_c4_cloud.xml",
-    "data/gfx/fx/effect/pet_dragon_fire.xml",
-    "data/gfx/fx/effect/pet_dragon_thunder.xml",
-    "data/gfx/fx/effect/SkillRenewal2017.xml",
-    "data/gfx/fx/posteffect/blur.xml"
-  ],
-  "sourceHash": "sha256-86f6901d6a23ff9110d5caa59e94b78c00cbab218c1ad642181d2f27b8f5618c",
-  "readme": "# Skill Minimized\n\n## What it does\n\nTBD"
+  "usedFiles": ["data/gfx/fx/effect/SkillRenewal2017.xml"],
+  "sourceHash": "sha256-1b893d1494fdac5e0cbcad769175cdf6d8829092a63a6cf8d754dd669a2789b5",
+  "readme": "# Skill Minimized\n\n## What it does\n\nRemove effects from many basic skills like bolt magic, thunder, ice spear, auto attacks, smash, etc."
 }

@@ -3,7 +3,7 @@ modName: Remove Pet Summon Animations
 modAuthor: Unknown, Tekashi and Root50199
 # modAdditionalCredits:
 updateType: stable
-# recentUpdateNotes:
+recentUpdateNotes: removed the tuan file since seeing tuan activate can be important.
 findiasTags:
   - Combat
   - Fx
