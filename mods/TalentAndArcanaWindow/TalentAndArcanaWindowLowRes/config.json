@@ -1,0 +1,14 @@
+{
+  "modId": "TalentAndArcanaWindowLowRes",
+  "modName": "Talent and Arcana Window Low Resolution",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["UI", "QoL"],
+  "recentUpdateNotes": "split into low and high resolution variants",
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": ["data/db/layout2/Talent/TalentMainViewRenewal.xml"],
+  "sourceHash": "sha256-e9a7257843063042d170fcdb6ca82af360e27b7fa2b370f6fd2f378c870bc92e",
+  "readme": "# Talent and Arcana Window High Resolution\n\n## What it does\n\nCombines the Talent and Arcana tabs into one.\n\n### How it's made\n\nSee files.",
+  "images": ["ArcanaAndTalentWindow1080p.png"]
+}
