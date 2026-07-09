@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.34.0](https://github.com/Root50199/Uiscias/compare/v1.33.1...v1.34.0) (2026-07-09)
+
+
+### Mods added / updated
+
+* moving glenn cutscenes out of cutscene skip other ([9c117cd](https://github.com/Root50199/Uiscias/commit/9c117cd06e2047c2da21025afcf6c684e6c9e23e))
+
 ## [1.33.1](https://github.com/Root50199/Uiscias/compare/v1.33.0...v1.33.1) (2026-07-09)
 
 
