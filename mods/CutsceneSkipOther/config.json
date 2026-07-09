@@ -279,9 +279,6 @@
     "data/db/cutscene/Event_Whiteday02_2F.xml",
     "data/db/cutscene/Event_Whiteday03_boss.xml",
     "data/db/cutscene/FCW_01.xml",
-    "data/db/cutscene/gbd_Bossroom_01.xml",
-    "data/db/cutscene/gbd_Bossroom_02.xml",
-    "data/db/cutscene/gbd_Bossroom_03.xml",
     "data/db/cutscene/gbd_quest_01.xml",
     "data/db/cutscene/gbd_quest_02_giant.xml",
     "data/db/cutscene/gbd_quest_02.xml",
@@ -343,6 +340,6 @@
     "data/db/cutscene/wedding/Vales/cutscene_WeddingVales_02.xml",
     "data/db/cutscene/wedding/Vales/cutscene_WeddingVales_03.xml"
   ],
-  "sourceHash": "sha256-7a111a2b76f389e6786c55778042642e069d9da4c28e0eeebc7a84a039fa416b",
+  "sourceHash": "sha256-9c232443f48853873d890e143c6597a39c2f7576fd19d5e69c09dabfc1f9fb33",
   "readme": "# Cutscene Skip Other\n\n## What it does\n\nSkips all cutscene not in a chapter folder, so dungeons, shadow missions, pet first time summons, weddings, events, etc."
 }

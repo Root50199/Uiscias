@@ -11,6 +11,6 @@
     "data/db/cutscene/gbd_Bossroom_02.xml",
     "data/db/cutscene/gbd_Bossroom_03.xml"
   ],
-  "sourceHash": "sha256-061184ea0238237076bb423871349bc65e63f896a6cd8aa24e1e04ba245daf1e",
+  "sourceHash": "sha256-ee6a0a734442b2c3ddbd618054382ef2972c881a5cd1e26c3860538720a6ad63",
   "readme": "# Glenn Cutscene Skip\n\n## What it does\n\nAutomatically skips the Glenn boss cutscenes.\n\n### How it's made\n\nRemoves all scene info."
 }
