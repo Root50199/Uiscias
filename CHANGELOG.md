@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.33.0](https://github.com/Root50199/Uiscias/compare/v1.32.0...v1.33.0) (2026-07-09)
+
+
+### Mods added / updated
+
+* added talent/arcana window high and low res ([ed03770](https://github.com/Root50199/Uiscias/commit/ed03770ff20cb6a58b82f12d55c60f2b718eda3d))
+* added talent/arcana window high and low res ([3afec82](https://github.com/Root50199/Uiscias/commit/3afec82ba52a9a64ee011595be4aa517f74325f4))
+
 ## [1.32.0](https://github.com/Root50199/Uiscias/compare/v1.31.0...v1.32.0) (2026-07-08)
 
 
