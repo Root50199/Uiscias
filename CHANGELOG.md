@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.33.1](https://github.com/Root50199/Uiscias/compare/v1.33.0...v1.33.1) (2026-07-09)
+
+
+### Fixes
+
+* fixed a bug with some text positioning ([98adb6c](https://github.com/Root50199/Uiscias/commit/98adb6cfc9cbd9001dc9251255e9a0266b8d3639))
+* fixed a bug with some text positioning ([a1b71e8](https://github.com/Root50199/Uiscias/commit/a1b71e84d568217de290baef0b7a32fa9b8e9821))
+
 ## [1.33.0](https://github.com/Root50199/Uiscias/compare/v1.32.0...v1.33.0) (2026-07-09)
 
 
