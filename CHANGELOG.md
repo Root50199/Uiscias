@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.34.1](https://github.com/Root50199/Uiscias/compare/v1.34.0...v1.34.1) (2026-07-09)
+
+
+### Fixes
+
+* feat: added hide traveler's guide and fixed remove pet effects ([a551ae2](https://github.com/Root50199/Uiscias/commit/a551ae2cf5cb24830953f6433e18709a3a004117))
+* feat: added hide traveler's guide and fixed remove pet effects ([575f550](https://github.com/Root50199/Uiscias/commit/575f550c987fe80505120e6f5d6429a785611762))
+
 ## [1.34.0](https://github.com/Root50199/Uiscias/compare/v1.33.1...v1.34.0) (2026-07-09)
 
 
