@@ -4,10 +4,11 @@
   "modAuthor": "Root50199",
   "updateType": "stable",
   "findiasTags": ["UI", "QoL"],
+  "recentUpdateNotes": "split into low and high resolution variants, expanded high res's arcanas section to accommodate the new Arcanas",
   "isVariant": false,
-  "hasVariants": false,
-  "usedFiles": ["data/db/layout2/Talent/TalentMainViewRenewal.xml"],
-  "sourceHash": "sha256-1757238a038fabb55515a29e6e379764cb36133ed9d12af743ce07eabd46b3b5",
+  "hasVariants": true,
+  "usedFiles": [],
+  "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
   "readme": "# Talent And Arcana Window\n\n## What it does\n\nCombines the Talent and Arcana tabs into one.\n\n### How it's made\n\nSee files.",
-  "images": ["talent_window.png"]
+  "images": ["ArcanaAndTalentWindow1080p.png", "ArcanaAndTalentWindow1440p.png"]
 }

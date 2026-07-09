@@ -1,0 +1,10 @@
+modId: TalentAndArcanaWindowHighRes
+modName: Talent and Arcana Window High Resolution
+modAuthor: Root50199
+# modAdditionalCredits:
+updateType: stable
+recentUpdateNotes: split into low and high resolution variants
+findiasTags:
+  - UI
+  - QoL
+  - 1440p Required

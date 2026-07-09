@@ -3,7 +3,7 @@ modName: Talent and Arcana Window
 modAuthor: Root50199
 # modAdditionalCredits:
 updateType: stable
-# recentUpdateNotes:
+recentUpdateNotes: split into low and high resolution variants, expanded high res's arcanas section to accommodate the new Arcanas
 findiasTags:
   - UI
   - QoL

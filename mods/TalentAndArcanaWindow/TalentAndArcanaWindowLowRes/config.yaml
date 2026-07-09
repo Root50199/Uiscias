@@ -1,0 +1,9 @@
+modId: TalentAndArcanaWindowLowRes
+modName: Talent and Arcana Window Low Resolution
+modAuthor: Root50199
+# modAdditionalCredits:
+updateType: stable
+recentUpdateNotes: split into low and high resolution variants
+findiasTags:
+  - UI
+  - QoL
