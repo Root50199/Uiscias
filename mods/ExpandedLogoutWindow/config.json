@@ -1,0 +1,18 @@
+{
+  "modId": "ExpandedLogoutWindow",
+  "modName": "Expanded Logout Window",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/db/layout2/GameEnd/GameEndFrame.xml",
+    "data/db/layout2/GameEnd/GameEndMainView.xml",
+    "data/db/layout2/GameEnd/GameEndVariableImage.xml",
+    "data/gfx/gui/2023_game_quit/GUI_game_quit.dds"
+  ],
+  "sourceHash": "sha256-189b9cd39e3429f62a6ee88c8637b2fe9692f7027c746c42cc5b37b7161386ff",
+  "readme": "# Expanded Logout Window\n\n## What it does\n\nWidens the logout window to help display longer names, moved the time for expiring items to the left and increased the number of item each list can display to 20 (default was 5).",
+  "images": ["LogoutScreen.png"]
+}
