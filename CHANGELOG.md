@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.35.0](https://github.com/Root50199/Uiscias/compare/v1.34.1...v1.35.0) (2026-07-11)
+
+
+### Mods added / updated
+
+* added BriBronntanasEffects ([4f9e6d6](https://github.com/Root50199/Uiscias/commit/4f9e6d6d09f3de4e8caa166cebd3c22cd146ab7a))
+* added BriBronntanasEffects ([0c6fa14](https://github.com/Root50199/Uiscias/commit/0c6fa1482c7490befe898d9a06c97183d812f9ad))
+
 ## [1.34.1](https://github.com/Root50199/Uiscias/compare/v1.34.0...v1.34.1) (2026-07-09)
 
 
