@@ -29,6 +29,16 @@ export interface BuildManifestOptions {
 }
 
 /**
+ * Percent-encode every segment of a `/`-joined posix path so the result is a
+ * valid URL path. Encoding segment-by-segment preserves the `/` separators while
+ * escaping reserved characters *within* a segment — e.g. a `%` in an image file
+ * name (`50%.gif` → `50%25.gif`). A raw `%` is otherwise read as a malformed
+ * percent-escape and Chromium's network stack rejects the request (HTTP 400).
+ */
+const encodePathSegments = (posixPath: string): string =>
+  posixPath.split('/').map(encodeURIComponent).join('/');
+
+/**
  * Optional docs for a mod: its README text and its images resolved to
  * release-pinned raw.githubusercontent.com URLs. `mod.relDir` is a repo-relative
  * posix path (e.g. `mods/AchievmentUnhide`), so it drops straight into the URL.
@@ -40,7 +50,11 @@ const docsFor = (
 ): Pick<ManifestVariant, 'readme' | 'images'> => ({
   ...(cfg.readme ? { readme: cfg.readme } : {}),
   ...(cfg.images && cfg.images.length > 0
-    ? { images: cfg.images.map((name) => `${rawBase}/${mod.relDir}/images/${name}`) }
+    ? {
+        images: cfg.images.map(
+          (name) => `${rawBase}/${encodePathSegments(`${mod.relDir}/images/${name}`)}`,
+        ),
+      }
     : {}),
 });
 
