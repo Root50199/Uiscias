@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.36.0](https://github.com/Root50199/Uiscias/compare/v1.35.1...v1.36.0) (2026-07-12)
+
+
+### Mods added / updated
+
+* added expanded logout window ([e98c520](https://github.com/Root50199/Uiscias/commit/e98c5205e5fb851d50cb6d92b1bae598b944d40a))
+* added expanded logout window, fixed an issue with hide travelers guide ([571b0ef](https://github.com/Root50199/Uiscias/commit/571b0ef19da85679d940ac5068d0ddb7e21e3920))
+
+
+### Fixes
+
+* 2nd try at hide traveler's guide fix ([6e3d5e3](https://github.com/Root50199/Uiscias/commit/6e3d5e33db15d77703cdb154a8572a2e34c81528))
+
 ## [1.35.1](https://github.com/Root50199/Uiscias/compare/v1.35.0...v1.35.1) (2026-07-12)
 
 
