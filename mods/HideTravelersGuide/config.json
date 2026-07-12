@@ -7,6 +7,6 @@
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/db/layout2/SmartContent/SmartContentMain.xml"],
-  "sourceHash": "sha256-7653dbf6d85acc3d858cf927231e75d5062d35ac3a17af73b4ccbaa1d776a841",
+  "sourceHash": "sha256-c5deca58ea699157cfdabde5203d02a714edf9b8e8c80f312ff05c231e2d8f09",
   "readme": "# Hide Travelers Guide\n\n## What it does\n\nCompletely disables the traveler's guide so it can't auto open when you log in for the first time per day."
 }
