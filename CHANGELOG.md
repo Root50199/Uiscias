@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.35.1](https://github.com/Root50199/Uiscias/compare/v1.35.0...v1.35.1) (2026-07-12)
+
+
+### Fixes
+
+* preventing images names with % in them from breaking in Findias ([7ddc117](https://github.com/Root50199/Uiscias/commit/7ddc1179a8a8f15f5dade3002035568f1349c324))
+
 ## [1.35.0](https://github.com/Root50199/Uiscias/compare/v1.34.1...v1.35.0) (2026-07-11)
 
 
