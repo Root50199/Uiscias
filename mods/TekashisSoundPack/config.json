@@ -76,6 +76,6 @@
     "data/sound/waterconnon_fire.wav",
     "data/sound/wind_blast_shoot.wav"
   ],
-  "sourceHash": "sha256-b1589b4fa4f4c16f0ce477c95aaf1f192c5adfce83083e629d5038f4625a7ee5",
+  "sourceHash": "sha256-3d30d992f8aff16151ab11bd71e9fda6e85219b2d873dbe48cf4ac4dd6d7bea4",
   "readme": "# Tekashis Sound Pack\n\n## What it does\n\nReplaces many sound effects in the game with more modern replacements.\n\n### How it's made\n\nReplaces chosen sound files with new ones."
 }
