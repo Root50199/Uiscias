@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.38.0](https://github.com/Root50199/Uiscias/compare/v1.37.0...v1.38.0) (2026-07-13)
+
+
+### Mods added / updated
+
+* updating sounds for tekashi pack ([881ade7](https://github.com/Root50199/Uiscias/commit/881ade77a793a5c17833e8c46125a8a8357115f7))
+
 ## [1.37.0](https://github.com/Root50199/Uiscias/compare/v1.36.0...v1.37.0) (2026-07-13)
 
 
