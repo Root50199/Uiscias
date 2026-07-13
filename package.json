@@ -1,6 +1,6 @@
 {
   "name": "uiscias",
-  "version": "1.35.1",
+  "version": "1.38.0",
   "private": true,
   "description": "Mabinogi mod sources and maintainer scripts for Uiscias",
   "author": "Root50199",
@@ -27,7 +27,6 @@
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^26.0.0",
     "@types/readline-sync": "^1.4.8",
-    "@types/xml2js": "^0.4.14",
     "commander": "^15.0.0",
     "fs-extra": "^11.3.5",
     "husky": "^9.1.7",
@@ -36,6 +35,7 @@
     "markdownlint-cli2": "^0.23.0",
     "picocolors": "^1.1.1",
     "prettier": "^3.8.4",
+    "readline-sync": "^1.4.10",
     "tinyglobby": "^0.2.17",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",
@@ -58,9 +58,5 @@
       "prettier --write",
       "markdownlint-cli2 --fix"
     ]
-  },
-  "dependencies": {
-    "readline-sync": "^1.4.10",
-    "xml2js": "^0.6.2"
   }
 }

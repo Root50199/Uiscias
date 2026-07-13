@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.38.0](https://github.com/Root50199/Uiscias/compare/v1.37.0...v1.38.0) (2026-07-13)
+
+
+### Mods added / updated
+
+* updating sounds for tekashi pack ([881ade7](https://github.com/Root50199/Uiscias/commit/881ade77a793a5c17833e8c46125a8a8357115f7))
+
+## [1.37.0](https://github.com/Root50199/Uiscias/compare/v1.36.0...v1.37.0) (2026-07-13)
+
+
+### Mods added / updated
+
+* getting rid of annoying magnum gun sound ([a10252b](https://github.com/Root50199/Uiscias/commit/a10252b15329fbe9e76348b407469e1d08461d23))
+* removing unused package, moving to dev dependencies ([fa355df](https://github.com/Root50199/Uiscias/commit/fa355dfbd34a2a26ed80542343703ad38df48a8f))
+
+## [1.36.0](https://github.com/Root50199/Uiscias/compare/v1.35.1...v1.36.0) (2026-07-12)
+
+
+### Mods added / updated
+
+* added expanded logout window ([e98c520](https://github.com/Root50199/Uiscias/commit/e98c5205e5fb851d50cb6d92b1bae598b944d40a))
+* added expanded logout window, fixed an issue with hide travelers guide ([571b0ef](https://github.com/Root50199/Uiscias/commit/571b0ef19da85679d940ac5068d0ddb7e21e3920))
+
+
+### Fixes
+
+* 2nd try at hide traveler's guide fix ([6e3d5e3](https://github.com/Root50199/Uiscias/commit/6e3d5e33db15d77703cdb154a8572a2e34c81528))
+
 ## [1.35.1](https://github.com/Root50199/Uiscias/compare/v1.35.0...v1.35.1) (2026-07-12)
 
 
