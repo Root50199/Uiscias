@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.37.0](https://github.com/Root50199/Uiscias/compare/v1.36.0...v1.37.0) (2026-07-13)
+
+
+### Mods added / updated
+
+* getting rid of annoying magnum gun sound ([a10252b](https://github.com/Root50199/Uiscias/commit/a10252b15329fbe9e76348b407469e1d08461d23))
+* removing unused package, moving to dev dependencies ([fa355df](https://github.com/Root50199/Uiscias/commit/fa355dfbd34a2a26ed80542343703ad38df48a8f))
+
 ## [1.36.0](https://github.com/Root50199/Uiscias/compare/v1.35.1...v1.36.0) (2026-07-12)
 
 
