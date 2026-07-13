@@ -7,6 +7,6 @@
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/db/layout2/SmartContent/SmartContentMain.xml"],
-  "sourceHash": "sha256-7e35d1b9f7653406daadc9199b534b0e69242c0ad1d08e5f1ba56a75f57840ee",
+  "sourceHash": "sha256-7653dbf6d85acc3d858cf927231e75d5062d35ac3a17af73b4ccbaa1d776a841",
   "readme": "# Hide Travelers Guide\n\n## What it does\n\nCompletely disables the traveler's guide so it can't auto open when you log in for the first time per day.\n\nKnown issue: It still technically opens when first logging in and the cursor is still pulled into the text box. I believe this is unfixable as getting rid of the text box causes a crash. Clicking anywhere or pressing escape will free the cursor and allow you to ignore the invisible window."
 }
