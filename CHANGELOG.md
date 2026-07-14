@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.39.0](https://github.com/Root50199/Uiscias/compare/v1.38.0...v1.39.0) (2026-07-14)
+
+
+### Mods added / updated
+
+* adding NotoSansMedium ([a5d5572](https://github.com/Root50199/Uiscias/commit/a5d557299e1e8203b0bee1c1518bfec0d52c49cd))
+
 ## [1.38.0](https://github.com/Root50199/Uiscias/compare/v1.37.0...v1.38.0) (2026-07-13)
 
 
