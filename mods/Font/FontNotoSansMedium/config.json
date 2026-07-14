@@ -1,0 +1,12 @@
+{
+  "modId": "FontNotoSansMedium",
+  "modName": "Font Noto Sans Medium",
+  "modAuthor": "Tekashi",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": ["data/gfx/font/alphanumeric.ttf", "data/gfx/font/nanumgothicbold.ttf"],
+  "sourceHash": "sha256-7e23d4eac99d68359780f56d5162d4df7f30471301347d99d144b2fed626f075",
+  "readme": "# Font Noto Sans Medium\n\n## What it does\n\nSwaps the game's text font based on chosen variant."
+}
