@@ -7,8 +7,15 @@
       "changelog-sections": [
         { "type": "feat", "section": "Mods added / updated" },
         { "type": "fix", "section": "Fixes" },
+        { "type": "perf", "section": "Performance" },
+        { "type": "revert", "section": "Reverts" },
         { "type": "chore", "section": "Maintenance", "hidden": true },
-        { "type": "refactor", "section": "Maintenance", "hidden": true }
+        { "type": "refactor", "section": "Maintenance", "hidden": true },
+        { "type": "docs", "section": "Maintenance", "hidden": true },
+        { "type": "test", "section": "Maintenance", "hidden": true },
+        { "type": "build", "section": "Maintenance", "hidden": true },
+        { "type": "ci", "section": "Maintenance", "hidden": true },
+        { "type": "style", "section": "Maintenance", "hidden": true }
       ]
     }
   }
