@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.40.0](https://github.com/Root50199/Uiscias/compare/v1.39.0...v1.40.0) (2026-07-14)
+
+
+### Mods added / updated
+
+* adding conventional commit linting ([89dd268](https://github.com/Root50199/Uiscias/commit/89dd268f2df93564b367c28cb7396c959eab04a0))
+
+
+### Fixes
+
+* preventing release-please PR from failing ([fec0e25](https://github.com/Root50199/Uiscias/commit/fec0e25ced35ee6c8189e27176e8ebdd1e0fedaf))
+
 ## [1.39.0](https://github.com/Root50199/Uiscias/compare/v1.38.0...v1.39.0) (2026-07-14)
 
 
