@@ -94,7 +94,14 @@ jobs:
       # A Conventional-Commit PR title would be copied into the merge-commit body
       # by GitHub, duplicating a branch commit in history/changelog. Reject it so
       # PR titles stay plain and descriptive.
+      #
+      # Exempt the release-please bot PR (branch `release-please--*`): it is
+      # squash-merged (so the merge-body duplication does not apply) and its title
+      # is intentionally `chore(main): release X`. Guarding only this step (not the
+      # whole job) keeps the commit-lint step running, so the `commits` check still
+      # reports a real success and stays safe to add as a required check.
       - name: Ensure PR title is NOT a conventional commit
+        if: ${{ !startsWith(github.head_ref, 'release-please--') }}
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
