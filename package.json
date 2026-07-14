@@ -24,6 +24,8 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.1",
+    "@commitlint/config-conventional": "^21.2.0",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^26.0.0",
     "@types/readline-sync": "^1.4.8",
