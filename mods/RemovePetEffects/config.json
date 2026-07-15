@@ -16,7 +16,6 @@
     "data/gfx/fx/effect/c4_g14_s3_fire_horse_black.xml",
     "data/gfx/fx/effect/c4_g14_s3_fire_horse_cyan.xml",
     "data/gfx/fx/effect/c4_g14_s3_fire_horse_white.xml",
-    "data/gfx/fx/effect/c4_g14_s3_fire_horse.xml",
     "data/gfx/fx/effect/c4_g16_pet_ice_dragon.xml",
     "data/gfx/fx/effect/C5_doll_effect.xml",
     "data/gfx/fx/effect/c5_pet_cloud.xml",
@@ -51,6 +50,6 @@
     "data/gfx/fx/effect/pet_owl_drowsy.xml",
     "data/gfx/fx/effect/pet_pegasus.xml"
   ],
-  "sourceHash": "sha256-764b9d6bc7f3feb29eb6da16a3b828dc69a007d2f441ba9bec9380d3d67d7b9d",
+  "sourceHash": "sha256-7e0d1a6328b09679abe9112944326cf123e20cec04e62324d2e06176d175f98c",
   "readme": "# Remove Pet Effects\n\n## What it does\n\nRemoves many effects from pet summons and idles. Important effects such as tuan summon and cart water balloon excluded."
 }
