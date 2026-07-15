@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.41.0](https://github.com/Root50199/Uiscias/compare/v1.40.0...v1.41.0) (2026-07-15)
+
+
+### Mods added / updated
+
+* added sm boards ([4787f06](https://github.com/Root50199/Uiscias/commit/4787f068da48a9496fcb0c1c7cbc20f10a04f9db))
+
+
+### Fixes
+
+* removed the base firehorse file as it is reused for the glen brazier fire ([5a14ee9](https://github.com/Root50199/Uiscias/commit/5a14ee94fa932829ebdc76b8095da523e65c18de))
+
 ## [1.40.0](https://github.com/Root50199/Uiscias/compare/v1.39.0...v1.40.0) (2026-07-14)
 
 
