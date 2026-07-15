@@ -1,0 +1,16 @@
+{
+  "modId": "ShadowMissionBoardsAtAlter",
+  "modName": "Shadow Mission Boards At Alter",
+  "modAuthor": "Poi and Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/world/taillteann_main_field/_taillteann_main_field_0018.area",
+    "data/world/Tara_main_field/_Tara_main_field_0013.area"
+  ],
+  "sourceHash": "sha256-f9fef39e6263992d1d184d78912945864de09a82c04de54d94cd2ca31c5b20a0",
+  "readme": "# Shadow Mission Boards At Alter\n\n## What it does\n\nAdds mini Shadow mission boards to the pillars around the alters. Why so many? why are the ones in tail rainbow? Why not!",
+  "images": ["TailSMBoards.png", "TaraSMBoards.png"]
+}
