@@ -8,7 +8,7 @@
   "isVariant": true,
   "hasVariants": false,
   "usedFiles": ["data/db/layout2/Talent/TalentMainViewRenewal.xml"],
-  "sourceHash": "sha256-e9a7257843063042d170fcdb6ca82af360e27b7fa2b370f6fd2f378c870bc92e",
+  "sourceHash": "sha256-84617b76334cfdd718237c9cf03aba0646f13f848eb438a9a8b993c5d2f94689",
   "readme": "# Talent and Arcana Window High Resolution\n\n## What it does\n\nCombines the Talent and Arcana tabs into one.\n\n### How it's made\n\nSee files.",
   "images": ["ArcanaAndTalentWindow1080p.png"]
 }

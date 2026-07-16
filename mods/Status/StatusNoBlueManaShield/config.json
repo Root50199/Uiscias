@@ -7,6 +7,6 @@
   "isVariant": true,
   "hasVariants": false,
   "usedFiles": ["data/db/CharacterCondition.xml"],
-  "sourceHash": "sha256-f1dc92041915e1b0ee427cd973b2ce26bd3f963f6324ac4dc0e7248634571812",
+  "sourceHash": "sha256-8522b7d98acac49c44c7540ebdb864da9ee1b9987a5a1693b251872f00c6b538",
   "readme": "# Status No Blue Mana Shield\n\n## What it does\n\nBeing in Deadly turns the entity red.\nAdds an icon and displays duration for Demigod.\nDisplays duration for Phoenix's Flame of Resurrection.\nDisplays duration for Crisis Escape.\nDisplays duration for speed potion.\nDisplays duration for Safeguard from Succubus Queen.\nChanges the icon for the whale pet's Water Wave to the same icon as the Foxy Quin debuff."
 }
