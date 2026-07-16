@@ -7,7 +7,7 @@
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/db/AchievementTable.xml"],
-  "sourceHash": "sha256-97fe63cf702c5d4e6398a7775868ec019c33e9b8df29aed9fda46c24a2ee8b44",
+  "sourceHash": "sha256-82236313c26b0aeffefe3abb6c2be3dfd5dac1459afb16cd9092a8c6ade6b294",
   "readme": "# Achievment Unhide\n\n## What it does\n\nUnhides all achievements in the in-game journal menu.\n\n### How it's made\n\n`AchievementTable.xml` is just changing `Hidden=\"True\"` to `Hidden=\"False\"` and removing `Prerequirement=\"*\"` entirely.",
   "images": ["Journal_Achievment_example.png"]
 }
