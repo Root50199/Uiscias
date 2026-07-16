@@ -1,0 +1,16 @@
+{
+  "modId": "MuteHamchi",
+  "modName": "Mute Hamchi",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Audio"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/sound/dongle/PetDongleWalk_v1.wav",
+    "data/sound/dongle/PetDongleWalk_v2.wav",
+    "data/sound/dongle/PetDongleWalk.wav"
+  ],
+  "sourceHash": "sha256-2ed2e4227261e074bdb346951e7130498be3c37c56e1cfb5e00de089c9528118",
+  "readme": "# Mute Hamchi\n\n## What it does\n\nMutes the Hamchi walk cycle."
+}
