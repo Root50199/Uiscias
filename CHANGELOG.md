@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.42.0](https://github.com/Root50199/Uiscias/compare/v1.41.0...v1.42.0) (2026-07-16)
+
+
+### Mods added / updated
+
+* sorting tags alphabetically ([a8a9af4](https://github.com/Root50199/Uiscias/commit/a8a9af4474f756997ded1386090ccc7e4a0cf993))
+
 ## [1.41.0](https://github.com/Root50199/Uiscias/compare/v1.40.0...v1.41.0) (2026-07-15)
 
 
