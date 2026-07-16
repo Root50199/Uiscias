@@ -3,7 +3,7 @@
   "modName": "Glenn Bearna Zoom FoV 90 With Declutter",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["Combat", "Lag Helper", "Zoom", "FoV"],
+  "findiasTags": ["Combat", "FoV", "Lag Helper", "Zoom"],
   "isVariant": true,
   "hasVariants": false,
   "usedFiles": [

@@ -3,7 +3,7 @@
   "modName": "Achievment Unhide",
   "modAuthor": "Root50199",
   "updateType": "volatile",
-  "findiasTags": ["UI", "QoL"],
+  "findiasTags": ["QoL", "UI"],
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/db/AchievementTable.xml"],

@@ -9,6 +9,7 @@ import {
   buildLockSchema,
   catalogConfigSchema,
   parseOrThrow,
+  sortFindiasTags,
   type BuildLock,
   type CatalogConfig,
   type ConfigJson,
@@ -70,6 +71,7 @@ export const buildConfigJson = (mod: Mod): ConfigJson => {
 
   const config: ConfigJson = {
     ...yaml,
+    findiasTags: sortFindiasTags(yaml.findiasTags),
     isVariant: mod.kind === 'variant',
     hasVariants: mod.kind === 'variantParent',
     usedFiles: mod.dataDir ? scanUsedFiles(mod.dir, mod.dataDir) : [],

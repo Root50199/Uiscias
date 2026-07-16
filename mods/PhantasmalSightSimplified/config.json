@@ -3,7 +3,7 @@
   "modName": "Phantasmal Sight Simplified",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["UI", "QoL", "Fx", "Visual Clarity"],
+  "findiasTags": ["Fx", "QoL", "UI", "Visual Clarity"],
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/gfx/fx/effect/g23_specialization.xml"],

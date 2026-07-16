@@ -3,7 +3,7 @@
   "modName": "Bri Loot UI",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["UI", "QoL", "Bri Leith"],
+  "findiasTags": ["Bri Leith", "QoL", "UI"],
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/db/layout2/Etc/RewardDistributeView/PartyRewardDistributeView.xml"],

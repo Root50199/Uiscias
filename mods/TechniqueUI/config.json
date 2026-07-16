@@ -3,7 +3,7 @@
   "modName": "Technique UI",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["UI", "QoL"],
+  "findiasTags": ["QoL", "UI"],
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": [

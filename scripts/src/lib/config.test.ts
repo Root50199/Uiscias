@@ -127,6 +127,16 @@ describe('config', () => {
       await fs.writeFile(join(mod.dir, 'README.md'), '   \n', 'utf8');
       expect(buildConfigJson(mod).readme).toBeUndefined();
     });
+
+    it('sorts findiasTags alphabetically regardless of config.yaml order', async () => {
+      const mod = await makeMod();
+      await fs.writeFile(
+        join(mod.dir, 'config.yaml'),
+        `${YAML_MIN}findiasTags:\n  - UI\n  - Combat\n  - QoL\n`,
+        'utf8',
+      );
+      expect(buildConfigJson(mod).findiasTags).toEqual(['Combat', 'QoL', 'UI']);
+    });
   });
 
   describe('readBuildLock', () => {

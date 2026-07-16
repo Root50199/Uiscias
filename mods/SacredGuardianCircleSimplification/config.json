@@ -3,7 +3,7 @@
   "modName": "Sacred Guardian Circle Simplification",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["Combat", "Fx", "Arcana", "Visual Clarity"],
+  "findiasTags": ["Arcana", "Combat", "Fx", "Visual Clarity"],
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/material/fx/cursor/SG_decal1.dds"],
