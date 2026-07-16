@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.42.1](https://github.com/Root50199/Uiscias/compare/v1.42.0...v1.42.1) (2026-07-16)
+
+
+### Fixes
+
+* updated for game patch Arcana: Martial Hearts Update ([975bf2c](https://github.com/Root50199/Uiscias/commit/975bf2c1290ca75de6cd5cf1130007e38dfbd2ea))
+
 ## [1.42.0](https://github.com/Root50199/Uiscias/compare/v1.41.0...v1.42.0) (2026-07-16)
 
 
