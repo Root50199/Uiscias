@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.43.0](https://github.com/Root50199/Uiscias/compare/v1.42.1...v1.43.0) (2026-07-16)
+
+
+### Mods added / updated
+
+* added mute hamchi ([cc0dda7](https://github.com/Root50199/Uiscias/commit/cc0dda719bb4515592e8c9e2a4256b49a87131bb))
+
 ## [1.42.1](https://github.com/Root50199/Uiscias/compare/v1.42.0...v1.42.1) (2026-07-16)
 
 
