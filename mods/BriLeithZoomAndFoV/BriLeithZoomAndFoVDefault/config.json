@@ -3,7 +3,7 @@
   "modName": "Bri Leith Zoom And FoV Default",
   "modAuthor": "Root50199",
   "updateType": "volatile",
-  "findiasTags": ["Combat", "QoL", "Bri Leith", "Zoom", "FoV"],
+  "findiasTags": ["Bri Leith", "Combat", "FoV", "QoL", "Zoom"],
   "isVariant": true,
   "hasVariants": false,
   "usedFiles": [

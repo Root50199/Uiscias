@@ -3,7 +3,7 @@
   "modName": "Dark Diviner Fx Off",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
+  "findiasTags": ["Arcana", "Combat", "Fx", "Lag Helper"],
   "isVariant": true,
   "hasVariants": false,
   "usedFiles": ["data/gfx/fx/effect/multiclass_fx03.xml"],

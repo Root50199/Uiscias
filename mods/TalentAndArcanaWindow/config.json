@@ -3,7 +3,7 @@
   "modName": "Talent and Arcana Window",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["UI", "QoL"],
+  "findiasTags": ["QoL", "UI"],
   "recentUpdateNotes": "split into low and high resolution variants, expanded high res's arcanas section to accommodate the new Arcanas",
   "isVariant": false,
   "hasVariants": true,

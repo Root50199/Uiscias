@@ -3,7 +3,7 @@
   "modName": "Bri Map",
   "modAuthor": "Root50199",
   "updateType": "volatile",
-  "findiasTags": ["UI", "Bri Leith"],
+  "findiasTags": ["Bri Leith", "UI"],
   "recentUpdateNotes": "removed fog from all maps and disabled zoom on the gate 1 map",
   "isVariant": false,
   "hasVariants": false,

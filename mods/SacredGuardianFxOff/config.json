@@ -3,7 +3,7 @@
   "modName": "Sacred Guardian Fx Off",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["Combat", "Fx", "Lag Helper", "Arcana"],
+  "findiasTags": ["Arcana", "Combat", "Fx", "Lag Helper"],
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/gfx/fx/effect/Mfx_SG01.xml", "data/gfx/fx/effect/Mfx_SG02.xml"],

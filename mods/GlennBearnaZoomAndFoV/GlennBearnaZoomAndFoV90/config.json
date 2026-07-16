@@ -3,7 +3,7 @@
   "modName": "Glenn Bearna Zoom FoV 90",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["Combat", "Zoom", "FoV"],
+  "findiasTags": ["Combat", "FoV", "Zoom"],
   "isVariant": true,
   "hasVariants": false,
   "usedFiles": [

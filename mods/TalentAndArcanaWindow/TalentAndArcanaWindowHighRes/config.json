@@ -3,7 +3,7 @@
   "modName": "Talent and Arcana Window High Resolution",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["UI", "QoL", "1440p Required"],
+  "findiasTags": ["1440p Required", "QoL", "UI"],
   "recentUpdateNotes": "split into low and high resolution variants",
   "isVariant": true,
   "hasVariants": false,

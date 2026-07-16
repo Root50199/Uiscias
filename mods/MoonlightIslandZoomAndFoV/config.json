@@ -3,7 +3,7 @@
   "modName": "Moonlight Island Zoom And FoV",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["Zoom", "FoV"],
+  "findiasTags": ["FoV", "Zoom"],
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/world/Private_Island_152/Private_Island_152.rgn"],

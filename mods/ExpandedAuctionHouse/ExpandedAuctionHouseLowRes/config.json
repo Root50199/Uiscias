@@ -3,7 +3,7 @@
   "modName": "Expanded Auction House Low Res",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["UI", "QoL"],
+  "findiasTags": ["QoL", "UI"],
   "isVariant": true,
   "hasVariants": false,
   "usedFiles": [

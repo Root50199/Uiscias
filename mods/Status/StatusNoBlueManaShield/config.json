@@ -3,7 +3,7 @@
   "modName": "Status No Blue Mana Shield",
   "modAuthor": "Root50199",
   "updateType": "volatile",
-  "findiasTags": ["UI", "Combat", "Fx"],
+  "findiasTags": ["Combat", "Fx", "UI"],
   "isVariant": true,
   "hasVariants": false,
   "usedFiles": ["data/db/CharacterCondition.xml"],

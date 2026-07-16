@@ -3,7 +3,7 @@
   "modName": "Glenn Map",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["UI", "Glenn Bearna"],
+  "findiasTags": ["Glenn Bearna", "UI"],
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/gfx/gui/map_jpg/minimap_glennbearna_boss_room_day_kor.jpg"],

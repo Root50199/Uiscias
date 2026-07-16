@@ -3,7 +3,7 @@
   "modName": "Bri Hp Bars 1 And 3",
   "modAuthor": "Root50199",
   "updateType": "volatile",
-  "findiasTags": ["Combat", "UI", "QoL", "Bri Leith"],
+  "findiasTags": ["Bri Leith", "Combat", "QoL", "UI"],
   "isVariant": true,
   "hasVariants": false,
   "usedFiles": ["data/db/Race.xml"],

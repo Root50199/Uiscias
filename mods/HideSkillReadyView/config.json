@@ -3,7 +3,7 @@
   "modName": "Hide Skill Ready View",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["UI", "QoL", "Combat"],
+  "findiasTags": ["Combat", "QoL", "UI"],
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/db/layout2/Skill/SkillReadyView.xml"],

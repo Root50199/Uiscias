@@ -3,7 +3,7 @@
   "modName": "Damage Numbers Off",
   "modAuthor": "Root50199",
   "updateType": "stable",
-  "findiasTags": ["UI", "Combat", "Fx", "Lag Helper", "Visual Clarity"],
+  "findiasTags": ["Combat", "Fx", "Lag Helper", "UI", "Visual Clarity"],
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": [
