@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.45.0](https://github.com/Root50199/Uiscias/compare/v1.44.0...v1.45.0) (2026-07-19)
+
+
+### Mods added / updated
+
+* add issue templates for mod requests ([5dcb71d](https://github.com/Root50199/Uiscias/commit/5dcb71d16e9e1ecf57d78ad3705c9ea4cb380caa))
+
 ## [1.44.0](https://github.com/Root50199/Uiscias/compare/v1.43.0...v1.44.0) (2026-07-19)
 
 
