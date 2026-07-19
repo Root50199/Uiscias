@@ -1,0 +1,31 @@
+name: Mod Request
+description: Request a new mod, or an addition to an existing one.
+title: '[Mod Request]: '
+labels: ['mod request']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a mod! The more detail and reference material you provide, the better.
+  - type: textarea
+    id: mod-idea
+    attributes:
+      label: What mod would you like?
+      description: Describe the mod you have in mind and what it should do.
+      placeholder: A mod that...
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Reference files and media
+      description: |
+        Attach any related files that would help. You can drag files directly into this text area.
+
+        Notes on attachments:
+        - `.it` mod files are not an allowed attachment type on their own. Please zip them first and attach the `.zip`.
+        - Images (`.png`, `.jpg`, `.gif`) and videos (`.mp4`, `.mov`, `.webm`) can be dragged in directly.
+        - Size limits: images and videos up to 10MB, other files (including `.zip`) up to 25MB.
+      placeholder: Drag and drop screenshots, clips, or a zipped .it file here.
+    validations:
+      required: false
