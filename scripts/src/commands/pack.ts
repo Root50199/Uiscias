@@ -16,10 +16,19 @@ export interface PackOptions extends ScopeOptions {
   force?: boolean;
 }
 
-const writeLock = async (buildDir: string, lock: BuildLock): Promise<void> => {
+/**
+ * Write a mod's `build.lock.json`, stamping `updatedAt` with the current instant
+ * (UTC ISO-8601). Callers pass everything *but* the date (`Omit<…, 'updatedAt'>`)
+ * so the timestamp is owned in one place: every write records "packed just now",
+ * and no call site can pass a stale or hand-picked value. Since a repack only
+ * happens on a source-hash change, this timestamp tracks real content updates.
+ */
+const writeLock = async (buildDir: string, lock: Omit<BuildLock, 'updatedAt'>): Promise<void> => {
   await writeJsonFile(
     path.join(buildDir, 'build.lock.json'),
-    buildLockSchema.parse(orderKeys(lock, BUILD_LOCK_KEY_ORDER)),
+    buildLockSchema.parse(
+      orderKeys({ ...lock, updatedAt: new Date().toISOString() }, BUILD_LOCK_KEY_ORDER),
+    ),
   );
 };
 

@@ -11,9 +11,16 @@ export const buildLockSchema = z
     version: z.number().int().positive(),
     fileName: z.string().min(1),
     builtFromHash: sourceHashSchema,
+    /** UTC ISO-8601 instant the `.it` was last (re)packed. Moves only on a repack. */
+    updatedAt: z.iso.datetime(),
   })
   .strict();
 
 export type BuildLock = z.infer<typeof buildLockSchema>;
 
-export const BUILD_LOCK_KEY_ORDER: (keyof BuildLock)[] = ['version', 'fileName', 'builtFromHash'];
+export const BUILD_LOCK_KEY_ORDER: (keyof BuildLock)[] = [
+  'version',
+  'fileName',
+  'builtFromHash',
+  'updatedAt',
+];

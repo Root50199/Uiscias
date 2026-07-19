@@ -77,6 +77,7 @@ const variantEntry = (mod: Mod, rawBase: string): ManifestVariant => {
     fileName: lock.fileName,
     version: lock.version,
     size: fse.statSync(itPath).size,
+    updatedAt: lock.updatedAt,
     updateType: cfg.updateType,
     usedFiles: cfg.usedFiles,
     modAuthor: cfg.modAuthor,

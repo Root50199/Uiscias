@@ -11,6 +11,7 @@ const variant = {
   fileName: 'UisciasZoom_00001.it',
   version: 1,
   size: 1024,
+  updatedAt: '2026-07-16T15:29:10.000Z',
   updateType: 'stable',
   usedFiles: ['data/x.xml'],
   modAuthor: 'Root50199',
@@ -75,6 +76,14 @@ describe('manifestGroupSchema', () => {
       variants: [{ ...variant, modAdditionalCredits: 'Thanks Bri', recentUpdateNotes: 'Fixed X' }],
     };
     expect(manifestGroupSchema.safeParse(withCredits).success).toBe(true);
+  });
+
+  it('requires a datetime updatedAt on every variant', () => {
+    const { updatedAt: _updatedAt, ...variantWithoutUpdatedAt } = variant;
+    const missing = { ...group, variants: [variantWithoutUpdatedAt] };
+    expect(manifestGroupSchema.safeParse(missing).success).toBe(false);
+    const bad = { ...group, variants: [{ ...variant, updatedAt: 'nope' }] };
+    expect(manifestGroupSchema.safeParse(bad).success).toBe(false);
   });
 });
 
