@@ -151,6 +151,7 @@ describe('config', () => {
         version: 3,
         fileName: 'UisciasZoom_00003.it',
         builtFromHash: `sha256-${'a'.repeat(64)}`,
+        updatedAt: '2026-07-16T15:29:10.000Z',
       };
       await fs.writeFile(join(buildDir, 'build.lock.json'), JSON.stringify(lock), 'utf8');
       expect(readBuildLock(buildDir)).toEqual(lock);
@@ -160,6 +161,18 @@ describe('config', () => {
       const buildDir = join(root, 'build');
       await fs.mkdir(buildDir, { recursive: true });
       await fs.writeFile(join(buildDir, 'build.lock.json'), '{"version":-1}', 'utf8');
+      expect(readBuildLock(buildDir)).toBeUndefined();
+    });
+
+    it('returns undefined for a lock missing updatedAt', async () => {
+      const buildDir = join(root, 'build');
+      await fs.mkdir(buildDir, { recursive: true });
+      const lock = {
+        version: 3,
+        fileName: 'UisciasZoom_00003.it',
+        builtFromHash: `sha256-${'a'.repeat(64)}`,
+      };
+      await fs.writeFile(join(buildDir, 'build.lock.json'), JSON.stringify(lock), 'utf8');
       expect(readBuildLock(buildDir)).toBeUndefined();
     });
   });

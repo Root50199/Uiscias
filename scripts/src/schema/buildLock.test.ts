@@ -5,6 +5,7 @@ const valid = {
   version: 1,
   fileName: 'UisciasZoom_00001.it',
   builtFromHash: `sha256-${'a'.repeat(64)}`,
+  updatedAt: '2026-07-16T15:29:10.000Z',
 } as const;
 
 describe('buildLockSchema', () => {
@@ -24,6 +25,12 @@ describe('buildLockSchema', () => {
 
   it('rejects a malformed builtFromHash', () => {
     expect(buildLockSchema.safeParse({ ...valid, builtFromHash: 'nope' }).success).toBe(false);
+  });
+
+  it('requires a datetime updatedAt', () => {
+    const { updatedAt: _updatedAt, ...withoutUpdatedAt } = valid;
+    expect(buildLockSchema.safeParse(withoutUpdatedAt).success).toBe(false);
+    expect(buildLockSchema.safeParse({ ...valid, updatedAt: 'not-a-date' }).success).toBe(false);
   });
 
   it('rejects extra keys (strict)', () => {

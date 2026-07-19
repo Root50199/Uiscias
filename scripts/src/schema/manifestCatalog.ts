@@ -16,6 +16,8 @@ export const manifestVariantSchema = z
     updateType: updateTypeSchema,
     usedFiles: z.array(z.string()),
     modAuthor: z.string().min(1),
+    // UTC ISO-8601 instant the variant's `.it` was last (re)packed.
+    updatedAt: z.iso.datetime(),
     // Optional: present only when the mod's config sets them.
     modAdditionalCredits: optionalModTextSchema,
     recentUpdateNotes: optionalModTextSchema,
@@ -73,7 +75,7 @@ export const manifestMetadataSchema = z
     schemaVersion: z.number().int().positive(),
     currentGameVersion: z.string().min(1),
     supportedGameVersion: z.string().min(1),
-    generatedAt: z.string().datetime(),
+    generatedAt: z.iso.datetime(),
   })
   .strict();
 
