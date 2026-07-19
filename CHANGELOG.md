@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.44.0](https://github.com/Root50199/Uiscias/compare/v1.43.0...v1.44.0) (2026-07-19)
+
+
+### Mods added / updated
+
+* adding updatedAt functionality ([a29a54e](https://github.com/Root50199/Uiscias/commit/a29a54e396b79eaef9cefa1644272d7c42d71313))
+
 ## [1.43.0](https://github.com/Root50199/Uiscias/compare/v1.42.1...v1.43.0) (2026-07-16)
 
 
