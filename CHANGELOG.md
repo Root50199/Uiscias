@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.46.0](https://github.com/Root50199/Uiscias/compare/v1.45.0...v1.46.0) (2026-07-20)
+
+
+### Mods added / updated
+
+* implement daily refresh of download counts in GitHub Actions ([9dc2b5e](https://github.com/Root50199/Uiscias/commit/9dc2b5ec1678eac372ea2cb68f09a927d5e376f1))
+
+
+### Fixes
+
+* skipping prereleases from download counts ([2ff345b](https://github.com/Root50199/Uiscias/commit/2ff345bdff1f06884d3c75eaeb58aec777e06419))
+
 ## [1.45.0](https://github.com/Root50199/Uiscias/compare/v1.44.0...v1.45.0) (2026-07-19)
 
 
