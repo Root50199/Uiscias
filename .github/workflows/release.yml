@@ -88,7 +88,11 @@ jobs:
       # and unchanged mods carry forward automatically (each build/ holds exactly
       # one latest .it).
       - name: Build manifest + collect assets
-        run: npm run build-manifest -- --out manifestCatalog.json --assets release-assets --ref "${{ needs.release-please.outputs.tag_name }}"
+        env:
+          # `build-manifest --with-downloads` sums per-variant lifetime downloads
+          # from the releases API. Authenticated => the 5,000 req/hr budget.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run build-manifest -- --out manifestCatalog.json --assets release-assets --ref "${{ needs.release-please.outputs.tag_name }}" --with-downloads
 
       - name: Upload assets to release
         env:
