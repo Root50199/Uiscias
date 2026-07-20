@@ -15,6 +15,7 @@ const variant = {
   updateType: 'stable',
   usedFiles: ['data/x.xml'],
   modAuthor: 'Root50199',
+  downloadCount: 60,
 } as const;
 
 const group = {
@@ -76,6 +77,24 @@ describe('manifestGroupSchema', () => {
       variants: [{ ...variant, modAdditionalCredits: 'Thanks Bri', recentUpdateNotes: 'Fixed X' }],
     };
     expect(manifestGroupSchema.safeParse(withCredits).success).toBe(true);
+  });
+
+  it('accepts a zero downloadCount (e.g. a never-downloaded new variant)', () => {
+    const zero = { ...group, variants: [{ ...variant, downloadCount: 0 }] };
+    expect(manifestGroupSchema.safeParse(zero).success).toBe(true);
+  });
+
+  it('requires downloadCount on every variant', () => {
+    const { downloadCount: _downloadCount, ...variantWithoutCount } = variant;
+    const missing = { ...group, variants: [variantWithoutCount] };
+    expect(manifestGroupSchema.safeParse(missing).success).toBe(false);
+  });
+
+  it('rejects a negative or non-integer downloadCount', () => {
+    const negative = { ...group, variants: [{ ...variant, downloadCount: -1 }] };
+    expect(manifestGroupSchema.safeParse(negative).success).toBe(false);
+    const fractional = { ...group, variants: [{ ...variant, downloadCount: 1.5 }] };
+    expect(manifestGroupSchema.safeParse(fractional).success).toBe(false);
   });
 
   it('requires a datetime updatedAt on every variant', () => {

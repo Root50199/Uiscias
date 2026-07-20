@@ -18,6 +18,10 @@ export const manifestVariantSchema = z
     modAuthor: z.string().min(1),
     // UTC ISO-8601 instant the variant's `.it` was last (re)packed.
     updatedAt: z.iso.datetime(),
+    // Lifetime downloads across every released version of this variant, summed
+    // from GitHub release asset counts. Always emitted: release/nightly CI fills
+    // in real counts (`--with-downloads`); token-free local builds emit 0.
+    downloadCount: z.number().int().nonnegative(),
     // Optional: present only when the mod's config sets them.
     modAdditionalCredits: optionalModTextSchema,
     recentUpdateNotes: optionalModTextSchema,

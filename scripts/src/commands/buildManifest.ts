@@ -3,6 +3,7 @@ import { fse, writeJsonFile } from '../lib/io';
 import { getRepoRoot, rawContentBase } from '../lib/repo';
 import { discoverMods, groupMods, packTargets, type Mod, type ModGroup } from '../lib/mods';
 import { readConfigJson, readBuildLock, readCatalogConfig } from '../lib/config';
+import { fetchDownloadCounts } from '../lib/downloads';
 import { ok, dim } from '../lib/term';
 import {
   manifestCatalogSchema,
@@ -26,6 +27,12 @@ export interface BuildManifestOptions {
    * release tag; local builds fall back to `main`.
    */
   ref?: string;
+  /**
+   * Fetch per-variant lifetime download totals from the GitHub releases API and
+   * bake them into each variant's `downloadCount`. Off by default so local
+   * builds stay offline and token-free; release/nightly CI opts in.
+   */
+  withDownloads?: boolean;
 }
 
 /**
@@ -58,8 +65,17 @@ const docsFor = (
     : {}),
 });
 
-/** One installable entry, assembled from a mod's config.json + build.lock + .it. */
-const variantEntry = (mod: Mod, rawBase: string): ManifestVariant => {
+/**
+ * One installable entry, assembled from a mod's config.json + build.lock + .it.
+ * The lifetime `downloadCount` is looked up by `modId` from `downloads` (real
+ * counts under `--with-downloads`), defaulting to 0 when counts weren't fetched
+ * (token-free local build) or the variant has no released asset yet.
+ */
+const variantEntry = (
+  mod: Mod,
+  rawBase: string,
+  downloads: Map<string, number> | undefined,
+): ManifestVariant => {
   const cfg = readConfigJson(mod);
   const buildDir = path.join(mod.dir, 'build');
   const lock = readBuildLock(buildDir);
@@ -81,6 +97,8 @@ const variantEntry = (mod: Mod, rawBase: string): ManifestVariant => {
     updateType: cfg.updateType,
     usedFiles: cfg.usedFiles,
     modAuthor: cfg.modAuthor,
+    // Always present; real counts under `--with-downloads`, else 0 (local build).
+    downloadCount: downloads?.get(cfg.modId) ?? 0,
     // Optional: carry through only when the config set them.
     ...(cfg.modAdditionalCredits ? { modAdditionalCredits: cfg.modAdditionalCredits } : {}),
     ...(cfg.recentUpdateNotes ? { recentUpdateNotes: cfg.recentUpdateNotes } : {}),
@@ -88,7 +106,11 @@ const variantEntry = (mod: Mod, rawBase: string): ManifestVariant => {
   };
 };
 
-const groupEntry = (group: ModGroup, rawBase: string): ManifestGroup => {
+const groupEntry = (
+  group: ModGroup,
+  rawBase: string,
+  downloads: Map<string, number> | undefined,
+): ManifestGroup => {
   if (group.hasVariants && group.parent) {
     const parent = readConfigJson(group.parent);
     return {
@@ -97,7 +119,7 @@ const groupEntry = (group: ModGroup, rawBase: string): ManifestGroup => {
       findiasTags: parent.findiasTags,
       hasVariants: true,
       mutuallyExclusive: true,
-      variants: group.members.map((member) => variantEntry(member, rawBase)),
+      variants: group.members.map((member) => variantEntry(member, rawBase, downloads)),
       ...docsFor(group.parent, parent, rawBase),
     };
   }
@@ -110,7 +132,7 @@ const groupEntry = (group: ModGroup, rawBase: string): ManifestGroup => {
     findiasTags: cfg.findiasTags,
     hasVariants: false,
     mutuallyExclusive: false,
-    variants: [variantEntry(mod, rawBase)],
+    variants: [variantEntry(mod, rawBase, downloads)],
     ...docsFor(mod, cfg, rawBase),
   };
 };
@@ -124,9 +146,13 @@ export const runBuildManifest = async (opts: BuildManifestOptions): Promise<void
   const mods = discoverMods(repoRoot);
   const groups = groupMods(mods);
 
+  // Aggregate lifetime download counts once (a few paginated API calls), only
+  // when opted in; local builds skip it entirely and omit the field.
+  const downloads = opts.withDownloads ? await fetchDownloadCounts() : undefined;
+
   const rawBase = rawContentBase(opts.ref ?? DEFAULT_REF);
   const modList = groups
-    .map((group) => groupEntry(group, rawBase))
+    .map((group) => groupEntry(group, rawBase, downloads))
     .sort((a, b) => a.groupId.localeCompare(b.groupId));
 
   // Catalog-level metadata: authored game versions + builder-stamped fields.

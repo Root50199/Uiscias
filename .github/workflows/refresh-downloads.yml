@@ -1,0 +1,72 @@
+name: Refresh download counts
+
+# Rebuilds manifestCatalog.json on the latest published release with fresh
+# per-variant lifetime download counts and re-uploads it. GitHub tracks
+# download_count per release asset in real time, but that data only reaches
+# Findias through the manifest, so we refresh the manifest daily.
+#
+# The manifest is rebuilt from the release *tag's* committed build artifacts, so
+# its mod/version content is byte-identical to what shipped — only downloadCount
+# and generatedAt change. Re-uploading changes the release feed's ETag, so
+# clients pick up fresh counts on their next launch/refresh.
+
+on:
+  schedule:
+    # 12:00 UTC = 4am PST (5am PDT). GitHub cron is UTC and does not observe DST.
+    - cron: '0 12 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+# Never let two refreshes race on the same release asset.
+concurrency:
+  group: refresh-downloads
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      # Resolve the latest published release tag (excludes drafts/prereleases),
+      # matching the release Findias actually reads. --repo avoids needing a
+      # checkout for this step.
+      - name: Resolve latest release tag
+        id: tag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag=$(gh release view --repo "${{ github.repository }}" --json tagName -q .tagName)
+          if [ -z "$tag" ]; then
+            echo "No published release found; nothing to refresh."
+            exit 1
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      # Check out the release tag so build-manifest reads the exact committed
+      # build.lock/.it artifacts that shipped in that release.
+      - name: Checkout release tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.tag.outputs.tag }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          HUSKY: 0
+
+      - name: Rebuild manifest with fresh download counts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run build-manifest -- --out manifestCatalog.json --ref "${{ steps.tag.outputs.tag }}" --with-downloads
+
+      - name: Re-upload manifest to the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload "${{ steps.tag.outputs.tag }}" manifestCatalog.json --clobber --repo "${{ github.repository }}"

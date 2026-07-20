@@ -64,7 +64,10 @@ program
   .option('--out <path>', 'output path for the manifest')
   .option('--assets <dir>', 'also copy shipped .it + manifest into this dir')
   .option('--ref <ref>', 'git ref (tag/branch/SHA) to pin image URLs to')
-  .action((opts: { out?: string; assets?: string; ref?: string }) => runBuildManifest(opts));
+  .option('--with-downloads', 'fetch + bake per-variant lifetime download counts (needs a token)')
+  .action((opts: { out?: string; assets?: string; ref?: string; withDownloads?: boolean }) =>
+    runBuildManifest(opts),
+  );
 
 program
   .command('check')
