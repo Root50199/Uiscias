@@ -219,6 +219,7 @@ non-variant mod is simply a group with one variant.
           "fileName": "UisciasAchievmentUnhide_00002.it",
           "version": 2,
           "size": 20840,
+          "downloadCount": 60,
           "updateType": "volatile",
           "usedFiles": ["data/db/AchievementTable.xml"],
           "modAuthor": "Root50199",
@@ -240,6 +241,7 @@ non-variant mod is simply a group with one variant.
           "fileName": "UisciasBriHpBars1And2_00001.it",
           "version": 1,
           "size": 8624,
+          "downloadCount": 45,
           "updateType": "volatile",
           "usedFiles": ["data/db/Race.xml"],
           "modAuthor": "Root50199",
@@ -252,6 +254,7 @@ non-variant mod is simply a group with one variant.
           "fileName": "UisciasBriHpBars1And3_00001.it",
           "version": 1,
           "size": 8624,
+          "downloadCount": 38,
           "updateType": "volatile",
           "usedFiles": ["data/db/Race.xml"],
           "modAuthor": "Root50199",
@@ -276,6 +279,12 @@ Design notes:
 - Each **variant** carries the real `modId`, `fileName`, and `version` so
   Findias can resolve and download the correct asset (this maps to its
   `CatalogVariant`). It is a bug to share one `modId` across variants.
+- `downloadCount` is the variant's **lifetime** downloads — the sum of the
+  GitHub `download_count` of every `Uiscias<modId>_<n>.it` asset that variant
+  has ever shipped, across all stable releases (drafts and prereleases are
+  excluded). It is always present; a normal `build-manifest` run (no
+  `--with-downloads`) emits `0`, and the nightly refresh replaces it with the
+  real total. See [Download counts](#download-counts).
 - `mutuallyExclusive: true` tells Findias to render a "pick one" selector for a
   variant group and prevent installing two variants at once (they touch the
   same `usedFiles`); Findias **auto-switches** — installing one removes the
@@ -326,6 +335,7 @@ scripts/
 │  │  ├─ repo.ts                # repo root + MODS_DIR/getModsRoot + exclusions
 │  │  ├─ mods.ts                # discover mod/variant folders; group detection
 │  │  ├─ scope.ts               # --all/--changed/--mods/--staged/--stage parsing
+│  │  ├─ downloads.ts           # GitHub release-asset download_count → per-modId totals
 │  │  ├─ hash.ts                # sourceHash over data/ (CRLF→LF normalized)
 │  │  ├─ io.ts                  # BOM-safe text/JSON/YAML I/O + Prettier formatting
 │  │  ├─ git.ts                 # git diff + git add helpers (for --stage)
@@ -339,7 +349,7 @@ scripts/
 │  │  ├─ newMod.ts              # scaffold a new mod folder
 │  │  ├─ generateConfigs.ts
 │  │  ├─ pack.ts
-│  │  ├─ buildManifest.ts       # release aggregation → manifestCatalog.json (+ --assets)
+│  │  ├─ buildManifest.ts       # release aggregation → manifestCatalog.json (+ --assets/--with-downloads)
 │  │  └─ check.ts               # CI drift check (hash-only, no packing)
 │  └─ index.ts                  # CLI entry (commander: subcommands + scope flags)
 ├─ Mabi-pack2/                  # mabi-pack2.exe
@@ -385,19 +395,19 @@ drift check or any release.
 
 ### npm scripts
 
-| Script                    | Runs                                                    |
-| ------------------------- | ------------------------------------------------------- |
-| `generate-configs`        | regenerate `config.json` (`--all`/`--changed`/`--mods`) |
-| `pack`                    | pack changed mods into `build/`                         |
-| `build-manifest`          | manifest aggregator (used by CI; `--assets`)            |
-| `check`                   | CI drift check (hash-only; no packing)                  |
-| `new-mod`                 | scaffold a new mod folder                               |
-| `new-mod-variant`         | scaffold a variant group (parent + two stub variants)   |
-| `mods`                    | list discovered mods/groups/variants                    |
-| `changed`                 | list mods affected by a git scope                       |
-| `typecheck`               | `tsc --noEmit` over the tooling                         |
-| `format` / `format:check` | Prettier write / check (repo-wide; `.prettierignore`)   |
-| `lint:md`                 | markdownlint on scoped README + docs paths (see above)  |
+| Script                    | Runs                                                     |
+| ------------------------- | -------------------------------------------------------- |
+| `generate-configs`        | regenerate `config.json` (`--all`/`--changed`/`--mods`)  |
+| `pack`                    | pack changed mods into `build/`                          |
+| `build-manifest`          | manifest aggregator (CI; `--assets`, `--with-downloads`) |
+| `check`                   | CI drift check (hash-only; no packing)                   |
+| `new-mod`                 | scaffold a new mod folder                                |
+| `new-mod-variant`         | scaffold a variant group (parent + two stub variants)    |
+| `mods`                    | list discovered mods/groups/variants                     |
+| `changed`                 | list mods affected by a git scope                        |
+| `typecheck`               | `tsc --noEmit` over the tooling                          |
+| `format` / `format:check` | Prettier write / check (repo-wide; `.prettierignore`)    |
+| `lint:md`                 | markdownlint on scoped README + docs paths (see above)   |
 
 ## Build scripts
 
@@ -574,9 +584,11 @@ Triggered on merges to `main` that include `feat`/`fix` (Conventional Commits).
   `.release-please-manifest.json`) reads commit messages, decides the repo
   version bump, opens/merges a release PR, tags, and creates the GitHub release.
 - **Asset assembly (a workflow step, `ubuntu-latest`):** driven by the tooling
-  (`npm run build-manifest -- --out manifestCatalog.json --assets release-assets`)
-  rather than a raw glob, so the mod-discovery rules (template exclusions, variant
-  grouping) apply automatically:
+  (`npm run build-manifest -- --out manifestCatalog.json --assets release-assets
+--with-downloads`) rather than a raw glob, so the mod-discovery rules (template
+  exclusions, variant grouping) apply automatically. `--with-downloads` bakes
+  current lifetime download totals into the manifest (see
+  [Download counts](#download-counts)):
   1. For every shipped mod, read `build/build.lock.json` to find its single
      latest `.it` (this _is_ the current version, so unchanged mods carry forward
      automatically — no need to fetch the previous release) and copy it into
@@ -610,6 +622,78 @@ UisciasModExampleFoo_00002.it   # new
 UisciasModExampleBar_00001.it   # carried forward unchanged
 ```
 
+## Download counts
+
+Findias shows a **lifetime download total** per variant (and, for a non-variant
+mod, that single variant's total is the mod's total). The count is computed here
+in Uiscias's CI and baked into the manifest, so Findias pays **zero** runtime
+cost and makes **no** extra API calls — it just reads `downloadCount` off each
+variant.
+
+### Where the number comes from
+
+GitHub tracks a `download_count` per **release asset** in real time. Every
+shipped mod asset is named `Uiscias<modId>_<version>.it`, so summing the
+`download_count` of every asset that shares a `modId`, across every release,
+yields that variant's lifetime total. `scripts/src/lib/downloads.ts` does this:
+
+- `fetchDownloadCounts()` pages through the repo's releases via the authenticated
+  GitHub API (5,000 req/hr; only the release **list** is fetched — asset bytes are
+  never downloaded), then delegates to…
+- `sumDownloadsByModId()`, a pure function that parses each asset name against the
+  `Uiscias<modId>_<n>.it` grammar and accumulates a `modId -> total` map. It
+  **skips draft and prerelease releases** (a count should reflect what real users
+  download on the stable channel, not opt-in dev builds) and ignores any asset
+  that isn't a managed `.it` (e.g. `manifestCatalog.json`). The GitHub payload is
+  untrusted, so it is zod-validated and anything malformed is skipped rather than
+  trusted.
+
+`build-manifest` merges the map into each variant. **`--with-downloads`** is
+opt-in: without it (local/dev builds) every `downloadCount` is emitted as `0` so
+builds stay offline, token-free, fast, and deterministic; with it (CI) real
+totals are populated. A `modId` present in the tree but never released yet simply
+gets `0`; downloads recorded under a legacy asset name that no longer matches the
+grammar are not carried over (the count effectively restarts under the current
+naming convention).
+
+### Two workflows populate it
+
+1. **Release** (`release.yml`) passes `--with-downloads` (with `GITHUB_TOKEN`), so
+   every freshly published release ships a manifest with counts current **as of
+   release time**.
+2. **Nightly refresh** (`refresh-downloads.yml`) keeps that number fresh between
+   releases, since downloads keep accruing after a release is cut.
+
+### The nightly refresh cron job
+
+`refresh-downloads.yml` runs on a schedule and can also be triggered manually
+(`workflow_dispatch`):
+
+- **Schedule:** `cron: '0 12 * * *'` — 12:00 UTC daily, which is **4am PST**
+  (5am PDT). GitHub cron is always UTC and does **not** observe DST, so the
+  local wall-clock time shifts by an hour between standard and daylight time;
+  that is acceptable for a nightly refresh.
+- **Concurrency:** grouped as `refresh-downloads` with `cancel-in-progress`, so
+  two runs never race to clobber the same release asset.
+- **Steps:**
+  1. Resolve the **latest published** release tag with `gh release view`
+     (excludes drafts/prereleases) — the exact release Findias reads.
+  2. **Check out that tag** so `build-manifest` reads the same committed
+     `build.lock`/`.it` artifacts that shipped, guaranteeing the rebuilt
+     manifest's mod/version content is byte-identical to the released one.
+  3. Run `build-manifest --with-downloads --ref <tag>` to regenerate
+     `manifestCatalog.json` with fresh counts. Only `downloadCount` and
+     `generatedAt` change versus the shipped manifest.
+  4. Re-upload the manifest to the release with `gh release upload --clobber`.
+     Overwriting the asset changes the release feed's ETag, so Findias clients
+     pick up the new counts on their next launch/refresh.
+
+Because the refresh rewrites only a single release asset (never a commit or a
+tag) and reads pinned artifacts, it cannot drift the catalog's actual mod
+content — it is a safe, idempotent metadata update. It needs only
+`contents: write` and the default `GITHUB_TOKEN`; no external service, database,
+or key-value store is involved, keeping the no-cost goal intact.
+
 ## Findias integration (consumer side)
 
 Findias consumes this via its `ManifestCatalogProvider` (now **implemented**; see
@@ -625,7 +709,8 @@ Findias `architecture.md`). The confirmed consumer contract:
 2. Findias keeps the **grouped** shape (`{ metadata, groups }`) end-to-end rather
    than flattening — there is a single catalog source — preserving `groupId` /
    `mutuallyExclusive` / `variants` directly for the UI. The `usedFiles` arrays
-   drive cross-mod conflict prevention.
+   drive cross-mod conflict prevention, and each variant's `downloadCount` is
+   surfaced in the mod list and detail views.
 3. UI: variant "pick one" selector per group (auto-switch on install); cross-group
    `usedFiles` conflict prevention that disables enabling actions and names the
    blocking mod; a catalog-wide freshness banner from

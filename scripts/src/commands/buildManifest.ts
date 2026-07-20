@@ -28,9 +28,11 @@ export interface BuildManifestOptions {
    */
   ref?: string;
   /**
-   * Fetch per-variant lifetime download totals from the GitHub releases API and
-   * bake them into each variant's `downloadCount`. Off by default so local
-   * builds stay offline and token-free; release/nightly CI opts in.
+   * When set, fetch per-variant lifetime download totals from the GitHub
+   * releases API (stable releases only — drafts and prereleases are excluded)
+   * and use them for each variant's `downloadCount`. Off by default so local
+   * builds stay offline and token-free, in which case every `downloadCount` is
+   * emitted as `0`; release/nightly CI opts in to populate real counts.
    */
   withDownloads?: boolean;
 }

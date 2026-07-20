@@ -4,7 +4,7 @@ import { fetchDownloadCounts, sumDownloadsByModId, type FetchLike } from './down
 /** Build a minimal GitHub release object with the fields the summer reads. */
 const release = (
   assets: { name: string; download_count: number }[],
-  extra: { draft?: boolean } = {},
+  extra: { draft?: boolean; prerelease?: boolean } = {},
 ): unknown => ({ ...extra, assets });
 
 /** A `Response`-like stub carrying a JSON body and an ok status. */
@@ -54,6 +54,16 @@ describe('sumDownloadsByModId', () => {
   it('skips draft releases (their assets are not publicly downloadable)', () => {
     const totals = sumDownloadsByModId([
       release([{ name: 'UisciasAchievmentUnhide_00001.it', download_count: 100 }], { draft: true }),
+      release([{ name: 'UisciasAchievmentUnhide_00002.it', download_count: 7 }]),
+    ]);
+    expect(totals.get('AchievmentUnhide')).toBe(7);
+  });
+
+  it('skips prerelease releases (opt-in dev builds, not what real users download)', () => {
+    const totals = sumDownloadsByModId([
+      release([{ name: 'UisciasAchievmentUnhide_00001.it', download_count: 100 }], {
+        prerelease: true,
+      }),
       release([{ name: 'UisciasAchievmentUnhide_00002.it', download_count: 7 }]),
     ]);
     expect(totals.get('AchievmentUnhide')).toBe(7);

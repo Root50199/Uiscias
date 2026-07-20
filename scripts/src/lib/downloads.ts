@@ -46,20 +46,25 @@ const assetSchema = z.object({
  */
 const releaseSchema = z.object({
   draft: z.boolean().optional(),
+  prerelease: z.boolean().optional(),
   assets: z.array(z.unknown()).optional(),
 });
 
 /**
  * Sum release-asset download counts into a `modId -> lifetime downloads` map.
- * Pure and side-effect free (the unit-test target). Draft releases are skipped
- * (their assets are not publicly downloadable), and any asset whose name is not
- * a managed `.it` (or is otherwise malformed) is ignored.
+ * Pure and side-effect free (the unit-test target). The count is meant to
+ * represent what real users download, so both **draft** releases (assets not
+ * publicly downloadable) and **prerelease** releases (dev/opt-in builds, not the
+ * default stable channel) are skipped. Any asset whose name is not a managed
+ * `.it` (or is otherwise malformed) is ignored.
  */
 export const sumDownloadsByModId = (releases: readonly unknown[]): Map<string, number> => {
   const totals = new Map<string, number>();
   for (const rawRelease of releases) {
     const release = releaseSchema.safeParse(rawRelease);
-    if (!release.success || release.data.draft === true) continue;
+    if (!release.success || release.data.draft === true || release.data.prerelease === true) {
+      continue;
+    }
     for (const rawAsset of release.data.assets ?? []) {
       const asset = assetSchema.safeParse(rawAsset);
       if (!asset.success) continue;
