@@ -1,0 +1,77 @@
+---
+description: TypeScript standards for Uiscias maintainer scripts
+alwaysApply: true
+---
+
+# TypeScript Standards
+
+## No `as` type assertions
+
+Never use `as SomeType` to override the compiler — it silently lies about a
+value's shape and defers crashes to runtime. Fix the type at its source instead.
+
+`as const` is fine (it narrows/freezes, it doesn't override). `as unknown as T`
+double-casts are banned too.
+
+```typescript
+// ❌ BAD — lying to the compiler
+const config = JSON.parse(raw) as ModConfig;
+const data = value as unknown as Manifest;
+
+// ✅ GOOD — validate / narrow with zod, or type the source
+const config = modConfigSchema.parse(JSON.parse(raw)); // returns ModConfig, throws on mismatch
+if (typeof value === 'object' && value !== null && 'id' in value) { /* narrowed */ }
+
+// ✅ GOOD — `as const` is allowed
+const MODES = ['install', 'remove'] as const;
+```
+
+Prefer zod schemas, type guards (`instanceof`, `in`, `typeof`), and discriminated
+unions over assertions. Reserve `as` only for genuinely unavoidable interop, and
+add a comment explaining why.
+
+## Prefer precise types over `any`
+
+- Use `unknown` for untrusted input (parsed JSON/YAML, file contents), then
+  narrow — ideally by passing it through a zod schema. Never use `any` to silence
+  errors.
+- Avoid non-null assertions (`value!`); guard explicitly instead.
+
+```typescript
+// ❌ BAD
+function readEntry(payload: any) { return payload.id; }
+
+// ✅ GOOD
+function readEntry(payload: unknown) {
+  return entrySchema.parse(payload).id;
+}
+```
+
+## Explicit return types
+
+Annotate an explicit return type on functions wherever possible — always on
+exported/public functions, and on non-trivial local ones. It documents intent
+and catches accidental changes to the return shape at the definition instead of
+at some distant call site.
+
+```typescript
+// ❌ BAD — return type inferred
+const loadConfig = async () => {
+  /* ... */
+}
+
+// ✅ GOOD — explicit
+const loadConfig = async (): Promise<ModConfig> => {
+  /* ... */
+}
+```
+
+Exception: trivial inline callbacks where the type is obvious (e.g.
+`files.map((f) => f.name)`). Prefer letting zod infer schema types via
+`z.infer<typeof schema>` rather than restating them by hand.
+
+## General conventions
+
+- Prefer `type`/`interface` and discriminated unions over loose object shapes.
+- Use `readonly` and `const` by default; avoid mutation where practical.
+- No `// @ts-ignore`; use `// @ts-expect-error` with a reason if truly needed.

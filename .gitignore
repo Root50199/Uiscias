@@ -11,9 +11,6 @@ coverage/
 # VSCode
 .vscode/
 
-# Editor / assistant config (not committed for now)
-.cursor/
-
 # Release-only artifacts, assembled in CI from each mod's config.json + build/
 manifestCatalog.json
 release-assets/
