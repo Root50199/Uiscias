@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.46.1](https://github.com/Root50199/Uiscias/compare/v1.46.0...v1.46.1) (2026-07-21)
+
+
+### Fixes
+
+* updating gitignore to add cursor rules ([0319a7f](https://github.com/Root50199/Uiscias/commit/0319a7f6020a696dbb845e552f7cf6098dafb6f2))
+
 ## [1.46.0](https://github.com/Root50199/Uiscias/compare/v1.45.0...v1.46.0) (2026-07-20)
 
 
