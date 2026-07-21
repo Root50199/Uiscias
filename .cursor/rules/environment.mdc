@@ -1,0 +1,51 @@
+---
+description: Environment, repos in the workspace, conventions, and Windows/Vitest gotcha
+alwaysApply: true
+---
+# Environment
+
+- **OS:** Windows. The integrated shell is **bash** (Git Bash), so prefer
+ POSIX-style commands and forward slashes in shell snippets.
+- **Node version manager:** **fnm** (`1.39.x`). The repo pins a Node version via
+ `.node-version` (fnm reads it automatically). Don't assume `nvm`.
+- **Node:** `v24.x` (currently `24.17.0`). **npm:** `11.x` (currently `11.13.0`).
+- **Package manager:** **npm** (not pnpm/yarn) unless the user says otherwise.
+- **git:** `2.54.x`.
+
+## Repos in this workspace
+
+- `Uiscias` — the **mods** source (`.it` files) plus the maintainer scripts that
+ pack, validate, and publish them. Published as GitHub releases on
+ `Root50199/Uiscias`. The source of truth for available mods.
+- `Findias` — the Electron + TypeScript + React (MUI, Vite via electron-vite,
+ Vitest) **mod manager**. Built/distributed via GitHub Releases on
+ `tekashi-side/Findias`; consumes Uiscias releases as its mod source.
+
+## Conventions
+
+- The maintainer tooling lives in `scripts/src` and is **TypeScript**, run with
+ `tsx` via npm scripts (`npm run pack`, `npm run check`, `npm run build-manifest`,
+ etc.). Schemas/validation use **zod**; tests use **Vitest**.
+- See `docs/architecture.md` for the technical design and `docs/packing.md` /
+ `docs/roadmap.md` for the packing pipeline and product/domain context.
+
+## Gotcha (agent-only): Windows drive-letter casing breaks Vitest
+
+This affects the **AI agent's automated tool shell**, not the user. The user's
+own bash (`cd /c/code/Uiscias`) and PowerShell shells canonicalize to uppercase
+`C:` and run everything (`npm run check`, `npm test`) without issue.
+
+The agent's tool shell sometimes starts with a **lowercase** drive cwd
+(`c:\code\Uiscias`). With a lowercase `c:`, Vitest loads two copies of
+`@vitest/runner` and every test fails during collection with
+`TypeError: Cannot read properties of undefined (reading 'config')`.
+
+Agent fix: prefix commands so the cwd canonicalizes to uppercase via the Git Bash
+`/c/` mount:
+
+```bash
+cd /c/code/Uiscias && npm test
+```
+
+`process.cwd()` should print `C:\code\Uiscias` (uppercase `C`). Typecheck/build
+are unaffected.

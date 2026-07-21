@@ -1,0 +1,58 @@
+---
+description: Coding conventions — arrow functions, boolean naming, TypeScript, zod validation, file layout
+alwaysApply: true
+---
+# Coding Conventions
+
+## Prefer arrow functions
+
+Use arrow functions over the `function` keyword wherever possible — for command
+handlers, callbacks, and module helpers. They're more concise and keep `this`
+lexical.
+
+```typescript
+// ❌ BAD
+function buildManifest(opts: BuildOptions) { /* ... */ }
+function onEntry(file: string) { /* ... */ }
+
+// ✅ GOOD
+const buildManifest = (opts: BuildOptions) => { /* ... */ };
+const onEntry = (file: string) => { /* ... */ };
+```
+
+Exceptions: type-level `function` overloads and cases that genuinely need
+hoisting or a named `this` binding.
+
+## Boolean naming
+
+Name every boolean **variable**, **property**, and **parameter** with an
+`is`, `has`, `should`, or `will` prefix so the name reads as a yes/no question.
+
+| Prefix | Use for | Examples |
+| ---- | ----- | --- |
+| `is` | Current state or condition | `isReleased`, `isVariant`, `isStale` |
+| `has` | Possession or presence of something | `hasVariants`, `hasData`, `hasChanged` |
+| `should` | Recommended or conditional behavior | `shouldRepack`, `shouldSkip` |
+| `will` | Expected future outcome | `willBumpVersion`, `willCarryForward` |
+
+```typescript
+// ❌ BAD
+const released = entry.published === true;
+type PackResult = { stale: boolean; skipped: boolean };
+
+// ✅ GOOD
+const isReleased = entry.published === true;
+type PackResult = { isStale: boolean; isSkipped: boolean };
+```
+
+## TypeScript
+
+- Name things clearly; prefer full words over abbreviations.
+- Keep modules focused — one main concern per file. Commands live in
+ `scripts/src/commands`, reusable logic in `scripts/src/lib`, and data shapes in
+ `scripts/src/schema`.
+- Prefer `const`; reach for `let` only when reassignment is required.
+- Validate external/untrusted data (file contents, config, manifests) with the
+ **zod** schemas in `scripts/src/schema` rather than hand-rolled checks.
+- Co-locate small helpers near their use; share cross-cutting logic via `lib`.
+- Co-locate tests next to the code they cover (`foo.ts` → `foo.test.ts`).
