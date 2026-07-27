@@ -1,0 +1,12 @@
+{
+  "modId": "BlazingBrawlerFxOff",
+  "modName": "Blazing Brawler Fx Off",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Arcana", "Combat", "Fx", "Lag Helper"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": ["data/gfx/fx/effect/Mfx_WAK01.xml"],
+  "sourceHash": "sha256-a10927855b4e51e824b0c9695cb55057833f9aa7c9d62e12ee917dc03f58caa2",
+  "readme": "# Blazing Brawler Fx Off\n\n## What it does\n\nRemoves all effects of BB."
+}
