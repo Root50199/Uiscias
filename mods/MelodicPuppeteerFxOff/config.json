@@ -1,0 +1,12 @@
+{
+  "modId": "MelodicPuppeteerFxOff",
+  "modName": "Melodic Puppeteer Fx Off",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Arcana", "Combat", "Fx", "Lag Helper"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": ["data/gfx/fx/effect/Mfx_WAP01.xml"],
+  "sourceHash": "sha256-9175090f928b521ac996b866f20a61c8a08c57df5ee6ee7012d4b30b78ad4d19",
+  "readme": "# Melodic Puppeteer Fx Off\n\n## What it does\n\nRemoves all effects of MP."
+}
