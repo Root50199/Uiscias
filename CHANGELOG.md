@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.47.0](https://github.com/Root50199/Uiscias/compare/v1.46.1...v1.47.0) (2026-07-27)
+
+
+### Mods added / updated
+
+* added remove fx for the 2 new arcanas ([bc451ab](https://github.com/Root50199/Uiscias/commit/bc451ab3474baff74bf79bb0e1e1230aeec3d301))
+
 ## [1.46.1](https://github.com/Root50199/Uiscias/compare/v1.46.0...v1.46.1) (2026-07-21)
 
 
