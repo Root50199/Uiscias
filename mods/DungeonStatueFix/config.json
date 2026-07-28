@@ -1,0 +1,23 @@
+{
+  "modId": "DungeonStatueFix",
+  "modName": "Dungeon Statue Fix",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/world/Ula_DgnHall_Runda_before/_Ula_DgnHall_Runda_before.area",
+    "data/world/Ula_DgnHall_Runda_before/Ula_DgnHall_Runda_before.rgn",
+    "data/world/Ula_hardmode_DgnHall_Ciar_before/_Ula_hardmode_DgnHall_Ciar_before.area",
+    "data/world/Ula_hardmode_DgnHall_Ciar_before/Ula_hardmode_DgnHall_Ciar_before.rgn",
+    "data/world/Ula_hardmode_DgnHall_Runda_before/_Ula_hardmode_DgnHall_Runda_before.area",
+    "data/world/Ula_hardmode_DgnHall_Runda_before/Ula_hardmode_DgnHall_Runda_before.rgn",
+    "data/world/Ula_hardmode_DgnHall_TirChonaill_before/_Ula_hardmode_DgnHall_TirChonaill_before.area",
+    "data/world/Ula_hardmode_DgnHall_TirChonaill_before/Ula_hardmode_DgnHall_TirChonaill_before.rgn",
+    "data/world/Uladh_Dungeon_Beginners_Hall1/_Uladh_Dungeon_Beginners_Hall1.area",
+    "data/world/Uladh_Dungeon_Beginners_Hall1/Uladh_Dungeon_Beginners_Hall1.rgn"
+  ],
+  "sourceHash": "sha256-d6cea28c3cc8ddc5089817adda4eed45be9ebe52ea6bc5a9917aa39207e2ea38",
+  "readme": "# Dungeon Statue Fix\n\n## What it does\n\nAdds invisible collision in front of the dungeon statues that had gaps between the entry tile and the statue. All hardmode alters, Rundal and alby normal.\n\n### How it's made\n\nThe statue object is duplicated, moved slightly forward and has its scale set to 0."
+}

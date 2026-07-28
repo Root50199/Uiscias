@@ -19,5 +19,5 @@
     "data/gfx/char/item/mesh/scene/productionprop/scene_prop_mushroom_03_before.pmg"
   ],
   "sourceHash": "sha256-f18b6929e51c05de9daa50a6280bb059c541413fecc48784bdae740469836395",
-  "readme": "# Big Mushrooms\n\n## What it does\n\nDescription coming soon.\n\n### How it's made\n\nDescription coming soon."
+  "readme": "# Big Mushrooms\n\n## What it does\n\nmakes the models for mushrooms huge"
 }
