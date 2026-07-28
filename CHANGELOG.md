@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.50.1](https://github.com/Root50199/Uiscias/compare/v1.50.0...v1.50.1) (2026-07-28)
+
+
+### Fixes
+
+* added missing pall cast indicator file ([4ddcca1](https://github.com/Root50199/Uiscias/commit/4ddcca1b5db8f3b9c0123a36f2b8e29b5c0a6a1e))
+
 ## [1.50.0](https://github.com/Root50199/Uiscias/compare/v1.49.0...v1.50.0) (2026-07-28)
 
 
