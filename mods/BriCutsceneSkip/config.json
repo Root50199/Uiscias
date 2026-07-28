@@ -1,0 +1,17 @@
+{
+  "modId": "BriCutsceneSkip",
+  "modName": "Bri Cutscene Skip",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Bri Leith", "Combat", "Cutscene Skip"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/db/cutscene/mrd_Bossroom_01.xml",
+    "data/db/cutscene/mrd_Bossroom_02.xml",
+    "data/db/cutscene/mrd_Bossroom_03.xml",
+    "data/db/cutscene/mrd_Bossroom_04.xml"
+  ],
+  "sourceHash": "sha256-13532c253079194382e48b6ca64bc8ad54741adba39a984fc342ed529884132e",
+  "readme": "# Bri Cutscene Skip\n\n## What it does\n\nAutomatically skips the Bri Leith boss cutscenes.\n\n### How it's made\n\nRemoves all scene info."
+}
