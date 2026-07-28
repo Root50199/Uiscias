@@ -285,10 +285,6 @@
     "data/db/cutscene/henjeon.xml",
     "data/db/cutscene/Magmell_Bossroom_Fflur.xml",
     "data/db/cutscene/Magmell_Bossroom_Kerron.xml",
-    "data/db/cutscene/mrd_Bossroom_01.xml",
-    "data/db/cutscene/mrd_Bossroom_02.xml",
-    "data/db/cutscene/mrd_Bossroom_03.xml",
-    "data/db/cutscene/mrd_Bossroom_04.xml",
     "data/db/cutscene/NewRecordBook_01.xml",
     "data/db/cutscene/NewRecordBook_02.xml",
     "data/db/cutscene/NewRecordBook_03.xml",
@@ -340,6 +336,6 @@
     "data/db/cutscene/wedding/Vales/cutscene_WeddingVales_02.xml",
     "data/db/cutscene/wedding/Vales/cutscene_WeddingVales_03.xml"
   ],
-  "sourceHash": "sha256-9c232443f48853873d890e143c6597a39c2f7576fd19d5e69c09dabfc1f9fb33",
+  "sourceHash": "sha256-3ee4e5fa839d14d3a6c4b41c99771691ca80f295fdf11cffa01d8fb2042d184b",
   "readme": "# Cutscene Skip Other\n\n## What it does\n\nSkips all cutscene not in a chapter folder, so dungeons, shadow missions, pet first time summons, weddings, events, etc."
 }
