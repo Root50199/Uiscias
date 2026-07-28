@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.48.0](https://github.com/Root50199/Uiscias/compare/v1.47.0...v1.48.0) (2026-07-28)
+
+
+### Mods added / updated
+
+* added statue fix and removed default fov variants ([00867ef](https://github.com/Root50199/Uiscias/commit/00867effcfd144efee0ed94d74728a0054dee67a))
+
+
+### Fixes
+
+* a ([f6c30ab](https://github.com/Root50199/Uiscias/commit/f6c30abf02f3da191089f227f3bcca8be6a033ba))
+
 ## [1.47.0](https://github.com/Root50199/Uiscias/compare/v1.46.1...v1.47.0) (2026-07-27)
 
 
