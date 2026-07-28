@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.50.0](https://github.com/Root50199/Uiscias/compare/v1.49.0...v1.50.0) (2026-07-28)
+
+
+### Mods added / updated
+
+* adding bri cutscene skip ([275871a](https://github.com/Root50199/Uiscias/commit/275871af750b62eaa705a3796bdc3b50468df775))
+* re-packing Cutscene Skip Other ([f7c9e49](https://github.com/Root50199/Uiscias/commit/f7c9e49740e1db23c30fdc489ae2f26d32048865))
+
 ## [1.49.0](https://github.com/Root50199/Uiscias/compare/v1.48.0...v1.49.0) (2026-07-28)
 
 
