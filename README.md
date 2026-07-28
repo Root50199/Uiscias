@@ -185,13 +185,13 @@ For the full technical picture, see [`docs/architecture.md`](./docs/architecture
 
 ## Contributing and overlap
 
-I avoid adding mods that already exist in
-[uotiara](https://github.com/shaggyze/uotiara) unless I've meaningfully changed
-them myself. A couple of tools that help when maintaining mods after a game
+A couple of tools that help when maintaining mods after a game
 patch:
 
 - [Beyond Compare](https://www.scootersoftware.com/) — diffing and updating mods.
 - [Everything](https://www.voidtools.com/) — fast file search across game data.
+- [Manioned](https://github.com/exectails/Mabioned) — Mabi region/map editor.
+- [paint.net/](https://paint.net/) — image editor I use to make the dds files.
 - [mabi-pack2](https://github.com/shaggyze/uotiara) — unpacking and repacking
   `.it` files (from the uotiara repo).
 
