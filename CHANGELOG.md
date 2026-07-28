@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.49.0](https://github.com/Root50199/Uiscias/compare/v1.48.0...v1.49.0) (2026-07-28)
+
+
+### Mods added / updated
+
+* added pall indicator variant ([4dc5e5d](https://github.com/Root50199/Uiscias/commit/4dc5e5db332806c43620d250fe9418a9502e5854))
+
 ## [1.48.0](https://github.com/Root50199/Uiscias/compare/v1.47.0...v1.48.0) (2026-07-28)
 
 
