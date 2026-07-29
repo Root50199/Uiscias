@@ -1,0 +1,17 @@
+{
+  "modId": "PetWindowExpanded1440p",
+  "modName": "Pet Window Expanded Variant 1",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["1440p Required", "QoL", "UI"],
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/db/layout2/Petinfo/CustomizePetTab2.xml",
+    "data/db/layout2/Petinfo/Main.xml",
+    "data/db/layout2/Petinfo/PetTab2.xml"
+  ],
+  "sourceHash": "sha256-880604f8c78175c8fa41d4bfc5af7bfe9e55d07dfdfa7e1f6de40f9c90b15184",
+  "readme": "# Pet Window Expanded 1440p\n\n## What it does\n\nExpands the pet window to make notes more visible.\nSets default vertical size to be most of the height of a 1440p display.\nIncreases note character limit to 500.\nResizes and moves the buttons to avoid accidental menus in combat.\n\nKnown Issue: the buttons moved to the bottom do not reposition themselves immediately when resizing the window. Reopening the window fixes them.\n\n### How it's made\n\nSee notes in files",
+  "images": ["PetWindowBaseTab1440p.png", "PetWindowCustomTab1440p.png"]
+}

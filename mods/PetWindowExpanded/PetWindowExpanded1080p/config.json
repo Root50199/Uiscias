@@ -1,0 +1,17 @@
+{
+  "modId": "PetWindowExpanded1080p",
+  "modName": "Pet Window Expanded Variant 2",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/db/layout2/Petinfo/CustomizePetTab2.xml",
+    "data/db/layout2/Petinfo/Main.xml",
+    "data/db/layout2/Petinfo/PetTab2.xml"
+  ],
+  "sourceHash": "sha256-91b97940a446ebffcecd6002f9369d40d5b41fb7737d31306c5d50c8aacfae8e",
+  "readme": "# Pet Window Expanded 1080p\n\n## What it does\n\nExpands the pet window to make notes more visible.\nSets default vertical size to be most of the height of a 1080p display.\nIncreases note character limit to 500.\nResizes and moves the buttons to avoid accidental menus in combat.\n\nKnown Issue: the buttons moved to the bottom do not reposition themselves immediately when resizing the window. Reopening the window fixes them.\n\n### How it's made\n\nSee notes in files",
+  "images": ["PetWindowBaseTab1080p.png", "PetWindowCustomTab1080p.png"]
+}

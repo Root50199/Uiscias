@@ -1,0 +1,18 @@
+{
+  "modId": "PetWindowExpanded",
+  "modName": "Pet Window Expanded",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL", "UI"],
+  "isVariant": false,
+  "hasVariants": true,
+  "usedFiles": [],
+  "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "readme": "# Pet Window Expanded\n\n## What it does\n\nExpands the pet window to make notes more visible.\nSets default vertical size.\nIncreases note character limit to 500.\nResizes and moves the buttons to avoid accidental menus in combat.\n\nKnown Issue: the buttons moved to the bottom do not reposition themselves immediately when resizing the window. Reopening the window fixes them.\n\n### How it's made\n\nSee notes in files",
+  "images": [
+    "PetWindowBaseTab1080p.png",
+    "PetWindowBaseTab1440p.png",
+    "PetWindowCustomTab1080p.png",
+    "PetWindowCustomTab1440p.png"
+  ]
+}
