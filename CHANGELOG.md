@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.51.0](https://github.com/Root50199/Uiscias/compare/v1.50.1...v1.51.0) (2026-07-29)
+
+
+### Mods added / updated
+
+* added PetWindowExpanded ([64ff5d1](https://github.com/Root50199/Uiscias/commit/64ff5d1dcf1b529b5a0425a221254db44ca64f08))
+
 ## [1.50.1](https://github.com/Root50199/Uiscias/compare/v1.50.0...v1.50.1) (2026-07-28)
 
 
