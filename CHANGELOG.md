@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.51.2](https://github.com/Root50199/Uiscias/compare/v1.51.1...v1.51.2) (2026-07-29)
+
+
+### Fixes
+
+* names again ([3aa9354](https://github.com/Root50199/Uiscias/commit/3aa9354155369ec0df6b5a3b1961f636f14fca9b))
+
 ## [1.51.1](https://github.com/Root50199/Uiscias/compare/v1.51.0...v1.51.1) (2026-07-29)
 
 
