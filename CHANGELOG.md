@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.51.1](https://github.com/Root50199/Uiscias/compare/v1.51.0...v1.51.1) (2026-07-29)
+
+
+### Fixes
+
+* fixed mod names for pet window ([d339e63](https://github.com/Root50199/Uiscias/commit/d339e63de2ec7ad534a6a0ec7b907a6822af220f))
+
 ## [1.51.0](https://github.com/Root50199/Uiscias/compare/v1.50.1...v1.51.0) (2026-07-29)
 
 
