@@ -5,11 +5,23 @@ import { discoverMods, packTargets, type Mod } from '../lib/mods';
 import { resolveTargetMods, type ScopeOptions } from '../lib/scope';
 import { computeDataHash } from '../lib/hash';
 import { packDataFolder } from '../lib/packer';
-import { gitAddAll } from '../lib/git';
+import { gitAdd, gitAddAll } from '../lib/git';
 import { readBuildLock } from '../lib/config';
 import { itName, itBelongsToId, listItFiles, pruneItFiles } from '../lib/itFile';
+import {
+  readVersionLedger,
+  writeVersionLedger,
+  versionLedgerPath,
+  floorFor,
+  recordVersion,
+} from '../lib/versionLedger';
 import { ok, dim, Tally } from '../lib/term';
-import { buildLockSchema, BUILD_LOCK_KEY_ORDER, type BuildLock } from '../schema';
+import {
+  buildLockSchema,
+  BUILD_LOCK_KEY_ORDER,
+  type BuildLock,
+  type VersionLedger,
+} from '../schema';
 
 export interface PackOptions extends ScopeOptions {
   /** Repack even when the source hash matches the lock. */
@@ -43,22 +55,33 @@ export const runPack = async (opts: PackOptions): Promise<void> => {
   const mods = discoverMods(repoRoot);
   const targets = packTargets(resolveTargetMods(repoRoot, mods, opts));
 
+  // The version ledger is read once, floored/recorded per mod, and written once
+  // at the end so a single pack run touches the committed file at most once.
+  const ledger = readVersionLedger(repoRoot);
+  let hasLedgerChanged = false;
+
   const tally = new Tally();
   const touchedBuildDirs: string[] = [];
 
   for (const mod of targets) {
     try {
-      await packOne(repoRoot, mod, opts.force ?? false, (kind) => {
+      const didRecord = await packOne(repoRoot, mod, opts.force ?? false, ledger, (kind) => {
         tally.bump(kind);
         if (kind !== 'skipped') touchedBuildDirs.push(path.join(mod.dir, 'build'));
       });
+      if (didRecord) hasLedgerChanged = true;
     } catch (e) {
       tally.addError(`${mod.relDir}: ${e instanceof Error ? e.message : String(e)}`);
     }
   }
 
-  if (opts.stage && touchedBuildDirs.length > 0) {
-    gitAddAll(repoRoot, touchedBuildDirs);
+  if (hasLedgerChanged) {
+    await writeVersionLedger(repoRoot, ledger);
+  }
+
+  if (opts.stage) {
+    if (touchedBuildDirs.length > 0) gitAddAll(repoRoot, touchedBuildDirs);
+    if (hasLedgerChanged) gitAdd(repoRoot, [versionLedgerPath(repoRoot)]);
   }
 
   const adopted = tally.get('adopted');
@@ -71,12 +94,18 @@ export const runPack = async (opts: PackOptions): Promise<void> => {
 
 type PackResult = 'packed' | 'adopted' | 'skipped';
 
+/**
+ * Pack a single mod. Records the resulting version into `ledger` on every branch
+ * (skip/adopt/pack) so the ledger self-heals to the current max each run, and
+ * returns whether that record actually changed the ledger.
+ */
 const packOne = async (
   repoRoot: string,
   mod: Mod,
   force: boolean,
+  ledger: VersionLedger,
   report: (kind: PackResult) => void,
-): Promise<void> => {
+): Promise<boolean> => {
   if (!mod.dataDir) {
     throw new Error('missing data/');
   }
@@ -91,7 +120,7 @@ const packOne = async (
   const lockNameMatchesId = lock ? itBelongsToId(lock.fileName, mod.id) : false;
   if (!force && lock && lock.builtFromHash === hash && lockFileExists && lockNameMatchesId) {
     report('skipped');
-    return;
+    return recordVersion(ledger, mod.id, lock.version);
   }
 
   // Bootstrap: a committed .it but no lock — adopt it as-is rather than churn.
@@ -103,13 +132,17 @@ const packOne = async (
       builtFromHash: hash,
     });
     report('adopted');
-    return;
+    return recordVersion(ledger, mod.id, newest.version);
   }
 
-  const nextVersion = (lock?.version ?? newest?.version ?? 0) + 1;
+  // Floor the bump against the ledger so a wiped lock/`.it` can never restart at
+  // a number this modId has already published.
+  const prior = Math.max(lock?.version ?? 0, newest?.version ?? 0, floorFor(ledger, mod.id));
+  const nextVersion = prior + 1;
   const outName = itName(mod.id, nextVersion);
   packDataFolder(repoRoot, dataDir, path.join(buildDir, outName));
   pruneItFiles(buildDir, outName);
   await writeLock(buildDir, { version: nextVersion, fileName: outName, builtFromHash: hash });
   report('packed');
+  return recordVersion(ledger, mod.id, nextVersion);
 };

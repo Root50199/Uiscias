@@ -191,6 +191,45 @@ Records which `sourceHash` the committed `.it` was built from. The packer
 compares `config.json.sourceHash` against `build.lock.json.builtFromHash` to
 decide whether a repack + version bump is required.
 
+### `version-ledger.json` (generated, committed — repo root)
+
+Illustrative shape only (dummy ids); the committed file mirrors the real mods'
+highest-ever versions:
+
+```json
+{
+  "SomeModId": 3,
+  "SomeVariantId": 12
+}
+```
+
+A single repo-root file mapping each **modId → the highest version ever
+assigned** to it. It is the durable memory that keeps versions **monotonic**: a
+mod's version is otherwise derived only from its `build.lock.json` / committed
+`.it`, so wiping the lock (or the whole `build/` folder, or renaming a folder so
+a fresh id starts over) would reset the counter to 1 and let a new, different
+build **reuse an already-published number**. Findias compares the installed
+version against the catalog version, so a reused number is invisible to it — the
+user is never prompted to update off a stale file.
+
+Rules:
+
+- `pack` reads the ledger once, **floors** every bump against it
+  (`nextVersion = max(lock, newestIt, ledgerFloor) + 1`), records the resulting
+  version (keeping the max), and writes the file once per run. It is staged
+  alongside the `.it`/lock under `--stage`.
+- Never decremented; entries are never removed (a retired modId keeps its floor
+  so nothing can reclaim its numbers).
+- Managed by the schema/lib in `scripts/src/schema/versionLedger.ts` and
+  `scripts/src/lib/versionLedger.ts`. `check` **fails** (CI-blocking) when a
+  `build.lock.json` version is **below** its ledger floor — a regression that
+  would re-ship an already-published number. The error names the exact fix
+  (`npm run pack -- --mods <id> --force`, then commit the new `.it`, lock, and
+  ledger).
+- This closes the same-modId half of the version-collision problem. A true
+  **modId rename** (old id → new id) is a separate concern handled by
+  Findias-side `replaces` migration, not the ledger.
+
 ### `manifestCatalog.json` (release asset)
 
 The manifest is an object with a `metadata` block and a `modList` of **groups**.
@@ -434,8 +473,12 @@ by scope:
    `build/build.lock.json.builtFromHash`.
    - Equal → **skip** (no repack, no bump).
    - Missing/different → run `mabi-pack2.exe` against `data/`, increment the
-     version, write `build/Uiscias<id>_<nextN>.it`, delete the previous `.it`
-     (commit-latest-only), and update `build.lock.json`.
+     version (**floored against `version-ledger.json`** so it can never reuse a
+     number this modId has already published), write `build/Uiscias<id>_<nextN>.it`,
+     delete the previous `.it` (commit-latest-only), and update `build.lock.json`.
+   - Every branch records the resulting version into `version-ledger.json`
+     (monotonic max), written once per run. See
+     [`version-ledger.json`](#version-ledgerjson-generated-committed--repo-root).
 3. Because `mabi-pack2` output is **not byte-deterministic** (verified: identical
    size, differing bytes), the bump decision is driven entirely by `sourceHash`,
    never by comparing packed bytes.

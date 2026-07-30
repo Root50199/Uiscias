@@ -5,7 +5,9 @@ import { discoverMods, packTargets } from '../lib/mods';
 import { computeDataHash } from '../lib/hash';
 import { readConfigJson, readBuildLock } from '../lib/config';
 import { itBelongsToId } from '../lib/itFile';
+import { readVersionLedgerStrict, floorFor } from '../lib/versionLedger';
 import { ok, err, glyph, Tally } from '../lib/term';
+import type { VersionLedger } from '../schema';
 import { runGenerateConfigs } from './generateConfigs';
 
 /**
@@ -25,6 +27,18 @@ export const runCheck = async (): Promise<void> => {
   const repoRoot = getRepoRoot();
   const targets = packTargets(discoverMods(repoRoot));
   const tally = new Tally();
+
+  // Read strictly so a corrupt ledger fails CI instead of zeroing every floor
+  // and hiding the version regression the floor check exists to catch.
+  let ledger: VersionLedger = {};
+  try {
+    ledger = readVersionLedgerStrict(repoRoot);
+  } catch (e) {
+    const message = e instanceof Error ? e.message : String(e);
+    tally.addError(
+      `version-ledger.json is unreadable or invalid (${message}) — fix the file or regenerate it via npm run pack`,
+    );
+  }
 
   for (const mod of targets) {
     if (!mod.dataDir) {
@@ -60,6 +74,14 @@ export const runCheck = async (): Promise<void> => {
     if (!itBelongsToId(lock.fileName, mod.id)) {
       tally.addError(
         `${mod.relDir}: build.lock ${lock.fileName} doesn't match mod id (folder renamed? run pack)`,
+      );
+    }
+
+    const floor = floorFor(ledger, mod.id);
+    if (lock.version < floor) {
+      tally.addError(
+        `${mod.relDir}: build.lock version ${lock.version} is below the version-ledger floor ${floor} for "${mod.id}" — this number was already published for this modId. ` +
+          `Fix: npm run pack -- --mods ${mod.id} --force (repacks past the floor), then commit the new .it, build.lock.json, and version-ledger.json.`,
       );
     }
   }

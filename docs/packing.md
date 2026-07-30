@@ -81,6 +81,14 @@ is a local constant and not a CI secret.
 ## Versioning & retention
 
 - Each repack increments the version: `Uiscias<ModId>_<00001→00002>.it`.
+- The bump is **floored** against `version-ledger.json` (a committed repo-root
+  map of modId → highest version ever used), so a wiped `build.lock`/`build/` can
+  never restart a modId at a number it has already published. The ledger is
+  read/updated by every `pack` run and staged with the `.it`; `check` fails
+  (CI-blocking) when a `build.lock` version drops below its ledger floor, naming
+  the exact repack command to fix it. See the
+  [`version-ledger.json`](./architecture.md#version-ledgerjson-generated-committed--repo-root)
+  section for the rationale (Findias can't detect a reused version number).
 - Only the **latest** `.it` is kept in `build/` (older ones are pruned); previous
   versions remain available as immutable GitHub Release assets.
 
