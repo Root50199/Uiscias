@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.52.0](https://github.com/Root50199/Uiscias/compare/v1.51.2...v1.52.0) (2026-07-30)
+
+
+### Mods added / updated
+
+* add version ledger for modId version tracking ([3f420ca](https://github.com/Root50199/Uiscias/commit/3f420cae791c4021e0a4a7c8567dc2384d0cef34))
+* implement strict version ledger validation and add tests ([ceff746](https://github.com/Root50199/Uiscias/commit/ceff746dc42b33042fe2dabcdede2d9aca64d20a))
+
+
+### Fixes
+
+* update version numbers for ElementalKnightFx and PetWindowExpanded ([aa89987](https://github.com/Root50199/Uiscias/commit/aa899875678429c47f63bd27ee7853decbcd76f9))
+
 ## [1.51.2](https://github.com/Root50199/Uiscias/compare/v1.51.1...v1.51.2) (2026-07-29)
 
 
