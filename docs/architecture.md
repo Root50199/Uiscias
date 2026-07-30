@@ -193,10 +193,13 @@ decide whether a repack + version bump is required.
 
 ### `version-ledger.json` (generated, committed — repo root)
 
+Illustrative shape only (dummy ids); the committed file mirrors the real mods'
+highest-ever versions:
+
 ```json
 {
-  "AchievmentUnhide": 2,
-  "BriHpBars1And2": 3
+  "SomeModId": 3,
+  "SomeVariantId": 12
 }
 ```
 

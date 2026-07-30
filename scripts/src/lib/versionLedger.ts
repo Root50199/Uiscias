@@ -17,8 +17,28 @@ export const versionLedgerPath = (repoRoot: string): string =>
 export const readVersionLedger = (repoRoot: string): VersionLedger => {
   const p = versionLedgerPath(repoRoot);
   if (!fse.pathExistsSync(p)) return {};
-  const parsed = versionLedgerSchema.safeParse(readJsonFile(p));
-  return parsed.success ? parsed.data : {};
+  try {
+    const parsed = versionLedgerSchema.safeParse(readJsonFile(p));
+    return parsed.success ? parsed.data : {};
+  } catch {
+    // Malformed JSON (readJsonFile throws) is treated the same as schema-invalid:
+    // self-heal to an empty ledger so a corrupt file never crashes a pack.
+    return {};
+  }
+};
+
+/**
+ * Like {@link readVersionLedger}, but **throws** when the file exists yet is
+ * unreadable (bad JSON) or fails validation, instead of silently degrading to an
+ * empty ledger. `check` uses this so a corrupt ledger fails CI rather than
+ * zeroing every floor — which would let a version regression slip through
+ * undetected. A missing file is still fine (empty ledger): that is the first-run
+ * state, not corruption.
+ */
+export const readVersionLedgerStrict = (repoRoot: string): VersionLedger => {
+  const p = versionLedgerPath(repoRoot);
+  if (!fse.pathExistsSync(p)) return {};
+  return versionLedgerSchema.parse(readJsonFile(p));
 };
 
 /** The recorded version floor for a modId (0 when the modId is unknown). */
