@@ -5,6 +5,7 @@ import { discoverMods, packTargets } from '../lib/mods';
 import { computeDataHash } from '../lib/hash';
 import { readConfigJson, readBuildLock } from '../lib/config';
 import { itBelongsToId } from '../lib/itFile';
+import { readVersionLedger, floorFor } from '../lib/versionLedger';
 import { ok, err, glyph, Tally } from '../lib/term';
 import { runGenerateConfigs } from './generateConfigs';
 
@@ -25,6 +26,11 @@ export const runCheck = async (): Promise<void> => {
   const repoRoot = getRepoRoot();
   const targets = packTargets(discoverMods(repoRoot));
   const tally = new Tally();
+
+  // Version-ledger drift is a hard failure: a below-floor version would re-ship a
+  // number this modId already published, which Findias (comparing installed-vs-
+  // catalog versions) cannot tell apart — so it must never be merged.
+  const ledger = readVersionLedger(repoRoot);
 
   for (const mod of targets) {
     if (!mod.dataDir) {
@@ -60,6 +66,14 @@ export const runCheck = async (): Promise<void> => {
     if (!itBelongsToId(lock.fileName, mod.id)) {
       tally.addError(
         `${mod.relDir}: build.lock ${lock.fileName} doesn't match mod id (folder renamed? run pack)`,
+      );
+    }
+
+    const floor = floorFor(ledger, mod.id);
+    if (lock.version < floor) {
+      tally.addError(
+        `${mod.relDir}: build.lock version ${lock.version} is below the version-ledger floor ${floor} for "${mod.id}" — this number was already published for this modId. ` +
+          `Fix: npm run pack -- --mods ${mod.id} --force (repacks past the floor), then commit the new .it, build.lock.json, and version-ledger.json.`,
       );
     }
   }
