@@ -10,7 +10,7 @@
     "data/db/layout2/Auction/TradeAuctionMarketTab.xml",
     "data/db/layout2/Auction/TradeAuctionMyMarketTab.xml"
   ],
-  "sourceHash": "sha256-f47c919dbb9123064224d224e54abeedb7dbb70496b6d328cc9af5c7cddefda4",
+  "sourceHash": "sha256-08b0669d65e8427132ec7eb8c67c48d6f4a2b864a74b996c268b49a0c7daae43",
   "readme": "# Expanded Auction House Low Res\n\n## What it does\n\nAdds a scrollbar to the auction house window and increases the items per page. This also allows you to automatically relist all your auctions with one action.\n\n### How it's made\n\nSee actual file.",
   "images": ["Lowresbuy.png", "Lowressell.png"]
 }
