@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.52.1](https://github.com/Root50199/Uiscias/compare/v1.52.0...v1.52.1) (2026-08-03)
+
+
+### Fixes
+
+* fixed lowres ah hiding last item on selling page ([237c6c8](https://github.com/Root50199/Uiscias/commit/237c6c89d5a44162c74bba3cdde14c0e8c2e08b7))
+
 ## [1.52.0](https://github.com/Root50199/Uiscias/compare/v1.51.2...v1.52.0) (2026-07-30)
 
 
