@@ -70,7 +70,7 @@ describe('config', () => {
   describe('buildConfigJson', () => {
     it('produces a config in canonical key order with scanned files + hash', async () => {
       const mod = await makeMod();
-      const cfg = buildConfigJson(mod);
+      const cfg = await buildConfigJson(mod);
 
       // No README / images / credits / notes, so those keys are omitted (lean mods).
       expect(Object.keys(cfg)).toEqual(BASE_KEYS);
@@ -86,7 +86,7 @@ describe('config', () => {
 
     it('flags variants via isVariant', async () => {
       const mod = await makeMod('variant');
-      expect(buildConfigJson(mod).isVariant).toBe(true);
+      expect((await buildConfigJson(mod)).isVariant).toBe(true);
     });
 
     it('includes optional credits + notes when the yaml sets them', async () => {
@@ -96,7 +96,7 @@ describe('config', () => {
         `${YAML_MIN}modAdditionalCredits: Thanks Bri\nrecentUpdateNotes: Fixed the thing\n`,
         'utf8',
       );
-      const cfg = buildConfigJson(mod);
+      const cfg = await buildConfigJson(mod);
       expect(cfg.modAdditionalCredits).toBe('Thanks Bri');
       expect(cfg.recentUpdateNotes).toBe('Fixed the thing');
       // Present optional fields still land in canonical order (no README / images).
@@ -104,7 +104,7 @@ describe('config', () => {
       expect(Object.keys(cfg)).toEqual(keysNoDocs);
     });
 
-    it('reads README.md verbatim and scans images/ in canonical key order', async () => {
+    it('reads README.md and scans images/ in canonical key order', async () => {
       const mod = await makeMod();
       await fs.writeFile(join(mod.dir, 'README.md'), '# Zoom\n\nHello.\n', 'utf8');
       const imagesDir = join(mod.dir, 'images');
@@ -112,7 +112,7 @@ describe('config', () => {
       await fs.writeFile(join(imagesDir, 'b.png'), 'x');
       await fs.writeFile(join(imagesDir, 'a.gif'), 'x');
 
-      const cfg = buildConfigJson(mod);
+      const cfg = await buildConfigJson(mod);
       // YAML_MIN sets no credits/notes, so those keys are absent; readme/images present.
       const keysWithDocs = CONFIG_JSON_KEY_ORDER.filter(
         (k) => k !== 'modAdditionalCredits' && k !== 'recentUpdateNotes',
@@ -125,7 +125,16 @@ describe('config', () => {
     it('omits readme for an empty README.md', async () => {
       const mod = await makeMod();
       await fs.writeFile(join(mod.dir, 'README.md'), '   \n', 'utf8');
-      expect(buildConfigJson(mod).readme).toBeUndefined();
+      expect((await buildConfigJson(mod)).readme).toBeUndefined();
+    });
+
+    // The readme is embedded into config.json, so capturing it before Prettier
+    // has normalized it leaves the two permanently out of sync (a trailing space
+    // mid-document survives `.trim()` and fails the CI drift check).
+    it('normalizes the README with Prettier before embedding it', async () => {
+      const mod = await makeMod();
+      await fs.writeFile(join(mod.dir, 'README.md'), '# Zoom\n\nTrailing space here. \n', 'utf8');
+      expect((await buildConfigJson(mod)).readme).toBe('# Zoom\n\nTrailing space here.');
     });
 
     it('sorts findiasTags alphabetically regardless of config.yaml order', async () => {
@@ -135,7 +144,7 @@ describe('config', () => {
         `${YAML_MIN}findiasTags:\n  - UI\n  - Combat\n  - QoL\n`,
         'utf8',
       );
-      expect(buildConfigJson(mod).findiasTags).toEqual(['Combat', 'QoL', 'UI']);
+      expect((await buildConfigJson(mod)).findiasTags).toEqual(['Combat', 'QoL', 'UI']);
     });
   });
 

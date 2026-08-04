@@ -508,16 +508,25 @@ appears on bulk changes, which can instead use the explicit `npm run`
 all-mods commands.
 
 - **`pre-commit`**: for staged/changed mods, in order —
-  1. validate `config.yaml` against the schema (fail the commit on errors),
-  2. `generate-configs` (refresh `config.json` + `sourceHash`),
-  3. `pack` the changed mods (repack only when `sourceHash` differs from
+  1. run prettier + markdownlint on the staged files (via `lint-staged`; see
+     [Markdown linting](#markdown-linting-readme--docs)),
+  2. validate `config.yaml` against the schema (fail the commit on errors),
+  3. `generate-configs` (refresh `config.json` + `sourceHash`),
+  4. `pack` the changed mods (repack only when `sourceHash` differs from
      `build.lock.json`), writing the new `.it` + `build.lock.json`,
-  4. `git add` the regenerated `config.json`, `.it`, and `build.lock.json` so
+  5. `git add` the regenerated `config.json`, `.it`, and `build.lock.json` so
      they land in the same commit,
-  5. run prettier + markdownlint (via `lint-staged`; see
-     [Markdown linting](#markdown-linting-readme--docs)).
+  6. re-run `generate-configs --check` as a closing guard.
      Each maintainer is on Windows with `mabi-pack2.exe` available locally (see the
      environment rules), so packing in the hook is viable.
+- **The formatters must run first.** `generate-configs` captures `README.md` into
+  `config.json.readme`, so if prettier reformats the README afterwards the
+  committed file and its embedded copy disagree forever and CI's `npm run check`
+  fails. This bit us once: a lone trailing space mid-README (which `.trim()` does
+  not catch) shipped inside `config.json` while the README itself was cleaned.
+  `readReadme` now also normalizes the text with prettier before embedding it, so
+  the invariant holds even for a `--no-verify` commit; step 6 catches any future
+  reordering locally instead of in CI.
 - The same operations are also available as explicit, all-mods npm commands
   (`npm run generate-configs`, `npm run pack`) for bulk rebuilds or recovery.
 
@@ -536,11 +545,11 @@ enforced without fighting Prettier on formatting.
 
 **Where it runs:**
 
-| Trigger                      | What happens                                                                        |
-| ---------------------------- | ----------------------------------------------------------------------------------- |
-| `pre-commit` (`lint-staged`) | On staged scoped files: Prettier `--write`, then `markdownlint-cli2 --fix`          |
-| CI `format` job              | `npm run format:check` (Prettier) then `npm run lint:md` (markdownlint, no `--fix`) |
-| Local                        | `npm run lint:md`; `npm run format` for Prettier                                    |
+| Trigger                      | What happens                                                                                             |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `pre-commit` (`lint-staged`) | On staged scoped files, **before** config generation: Prettier `--write`, then `markdownlint-cli2 --fix` |
+| CI `format` job              | `npm run format:check` (Prettier) then `npm run lint:md` (markdownlint, no `--fix`)                      |
+| Local                        | `npm run lint:md`; `npm run format` for Prettier                                                         |
 
 `new-mod` scaffolds a README that already matches the expected three-section
 shape (`## What it does` / `### How it's made`). Image markdown is not used in

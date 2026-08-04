@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { fse, readText, readYamlFile, orderKeys, readJsonFile } from './io';
+import { fse, readText, readYamlFile, orderKeys, readJsonFile, formatText } from './io';
 import { scanUsedFiles, scanImages, computeDataHash } from './hash';
 import type { Mod } from './mods';
 import {
@@ -54,19 +54,27 @@ export const readCatalogConfig = (repoRoot: string): CatalogConfig => {
   );
 };
 
-/** Read a mod's README.md verbatim, or `undefined` when it has none. */
-const readReadme = (mod: Mod): string | undefined => {
+/**
+ * Read a mod's README.md, or `undefined` when it has none. Formatted with
+ * Prettier first: the text is embedded verbatim into config.json, so capturing
+ * it raw would drift from the file the moment the `lint-staged` Prettier pass
+ * normalizes it (e.g. dropping a stray trailing space mid-document, which
+ * `.trim()` alone does not catch).
+ */
+const readReadme = async (mod: Mod): Promise<string | undefined> => {
   const readmePath = path.join(mod.dir, 'README.md');
   if (!fse.pathExistsSync(readmePath)) return undefined;
-  const text = readText(readmePath).trim();
+  const raw = readText(readmePath);
+  if (raw.trim().length === 0) return undefined;
+  const text = (await formatText(raw, 'markdown', readmePath)).trim();
   return text.length > 0 ? text : undefined;
 };
 
 /** Build the generated config.json object for a mod (deterministic key order). */
-export const buildConfigJson = (mod: Mod): ConfigJson => {
+export const buildConfigJson = async (mod: Mod): Promise<ConfigJson> => {
   const yaml = loadConfigYaml(mod);
   const dataDir = mod.dataDir ?? path.join(mod.dir, 'data');
-  const readme = readReadme(mod);
+  const readme = await readReadme(mod);
   const images = scanImages(mod.dir);
 
   const config: ConfigJson = {

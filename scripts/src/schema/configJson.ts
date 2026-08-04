@@ -25,7 +25,7 @@ export const configJsonSchema = z
     hasVariants: z.boolean(),
     usedFiles: z.array(z.string()),
     sourceHash: sourceHashSchema,
-    // Optional docs: the mod's README.md text (verbatim) and the image file
+    // Optional docs: the mod's README.md text (Prettier-normalized) and the image file
     // names scanned from its images/ folder. Both are omitted when absent, so a
     // mod without docs regenerates a byte-identical config.json.
     readme: z.string().min(1).optional(),
