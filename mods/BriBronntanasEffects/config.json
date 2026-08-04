@@ -4,6 +4,7 @@
   "modAuthor": "Root50199",
   "updateType": "stable",
   "findiasTags": ["Bri Leith", "Combat", "Fx", "Lag Helper", "Visual Clarity"],
+  "recentUpdateNotes": "added 40/20% goop removal",
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": [
@@ -12,6 +13,6 @@
     "data/material/fx/effect/common_effect_Late_add_88.dds"
   ],
   "sourceHash": "sha256-108122580baac628d82f5bd5a6c82c12e3f4b1c8cab3c041a3b0165c9ba4d480",
-  "readme": "# Bri Bronntanas Effects\n\n## What it does\n\nStill a work in progress, but right now it removes the goop from storm rush and replaces it with hard lines and removes the .5 second delay on the storm rush telegraph. Also remove many of the particle effects/dust from his other attacks.",
+  "readme": "# Bri Bronntanas Effects\n\n## What it does\n\nRemoves the goop from storm rush and replaces it with hard lines and removes the .5 second delay on the storm rush telegraph. Also remove many of the particle effects/dust from his other attacks.",
   "images": ["50%.gif", "Stormrush.gif"]
 }
