@@ -93,9 +93,18 @@ export const buildConfigJson = async (mod: Mod): Promise<ConfigJson> => {
   return configJsonSchema.parse(orderKeys(configJsonSchema.parse(config), CONFIG_JSON_KEY_ORDER));
 };
 
-/** Read + validate a mod's committed config.json. */
+/**
+ * Read + validate a mod's committed config.json. Schema failures surface as a
+ * `ConfigError` with the issues formatted the same way `loadConfigYaml` does —
+ * a raw ZodError stringifies to a multi-line dump of issue objects, which is
+ * unreadable when embedded in a one-line CI error.
+ */
 export const readConfigJson = (mod: Mod): ConfigJson =>
-  configJsonSchema.parse(readJsonFile(path.join(mod.dir, 'config.json')));
+  parseOrThrow(
+    configJsonSchema,
+    readJsonFile(path.join(mod.dir, 'config.json')),
+    (issues) => new ConfigError(`${mod.relDir}: invalid config.json — ${issues}`),
+  );
 
 /** Read + validate a build/build.lock.json, if present. */
 export const readBuildLock = (buildDir: string): BuildLock | undefined => {

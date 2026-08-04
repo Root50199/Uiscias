@@ -3,7 +3,7 @@ import { fse } from '../lib/io';
 import { getRepoRoot } from '../lib/repo';
 import { discoverMods, packTargets } from '../lib/mods';
 import { computeDataHash } from '../lib/hash';
-import { readConfigJson, readBuildLock } from '../lib/config';
+import { readConfigJson, readBuildLock, ConfigError } from '../lib/config';
 import { itBelongsToId } from '../lib/itFile';
 import { readVersionLedgerStrict, floorFor } from '../lib/versionLedger';
 import { ok, err, glyph, Tally } from '../lib/term';
@@ -51,8 +51,13 @@ export const runCheck = async (): Promise<void> => {
     try {
       sourceHash = readConfigJson(mod).sourceHash;
     } catch (e) {
-      const message = e instanceof Error ? e.message : String(e);
-      tally.addError(`${mod.relDir}: unreadable config.json (${message})`);
+      // ConfigError already names the mod and the problem; anything else is a
+      // read/JSON-syntax failure that still needs the path for context.
+      tally.addError(
+        e instanceof ConfigError
+          ? e.message
+          : `${mod.relDir}: unreadable config.json (${String(e)})`,
+      );
       continue;
     }
     if (sourceHash !== hash) {

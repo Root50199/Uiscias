@@ -2,7 +2,13 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { ConfigError, buildConfigJson, loadConfigYaml, readBuildLock } from './config';
+import {
+  ConfigError,
+  buildConfigJson,
+  loadConfigYaml,
+  readBuildLock,
+  readConfigJson,
+} from './config';
 import { CONFIG_JSON_KEY_ORDER } from '../schema';
 import type { Mod } from './mods';
 
@@ -145,6 +151,42 @@ describe('config', () => {
         'utf8',
       );
       expect((await buildConfigJson(mod)).findiasTags).toEqual(['Combat', 'QoL', 'UI']);
+    });
+  });
+
+  describe('readConfigJson', () => {
+    it('reads and validates a committed config.json', async () => {
+      const mod = await makeMod();
+      const generated = await buildConfigJson(mod);
+      await fs.writeFile(join(mod.dir, 'config.json'), JSON.stringify(generated), 'utf8');
+      expect(readConfigJson(mod)).toEqual(generated);
+    });
+
+    // A raw ZodError stringifies to a multi-line dump of issue objects, which is
+    // unreadable once a caller embeds it in a one-line error.
+    it('throws a ConfigError with the issues formatted on one line', async () => {
+      const mod = await makeMod();
+      const generated = await buildConfigJson(mod);
+      const invalid = { ...generated, sourceHash: 'not-a-hash', surprise: 1 };
+      await fs.writeFile(join(mod.dir, 'config.json'), JSON.stringify(invalid), 'utf8');
+
+      expect(() => readConfigJson(mod)).toThrow(ConfigError);
+      try {
+        readConfigJson(mod);
+        expect.unreachable('readConfigJson should have thrown');
+      } catch (e) {
+        const message = e instanceof Error ? e.message : String(e);
+        expect(message).not.toContain('\n');
+        expect(message).toContain('mods/Zoom: invalid config.json —');
+        expect(message).toContain('sourceHash:');
+        expect(message).toContain('Unrecognized key');
+      }
+    });
+
+    it('throws a non-ConfigError for a syntactically broken config.json', async () => {
+      const mod = await makeMod();
+      await fs.writeFile(join(mod.dir, 'config.json'), '{ "modId": ', 'utf8');
+      expect(() => readConfigJson(mod)).toThrow(SyntaxError);
     });
   });
 
