@@ -5,10 +5,18 @@ if ! command -v node >/dev/null 2>&1; then
   fi
 fi
 
+# Formatters run FIRST: generate-configs captures README.md into config.json, so
+# prettier/markdownlint must normalize the README before it is read, or the
+# embedded copy drifts from the file and the CI drift check fails.
+npx lint-staged || exit 1
+
 # For staged mod changes: validate config.yaml + regenerate config.json, then
 # pack the .it (bump-by-hash). Both stage their outputs so they land in this
 # commit. Scoped to changed mods so the per-commit cost stays small.
 npx tsx scripts/src/index.ts generate-configs --changed --staged --stage || exit 1
 npx tsx scripts/src/index.ts pack --changed --staged --stage || exit 1
 
-npx lint-staged
+# Guard: generated output must still be byte-stable once every other step has
+# run. Passes trivially in the order above; it exists so a future reordering (or
+# a new step that rewrites files) fails here instead of in CI.
+npx tsx scripts/src/index.ts generate-configs --changed --staged --check || exit 1

@@ -23,7 +23,7 @@ schemas, and conventions referenced below.
 | --------------------------------- | --------------------------------------------------------------------------------------------- |
 | `.it` storage                     | Commit **latest only** per mod as **plain git files** (no LFS); older versions in releases    |
 | `manifestCatalog.json` generation | At **release time** in CI, aggregated from committed `config.json`                            |
-| Commit hook scope                 | `pre-commit` = yaml → generate-configs → pack (changed) → prettier + markdownlint             |
+| Commit hook scope                 | `pre-commit` = prettier + markdownlint → yaml → generate-configs → pack (changed) → re-check  |
 | Build script language             | **Node/TypeScript**                                                                           |
 | CLI parsing & color               | **commander** (subcommands + generated help) + **picocolors** (TTY-aware color)               |
 | Mod location                      | All mods live under **`mods/`**; single source of truth `MODS_DIR`/`getModsRoot` in `repo.ts` |
@@ -104,11 +104,12 @@ repack verified; idempotent).
 
 ### Phase 4 — Hooks & npm scripts ✅
 
-- [x] `pre-commit` (for changed mods): validate yaml → `generate-configs` →
-      `pack` → `git add` regenerated `config.json` + `.it` + `build.lock.json` →
-      prettier + markdownlint (`lint-staged`, scoped to mod READMEs, `docs/`,
-      and the root `README.md`); fails on invalid yaml. (`--stage` does the
-      `git add`.)
+- [x] `pre-commit` (for changed mods): prettier + markdownlint (`lint-staged`,
+      scoped to mod READMEs, `docs/`, and the root `README.md`) → validate yaml →
+      `generate-configs` → `pack` → `git add` regenerated `config.json` + `.it` +
+      `build.lock.json` → `generate-configs --check` as a closing guard; fails on
+      invalid yaml. (`--stage` does the `git add`.) The formatters run **first**
+      because `generate-configs` captures `README.md` into `config.json`.
 - [x] Add npm scripts: `generate-configs`, `pack`, `build-manifest` (+ `check`,
       `typecheck`, `mods`, `changed`, `new-mod`, `new-mod-variant`).
 - [x] Add `.gitattributes` (LF text, binary `.it`/assets) for cross-platform

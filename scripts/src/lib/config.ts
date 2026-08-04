@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { fse, readText, readYamlFile, orderKeys, readJsonFile } from './io';
+import { fse, readText, readYamlFile, orderKeys, readJsonFile, formatText } from './io';
 import { scanUsedFiles, scanImages, computeDataHash } from './hash';
 import type { Mod } from './mods';
 import {
@@ -54,19 +54,27 @@ export const readCatalogConfig = (repoRoot: string): CatalogConfig => {
   );
 };
 
-/** Read a mod's README.md verbatim, or `undefined` when it has none. */
-const readReadme = (mod: Mod): string | undefined => {
+/**
+ * Read a mod's README.md, or `undefined` when it has none. Formatted with
+ * Prettier first: the text is embedded verbatim into config.json, so capturing
+ * it raw would drift from the file the moment the `lint-staged` Prettier pass
+ * normalizes it (e.g. dropping a stray trailing space mid-document, which
+ * `.trim()` alone does not catch).
+ */
+const readReadme = async (mod: Mod): Promise<string | undefined> => {
   const readmePath = path.join(mod.dir, 'README.md');
   if (!fse.pathExistsSync(readmePath)) return undefined;
-  const text = readText(readmePath).trim();
+  const raw = readText(readmePath);
+  if (raw.trim().length === 0) return undefined;
+  const text = (await formatText(raw, 'markdown', readmePath)).trim();
   return text.length > 0 ? text : undefined;
 };
 
 /** Build the generated config.json object for a mod (deterministic key order). */
-export const buildConfigJson = (mod: Mod): ConfigJson => {
+export const buildConfigJson = async (mod: Mod): Promise<ConfigJson> => {
   const yaml = loadConfigYaml(mod);
   const dataDir = mod.dataDir ?? path.join(mod.dir, 'data');
-  const readme = readReadme(mod);
+  const readme = await readReadme(mod);
   const images = scanImages(mod.dir);
 
   const config: ConfigJson = {
@@ -85,9 +93,18 @@ export const buildConfigJson = (mod: Mod): ConfigJson => {
   return configJsonSchema.parse(orderKeys(configJsonSchema.parse(config), CONFIG_JSON_KEY_ORDER));
 };
 
-/** Read + validate a mod's committed config.json. */
+/**
+ * Read + validate a mod's committed config.json. Schema failures surface as a
+ * `ConfigError` with the issues formatted the same way `loadConfigYaml` does —
+ * a raw ZodError stringifies to a multi-line dump of issue objects, which is
+ * unreadable when embedded in a one-line CI error.
+ */
 export const readConfigJson = (mod: Mod): ConfigJson =>
-  configJsonSchema.parse(readJsonFile(path.join(mod.dir, 'config.json')));
+  parseOrThrow(
+    configJsonSchema,
+    readJsonFile(path.join(mod.dir, 'config.json')),
+    (issues) => new ConfigError(`${mod.relDir}: invalid config.json — ${issues}`),
+  );
 
 /** Read + validate a build/build.lock.json, if present. */
 export const readBuildLock = (buildDir: string): BuildLock | undefined => {
