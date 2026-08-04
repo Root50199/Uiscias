@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.53.1](https://github.com/Root50199/Uiscias/compare/v1.53.0...v1.53.1) (2026-08-04)
+
+
+### Fixes
+
+* regenerate BriMidirEffects config.json ([3d48dff](https://github.com/Root50199/Uiscias/commit/3d48dff2b3b5b6259a94ce8b717829ca56509e3a))
+* updated readmes ([4144b52](https://github.com/Root50199/Uiscias/commit/4144b529198f50af121d9c30a42723d102f966db))
+
 ## [1.53.0](https://github.com/Root50199/Uiscias/compare/v1.52.1...v1.53.0) (2026-08-04)
 
 
