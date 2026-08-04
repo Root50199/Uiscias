@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.53.0](https://github.com/Root50199/Uiscias/compare/v1.52.1...v1.53.0) (2026-08-04)
+
+
+### Mods added / updated
+
+* added bomb animation in place of ball ([b91bbe4](https://github.com/Root50199/Uiscias/commit/b91bbe49a5dac990f918de9911bf3c839e4055a6))
+* updated gate 2 for 40/20% ([2f68fd6](https://github.com/Root50199/Uiscias/commit/2f68fd662f43f558f6eaf1045c3e04a97236d2d7))
+
 ## [1.52.1](https://github.com/Root50199/Uiscias/compare/v1.52.0...v1.52.1) (2026-08-03)
 
 
