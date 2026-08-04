@@ -8,9 +8,10 @@
   "hasVariants": false,
   "usedFiles": [
     "data/gfx/fx/effect/MRD2_BT.xml",
+    "data/material/fx/effect/common_effect_add_87.dds",
     "data/material/fx/effect/common_effect_Late_add_88.dds"
   ],
-  "sourceHash": "sha256-8b1855e777a8c232a03f5f69499908cc3f6b75f9b4de442a35f4d1f067fad2ed",
+  "sourceHash": "sha256-108122580baac628d82f5bd5a6c82c12e3f4b1c8cab3c041a3b0165c9ba4d480",
   "readme": "# Bri Bronntanas Effects\n\n## What it does\n\nStill a work in progress, but right now it removes the goop from storm rush and replaces it with hard lines and removes the .5 second delay on the storm rush telegraph. Also remove many of the particle effects/dust from his other attacks.",
   "images": ["50%.gif", "Stormrush.gif"]
 }
