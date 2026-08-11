@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.54.0](https://github.com/Root50199/Uiscias/compare/v1.53.1...v1.54.0) (2026-08-11)
+
+
+### Mods added / updated
+
+* implement prerelease label propagation in release workflow ([19874ff](https://github.com/Root50199/Uiscias/commit/19874ff41dc38c275ab46100ddc060a35c4ba4a5))
+
 ## [1.53.1](https://github.com/Root50199/Uiscias/compare/v1.53.0...v1.53.1) (2026-08-04)
 
 
