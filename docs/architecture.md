@@ -657,6 +657,37 @@ The `mabi-pack2` pack key therefore stays local and is not a CI secret. (GitHub
 `windows-latest` runners _can_ execute arbitrary `.exe`, so moving packing into
 CI later is possible — it is simply not needed by this design.)
 
+### Prereleases
+
+A release can be flagged a GitHub **prerelease** via the `prerelease` label,
+but the label is applied to the **feature** PR (the `feat`/`fix` PR that
+triggers the release), not the release PR itself:
+
+- release-please's release PR is armed for GitHub native auto-merge and lands
+  as soon as CI is green — often within minutes — leaving no realistic window
+  for a human to label it by hand.
+- Instead, a workflow step in the `release-please` job reads the labels off
+  the just-merged feature PR (the same "PR behind this commit" lookup the
+  final `prerelease` job uses) and forwards `prerelease` onto the open release
+  PR, before auto-merge is armed. From there the existing `prerelease` job
+  sees the label on the release PR at merge time and runs
+  `gh release edit ... --prerelease`, same as before.
+- The label is **sticky for the whole release cycle**: if _any_ PR that
+  contributes to an open release PR is labeled `prerelease`, the propagation
+  step re-applies the label every time that PR (or a later one) merges, so the
+  eventual release ships as a prerelease. To promote it back to a full
+  release, remove the label from the release PR directly — the final job only
+  looks at the release PR's labels at merge time, so a direct edit there still
+  wins.
+- **Only label PRs that actually cut a release** (i.e. carry a `feat`/`fix`
+  commit). Labeling a `chore`-only PR either does nothing (no release PR is
+  open, so the propagation step has nothing to label) or attaches prerelease
+  intent to whatever release PR happens to be open — the only way to hit the
+  narrow race where the label lands after that PR's auto-merge has already
+  fired.
+- Prereleases are excluded from lifetime download totals; see
+  [Download counts](#download-counts).
+
 ### Carry-forward example
 
 Release `1.0.0` ships:

@@ -8,6 +8,9 @@ permissions:
   contents: write
   pull-requests: write
 
+env:
+  PRERELEASE_LABEL: prerelease
+
 jobs:
   # Conventional Commits drive versioning: feat → minor, fix → patch. Each push
   # to main opens/updates a release PR; merging that PR cuts the GitHub release.
@@ -39,6 +42,28 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+      # The release PR auto-merges as soon as CI is green, leaving no window for
+      # a human to label it `prerelease`. So intent is captured on the feature
+      # PR that cut the release instead, and forwarded here onto the release PR
+      # before auto-merge is armed (ordering matters). Reuses the same "PR
+      # behind this commit" lookup as the final prerelease job. The App token
+      # is used because it has Issues write, needed for label edits.
+      - name: Propagate prerelease label to the release PR
+        if: ${{ steps.rp.outputs.pr }}
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          RELEASE_PR: ${{ steps.rp.outputs.pr }}
+        run: |
+          labels=$(gh api "repos/${{ github.repository }}/commits/${{ github.sha }}/pulls" \
+            --jq '.[].labels[].name')
+          if echo "$labels" | grep -qx "$PRERELEASE_LABEL"; then
+            pr_number=$(echo "$RELEASE_PR" | jq -r '.number')
+            echo "Merged PR was labeled '$PRERELEASE_LABEL' -> labeling release PR #$pr_number"
+            gh pr edit "$pr_number" --add-label "$PRERELEASE_LABEL" --repo "${{ github.repository }}"
+          else
+            echo "Merged PR was not labeled '$PRERELEASE_LABEL' -> nothing to propagate"
+          fi
 
       # If release-please left an open release PR, turn on GitHub native
       # auto-merge. Branch protection on main requires the CI checks (format,
@@ -106,7 +131,10 @@ jobs:
   # touching the upload. Uses --repo, so gh needs no checkout/git context.
   # GITHUB_TOKEN already has contents + PR write from the top-level permissions
   # block, and github.sha is the release PR's merge commit, which resolves back
-  # to that PR and its labels.
+  # to that PR and its labels. The label normally arrives here via the
+  # propagation step above (copied from the feature PR that cut the release),
+  # but editing the release PR's labels directly still overrides — this job
+  # only ever looks at what's on the release PR at merge time.
   prerelease:
     needs: [release-please, assets]
     if: ${{ needs.release-please.outputs.release_created == 'true' }}
@@ -118,9 +146,9 @@ jobs:
         run: |
           labels=$(gh api "repos/${{ github.repository }}/commits/${{ github.sha }}/pulls" \
             --jq '.[].labels[].name')
-          if echo "$labels" | grep -qx 'prerelease'; then
-            echo "Found 'prerelease' label -> marking ${{ needs.release-please.outputs.tag_name }} as prerelease"
+          if echo "$labels" | grep -qx "$PRERELEASE_LABEL"; then
+            echo "Found '$PRERELEASE_LABEL' label -> marking ${{ needs.release-please.outputs.tag_name }} as prerelease"
             gh release edit "${{ needs.release-please.outputs.tag_name }}" --prerelease --repo "${{ github.repository }}"
           else
-            echo "No 'prerelease' label -> leaving ${{ needs.release-please.outputs.tag_name }} as a full release"
+            echo "No '$PRERELEASE_LABEL' label -> leaving ${{ needs.release-please.outputs.tag_name }} as a full release"
           fi
