@@ -7,6 +7,6 @@
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/gfx/fx/effect/Multiclass_fx02.xml"],
-  "sourceHash": "sha256-afef1aa7842238d485b74f6212be5dfcec2f201abb1befd5764000e71006c6a5",
+  "sourceHash": "sha256-c6716caf146399d907a6ccf2627e48c0d84fde42e774b342dbc7f51ae4705543",
   "readme": "# Alchemic Sharpshooter Fx Off\n\n## What it does\n\nReduces most of the FX from Stinger."
 }
