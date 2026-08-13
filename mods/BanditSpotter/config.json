@@ -7,8 +7,8 @@
   "findiasTags": ["QoL", "UI"],
   "isVariant": false,
   "hasVariants": false,
-  "usedFiles": ["data/db/commercecommon.xml", "data/db/npcclientappearance.xml"],
-  "sourceHash": "sha256-951f080f3650470b1d59f4d0ff450b3187e927d245525ef18972e9d431a0b736",
+  "usedFiles": ["data/db/CommerceCommon.xml", "data/db/npcclientappearance.xml"],
+  "sourceHash": "sha256-3e96a0ab76c91652fc4ce34d86c2bed34427ed91345394dcee1f987ba7038805",
   "readme": "# Bandit Spotter\n\n## What it does\n\nMakes the name tag appear on bandits and makes them appear on the map as NPCs.",
   "images": ["BanditSpotter.png"]
 }

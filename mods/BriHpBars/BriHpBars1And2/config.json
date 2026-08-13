@@ -7,7 +7,7 @@
   "isVariant": true,
   "hasVariants": false,
   "usedFiles": ["data/db/Race.xml"],
-  "sourceHash": "sha256-0ea54cd350bb38ab46a06ee376ab17cfe167ffa7da44e1becedac416c11dcda8",
+  "sourceHash": "sha256-ffff0672b674fe777a0dc59229c9a65e0a72cd62cf66863e81eb89c49ba01365",
   "readme": "# Bri Hp Bars 1 And 2\n\n## What it does\n\nSwaps out every boss HP bar in the game with the newer type that displays statuses. Also adds HP bars to certain mobs based on which variant you choose.\nThis one adds boss HP bars to the first and second Shards of Solace aka halos in Gate 3. Also adds HP bars for Shard of Solace 1 and the Shard of Remorse (Green Room) in Gate 4.\n\nTip: If you coordinate with a partner you can each run a different variant to be able to see all 3 60% Shards.",
   "images": ["hp_bar_example.png"]
 }
