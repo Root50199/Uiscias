@@ -8,7 +8,7 @@
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/db/commercecommon.xml", "data/db/npcclientappearance.xml"],
-  "sourceHash": "sha256-992fb8e31b33a98ba6d19e384db4da68a8f24fcd795183edfefb680f51e4bfdd",
+  "sourceHash": "sha256-5d30ba4b58554a202f4616db8d9a4a44d0309f59196c7ac93a8955f4486874f6",
   "readme": "# Bandit Spotter\n\n## What it does\n\nMakes the name tag appear on bandits and makes them appear on the map as NPCs.",
   "images": ["BanditSpotter.png"]
 }
