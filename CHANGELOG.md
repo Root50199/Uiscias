@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.56.0](https://github.com/Root50199/Uiscias/compare/v1.55.0...v1.56.0) (2026-08-13)
+
+
+### Mods added / updated
+
+* updating support game version ([2cb62db](https://github.com/Root50199/Uiscias/commit/2cb62dbdc482c10ab6aeecdb50e1f7449fb65ca2))
+
 ## [1.55.0](https://github.com/Root50199/Uiscias/compare/v1.54.0...v1.55.0) (2026-08-13)
 
 
