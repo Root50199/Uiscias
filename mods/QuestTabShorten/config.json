@@ -7,7 +7,7 @@
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/db/Questcategory.xml"],
-  "sourceHash": "sha256-406798c6b37551004fcc87496df337a325f87f80daaf0cde6adca5cd6fcb9bc2",
+  "sourceHash": "sha256-adad77de092e9619e614e5d91284a28886f5c380e049ebfaa2e4bea306028a24",
   "readme": "# Quest Tab Shorten\n\n## What it does\n\nShortens the names for many of the tabs in the quest window.",
   "images": ["QuestTabspng.png"]
 }

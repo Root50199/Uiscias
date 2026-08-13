@@ -10,7 +10,7 @@
     "data/db/layout2/Production/Production2021/CookingView2.xml",
     "data/UisciasAmountRuler.dds"
   ],
-  "sourceHash": "sha256-3a7623df60ae598fe7b439d81da5f70b816bd1b3afe0431eb1e911de095c1bf4",
+  "sourceHash": "sha256-cdb79298d0207c375370d36f79c0fe8c8722f4c6f36aea702ab3d5f57468c83f",
   "readme": "# Cooking Ruler\n\n## What it does\n\nExpands the cooking bar and adds an overlay with tick marks every 1%.\n\nHeavily modified, but originally from [this Erinn World thread](https://www.erinn.world/forum.php?mod=viewthread&tid=16795&extra=page%3D2&page=1) by 隐翅.\n\n### How it's made\n\nThe ruler was made in Paint.NET and the size and position of the gauge was edited in the XML.",
   "images": ["cooking_ruler.png"]
 }
