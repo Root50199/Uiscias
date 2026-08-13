@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.55.0](https://github.com/Root50199/Uiscias/compare/v1.54.0...v1.55.0) (2026-08-13)
+
+
+### Mods added / updated
+
+* removing all effects from AS ([ec010e4](https://github.com/Root50199/Uiscias/commit/ec010e4dff6d89b121db8df788be86a9a3f2b933))
+
 ## [1.54.0](https://github.com/Root50199/Uiscias/compare/v1.53.1...v1.54.0) (2026-08-11)
 
 
