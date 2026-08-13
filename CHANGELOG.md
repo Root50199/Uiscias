@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.57.0](https://github.com/Root50199/Uiscias/compare/v1.56.0...v1.57.0) (2026-08-13)
+
+
+### Mods added / updated
+
+* repack patched mods and bump version ledger ([a3e0812](https://github.com/Root50199/Uiscias/commit/a3e08122737719e2c012da82a3f59eae0c0f57dd))
+* update mod source XML for the new life patch ([97c9f62](https://github.com/Root50199/Uiscias/commit/97c9f62812fda1a8c42ab0653da6933ff2973502))
+* update patched game XML for BanditSpotter and related mods ([49ab248](https://github.com/Root50199/Uiscias/commit/49ab2485e882921f7fa6c9003a09936379a500b7))
+
+
+### Fixes
+
+* regenerate BanditSpotter config and repack ([1ac80b6](https://github.com/Root50199/Uiscias/commit/1ac80b64da1edf9b4332fda369f17288187ec061))
+* regenerate configs and repack mods for new life patch ([36f9cb5](https://github.com/Root50199/Uiscias/commit/36f9cb5d26e2fb442e3168f31f4f5e2b15dd6f39))
+* updated supported ver ([e9202c7](https://github.com/Root50199/Uiscias/commit/e9202c7893ea7133e3276bfdc084faa6834374c7))
+
 ## [1.56.0](https://github.com/Root50199/Uiscias/compare/v1.55.0...v1.56.0) (2026-08-13)
 
 
