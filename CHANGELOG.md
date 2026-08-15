@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.58.0](https://github.com/Root50199/Uiscias/compare/v1.57.0...v1.58.0) (2026-08-15)
+
+
+### Mods added / updated
+
+* updating g2 effects ([55f1313](https://github.com/Root50199/Uiscias/commit/55f13133e4f8ab7fef34a0006bdb5db1cdd1daa1))
+
 ## [1.57.0](https://github.com/Root50199/Uiscias/compare/v1.56.0...v1.57.0) (2026-08-13)
 
 
