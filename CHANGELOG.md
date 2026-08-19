@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.59.0](https://github.com/Root50199/Uiscias/compare/v1.58.0...v1.59.0) (2026-08-19)
+
+
+### Mods added / updated
+
+* added seedicons ([bac606e](https://github.com/Root50199/Uiscias/commit/bac606eb59668ce14c1d2598c049f594249a25d4))
+
 ## [1.58.0](https://github.com/Root50199/Uiscias/compare/v1.57.0...v1.58.0) (2026-08-15)
 
 
