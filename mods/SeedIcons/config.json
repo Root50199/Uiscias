@@ -1,0 +1,31 @@
+{
+  "modId": "SeedIcons",
+  "modName": "Seed Icons",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["Cosmetic", "QoL", "UI"],
+  "isVariant": false,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/db/itemDB_ETC.xml",
+    "data/gfx/image2/inven/item/blackberry_seed.dds",
+    "data/gfx/image2/inven/item/item_seasonalfarming_02.dds",
+    "data/gfx/image2/inven/item/item_seasonalfarming_03.dds",
+    "data/gfx/image2/inven/item/item_seasonalfarming_04_s.dds",
+    "data/gfx/image2/inven/item/item_seasonalfarming_05_s.dds",
+    "data/gfx/image2/inven/item/item_seasonalfarming_06_s.dds",
+    "data/gfx/image2/inven/item/item_seasonalfarming_07_s.dds",
+    "data/gfx/image2/inven/item/item_seasonalfarming_08_s.dds",
+    "data/gfx/image2/inven/item/item_seasonalfarming_09_s.dds",
+    "data/gfx/image2/inven/item/item_seasonalfarming_10_s.dds",
+    "data/gfx/image2/inven/item/jasmine_seed.dds",
+    "data/gfx/image2/inven/item/okra_seed.dds",
+    "data/gfx/image2/inven/item/pear_seed.dds",
+    "data/gfx/image2/inven/item/quartz_seed.dds",
+    "data/gfx/image2/inven/item/rubber_seed.dds",
+    "data/gfx/image2/inven/item/spider_seed.dds"
+  ],
+  "sourceHash": "sha256-f322bd8a4cbceaf0646d6abde122aa8ea1aeda5db19acf1347911102af180fdc",
+  "readme": "# Seed Icons\n\n## What it does\n\nChanges the icons for the tail farm seed items to actually indicate which seed they are. Also simplified the item names by removing (taillteann farm)",
+  "images": ["SeedIcons.png"]
+}
