@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.59.1](https://github.com/Root50199/Uiscias/compare/v1.59.0...v1.59.1) (2026-08-22)
+
+
+### Fixes
+
+* fixing sei no sound ([0fa2737](https://github.com/Root50199/Uiscias/commit/0fa27377d2b69a85a7fd8a8ccf19a032a63adb4d))
+* updating sei no just a bit more ([74600fe](https://github.com/Root50199/Uiscias/commit/74600feb10f5c3d30ef93917dd7d4efad487264a))
+
 ## [1.59.0](https://github.com/Root50199/Uiscias/compare/v1.58.0...v1.59.0) (2026-08-19)
 
 
