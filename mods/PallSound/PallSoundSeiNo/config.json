@@ -10,6 +10,6 @@
     "data/sound/skill_sb_collapse_wave_casting.wav",
     "data/sound/skill_sb_collapse_wave_process.wav"
   ],
-  "sourceHash": "sha256-337b7be26d79e297a2cf1fd60727082e23bf1c2d8fc560aad45537e376ae5c81",
+  "sourceHash": "sha256-4401738765d8c5b559676b1f33c79bbd5b2139aa6addd1f973ee7dfb1899429c",
   "readme": "# Pall Sound Sei No\n\n## What it does\n\nIncreases the volume of the prep Pall sound and replaces the finished casting sound with \"Sei No\" so you can be sure that it finished casting.\n\n### How it's made\n\nDescription coming soon."
 }
