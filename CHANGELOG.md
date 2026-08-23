@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.60.1](https://github.com/Root50199/Uiscias/compare/v1.60.0...v1.60.1) (2026-08-23)
+
+
+### Fixes
+
+* re-packing commercecommon -&gt; CommerceCommon.xml ([ad8cd73](https://github.com/Root50199/Uiscias/commit/ad8cd739f9b963f79717a072e61a743224a2f853))
+
 ## [1.60.0](https://github.com/Root50199/Uiscias/compare/v1.59.1...v1.60.0) (2026-08-23)
 
 
