@@ -78,6 +78,9 @@ jobs:
   commits:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -100,11 +103,17 @@ jobs:
       # is intentionally `chore(main): release X`. Guarding only this step (not the
       # whole job) keeps the commit-lint step running, so the `commits` check still
       # reports a real success and stays safe to add as a required check.
+      #
+      # Fetch the title live (`gh pr view`) rather than from the event payload:
+      # re-running a job reuses the original payload, which still has the old title.
       - name: Ensure PR title is NOT a conventional commit
         if: ${{ !startsWith(github.head_ref, 'release-please--') }}
         env:
-          PR_TITLE: ${{ github.event.pull_request.title }}
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
+          PR_TITLE=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json title --jq .title)
+          echo "PR title: $PR_TITLE"
           if echo "$PR_TITLE" | grep -qiE '^(feat|fix|perf|chore|refactor|docs|test|build|ci|style|revert)(\([^)]+\))?!?:'; then
             echo "::error::PR title '$PR_TITLE' is a Conventional Commit."
             echo "With merge commits, the PR title becomes the merge-commit body, duplicating a branch commit in history/changelog."
