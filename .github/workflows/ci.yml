@@ -4,90 +4,75 @@ on:
   push:
     branches: [main]
   pull_request:
-    types: [opened, synchronize, reopened, edited]
 
 jobs:
   format:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.event.action != 'edited'
         uses: actions/checkout@v4
 
       - name: Setup Node.js
-        if: github.event.action != 'edited'
         uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
           cache: npm
 
       - name: Install dependencies
-        if: github.event.action != 'edited'
         run: npm ci
         env:
           HUSKY: 0
 
       - name: Check formatting
-        if: github.event.action != 'edited'
         run: npm run format:check
 
       - name: Lint markdown
-        if: github.event.action != 'edited'
         run: npm run lint:md
 
   validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.event.action != 'edited'
         uses: actions/checkout@v4
 
       - name: Setup Node.js
-        if: github.event.action != 'edited'
         uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
           cache: npm
 
       - name: Install dependencies
-        if: github.event.action != 'edited'
         run: npm ci
         env:
           HUSKY: 0
 
       - name: Typecheck tooling
-        if: github.event.action != 'edited'
         run: npm run typecheck
 
       # Drift check (hash-only, no packing): fails if any committed config.json
       # or build.lock.json is out of sync with its source. Backstops commits
       # made with --no-verify or a misconfigured hook.
       - name: Check for config/pack drift
-        if: github.event.action != 'edited'
         run: npm run check
 
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.event.action != 'edited'
         uses: actions/checkout@v4
 
       - name: Setup Node.js
-        if: github.event.action != 'edited'
         uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
           cache: npm
 
       - name: Install dependencies
-        if: github.event.action != 'edited'
         run: npm ci
         env:
           HUSKY: 0
 
       - name: Run tests
-        if: github.event.action != 'edited'
         run: npm test
 
   commits:
@@ -98,7 +83,6 @@ jobs:
       pull-requests: read
     steps:
       - name: Checkout
-        if: github.event.action != 'edited'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -106,7 +90,6 @@ jobs:
       # Merge-commit strategy (no rebase): every branch commit lands on main, so
       # lint them all. Merge commits are ignored by commitlint's defaults.
       - name: Lint PR commits
-        if: github.event.action != 'edited'
         uses: wagoid/commitlint-github-action@v6
         with:
           configFile: commitlint.config.mjs
@@ -129,7 +112,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          PR_TITLE=$(gh pr view "$PR_NUMBER" --json title --jq .title)
+          PR_TITLE=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json title --jq .title)
           echo "PR title: $PR_TITLE"
           if echo "$PR_TITLE" | grep -qiE '^(feat|fix|perf|chore|refactor|docs|test|build|ci|style|revert)(\([^)]+\))?!?:'; then
             echo "::error::PR title '$PR_TITLE' is a Conventional Commit."
