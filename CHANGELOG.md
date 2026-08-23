@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.60.0](https://github.com/Root50199/Uiscias/compare/v1.59.1...v1.60.0) (2026-08-23)
+
+
+### Mods added / updated
+
+* added Farm WASD bugfix ([8c83bd2](https://github.com/Root50199/Uiscias/commit/8c83bd248e767b78cf3d2fa77c46a3b0303865ed))
+
 ## [1.59.1](https://github.com/Root50199/Uiscias/compare/v1.59.0...v1.59.1) (2026-08-22)
 
 
