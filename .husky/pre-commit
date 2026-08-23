@@ -20,3 +20,8 @@ npx tsx scripts/src/index.ts pack --changed --staged --stage || exit 1
 # run. Passes trivially in the order above; it exists so a future reordering (or
 # a new step that rewrites files) fails here instead of in CI.
 npx tsx scripts/src/index.ts generate-configs --changed --staged --check || exit 1
+
+# Guard: a working-tree file whose case differs from git's tracked name silently
+# drifts config.json on this case-insensitive FS and only fails on case-sensitive
+# CI. Catch it here, before the commit lands.
+npx tsx scripts/src/index.ts check-case --changed --staged || exit 1

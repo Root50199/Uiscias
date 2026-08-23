@@ -19,6 +19,20 @@ export interface ChangedOptions {
   base?: string;
 }
 
+/**
+ * Case-exact, repo-relative posix paths that git tracks (from the index).
+ * `git ls-files` reports the stored case regardless of `core.ignorecase`, so it
+ * is the source of truth for a file's canonical name — unlike a working-tree
+ * scan on a case-insensitive filesystem. Optionally scope to `pathspecs`.
+ */
+export const gitTrackedPaths = (repoRoot: string, pathspecs: string[] = []): string[] => {
+  const out = execFileSync('git', ['ls-files', '-z', '--', ...pathspecs], {
+    cwd: repoRoot,
+    encoding: 'utf8',
+  });
+  return out.split('\0').filter(Boolean); // already posix, case-exact
+};
+
 /** Repo-relative paths (posix) that changed, per the requested git scope. */
 export const gitChangedPaths = (repoRoot: string, opts: ChangedOptions): string[] => {
   const args = ['diff', '--name-only'];
