@@ -1,0 +1,12 @@
+{
+  "modId": "FarmWASDBugFix",
+  "modName": "Farm WASD Bug Fix",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["FoV", "QoL", "Zoom"],
+  "isVariant": false,
+  "hasVariants": true,
+  "usedFiles": [],
+  "sourceHash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "readme": "# Farm WASD Bug Fix\n\n## What it does\n\nfixes the janky WASD movement on the tail farms when walking towards the trees.\n\n### How it's made\n\nAdded a collision object where the trees are."
+}

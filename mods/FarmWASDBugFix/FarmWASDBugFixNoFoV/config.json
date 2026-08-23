@@ -1,0 +1,23 @@
+{
+  "modId": "FarmWASDBugFixNoFoV",
+  "modName": "Farm WASD Bug Fix No FoV",
+  "modAuthor": "Root50199",
+  "updateType": "stable",
+  "findiasTags": ["QoL"],
+  "isVariant": true,
+  "hasVariants": false,
+  "usedFiles": [
+    "data/world/Taillteann_NewFarm/_Taillteann_NewFarm_1.area",
+    "data/world/Taillteann_NewFarm/_Taillteann_NewFarm_2.area",
+    "data/world/Taillteann_NewFarm/_Taillteann_NewFarm_3.area",
+    "data/world/Taillteann_NewFarm/_Taillteann_NewFarm_4.area",
+    "data/world/Taillteann_NewFarm/_Taillteann_NewFarm_5.area",
+    "data/world/Taillteann_NewFarm/_Taillteann_NewFarm_6.area",
+    "data/world/Taillteann_NewFarm/_Taillteann_NewFarm_7.area",
+    "data/world/Taillteann_NewFarm/_Taillteann_NewFarm_8.area",
+    "data/world/Taillteann_NewFarm/_Taillteann_NewFarm_9.area",
+    "data/world/Taillteann_NewFarm/Taillteann_NewFarm.rgn"
+  ],
+  "sourceHash": "sha256-e4a3c0cb082fd6404795992885e1b306ee24b9721285c2ecf91cd0c24f654dd3",
+  "readme": "# Farm WASD Bug Fix\n\n## What it does\n\nfixes the janky WASD movement on the tail farms when walking towards the trees.\n\n### How it's made\n\nAdded a collision object where the trees are."
+}
