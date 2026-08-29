@@ -5,6 +5,7 @@ import { runGenerateConfigs } from './commands/generateConfigs';
 import { runPack } from './commands/pack';
 import { runBuildManifest } from './commands/buildManifest';
 import { runCheck } from './commands/check';
+import { runCheckCase } from './commands/checkCase';
 import { runNewMod } from './commands/newMod';
 import { err } from './lib/term';
 import type { ScopeOptions } from './lib/scope';
@@ -73,6 +74,10 @@ program
   .command('check')
   .description('CI drift check: configs + build locks vs. sources')
   .action(() => runCheck());
+
+withScope(program.command('check-case'))
+  .description('Fail if a working-tree file case differs from git')
+  .action((opts: ScopeOptions) => runCheckCase(opts));
 
 program.parseAsync(process.argv).catch((e) => {
   console.error(err(e instanceof Error ? e.message : String(e)));

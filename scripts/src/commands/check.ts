@@ -9,6 +9,8 @@ import { readVersionLedgerStrict, floorFor } from '../lib/versionLedger';
 import { ok, err, glyph, Tally } from '../lib/term';
 import type { VersionLedger } from '../schema';
 import { runGenerateConfigs } from './generateConfigs';
+import { collectCaseMismatches } from './checkCase';
+import { describeCaseMismatch } from '../lib/caseDrift';
 
 /**
  * CI drift check (hash-only; safe on Linux, never packs). Fails if any
@@ -95,4 +97,19 @@ export const runCheck = async (): Promise<void> => {
   console.log(`Pack drift: checked ${targets.length} mod(s), ${problemText}.`);
   for (const f of tally.errors) console.error(`  ${glyph.bad} ${f}`);
   if (tally.hasErrors) process.exitCode = 1;
+
+  // 3. Case drift: working-tree file names must match git's case-exact tracked
+  // names. Redundant on case-sensitive CI (a fresh checkout always matches git),
+  // but the single source of truth for the case guard so behavior is identical
+  // wherever `check` runs.
+  const caseResults = collectCaseMismatches(repoRoot, targets);
+  const caseProblems = caseResults.reduce((n, r) => n + r.mismatches.length, 0);
+  const caseText = caseProblems > 0 ? err(`${caseProblems} problem(s)`) : ok('0 problems');
+  console.log(`Case drift: checked ${targets.length} mod(s), ${caseText}.`);
+  for (const { mod, mismatches } of caseResults) {
+    for (const mismatch of mismatches) {
+      console.error(`  ${glyph.bad} ${mod.relDir}: ${describeCaseMismatch(mismatch)}`);
+    }
+  }
+  if (caseProblems > 0) process.exitCode = 1;
 };

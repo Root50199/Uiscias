@@ -15,6 +15,7 @@
     "pack": "tsx scripts/src/index.ts pack",
     "build-manifest": "tsx scripts/src/index.ts build-manifest",
     "check": "tsx scripts/src/index.ts check",
+    "check-case": "tsx scripts/src/index.ts check-case",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc -p tsconfig.json --noEmit",
