@@ -7,6 +7,6 @@
   "isVariant": false,
   "hasVariants": false,
   "usedFiles": ["data/gfx/fx/effect/Mfx_SG01.xml", "data/gfx/fx/effect/Mfx_SG02.xml"],
-  "sourceHash": "sha256-47c20726ba7cff975863c9df75c219482cebfe83c7350eadcd214a89babfaeba",
+  "sourceHash": "sha256-1a01503467c538179847b3a0a2d3265f58ccee3d2024177b1b2cf25815a9c324",
   "readme": "# Sacred Guardian Fx Off\n\n## What it does\n\nRemoves most of the effects from the SG arcana.\n\n### How it's made\n\nSee files."
 }
