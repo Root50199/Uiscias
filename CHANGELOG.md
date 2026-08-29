@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.61.0](https://github.com/Root50199/Uiscias/compare/v1.60.1...v1.61.0) (2026-08-29)
+
+
+### Mods added / updated
+
+* add case drift check to prevent working-tree file name mismatches ([d36c899](https://github.com/Root50199/Uiscias/commit/d36c899799c70b118b7395b413fc358208ffaa33))
+
 ## [1.60.1](https://github.com/Root50199/Uiscias/compare/v1.60.0...v1.60.1) (2026-08-23)
 
 
