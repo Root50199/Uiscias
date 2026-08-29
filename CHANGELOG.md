@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.61.1](https://github.com/Root50199/Uiscias/compare/v1.61.0...v1.61.1) (2026-08-29)
+
+
+### Fixes
+
+* cleaning up dd fx off ([348c16d](https://github.com/Root50199/Uiscias/commit/348c16d2cbe0e68fa3995e44af4342621db62836))
+
 ## [1.61.0](https://github.com/Root50199/Uiscias/compare/v1.60.1...v1.61.0) (2026-08-29)
 
 
