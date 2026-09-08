@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.62.0](https://github.com/Root50199/Uiscias/compare/v1.61.1...v1.62.0) (2026-09-08)
+
+
+### Mods added / updated
+
+* remade blacksmith ([c834d7c](https://github.com/Root50199/Uiscias/commit/c834d7c4a3f0d5e06e0c331c9764555d76d1c2f2))
+
 ## [1.61.1](https://github.com/Root50199/Uiscias/compare/v1.61.0...v1.61.1) (2026-08-29)
 
 
