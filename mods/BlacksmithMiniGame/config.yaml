@@ -1,7 +1,8 @@
 modId: BlacksmithMiniGame
 modName: Blacksmith Mini Game
-modAuthor: Unknown
-modAdditionalCredits: Ported and maintained by Root50199
+modAuthor: Root50199
+modAdditionalCredits: Original by unknown, remade for new life by Root50199
+recentUpdateNotes: Remade for Newlife
 updateType: stable
 findiasTags:
   - QoL
