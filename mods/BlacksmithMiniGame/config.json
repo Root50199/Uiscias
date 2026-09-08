@@ -1,14 +1,15 @@
 {
   "modId": "BlacksmithMiniGame",
   "modName": "Blacksmith Mini Game",
-  "modAuthor": "Unknown",
-  "modAdditionalCredits": "Ported and maintained by Root50199",
+  "modAuthor": "Root50199",
+  "modAdditionalCredits": "Original by unknown, remade for new life by Root50199",
   "updateType": "stable",
   "findiasTags": ["QoL", "UI", "Visual Clarity"],
+  "recentUpdateNotes": "Remade for Newlife",
   "isVariant": false,
   "hasVariants": false,
-  "usedFiles": ["data/gfx/gui/blacksmith.dds"],
-  "sourceHash": "sha256-83378aee8daab2cf0fb945fddcf7cd53112934b5f405a99485aa8294a72b5dfe",
-  "readme": "# Blacksmith Mini Game\n\n## What it does\n\nRemoves the background image and changes the cursor and hit marks to X's.",
-  "images": ["blacksmith.png"]
+  "usedFiles": ["data/gfx/gui/blacksmith_sizeup.dds", "data/gfx/gui/blacksmith.dds"],
+  "sourceHash": "sha256-cd0f2acda86bb8e0c1ee3bb765ff5676918f274b864b10e3162abd09c1ebd70d",
+  "readme": "# Blacksmith Mini Game\n\n## What it does\n\nRemoves the background image and changes the cursor and hit marks to circles with a central dot. when perfectly aligned the central dot is gone and the outer circle perfectly overlays to remove all ambiguity. The background red and after hit blue markers have been made into 4 pixel grid surrounding the center so you can clearly see how far off you were + the game's random offset.",
+  "images": ["Backsmith.gif", "blacksmith_sizeup.png"]
 }
