@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.64.1](https://github.com/Root50199/Uiscias/compare/v1.64.0...v1.64.1) (2026-09-10)
+
+
+### Fixes
+
+* changed supported ver ([63fe5ee](https://github.com/Root50199/Uiscias/commit/63fe5eef9444342bfaebac9e5303dfa8730e48ea))
+
 ## [1.64.0](https://github.com/Root50199/Uiscias/compare/v1.63.0...v1.64.0) (2026-09-10)
 
 
