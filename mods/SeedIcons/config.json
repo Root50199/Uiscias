@@ -25,7 +25,7 @@
     "data/gfx/image2/inven/item/rubber_seed.dds",
     "data/gfx/image2/inven/item/spider_seed.dds"
   ],
-  "sourceHash": "sha256-f322bd8a4cbceaf0646d6abde122aa8ea1aeda5db19acf1347911102af180fdc",
+  "sourceHash": "sha256-e2478790c1ea60b373d59b01546c6995d870d302ca845c99afeb95a53ec984bf",
   "readme": "# Seed Icons\n\n## What it does\n\nChanges the icons for the tail farm seed items to actually indicate which seed they are. Also simplified the item names by removing (taillteann farm)",
   "images": ["SeedIcons.png"]
 }
