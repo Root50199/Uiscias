@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.63.0](https://github.com/Root50199/Uiscias/compare/v1.62.0...v1.63.0) (2026-09-10)
+
+
+### Mods added / updated
+
+* updating supported game version ([9b5bacb](https://github.com/Root50199/Uiscias/commit/9b5bacbce9a87a335df958197afe67d3e1c0af2e))
+
 ## [1.62.0](https://github.com/Root50199/Uiscias/compare/v1.61.1...v1.62.0) (2026-09-08)
 
 
