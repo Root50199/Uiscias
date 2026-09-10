@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.64.2](https://github.com/Root50199/Uiscias/compare/v1.64.1...v1.64.2) (2026-09-10)
+
+
+### Fixes
+
+* fixed error with seed icons ([07ba98a](https://github.com/Root50199/Uiscias/commit/07ba98ad80ffbd7a54ba7396158c0f2fad1d82da))
+
 ## [1.64.1](https://github.com/Root50199/Uiscias/compare/v1.64.0...v1.64.1) (2026-09-10)
 
 
