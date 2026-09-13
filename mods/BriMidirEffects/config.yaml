@@ -2,7 +2,7 @@ modId: BriMidirEffects
 modName: Bri Midir Effects
 modAuthor: Root50199
 updateType: stable
-recentUpdateNotes: added bomb timer
+recentUpdateNotes: increased tornado cage size to account for desync. removed more lightning fx. increased visibility of the 35% dead zone. removed some effects from 15% in g4. fixed missing new targeting animation for lasers. made the 30/35% blue line thinner. a purple line appears on halos he is about to deploy. made effect under the bomb easier to see.
 findiasTags:
   - Combat
   - Fx
