@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.65.0](https://github.com/Root50199/Uiscias/compare/v1.64.2...v1.65.0) (2026-09-13)
+
+
+### Mods added / updated
+
+* updated midir fx ([1d81a60](https://github.com/Root50199/Uiscias/commit/1d81a60e7c19401c2975e28d571529aa972bd7af))
+* updated midir fx, reduced deployed halo intensity ([e8e0b47](https://github.com/Root50199/Uiscias/commit/e8e0b47130f585313446c4d69db2705370d78f2a))
+
 ## [1.64.2](https://github.com/Root50199/Uiscias/compare/v1.64.1...v1.64.2) (2026-09-10)
 
 
