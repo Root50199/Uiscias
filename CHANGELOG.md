@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.66.1](https://github.com/Root50199/Uiscias/compare/v1.66.0...v1.66.1) (2026-10-15)
+
+
+### Fixes
+
+* setting unsupported flag ([579618b](https://github.com/Root50199/Uiscias/commit/579618be09396a24a0e3aa5a8247bb1e3d1d720d))
+* setting unsupported flag ([d270050](https://github.com/Root50199/Uiscias/commit/d2700509497437585d593d867719d2c7033888a4))
+
 ## [1.66.0](https://github.com/Root50199/Uiscias/compare/v1.65.0...v1.66.0) (2026-10-15)
 
 
