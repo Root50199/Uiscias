@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.66.0](https://github.com/Root50199/Uiscias/compare/v1.65.0...v1.66.0) (2026-10-15)
+
+
+### Mods added / updated
+
+* updated for 10/15 ([ed94983](https://github.com/Root50199/Uiscias/commit/ed949833fdc1af0286c2dc3ece662e74629f9439))
+* updated for 10/15 ([c8450fd](https://github.com/Root50199/Uiscias/commit/c8450fdff8f0169a03c9b00a9f68698f4c42d863))
+
 ## [1.65.0](https://github.com/Root50199/Uiscias/compare/v1.64.2...v1.65.0) (2026-09-13)
 
 
