@@ -24,6 +24,15 @@ describe('sumDownloadsByModId', () => {
     expect(totals.get('AchievmentUnhide')).toBe(60);
   });
 
+  it('sums old (Uiscias) and new (uiscias) asset casings into the same modId', () => {
+    const totals = sumDownloadsByModId([
+      release([{ name: 'UisciasAchievmentUnhide_00001.it', download_count: 10 }]),
+      release([{ name: 'uisciasAchievmentUnhide_00002.it', download_count: 5 }]),
+    ]);
+    expect([...totals.keys()]).toEqual(['AchievmentUnhide']);
+    expect(totals.get('AchievmentUnhide')).toBe(15);
+  });
+
   it('tracks each variant independently by its own modId', () => {
     const totals = sumDownloadsByModId([
       release([

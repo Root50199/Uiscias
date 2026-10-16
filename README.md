@@ -97,8 +97,9 @@ developers who want to build, pack, or extend the collection.
 
 ### Requirements
 
-- **Windows** — packing uses `mabi-pack2.exe` (a Windows binary bundled under
-  `scripts/Mabi-pack2/`), so the pack step only runs on Windows.
+- **Windows** — packing uses `mabi-patcher.exe` (a Windows binary bundled under
+  `scripts/mabi-patcher/`, next to the one `data_#####.it` it uses as a
+  template), so the pack step only runs on Windows.
 - **Node.js `24.x`** (the repo pins the version via `.node-version`; if you use
   [fnm](https://github.com/Schniz/fnm) it picks this up automatically).
 - **npm `11.x`** (ships with the Node version above).
@@ -133,7 +134,7 @@ mod means editing its `config.yaml`, its `data/` files, and its `README.md`
 the version lock) is generated.
 
 > **Tech stack:** Node + TypeScript maintainer scripts (run with `tsx`), zod for
-> validation, Vitest for tests, and `mabi-pack2.exe` for packing. See
+> validation, Vitest for tests, and `mabi-patcher.exe` for packing. See
 > [`docs/architecture.md`](./docs/architecture.md) for the full build/release
 > design and [`docs/packing.md`](./docs/packing.md) for the packer's
 > constraints.
@@ -148,15 +149,15 @@ list of mods, their latest versions, and the actual files all come from here.
 ```text
    Root50199/Uiscias (this repo → GitHub Releases)     tekashi-side/Findias (the app)
    ├─ manifestCatalog.json  ── the catalog ──────────►  reads the catalog to know what
-   └─ Uiscias<Name>_<n>.it  ── the mods ─────────────►  mods exist, then downloads the
+   └─ uiscias<Name>_<n>.it  ── the mods ─────────────►  mods exist, then downloads the
                                                          chosen ones into appdata\package
 ```
 
 Here's the flow:
 
 1. **Packing.** A maintainer edits a mod's source files. Tooling here packs the
-   mod's `data/` folder into a single `Uiscias<Name>_<version>.it` file with
-   `mabi-pack2.exe`. Each source change bumps the version number.
+   mod's `data/` folder into a single `uiscias<Name>_<version>.it` file with
+   `mabi-patcher.exe`. Each source change bumps the version number.
 2. **The catalog.** When changes land, a release publishes a
    `manifestCatalog.json` describing every mod — its name, tags, version, size,
    download count, which game files it touches, and any variants. The same
@@ -165,7 +166,8 @@ Here's the flow:
    release's manifest to build the mod list you see, then downloads the `.it`
    files you choose straight from GitHub into your game's `package` folder.
 4. **Comparing and cleaning up.** Because every mod is named
-   `Uiscias<Name>_<version>.it`, Findias can compare your folder against the
+   `uiscias<Name>_<version>.it` (older releases used a capital `U`; Findias
+   treats both the same), Findias can compare your folder against the
    catalog to tell whether each mod is missing, current, or out of date — and it
    guarantees only one version of each mod is ever installed, leaving the game's
    own files untouched.
@@ -192,8 +194,8 @@ patch:
 - [Everything](https://www.voidtools.com/) — fast file search across game data.
 - [Manioned](https://github.com/exectails/Mabioned) — Mabi region/map editor.
 - [paint.net/](https://paint.net/) — image editor I use to make the dds files.
-- [mabi-pack2](https://github.com/shaggyze/uotiara) — unpacking and repacking
-  `.it` files (from the uotiara repo).
+- [mabi-pack2](https://github.com/shaggyze/mabi-pack2) — unpacking and repacking
+  `.it` files (its CLI is the bundled `mabi-patcher.exe`).
 
 ---
 

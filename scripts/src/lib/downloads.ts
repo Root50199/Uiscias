@@ -1,12 +1,14 @@
 import { z } from 'zod';
 import { REPO_OWNER, REPO_NAME } from './repo';
+import { parseItName } from './itFile';
 
 /**
  * Aggregates GitHub release-asset download counts into per-`modId` lifetime
- * totals. Every released `.it` asset is named `Uiscias<modId>_<version>.it`
- * (see `itName` in `itFile.ts`), so summing `download_count` across all
- * versions of a given `modId` yields that variant's lifetime downloads. A
- * non-variant mod has a single `modId`, so its total is the mod's total.
+ * totals. Every released `.it` asset is named `<prefix><modId>_<version>.it`
+ * (see `itName` / `parseItName` in `itFile.ts`; older releases used `Uiscias`,
+ * newer ones `uiscias`), so summing `download_count` across all versions of a
+ * given `modId` yields that variant's lifetime downloads. A non-variant mod has
+ * a single `modId`, so its total is the mod's total.
  *
  * The GitHub API payload is untrusted input, so it is validated with zod and
  * anything malformed is skipped rather than trusted or thrown on.
@@ -26,13 +28,6 @@ export interface FetchDownloadCountsOptions {
 
 const DEFAULT_BASE_URL = 'https://api.github.com';
 const PER_PAGE = 100;
-
-/**
- * Managed release-asset grammar, mirroring `itName()`: `Uiscias<modId>_<n>.it`.
- * The greedy `(.+)` captures the `modId`, then the trailing `_<version>.it` is
- * stripped. Non-managed assets (e.g. `manifestCatalog.json`) never match.
- */
-const MANAGED_ASSET = /^Uiscias(.+)_(\d{1,5})\.it$/;
 
 /** The asset fields we consume; other fields are ignored. */
 const assetSchema = z.object({
@@ -68,10 +63,9 @@ export const sumDownloadsByModId = (releases: readonly unknown[]): Map<string, n
     for (const rawAsset of release.data.assets ?? []) {
       const asset = assetSchema.safeParse(rawAsset);
       if (!asset.success) continue;
-      const match = MANAGED_ASSET.exec(asset.data.name);
-      if (!match) continue;
-      const modId = match[1];
-      totals.set(modId, (totals.get(modId) ?? 0) + asset.data.download_count);
+      const parsed = parseItName(asset.data.name);
+      if (!parsed) continue;
+      totals.set(parsed.modId, (totals.get(parsed.modId) ?? 0) + asset.data.download_count);
     }
   }
   return totals;

@@ -3,6 +3,12 @@ out/
 dist/
 release/
 *.log
+# mabi-patcher writes log.txt to its working directory (e.g. when packData.bat runs)
+scripts/mabi-patcher/log.txt
+# packData.bat input and output; the data_#####.it template is the only tracked .it here
+scripts/mabi-patcher/data/
+scripts/mabi-patcher/*.it
+!scripts/mabi-patcher/data_*.it
 .DS_Store
 .env
 .env.*
