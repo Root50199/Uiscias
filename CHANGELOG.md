@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.67.0](https://github.com/Root50199/Uiscias/compare/v1.66.1...v1.67.0) (2026-10-16)
+
+
+### Mods added / updated
+
+* packing with new mabi-patcher and using new formatting schema ([ed5bd33](https://github.com/Root50199/Uiscias/commit/ed5bd33b62ec8a91900c9413446ad3b6dee26d56))
+* repacking all mods ([aae58e0](https://github.com/Root50199/Uiscias/commit/aae58e06bb9d32dd2b13b9165638efce13c28e0e))
+
 ## [1.66.1](https://github.com/Root50199/Uiscias/compare/v1.66.0...v1.66.1) (2026-10-15)
 
 
