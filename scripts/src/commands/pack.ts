@@ -4,7 +4,12 @@ import { getRepoRoot } from '../lib/repo';
 import { discoverMods, packTargets, type Mod } from '../lib/mods';
 import { resolveTargetMods, type ScopeOptions } from '../lib/scope';
 import { computeDataHash } from '../lib/hash';
-import { packDataFolder } from '../lib/packer';
+import {
+  createPackModeResolver,
+  packDataFolder,
+  PackerSetupError,
+  type PackMode,
+} from '../lib/packer';
 import { gitAdd, gitAddAll } from '../lib/git';
 import { readBuildLock } from '../lib/config';
 import { itName, itBelongsToId, listItFiles, pruneItFiles } from '../lib/itFile';
@@ -26,6 +31,8 @@ import {
 export interface PackOptions extends ScopeOptions {
   /** Repack even when the source hash matches the lock. */
   force?: boolean;
+  /** Pack with the hardcoded salts instead of the template `.it`. */
+  shouldUseSalts?: boolean;
 }
 
 /**
@@ -62,15 +69,29 @@ export const runPack = async (opts: PackOptions): Promise<void> => {
 
   const tally = new Tally();
   const touchedBuildDirs: string[] = [];
+  const getPackMode = createPackModeResolver(repoRoot, opts.shouldUseSalts ?? false);
 
   for (const mod of targets) {
     try {
-      const didRecord = await packOne(repoRoot, mod, opts.force ?? false, ledger, (kind) => {
-        tally.bump(kind);
-        if (kind !== 'skipped') touchedBuildDirs.push(path.join(mod.dir, 'build'));
-      });
+      const didRecord = await packOne(
+        repoRoot,
+        mod,
+        opts.force ?? false,
+        ledger,
+        getPackMode,
+        (kind) => {
+          tally.bump(kind);
+          if (kind !== 'skipped') touchedBuildDirs.push(path.join(mod.dir, 'build'));
+        },
+      );
       if (didRecord) hasLedgerChanged = true;
     } catch (e) {
+      // A broken packer setup (no/several templates, missing exe) fails every
+      // remaining mod the same way: report it once and stop.
+      if (e instanceof PackerSetupError) {
+        tally.addError(e.message);
+        break;
+      }
       tally.addError(`${mod.relDir}: ${e instanceof Error ? e.message : String(e)}`);
     }
   }
@@ -104,6 +125,7 @@ const packOne = async (
   mod: Mod,
   force: boolean,
   ledger: VersionLedger,
+  getPackMode: () => PackMode,
   report: (kind: PackResult) => void,
 ): Promise<boolean> => {
   if (!mod.dataDir) {
@@ -140,7 +162,7 @@ const packOne = async (
   const prior = Math.max(lock?.version ?? 0, newest?.version ?? 0, floorFor(ledger, mod.id));
   const nextVersion = prior + 1;
   const outName = itName(mod.id, nextVersion);
-  packDataFolder(repoRoot, dataDir, path.join(buildDir, outName));
+  packDataFolder(repoRoot, dataDir, path.join(buildDir, outName), getPackMode());
   pruneItFiles(buildDir, outName);
   await writeLock(buildDir, { version: nextVersion, fileName: outName, builtFromHash: hash });
   report('packed');

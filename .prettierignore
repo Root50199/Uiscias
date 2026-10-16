@@ -12,7 +12,7 @@ release/
 coverage/
 
 # Packer tool and temp output
-scripts/Mabi-pack2/
+scripts/mabi-patcher/
 
 # Game asset trees (only format repo metadata at mod roots)
 **/data/

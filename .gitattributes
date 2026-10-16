@@ -3,7 +3,11 @@
 # core.autocrlf.
 * text=auto eol=lf
 
-# Packed mods and game assets are binary — never line-ending normalize them.
+# cmd.exe can mis-parse labels/goto in LF batch files; keep them CRLF.
+*.bat text eol=crlf
+
+# Packed mods, game assets, and the packer are binary — never line-ending normalize them.
+*.exe binary
 *.it binary
 *.dds binary
 *.pmg binary

@@ -57,7 +57,10 @@ withScope(program.command('generate-configs'))
 withScope(program.command('pack'))
   .description('Pack changed mods into build/ (bump-by-hash)')
   .option('--force', 'repack even when the source hash matches')
-  .action((opts: ScopeOptions & { force?: boolean }) => runPack(opts));
+  .option('--salts', 'pack with the hardcoded salts instead of the template .it')
+  .action((opts: ScopeOptions & { force?: boolean; salts?: boolean }) =>
+    runPack({ ...opts, shouldUseSalts: opts.salts ?? false }),
+  );
 
 program
   .command('build-manifest')

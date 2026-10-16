@@ -11,7 +11,7 @@ _product_ context (what Findias is, how it installs mods, the `.it` naming
 rules, and the game's folder structure) read those Findias docs first:
 
 - `Findias/docs/project-overview.md` — what Findias does and the
-  `Uiscias<ModFileName>_<number>.it` naming convention.
+  `uiscias<ModFileName>_<number>.it` naming convention.
 - `Findias/docs/architecture.md` — Findias's engineering design, including the
   swappable `ModCatalogProvider` seam this repo's release feeds.
 - `Findias/docs/game-structure.md` — how Mabinogi loads `.it` files from
@@ -60,7 +60,7 @@ mods/AchievmentUnhide/
 ├─ images/                # optional screenshots/gifs
 ├─ data/                  # raw game files this mod modifies (the pack input)
 └─ build/
-   ├─ UisciasAchievmentUnhide_00002.it   # GENERATED, committed (latest version only)
+   ├─ uisciasAchievmentUnhide_00002.it   # GENERATED, committed (latest version only)
    └─ build.lock.json                    # GENERATED: { version, fileName, builtFromHash }
 ```
 
@@ -81,14 +81,14 @@ mods/BriHpBars/                  # parent group folder (no data/)
 │  ├─ config.json                # isVariant: true
 │  ├─ data/
 │  └─ build/
-│     ├─ UisciasBriHpBars1And2_00001.it
+│     ├─ uisciasBriHpBars1And2_00001.it
 │     └─ build.lock.json
 └─ BriHpBars1And3/               # another variant
    ├─ config.yaml
    ├─ config.json
    ├─ data/
    └─ build/
-      ├─ UisciasBriHpBars1And3_00001.it
+      ├─ uisciasBriHpBars1And3_00001.it
       └─ build.lock.json
 ```
 
@@ -99,7 +99,7 @@ variant id is `<ParentPrefix><VariantSuffix>`. For example, the HP bars group
 is `BriHpBars`, with variants `BriHpBars1And2` and `BriHpBars1And3` (the legacy
 `HpBars` / `BriHpBar1And2` / `BriHpBar1And3` names are renamed to match). This
 keeps grouping derivable from folder names and keeps each variant's `.it`
-filename self-describing (`UisciasBriHpBars1And3_00001.it`).
+filename self-describing (`uisciasBriHpBars1And3_00001.it`).
 
 Each variant's `modId` only needs to be **globally unique** (it is the identity
 Findias keys on and the `<ModFileName>` segment of the `.it`). The parent's
@@ -113,10 +113,10 @@ Findias keys on and the `<ModFileName>` segment of the `.it`). The parent's
 | Source             | `catalog.yaml` (repo root) | Human              | Yes                | Catalog-level metadata (game versions) folded into the manifest's `metadata` block.       |
 | Source             | `data/`                    | Human              | Yes                | Raw game files; the pack input.                                                           |
 | Generated (config) | `config.json`              | `generate-configs` | Yes                | Normalized metadata + `usedFiles` + `sourceHash`. The aggregation input for the manifest. |
-| Generated (binary) | `build/Uiscias<id>_<n>.it` | `pack`             | Yes (plain git)    | The packed mod. Latest version only.                                                      |
+| Generated (binary) | `build/uiscias<id>_<n>.it` | `pack`             | Yes (plain git)    | The packed mod. Latest version only.                                                      |
 | Generated (state)  | `build/build.lock.json`    | `pack`             | Yes                | Records the version and the source hash the committed `.it` was built from.               |
 | Release            | `manifestCatalog.json`     | release workflow   | Release asset only | The full catalog Findias reads.                                                           |
-| Release            | `Uiscias<id>_<n>.it`       | release workflow   | Release asset only | Copies of each mod's latest `.it`.                                                        |
+| Release            | `uiscias<id>_<n>.it`       | release workflow   | Release asset only | Copies of each mod's latest `.it`.                                                        |
 
 ## Data model and schemas
 
@@ -182,7 +182,7 @@ validation.
 ```json
 {
   "version": 2,
-  "fileName": "UisciasAchievmentUnhide_00002.it",
+  "fileName": "uisciasAchievmentUnhide_00002.it",
   "builtFromHash": "sha256-<hex>"
 }
 ```
@@ -255,7 +255,7 @@ non-variant mod is simply a group with one variant.
         {
           "modId": "AchievmentUnhide",
           "modName": "Achievment Unhide",
-          "fileName": "UisciasAchievmentUnhide_00002.it",
+          "fileName": "uisciasAchievmentUnhide_00002.it",
           "version": 2,
           "size": 20840,
           "downloadCount": 60,
@@ -277,7 +277,7 @@ non-variant mod is simply a group with one variant.
         {
           "modId": "BriHpBars1And2",
           "modName": "Bri Hp Bars 1 And 2",
-          "fileName": "UisciasBriHpBars1And2_00001.it",
+          "fileName": "uisciasBriHpBars1And2_00001.it",
           "version": 1,
           "size": 8624,
           "downloadCount": 45,
@@ -290,7 +290,7 @@ non-variant mod is simply a group with one variant.
         {
           "modId": "BriHpBars1And3",
           "modName": "Bri Hp Bars 1 And 3",
-          "fileName": "UisciasBriHpBars1And3_00001.it",
+          "fileName": "uisciasBriHpBars1And3_00001.it",
           "version": 1,
           "size": 8624,
           "downloadCount": 38,
@@ -319,7 +319,7 @@ Design notes:
   Findias can resolve and download the correct asset (this maps to its
   `CatalogVariant`). It is a bug to share one `modId` across variants.
 - `downloadCount` is the variant's **lifetime** downloads — the sum of the
-  GitHub `download_count` of every `Uiscias<modId>_<n>.it` asset that variant
+  GitHub `download_count` of every `uiscias<modId>_<n>.it` asset that variant
   has ever shipped, across all stable releases (drafts and prereleases are
   excluded). It is always present; a normal `build-manifest` run (no
   `--with-downloads`) emits `0`, and the nightly refresh replaces it with the
@@ -358,7 +358,7 @@ which only validates `config.json`/hashes.
 ## Tooling layout (where the build code lives)
 
 The build tooling is **Node/TypeScript** and lives under `scripts/`. The packer
-binary stays where it is today; `pack.bat` is a legacy manual-pack reference only.
+binary and its single template `.it` live in `scripts/mabi-patcher/`.
 
 ```text
 scripts/
@@ -380,7 +380,8 @@ scripts/
 │  │  ├─ git.ts                 # git diff + git add helpers (for --stage)
 │  │  ├─ config.ts              # load yaml / build + read config.json + build.lock
 │  │  ├─ humanize.ts            # camelCase modId → display name
-│  │  ├─ packer.ts              # mabi-pack2.exe wrapper
+│  │  ├─ itFile.ts              # MANAGED_PREFIX + .it name build/parse/list/prune
+│  │  ├─ packer.ts              # mabi-patcher.exe wrapper (template / --salts)
 │  │  └─ term.ts                # picocolors semantic color helpers
 │  ├─ commands/
 │  │  ├─ list.ts                # print discovered mod/group/variant tree
@@ -391,8 +392,11 @@ scripts/
 │  │  ├─ buildManifest.ts       # release aggregation → manifestCatalog.json (+ --assets/--with-downloads)
 │  │  └─ check.ts               # CI drift check (hash-only, no packing)
 │  └─ index.ts                  # CLI entry (commander: subcommands + scope flags)
-├─ Mabi-pack2/                  # mabi-pack2.exe
-└─ pack.bat                     # legacy manual-pack reference (not wired to npm)
+└─ mabi-patcher/
+   ├─ mabi-patcher.exe          # the packer CLI
+   ├─ data_#####.it             # the ONE template (latest official game archive)
+   ├─ packData.bat              # hand-run pack of a single data/ folder
+   └─ MABI-PATCHER-README.md    # upstream mabi-patcher docs (CLI flags, pack rules)
 ```
 
 Generated artifacts do **not** live under `scripts/`; they live next to each mod
@@ -472,19 +476,21 @@ by scope:
 2. For each target with a `data/`: compare `config.json.sourceHash` to
    `build/build.lock.json.builtFromHash`.
    - Equal → **skip** (no repack, no bump).
-   - Missing/different → run `mabi-pack2.exe` against `data/`, increment the
+   - Missing/different → run `mabi-patcher.exe` against `data/` (template mode
+     by default, `--salts` to use the hardcoded salts), increment the
      version (**floored against `version-ledger.json`** so it can never reuse a
-     number this modId has already published), write `build/Uiscias<id>_<nextN>.it`,
+     number this modId has already published), write `build/uiscias<id>_<nextN>.it`,
      delete the previous `.it` (commit-latest-only), and update `build.lock.json`.
    - Every branch records the resulting version into `version-ledger.json`
      (monotonic max), written once per run. See
      [`version-ledger.json`](#version-ledgerjson-generated-committed--repo-root).
-3. Because `mabi-pack2` output is **not byte-deterministic** (verified: identical
-   size, differing bytes), the bump decision is driven entirely by `sourceHash`,
-   never by comparing packed bytes.
+3. Because packer output is **not byte-deterministic**, the bump decision is
+   driven entirely by `sourceHash`, never by comparing packed bytes. Swapping
+   the template `.it` does not change any `sourceHash`, so it repacks nothing
+   on its own.
 
-> **Critical packer constraint:** `mabi-pack2` bakes the output filename into the
-> `.it`, so a packed file must be written with its **final** name and never
+> **Critical packer constraint:** the `.it` header key is derived from the output
+> filename, so a packed file must be written with its **final** name and never
 > renamed (copying is fine only if the basename is unchanged) — renaming bricks
 > the mod in-game. The full list of packer do's/don'ts lives in
 > [`packing.md`](./packing.md).
@@ -517,7 +523,7 @@ all-mods commands.
   5. `git add` the regenerated `config.json`, `.it`, and `build.lock.json` so
      they land in the same commit,
   6. re-run `generate-configs --check` as a closing guard.
-     Each maintainer is on Windows with `mabi-pack2.exe` available locally (see the
+     Each maintainer is on Windows with `mabi-patcher.exe` available locally (see the
      environment rules), so packing in the hook is viable.
 - **The formatters must run first.** `generate-configs` captures `README.md` into
   `config.json.readme`, so if prettier reformats the README afterwards the
@@ -653,7 +659,7 @@ Triggered on merges to `main` that include `feat`/`fix` (Conventional Commits).
 
 Because packing happens locally and the assembly is pure file/JSON work, the
 release job runs on **`ubuntu-latest`** (no Windows runner, no `.exe` in CI).
-The `mabi-pack2` pack key therefore stays local and is not a CI secret. (GitHub
+The packer template and salts therefore stay local and are not CI secrets. (GitHub
 `windows-latest` runners _can_ execute arbitrary `.exe`, so moving packing into
 CI later is possible — it is simply not needed by this design.)
 
@@ -693,16 +699,16 @@ triggers the release), not the release PR itself:
 Release `1.0.0` ships:
 
 ```text
-UisciasModExampleFoo_00001.it
-UisciasModExampleBar_00001.it
+uisciasModExampleFoo_00001.it
+uisciasModExampleBar_00001.it
 ```
 
 A change to `ModExampleFoo` only: `pack` bumps Foo to `_00002` (Bar untouched).
 The next release globs the tree and ships:
 
 ```text
-UisciasModExampleFoo_00002.it   # new
-UisciasModExampleBar_00001.it   # carried forward unchanged
+uisciasModExampleFoo_00002.it   # new
+uisciasModExampleBar_00001.it   # carried forward unchanged
 ```
 
 ## Download counts
@@ -716,15 +722,17 @@ variant.
 ### Where the number comes from
 
 GitHub tracks a `download_count` per **release asset** in real time. Every
-shipped mod asset is named `Uiscias<modId>_<version>.it`, so summing the
+shipped mod asset is named `uiscias<modId>_<version>.it` (older releases used
+`Uiscias<modId>_<version>.it`; the prefix is matched case-insensitively, so both
+count toward the same `modId`), so summing the
 `download_count` of every asset that shares a `modId`, across every release,
 yields that variant's lifetime total. `scripts/src/lib/downloads.ts` does this:
 
 - `fetchDownloadCounts()` pages through the repo's releases via the authenticated
   GitHub API (5,000 req/hr; only the release **list** is fetched — asset bytes are
   never downloaded), then delegates to…
-- `sumDownloadsByModId()`, a pure function that parses each asset name against the
-  `Uiscias<modId>_<n>.it` grammar and accumulates a `modId -> total` map. It
+- `sumDownloadsByModId()`, a pure function that parses each asset name with
+  `parseItName` (the `uiscias<modId>_<n>.it` grammar from `itFile.ts`) and accumulates a `modId -> total` map. It
   **skips draft and prerelease releases** (a count should reflect what real users
   download on the stable channel, not opt-in dev builds) and ignores any asset
   that isn't a managed `.it` (e.g. `manifestCatalog.json`). The GitHub payload is
