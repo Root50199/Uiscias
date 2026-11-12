@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.67.1](https://github.com/Root50199/Uiscias/compare/v1.67.0...v1.67.1) (2026-11-12)
+
+
+### Fixes
+
+* updated for awakening ([def3f4e](https://github.com/Root50199/Uiscias/commit/def3f4e555ff865fcb45c000c44343de625b52eb))
+
 ## [1.67.0](https://github.com/Root50199/Uiscias/compare/v1.66.1...v1.67.0) (2026-10-16)
 
 
