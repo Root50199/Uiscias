@@ -3,7 +3,7 @@ modName: Talent and Arcana Window High Resolution
 modAuthor: Root50199
 # modAdditionalCredits:
 updateType: stable
-recentUpdateNotes: split into low and high resolution variants
+recentUpdateNotes: Not currently working. Will be fixed later. Installing will do nothing for now.
 findiasTags:
   - UI
   - QoL
