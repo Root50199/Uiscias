@@ -4,11 +4,11 @@
   "modAuthor": "Root50199",
   "updateType": "stable",
   "findiasTags": ["QoL", "UI"],
-  "recentUpdateNotes": "split into low and high resolution variants",
+  "recentUpdateNotes": "Not currently working. Will be fixed later. Installing will do nothing for now.",
   "isVariant": true,
   "hasVariants": false,
   "usedFiles": ["data/db/layout2/Talent/TalentMainViewRenewal.xml"],
-  "sourceHash": "sha256-84617b76334cfdd718237c9cf03aba0646f13f848eb438a9a8b993c5d2f94689",
+  "sourceHash": "sha256-c9d3fcff74b0fe007612e5dcaa49052695b8dbd534a0b1ddb4243e984c8b8f1e",
   "readme": "# Talent and Arcana Window High Resolution\n\n## What it does\n\nCombines the Talent and Arcana tabs into one.\n\n### How it's made\n\nSee files.",
   "images": ["ArcanaAndTalentWindow1080p.png"]
 }
