@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.67.2](https://github.com/Root50199/Uiscias/compare/v1.67.1...v1.67.2) (2026-11-13)
+
+
+### Fixes
+
+* temporarily disabling the talent window mod ([18cfe52](https://github.com/Root50199/Uiscias/commit/18cfe5276e13a980738851c2125cbe963177bba7))
+
 ## [1.67.1](https://github.com/Root50199/Uiscias/compare/v1.67.0...v1.67.1) (2026-11-12)
 
 
