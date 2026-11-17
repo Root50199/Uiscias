@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.67.3](https://github.com/Root50199/Uiscias/compare/v1.67.2...v1.67.3) (2026-11-17)
+
+
+### Fixes
+
+* updated talent window for Ogham update ([1ac4ff3](https://github.com/Root50199/Uiscias/commit/1ac4ff32222688956f97856ca172dc2aa249603c))
+
 ## [1.67.2](https://github.com/Root50199/Uiscias/compare/v1.67.1...v1.67.2) (2026-11-13)
 
 
