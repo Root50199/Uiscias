@@ -452,6 +452,46 @@ drift check or any release.
 | `format` / `format:check` | Prettier write / check (repo-wide; `.prettierignore`)    |
 | `lint:md`                 | markdownlint on scoped README + docs paths (see above)   |
 
+### VS Code tasks and WIP publishing
+
+Use **Terminal > Run Task** (or **Tasks: Run Task** in the Command Palette).
+The checked-in [tasks configuration](../.vscode/tasks.json) uses category labels:
+**New mod**, **Pre-commit**, **Validate**, and **Commit**. The aggregate
+**Pre-commit: Run all staged checks** task runs the hook's five steps in order;
+individual steps are also available. These tasks can format, regenerate, pack
+and stage files, just like the hook. Existing npm script names remain unchanged.
+VS Code's built-in task picker uses labels, not custom nested folders; the NPM
+Scripts view still displays the original flat package scripts.
+
+**Commit: Publish WIP (stage ALL, commit, PR, wait for CI, merge)** runs:
+
+```bash
+npx tsx scripts/src/index.ts publish-wip
+# Non-interactive message input:
+npx tsx scripts/src/index.ts publish-wip --message "fix: update talent window"
+```
+
+This intentionally stages **all tracked and untracked, non-ignored changes**.
+Review the displayed status and enter a one-line Conventional Commit message;
+blank input cancels. The helper requires branch `wip`, `origin` pointing to this
+repository, enabled Husky hooks, and authenticated `gh`. It commits normally
+(including formatting/config/packing hooks and the Copilot co-author trailer),
+then pushes without force, creates or reuses the open `wip` to `main` PR, and
+waits for CI. New PR titles are plain descriptions derived from the last commit.
+
+The `format`, `validate`, `test`, and `commits` checks must all succeed, and all
+other reported checks must finish without failure. Missing checks never count
+as success. Failures or a one-hour timeout stop the helper and leave the commit
+and PR available for inspection/retry. A clean WIP branch resumes publishing
+without making an empty commit. Keep the task running until it finishes; this
+is a client-side wait-and-merge flow, not a persistent GitHub auto-merge request.
+
+After checks pass, the helper requests a **merge commit**, pinned to the exact
+checked PR head. It never uses admin bypass, force-pushes, resets, or checks out
+`main`. Branch protection/review requirements still apply and may reject the
+merge. Local `wip` is retained; GitHub's repository settings control remote
+branch deletion. Merging may trigger the existing release automation.
+
 ## Build scripts
 
 The maintainer scripts are **Node/TypeScript**, non-interactive, and selectable

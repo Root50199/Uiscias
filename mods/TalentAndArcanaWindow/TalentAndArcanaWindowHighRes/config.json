@@ -4,11 +4,11 @@
   "modAuthor": "Root50199",
   "updateType": "stable",
   "findiasTags": ["1440p Required", "QoL", "UI"],
-  "recentUpdateNotes": "Not currently working. Will be fixed later. Installing will do nothing for now.",
+  "recentUpdateNotes": "Fixed for Ogham update. Now works from both talent and arcana windows",
   "isVariant": true,
   "hasVariants": false,
   "usedFiles": ["data/db/layout2/Talent/TalentMainViewRenewal.xml"],
-  "sourceHash": "sha256-c9d3fcff74b0fe007612e5dcaa49052695b8dbd534a0b1ddb4243e984c8b8f1e",
-  "readme": "# Talent and Arcana Window High Resolution\n\n## What it does\n\nCombines the Talent and Arcana tabs into one.\n\n### How it's made\n\nSee files.",
+  "sourceHash": "sha256-29830f5f1409443ad65e16665a51e3a8ffe25f9c484b5f29ad109a515640233b",
+  "readme": "# Talent and Arcana Window High Resolution\n\n## What it does\n\nCombines the Talent and Arcana tabs into one. There is some visual jank like the skill icon being wrong when first opening the talent window and link info disappearing when using the ogham tab, but due to how the clients works theres nothing I can do about that. The skill icon is fixed once you use the ogham part of the window and the link info comes back when you reopen the talent window or click the normal tab.\n\n### How it's made\n\nSee files.",
   "images": ["ArcanaAndTalentWindow1440p.png"]
 }

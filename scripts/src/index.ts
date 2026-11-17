@@ -7,6 +7,7 @@ import { runBuildManifest } from './commands/buildManifest';
 import { runCheck } from './commands/check';
 import { runCheckCase } from './commands/checkCase';
 import { runNewMod } from './commands/newMod';
+import { runPublishWip } from './commands/publishWip';
 import { err } from './lib/term';
 import type { ScopeOptions } from './lib/scope';
 
@@ -81,6 +82,12 @@ program
 withScope(program.command('check-case'))
   .description('Fail if a working-tree file case differs from git')
   .action((opts: ScopeOptions) => runCheckCase(opts));
+
+program
+  .command('publish-wip')
+  .description('Stage all, commit on wip, push, open/reuse a PR and merge after CI passes')
+  .option('--message <message>', 'one-line Conventional Commit message (otherwise prompted)')
+  .action((opts: { message?: string }) => runPublishWip(opts));
 
 program.parseAsync(process.argv).catch((e) => {
   console.error(err(e instanceof Error ? e.message : String(e)));
