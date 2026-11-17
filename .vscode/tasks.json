@@ -1,0 +1,111 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Commit: Publish WIP (stage ALL, commit, PR, wait for CI, merge)",
+      "type": "shell",
+      "command": "npx",
+      "args": ["tsx", "scripts/src/index.ts", "publish-wip"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "presentation": { "reveal": "always", "panel": "dedicated", "focus": true },
+      "problemMatcher": [],
+      "runOptions": { "instanceLimit": 1 }
+    },
+    {
+      "label": "New mod: Single",
+      "type": "npm",
+      "script": "new-mod",
+      "problemMatcher": []
+    },
+    {
+      "label": "New mod: Variant group",
+      "type": "npm",
+      "script": "new-mod-variant",
+      "problemMatcher": []
+    },
+    {
+      "label": "Pre-commit: Format staged files",
+      "type": "shell",
+      "command": "npx",
+      "args": ["lint-staged"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Pre-commit: Generate and stage configs",
+      "type": "shell",
+      "command": "npx",
+      "args": [
+        "tsx",
+        "scripts/src/index.ts",
+        "generate-configs",
+        "--changed",
+        "--staged",
+        "--stage"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Pre-commit: Pack and stage mods",
+      "type": "shell",
+      "command": "npx",
+      "args": ["tsx", "scripts/src/index.ts", "pack", "--changed", "--staged", "--stage"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Pre-commit: Verify config stability",
+      "type": "shell",
+      "command": "npx",
+      "args": [
+        "tsx",
+        "scripts/src/index.ts",
+        "generate-configs",
+        "--changed",
+        "--staged",
+        "--check"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Pre-commit: Check path casing",
+      "type": "shell",
+      "command": "npx",
+      "args": ["tsx", "scripts/src/index.ts", "check-case", "--changed", "--staged"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Pre-commit: Run all staged checks",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Pre-commit: Format staged files",
+        "Pre-commit: Generate and stage configs",
+        "Pre-commit: Pack and stage mods",
+        "Pre-commit: Verify config stability",
+        "Pre-commit: Check path casing"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Validate: Typecheck",
+      "type": "npm",
+      "script": "typecheck",
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "Validate: Tests",
+      "type": "npm",
+      "script": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Validate: Config and build drift",
+      "type": "npm",
+      "script": "check",
+      "problemMatcher": []
+    }
+  ]
+}
